@@ -36,24 +36,24 @@
     <detaileddescription>
 <para><verbatim>Tests for the application views.</verbatim> </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="226">
+      <node id="829">
         <label>TestCase</label>
       </node>
-      <node id="225">
+      <node id="828">
         <label>evidence.tests.ViewTest</label>
         <link refid="classevidence_1_1tests_1_1_view_test"/>
-        <childnode refid="226" relation="public-inheritance">
+        <childnode refid="829" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="228">
+      <node id="831">
         <label>TestCase</label>
       </node>
-      <node id="227">
+      <node id="830">
         <label>evidence.tests.ViewTest</label>
         <link refid="classevidence_1_1tests_1_1_view_test"/>
-        <childnode refid="228" relation="public-inheritance">
+        <childnode refid="831" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>

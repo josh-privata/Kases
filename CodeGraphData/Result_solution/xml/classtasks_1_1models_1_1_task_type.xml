@@ -2,35 +2,75 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="classtasks_1_1models_1_1_task_type" kind="class" prot="public">
     <compoundname>tasks::models::TaskType</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Model</basecompoundref>
+    <basecompoundref refid="classutils_1_1models_1_1_object_description_mixin" prot="public" virt="non-virtual">utils.models.ObjectDescriptionMixin</basecompoundref>
+    <innerclass refid="classtasks_1_1models_1_1_task_type_1_1_meta" prot="public">tasks::models::TaskType::Meta</innerclass>
       <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="classtasks_1_1models_1_1_task_type_1ab4e97f0c976c0d51bb85c7738d1b30e4" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classtasks_1_1models_1_1_task_type_1ad914b98617dd043f25451fd8b5004875" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple tasks.models.TaskType::task_type</definition>
+        <definition>tuple tasks.models.TaskType::title</definition>
         <argsstring></argsstring>
-        <name>task_type</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;the&quot;)</initializer>
+        <name>title</name>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Task Type&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" line="26" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" bodystart="26" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" line="48" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classtasks_1_1models_1_1_task_type_1aded107c5c6cbc1f0f119b4cb3ebba0b3" compoundref="tasks_2models_8py" startline="58" endline="61">tasks.models.TaskType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_priority_1a38bba820f7c6791fe2363745d5dfe462" compoundref="tasks_2models_8py" startline="76" endline="79">tasks.models.TaskPriority.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_category_1a11670b07da93a038f8cd706aa66142af" compoundref="tasks_2models_8py" startline="92" endline="95">tasks.models.TaskCategory.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_status_type_1a4c94b28fc0308e5001ac1d674c7fb78d" compoundref="tasks_2models_8py" startline="108" endline="111">tasks.models.TaskStatusType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_status_group_1aa95b51c33303b1fd0bc1d8644d850586" compoundref="tasks_2models_8py" startline="143" endline="146">tasks.models.TaskStatusGroup.__str__</referencedby>
+        <referencedby refid="classcase_1_1models_1_1_case_contact_1ae5e495e1fd68f1978ba040e601e2e725" compoundref="case_2models_8py" startline="267" endline="268">case.models.CaseContact.__str__</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="classtasks_1_1models_1_1_task_type_1a7d7b26ca1e8a59fd4b9d5e782d9477a1" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple tasks.models.TaskType::category</definition>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtasks_1_1models_1_1_task_type_1aded107c5c6cbc1f0f119b4cb3ebba0b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tasks.models.TaskType.__str__</definition>
         <argsstring></argsstring>
-        <name>category</name>
-        <initializer>= models.ForeignKey(<ref refid="classtasks_1_1models_1_1_task_category" kindref="compound">TaskCategory</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;the&quot;)</initializer>
+        <name>__str__</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" line="28" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" bodystart="28" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" line="58" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" bodystart="58" bodyend="61"/>
+        <references refid="classevidence_1_1models_1_1_evidence_authorisation_type_1a69c1c156d932ceb197dfa35bfc443c30" compoundref="evidence_2models_8py" startline="16">evidence.models.EvidenceAuthorisationType.title</references>
+        <references refid="classnote_1_1models_1_1_note_authorisation_type_1afe7bda6cf7b27de2fc440b0ca1f144a8" compoundref="note_2models_8py" startline="16">note.models.NoteAuthorisationType.title</references>
+        <references refid="classtasks_1_1models_1_1_task_authorisation_type_1aab02c5f565f5fe5e68a407c7b32bdd1c" compoundref="tasks_2models_8py" startline="16">tasks.models.TaskAuthorisationType.title</references>
+        <references refid="classcase_1_1models_1_1_case_authorisation_type_1a798a93cde5965e44ec8142592aaee86d" compoundref="case_2models_8py" startline="18">case.models.CaseAuthorisationType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_create_form_1a8527eaf491022eb2eb2fc40a003cef7b" compoundref="case_2forms_8py" startline="19">case.forms.CaseCreateForm.title</references>
+        <references refid="classnote_1_1models_1_1_note_classification_type_1a7c4813b0ed97c48f5722b899b8ed1565" compoundref="note_2models_8py" startline="32">note.models.NoteClassificationType.title</references>
+        <references refid="classtasks_1_1models_1_1_task_classification_type_1a9587afe8e0b7b810a8b857da2b1f32b9" compoundref="tasks_2models_8py" startline="32">tasks.models.TaskClassificationType.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_classification_type_1a4bd721557418ccf8ff87883d10d4652a" compoundref="evidence_2models_8py" startline="32">evidence.models.EvidenceClassificationType.title</references>
+        <references refid="classcase_1_1models_1_1_case_classification_type_1a213e29c19e87393bf3b57fe3e20b08a3" compoundref="case_2models_8py" startline="34">case.models.CaseClassificationType.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_type_1ad32baa4bb568cb129afad5630a7549b1" compoundref="evidence_2models_8py" startline="48">evidence.models.EvidenceType.title</references>
+        <references refid="classtasks_1_1models_1_1_task_type_1ad914b98617dd043f25451fd8b5004875" compoundref="tasks_2models_8py" startline="48">tasks.models.TaskType.title</references>
+        <references refid="classnote_1_1models_1_1_note_type_1ae302942d7f2685784d82b1ecbf024463" compoundref="note_2models_8py" startline="48">note.models.NoteType.title</references>
+        <references refid="classcase_1_1models_1_1_case_type_1aaf1fa9baeadd1116244521cc692025cb" compoundref="case_2models_8py" startline="50">case.models.CaseType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_edit_form_1a265327f697f8b579f4cc6344678949f0" compoundref="case_2forms_8py" startline="52">case.forms.CaseEditForm.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_category_1a3d9daf25674bb0de83880e402ea36326" compoundref="evidence_2models_8py" startline="64">evidence.models.EvidenceCategory.title</references>
+        <references refid="classnote_1_1models_1_1_note_priority_1ab7dd620a1a947286c263edc47dbf6bf7" compoundref="note_2models_8py" startline="64">note.models.NotePriority.title</references>
+        <references refid="classcase_1_1models_1_1_case_priority_1a876acd5e7567f2056c4caa98c094b22b" compoundref="case_2models_8py" startline="66">case.models.CasePriority.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_priority_1a09229d395d07cded8d8b7ab1cf497c31" compoundref="evidence_2models_8py" startline="80">evidence.models.EvidencePriority.title</references>
+        <references refid="classnote_1_1models_1_1_note_category_1a2c5bad8ba35509ba7b616eadff831be6" compoundref="note_2models_8py" startline="82">note.models.NoteCategory.title</references>
+        <references refid="classcase_1_1models_1_1_case_category_1a1cee298c12254c8500ec5f2d6e3e905b" compoundref="case_2models_8py" startline="84">case.models.CaseCategory.title</references>
+        <references refid="classcase_1_1forms_1_1_case_note_create_form_1a8c8353b447713f3762c7ffc1b3fe9683" compoundref="case_2forms_8py" startline="90">case.forms.CaseNoteCreateForm.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_status_type_1ace325448c908f6cb935b21d3aed2a650" compoundref="evidence_2models_8py" startline="98">evidence.models.EvidenceStatusType.title</references>
+        <references refid="classnote_1_1models_1_1_note_status_type_1ae50d863f38256cb6aed2eb77438f9083" compoundref="note_2models_8py" startline="98">note.models.NoteStatusType.title</references>
+        <references refid="classcase_1_1models_1_1_case_status_type_1aa46bd8ba56ce10c545c1e304e90e4268" compoundref="case_2models_8py" startline="100">case.models.CaseStatusType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_task_create_form_1a9862f8480f3eb6d142305e5874f04f32" compoundref="case_2forms_8py" startline="111">case.forms.CaseTaskCreateForm.title</references>
+        <references refid="classnote_1_1models_1_1_note_status_group_1a3eab38e24ced14bb9a499808614b507b" compoundref="note_2models_8py" startline="130">note.models.NoteStatusGroup.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_status_group_1af8b6d87b4ba8e1a0427c9199476cee21" compoundref="evidence_2models_8py" startline="130">evidence.models.EvidenceStatusGroup.title</references>
+        <references refid="classcase_1_1models_1_1_case_status_group_1a1766518747edec1e270d9c8e4857110e" compoundref="case_2models_8py" startline="132">case.models.CaseStatusGroup.title</references>
+        <references refid="classnote_1_1models_1_1_note_1a47d8b9ce0b65d510fe0a3c655cb6a620" compoundref="note_2models_8py" startline="150">note.models.Note.title</references>
+        <references refid="classcase_1_1models_1_1_case_1a0672bfe3382cdc703af7fcf274e7ddf8" compoundref="case_2models_8py" startline="153">case.models.Case.title</references>
+        <references refid="classentity_1_1models_1_1_person_1a062b11b8a145e3a1c19e7fb2f629f63e" compoundref="entity_2models_8py" startline="162">entity.models.Person.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_1ae7c012b67a4e7cb8e21d2b9f7ef7ee18" compoundref="evidence_2models_8py" startline="164">evidence.models.Evidence.title</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -38,31 +78,49 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="154">
+      <node id="790">
         <label>tasks.models.TaskType</label>
         <link refid="classtasks_1_1models_1_1_task_type"/>
-        <childnode refid="155" relation="public-inheritance">
+        <childnode refid="791" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="155">
+      <node id="791">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="792" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="792">
         <label>Model</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="156">
+      <node id="793">
         <label>tasks.models.TaskType</label>
         <link refid="classtasks_1_1models_1_1_task_type"/>
-        <childnode refid="157" relation="public-inheritance">
+        <childnode refid="794" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="157">
+      <node id="794">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="795" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="795">
         <label>Model</label>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" line="24" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" bodystart="24" bodyend="31"/>
+    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" line="46" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/models.py" bodystart="46" bodyend="62"/>
     <listofallmembers>
-      <member refid="classtasks_1_1models_1_1_task_type_1a7d7b26ca1e8a59fd4b9d5e782d9477a1" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>category</name></member>
-      <member refid="classtasks_1_1models_1_1_task_type_1ab4e97f0c976c0d51bb85c7738d1b30e4" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>task_type</name></member>
+      <member refid="classtasks_1_1models_1_1_task_type_1aded107c5c6cbc1f0f119b4cb3ebba0b3" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>__str__</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a89803b13439a16bd49ffb3297d829cbb" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a342aa403491ad4f61eb13761d86f2c26" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1aa9db1a2dd800429f6bf3262708408379" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>description</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a895434b9b64caab6a48589e1efa1f5b2" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1ac1a737eefa43b91977c3193768f81c87" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a8721aff9d00270cba53882d98b8de831" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>save</name></member>
+      <member refid="classtasks_1_1models_1_1_task_type_1ad914b98617dd043f25451fd8b5004875" prot="public" virt="non-virtual"><scope>tasks::models::TaskType</scope><name>title</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

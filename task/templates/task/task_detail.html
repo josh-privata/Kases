@@ -1,0 +1,410 @@
+﻿{% extends "global/views/base_detail.html" %}
+
+{% block sidebar_internal %}
+    {% include "task/task_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+
+<!-- Summary -->
+{% block header %}Task Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}
+        <h5>Task Title: {{ object.title }}</h5>
+        <h5>Task ID: {{ object.id }}</h5>
+        <h5>Task Brief: {{ object.brief }}</h5>
+        <h5>Task Reference: {{ object.reference }}</h5>
+        <h5>Task Location: {{ object.location }}</h5>
+        <h5>Comment: {{ object.comment }}</h5>
+        <h5>Private: {{ object.private }}</h5>
+    {% endblock %}          
+
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}
+        <h5>Task Type: {{ object.type }}</h5>
+        <h5>Task Status: {{ object.status }}</h5>
+        <h5>Task Classification:{{ object.classification}}</h5>
+        <h5>Task Authorisation: {{ object.authorisation }}</h5>
+        <h5>Task Deadline: {{ object.deadline }}</h5>
+        <h5>Task Creation Date: {{ object.creation_date }}</h5>
+    {% endblock %} 
+
+    {% block summary_buttonurl %}{% url 'task_edit' object.id %}{% endblock %}
+  
+<!-- Task Detail Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Schedule -->
+    {% block tab2_header %}Schedule{% endblock %}
+    <!-- Panel 3 - Contacts -->
+    {% block tab3_header %}Contacts{% endblock %}
+    <!-- Panel 4 - Questions -->
+    {% block tab4_header %}Questions{% endblock %}
+    <!-- Panel 5 - Authorisation -->
+    {% block tab5_header %}Authorisation{% endblock %}
+    <!-- Panel 6 - Task Log -->
+    {% block tab6_header %}Task Log{% endblock %}
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
+
+    <!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                    <p class="card-text">
+                        <h5>Task Background: {{ object.background}}</h5>
+                        <h5>Task Description: {{ object.description }}</h5>        
+                    </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 2 - Schedule -->
+    {% block panel2_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 3 - Contacts -->
+    {% block panel3_content %}
+        <div class="row">
+            <section class="mt-30px mb-30px">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <!-- Recent Updates -->
+                        <div class="col-lg-6 col-md-12">
+                            <div id="daily-feeds" class="card updates daily-feeds">
+
+                            <!-- Heading-->
+                            <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
+                                <h2 class="h5 display">
+                                <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
+                                    Recent Updates
+                                </a>
+                                </h2>
+                                <div class="right-column">
+                                <div class="badge badge-primary">10 messages</div>
+                                    <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
+                                    <i class="fa fa-angle-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div id="feeds-box" role="tabpanel" class="collapse show">
+                                <div class="feed-box">
+                                <ul class="feed-elements list-unstyled">
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Aria Smith</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Frank Williams</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Ashley Wood</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Jason Doe</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Sam Martinez</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Tasks -->
+                        <div class="col-lg-6 col-md-12">
+                            <div id="recent-activities-wrapper" class="card updates activities">
+                
+                            <!-- Heading -->
+                            <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
+                                <h2 class="h5 display">
+                                <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
+                                    Tasks
+                                </a>
+                                </h2>
+                                <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
+                                <i class="fa fa-angle-down"></i>
+                                </a>
+                            </div>
+
+                            <div id="activities-box" role="tabpanel" class="collapse show">
+                                <ul class="activities list-unstyled">
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                </ul>
+                            </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Active Tasks -->
+                        <div class="col-lg-12 col-md-12">           
+                <div id="new-updates" class="card updates recent-updated">
+
+            <!-- Header -->
+            <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                <h2 class="h5 display">
+                <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
+                    Active Tasks
+                </a>
+                </h2>
+                <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
+                    <i class="fa fa-angle-down"></i>
+                </a>
+            </div>
+
+            <div id="updates-box" role="tabpanel" class="collapse show">
+                <ul class="news list-unstyled">
+
+                {% if tasks %}
+                    {% for task in tasks %}
+                        <!-- Item -->
+                        <li class="d-flex justify-content-between"> 
+                            <div class="left-col d-flex">
+                            <div class="icon"><i class="icon-rss-feed"></i></div>
+                            <div class="title"><strong><a href="{% url 'task_detail' task.id %}" role="button">{{ task.title }}</a></strong>
+                                <p>{{ task.description }}</p>
+                            </div>
+                            </div>
+                            <div class="right-col text-right">
+                            <div class="update-date"><span class="month">{{ task.creation_date }}</span></div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <!-- No Item -->
+                    <li class="d-flex justify-content-between"> 
+                            <div class="left-col d-flex">
+                            <div class="icon"><i class="icon-rss-feed"></i></div>
+                            <div class="title"><strong>There are no tasks to show</strong>
+                                <p></p>
+                            </div>
+                            </div>
+                            <div class="right-col text-right">
+                            <div class="update-date"><span class="month"></span></div>
+                            </div>
+                        </li>
+                {% endif %}
+
+
+                </ul>
+            </div>
+
+            </div>
+        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 4 - Questions -->
+    {% block panel4_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 5 - Authorisation -->
+    {% block panel5_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 6 - Task Log -->
+    {% block panel6_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    {% block panel7 %}{% endblock %}
+    {% block panel7_content %}{% endblock %}

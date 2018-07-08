@@ -2,6 +2,17 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_a05ca9d552c9020ff0038affd24b50a5" kind="dir">
     <compoundname>//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/migrations</compoundname>
+    <innerfile refid="case_2migrations_20001__initial_8py">0001_initial.py</innerfile>
+    <innerfile refid="0002__auto__20180520__1443_8py">0002_auto_20180520_1443.py</innerfile>
+    <innerfile refid="0003__auto__20180526__1530_8py">0003_auto_20180526_1530.py</innerfile>
+    <innerfile refid="0004__auto__20180526__1546_8py">0004_auto_20180526_1546.py</innerfile>
+    <innerfile refid="0005__auto__20180526__1555_8py">0005_auto_20180526_1555.py</innerfile>
+    <innerfile refid="0006__auto__20180526__1640_8py">0006_auto_20180526_1640.py</innerfile>
+    <innerfile refid="0007__auto__20180526__1645_8py">0007_auto_20180526_1645.py</innerfile>
+    <innerfile refid="0008__auto__20180526__1648_8py">0008_auto_20180526_1648.py</innerfile>
+    <innerfile refid="0009__auto__20180526__1734_8py">0009_auto_20180526_1734.py</innerfile>
+    <innerfile refid="0010__auto__20180527__0003_8py">0010_auto_20180527_0003.py</innerfile>
+    <innerfile refid="0011__auto__20180603__1324_8py">0011_auto_20180603_1324.py</innerfile>
     <innerfile refid="case_2migrations_2____init_____8py">__init__.py</innerfile>
     <briefdescription>
     </briefdescription>

@@ -2,35 +2,74 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="classevidence_1_1models_1_1_evidence_type" kind="class" prot="public">
     <compoundname>evidence::models::EvidenceType</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Model</basecompoundref>
+    <basecompoundref refid="classutils_1_1models_1_1_object_description_mixin" prot="public" virt="non-virtual">utils.models.ObjectDescriptionMixin</basecompoundref>
+    <innerclass refid="classevidence_1_1models_1_1_evidence_type_1_1_meta" prot="public">evidence::models::EvidenceType::Meta</innerclass>
       <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_type_1aa362973d76d6b2f73a6acb2fba8a61e5" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_type_1ad32baa4bb568cb129afad5630a7549b1" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple evidence.models.EvidenceType::id</definition>
+        <definition>tuple evidence.models.EvidenceType::title</definition>
         <argsstring></argsstring>
-        <name>id</name>
-        <initializer>= models.IntegerField(null=True, blank=True, default=&quot;&quot;)</initializer>
+        <name>title</name>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Evidence Type&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="32" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="32" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="48" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="48" bodyend="-1"/>
+        <referencedby refid="classnote_1_1models_1_1_note_authorisation_type_1a0069e5bc61eb551ed5e6f725cd9fdc1b" compoundref="note_2models_8py" startline="26" endline="29">note.models.NoteAuthorisationType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_authorisation_type_1acc5c990f3acac8a4084b296c710f42ce" compoundref="tasks_2models_8py" startline="26" endline="29">tasks.models.TaskAuthorisationType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_classification_type_1a9271352cd19384650aafda0ffba4ef0d" compoundref="note_2models_8py" startline="42" endline="45">note.models.NoteClassificationType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_classification_type_1a495c50d957d737c69aeb42ab48ad84c8" compoundref="tasks_2models_8py" startline="42" endline="45">tasks.models.TaskClassificationType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_type_1aa20fed8ad267b0a349f265dcc7b4abf5" compoundref="note_2models_8py" startline="58" endline="61">note.models.NoteType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_type_1aded107c5c6cbc1f0f119b4cb3ebba0b3" compoundref="tasks_2models_8py" startline="58" endline="61">tasks.models.TaskType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_type_1a2eddceac2c1914c17ce6ab7100f5ea89" compoundref="evidence_2models_8py" startline="58" endline="61">evidence.models.EvidenceType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_category_1a4e22d21c9169c633e62f4c1cf964e5ed" compoundref="evidence_2models_8py" startline="74" endline="77">evidence.models.EvidenceCategory.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_priority_1a38bba820f7c6791fe2363745d5dfe462" compoundref="tasks_2models_8py" startline="76" endline="79">tasks.models.TaskPriority.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_priority_1ac0b231198d001d5c05227039e7a6c41e" compoundref="note_2models_8py" startline="76" endline="79">note.models.NotePriority.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_category_1a11670b07da93a038f8cd706aa66142af" compoundref="tasks_2models_8py" startline="92" endline="95">tasks.models.TaskCategory.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_priority_1a81dfd2664e3bfbc441ed8f67ae638659" compoundref="evidence_2models_8py" startline="92" endline="95">evidence.models.EvidencePriority.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_category_1adac7dc66b88624f9897d959a67e29a81" compoundref="note_2models_8py" startline="92" endline="95">note.models.NoteCategory.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_status_type_1a4c94b28fc0308e5001ac1d674c7fb78d" compoundref="tasks_2models_8py" startline="108" endline="111">tasks.models.TaskStatusType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_status_type_1a09a9efdcc4fd6ebc495b5ddd0d7cefbb" compoundref="evidence_2models_8py" startline="108" endline="111">evidence.models.EvidenceStatusType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_status_type_1a7cccdfa3deb4b0f9d164d1f77d51a9f0" compoundref="note_2models_8py" startline="108" endline="111">note.models.NoteStatusType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_status_group_1a76bec36fdc54a64ed74713a10b77a729" compoundref="evidence_2models_8py" startline="143" endline="146">evidence.models.EvidenceStatusGroup.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_status_group_1a72f829d9a89e35c80ea10450a74c4343" compoundref="note_2models_8py" startline="143" endline="146">note.models.NoteStatusGroup.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_status_group_1aa95b51c33303b1fd0bc1d8644d850586" compoundref="tasks_2models_8py" startline="143" endline="146">tasks.models.TaskStatusGroup.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_1a3d83b7a9ea56a1944bf5738176c6b672" compoundref="note_2models_8py" startline="178" endline="181">note.models.Note.__str__</referencedby>
+        <referencedby refid="classcase_1_1models_1_1_case_contact_1ae5e495e1fd68f1978ba040e601e2e725" compoundref="case_2models_8py" startline="267" endline="268">case.models.CaseContact.__str__</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_type_1a64eecc0ce29a5f8f842f4e0f42b2ae39" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple evidence.models.EvidenceType::evidence_type</definition>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classevidence_1_1models_1_1_evidence_type_1a2eddceac2c1914c17ce6ab7100f5ea89" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def evidence.models.EvidenceType.__str__</definition>
         <argsstring></argsstring>
-        <name>evidence_type</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <name>__str__</name>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="33" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="33" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="58" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="58" bodyend="61"/>
+        <references refid="classevidence_1_1models_1_1_evidence_authorisation_type_1a69c1c156d932ceb197dfa35bfc443c30" compoundref="evidence_2models_8py" startline="16">evidence.models.EvidenceAuthorisationType.title</references>
+        <references refid="classcase_1_1models_1_1_case_authorisation_type_1a798a93cde5965e44ec8142592aaee86d" compoundref="case_2models_8py" startline="18">case.models.CaseAuthorisationType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_create_form_1a8527eaf491022eb2eb2fc40a003cef7b" compoundref="case_2forms_8py" startline="19">case.forms.CaseCreateForm.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_classification_type_1a4bd721557418ccf8ff87883d10d4652a" compoundref="evidence_2models_8py" startline="32">evidence.models.EvidenceClassificationType.title</references>
+        <references refid="classcase_1_1models_1_1_case_classification_type_1a213e29c19e87393bf3b57fe3e20b08a3" compoundref="case_2models_8py" startline="34">case.models.CaseClassificationType.title</references>
+        <references refid="classevidence_1_1models_1_1_evidence_type_1ad32baa4bb568cb129afad5630a7549b1" compoundref="evidence_2models_8py" startline="48">evidence.models.EvidenceType.title</references>
+        <references refid="classcase_1_1models_1_1_case_type_1aaf1fa9baeadd1116244521cc692025cb" compoundref="case_2models_8py" startline="50">case.models.CaseType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_edit_form_1a265327f697f8b579f4cc6344678949f0" compoundref="case_2forms_8py" startline="52">case.forms.CaseEditForm.title</references>
+        <references refid="classcase_1_1models_1_1_case_priority_1a876acd5e7567f2056c4caa98c094b22b" compoundref="case_2models_8py" startline="66">case.models.CasePriority.title</references>
+        <references refid="classcase_1_1models_1_1_case_category_1a1cee298c12254c8500ec5f2d6e3e905b" compoundref="case_2models_8py" startline="84">case.models.CaseCategory.title</references>
+        <references refid="classcase_1_1forms_1_1_case_note_create_form_1a8c8353b447713f3762c7ffc1b3fe9683" compoundref="case_2forms_8py" startline="90">case.forms.CaseNoteCreateForm.title</references>
+        <references refid="classcase_1_1models_1_1_case_status_type_1aa46bd8ba56ce10c545c1e304e90e4268" compoundref="case_2models_8py" startline="100">case.models.CaseStatusType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_task_create_form_1a9862f8480f3eb6d142305e5874f04f32" compoundref="case_2forms_8py" startline="111">case.forms.CaseTaskCreateForm.title</references>
+        <references refid="classcase_1_1models_1_1_case_status_group_1a1766518747edec1e270d9c8e4857110e" compoundref="case_2models_8py" startline="132">case.models.CaseStatusGroup.title</references>
+        <references refid="classcase_1_1models_1_1_case_1a0672bfe3382cdc703af7fcf274e7ddf8" compoundref="case_2models_8py" startline="153">case.models.Case.title</references>
+        <references refid="classentity_1_1models_1_1_person_1a062b11b8a145e3a1c19e7fb2f629f63e" compoundref="entity_2models_8py" startline="162">entity.models.Person.title</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -38,31 +77,49 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="95">
+      <node id="283">
         <label>evidence.models.EvidenceType</label>
         <link refid="classevidence_1_1models_1_1_evidence_type"/>
-        <childnode refid="96" relation="public-inheritance">
+        <childnode refid="284" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="96">
+      <node id="284">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="285" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="285">
         <label>Model</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="97">
+      <node id="286">
         <label>evidence.models.EvidenceType</label>
         <link refid="classevidence_1_1models_1_1_evidence_type"/>
-        <childnode refid="98" relation="public-inheritance">
+        <childnode refid="287" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="98">
+      <node id="287">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="288" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="288">
         <label>Model</label>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="30" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="30" bodyend="36"/>
+    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="46" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="46" bodyend="62"/>
     <listofallmembers>
-      <member refid="classevidence_1_1models_1_1_evidence_type_1a64eecc0ce29a5f8f842f4e0f42b2ae39" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>evidence_type</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_type_1aa362973d76d6b2f73a6acb2fba8a61e5" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>id</name></member>
+      <member refid="classevidence_1_1models_1_1_evidence_type_1a2eddceac2c1914c17ce6ab7100f5ea89" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>__str__</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a89803b13439a16bd49ffb3297d829cbb" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a342aa403491ad4f61eb13761d86f2c26" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1aa9db1a2dd800429f6bf3262708408379" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>description</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a895434b9b64caab6a48589e1efa1f5b2" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1ac1a737eefa43b91977c3193768f81c87" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a8721aff9d00270cba53882d98b8de831" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>save</name></member>
+      <member refid="classevidence_1_1models_1_1_evidence_type_1ad32baa4bb568cb129afad5630a7549b1" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceType</scope><name>title</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

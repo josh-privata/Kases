@@ -1,0 +1,26 @@
+﻿{% extends "global/auth_base.html" %}
+{% load django_tables2 %}
+
+    {#{% block heading %}{% endblock %}#}
+    {#{% block pre_table %}{% endblock %}#}
+    {#{% block table %}{% endblock %}#}
+    {#{% block post_table %}{% endblock %}#}
+
+<!-- Content -->
+{% block content %}
+    
+    <!-- Heading -->    
+    <h2>{% block heading %}{% endblock %}</h2>
+
+    <!-- Pre Table -->
+    {% block pre_table %}{% endblock %}
+
+    <!-- Table -->
+    {% block table %}
+        {% render_table table %}
+    {% endblock %}
+
+    <!-- Post Table -->
+    {% block post_table %}{% endblock %}
+
+{% endblock %}

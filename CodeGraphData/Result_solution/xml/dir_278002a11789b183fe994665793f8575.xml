@@ -2,6 +2,8 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_278002a11789b183fe994665793f8575" kind="dir">
     <compoundname>//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base/migrations</compoundname>
+    <innerfile refid="base_2migrations_20001__initial_8py">0001_initial.py</innerfile>
+    <innerfile refid="0002__delete__uploadmodel_8py">0002_delete_uploadmodel.py</innerfile>
     <innerfile refid="base_2migrations_2____init_____8py">__init__.py</innerfile>
     <briefdescription>
     </briefdescription>

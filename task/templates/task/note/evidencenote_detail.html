@@ -1,0 +1,558 @@
+﻿{% extends "evidence/evidence_open_layout.html" %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+{% block content %}
+
+    <!-- Evidence Note Detail Tabs -->
+    <ul class="nav nav-tabs">
+
+        <!-- Panel 1 - Summary -->
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Summary</a>
+        </li>
+        <!-- Panel 2 - Details -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Details</a>
+        </li>
+        <!-- Panel 3 - Contacts -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">Contacts</a>
+        </li>
+        <!-- Panel 4 - Schedule -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Schedule</a>
+        </li>
+        <!-- Panel 5 - Authorisation -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel5" role="tab">Authorisation</a>
+        </li>
+        <!-- Panel 6 - Questions -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel6" role="tab">Questions</a>
+        </li>
+        <!-- Panel 7 - Authorisation -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel7" role="tab">Authorisation</a>
+        </li>
+        <!-- Panel 8 - Authorisation -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab">Authorisation</a>
+        </li>
+        <!-- Panel 9 - Authorisation -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel9" role="tab">Authorisation</a>
+        </li>
+        <!-- Panel 10 - Evidence Log -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#panel10" role="tab">Evidence Log</a>
+        </li>
+
+    </ul>
+
+    <!-- Tab panels -->
+    <div class="tab-content">
+                
+        <!-- Panel 1 - Summary -->
+        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+            <div class="row">
+
+                <!-- Left Panel -->
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h2 class="card-header">Evidence Detail</h2>
+                        <div class="card-body">
+                            {#<p class="card-text">#}
+                                <h4>Evidence Title: {{ object.title }}</h4>
+                                <h4>Evidence ID: {{ object.id }}</h4>
+                                <h4>Evidence Brief: {{ object.brief }}</h4>
+                                <h4>Evidence Background: {{ object.background}}</h4>
+                                <h4>Evidence Description: {{ object.description }}</h4>
+                                <h4>Evidence Reference: {{ object.reference }}</h4>
+                                <h4>Evidence Location: {{ object.location }}</h4>
+                                <h4>Comment: {{ object.comment }}</h4>
+                                <h4>Private: {{ object.private }}</h4>
+                                <h4>Evidence Type: {{ object.type }}</h4>
+                                <h4>Evidence Status: {{ object.status }}</h4>
+                                <h4>Evidence Classification:{{ object.classification}}</h4>
+                                <h4>Evidence Authorisation: {{ object.authorisation }}</h4>
+                                <h4>Evidence Deadline: {{ object.deadline }}</h4>
+                                <h4>Evidence Creation Date: {{ object.creation_date }}</h4>
+                            {#</p>#}
+                            <br />
+                        <a href="{% url 'evidence_edit' object.id %}" class="btn btn-primary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel -->
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">
+
+                        </p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>                    
+        </div>
+
+        <!-- Panel 2 - Details -->
+        <div class="tab-pane fade" id="panel2" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 3 - Contacts -->
+        <div class="tab-pane fade" id="panel3" role="tabpanel">
+            <br>
+            <section class="mt-30px mb-30px">
+                <div class="container-fluid">
+                    <div class="row">
+
+                        <!-- Recent Updates -->
+                        <div class="col-lg-6 col-md-12">
+                            <div id="daily-feeds" class="card updates daily-feeds">
+
+                            <!-- Heading-->
+                            <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
+                                <h2 class="h5 display">
+                                <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
+                                    Recent Updates
+                                </a>
+                                </h2>
+                                <div class="right-column">
+                                <div class="badge badge-primary">10 messages</div>
+                                    <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
+                                    <i class="fa fa-angle-down"></i>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div id="feeds-box" role="tabpanel" class="collapse show">
+                                <div class="feed-box">
+                                <ul class="feed-elements list-unstyled">
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Aria Smith</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Frank Williams</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Ashley Wood</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Jason Doe</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                    <!-- List-->
+                                    <li class="clearfix">
+                                    <div class="feed d-flex justify-content-between">
+                                        <div class="feed-body d-flex justify-content-between">
+                                        <div class="content"><strong>Sam Martinez</strong><small>Posted a new blog </small>
+                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
+                                        </div>
+                                        </div>
+                                        <div class="date"><small>5min ago</small></div>
+                                    </div>
+                                    </li>
+
+                                </ul>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                        <!-- Tasks -->
+                        <div class="col-lg-6 col-md-12">
+                            <div id="recent-activities-wrapper" class="card updates activities">
+                
+                            <!-- Heading -->
+                            <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
+                                <h2 class="h5 display">
+                                <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
+                                    Tasks
+                                </a>
+                                </h2>
+                                <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
+                                <i class="fa fa-angle-down"></i>
+                                </a>
+                            </div>
+
+                            <div id="activities-box" role="tabpanel" class="collapse show">
+                                <ul class="activities list-unstyled">
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                <!-- Item-->
+                                <li>
+                                    <div class="row">
+                                    <div class="col-4 date-holder text-right">
+                                        <div class="icon"><i class="icon-clock"></i></div>
+                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
+                                    </div>
+                                    <div class="col-8 content"><strong>Meeting</strong>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
+                                    </div>
+                                    </div>
+                                </li>
+
+                                </ul>
+                            </div>
+
+                            </div>
+                        </div>
+
+                        <!-- Active Evidences -->
+                        <div class="col-lg-12 col-md-12">           
+                <div id="new-updates" class="card updates recent-updated">
+
+            <!-- Header -->
+            <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                <h2 class="h5 display">
+                <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
+                    Active Evidences
+                </a>
+                </h2>
+                <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
+                    <i class="fa fa-angle-down"></i>
+                </a>
+            </div>
+
+            <div id="updates-box" role="tabpanel" class="collapse show">
+                <ul class="news list-unstyled">
+
+                {% if evidences %}
+                    {% for evidence in evidences %}
+                        <!-- Item -->
+                        <li class="d-flex justify-content-between"> 
+                            <div class="left-col d-flex">
+                            <div class="icon"><i class="icon-rss-feed"></i></div>
+                            <div class="title"><strong><a href="{% url 'evidence_detail' evidence.id %}" role="button">{{ evidence.title }}</a></strong>
+                                <p>{{ evidence.description }}</p>
+                            </div>
+                            </div>
+                            <div class="right-col text-right">
+                            <div class="update-date"><span class="month">{{ evidence.creation_date }}</span></div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                {% else %}
+                    <!-- No Item -->
+                    <li class="d-flex justify-content-between"> 
+                            <div class="left-col d-flex">
+                            <div class="icon"><i class="icon-rss-feed"></i></div>
+                            <div class="title"><strong>There are no evidences to show</strong>
+                                <p></p>
+                            </div>
+                            </div>
+                            <div class="right-col text-right">
+                            <div class="update-date"><span class="month"></span></div>
+                            </div>
+                        </li>
+                {% endif %}
+
+
+                </ul>
+            </div>
+
+            </div>
+        </div>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Panel 4 - Schedule -->
+        <div class="tab-pane fade" id="panel4" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 5 - Authorisation -->
+        <div class="tab-pane fade" id="panel5" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 6 - Questions -->
+        <div class="tab-pane fade" id="panel6" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header"></h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 7 - Authorisation -->
+        <div class="tab-pane fade" id="panel7" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 8 - Authorisation -->
+        <div class="tab-pane fade" id="panel8" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 9 - Authorisation -->
+        <div class="tab-pane fade" id="panel9" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Panel 10 - Evidence Log -->
+        <div class="tab-pane fade" id="panel10" role="tabpanel">
+            <br>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="card">
+                        <h5 class="card-header">Featured</h5>
+                        <div class="card-body">
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock %}

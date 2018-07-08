@@ -44,24 +44,24 @@
     <detaileddescription>
 <para><verbatim>Authentication form which uses boostrap CSS.</verbatim> </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="0">
+      <node id="14">
         <label>base.forms.BootstrapAuthenticationForm</label>
         <link refid="classbase_1_1forms_1_1_bootstrap_authentication_form"/>
-        <childnode refid="1" relation="public-inheritance">
+        <childnode refid="15" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="1">
+      <node id="15">
         <label>AuthenticationForm</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="2">
+      <node id="16">
         <label>base.forms.BootstrapAuthenticationForm</label>
         <link refid="classbase_1_1forms_1_1_bootstrap_authentication_form"/>
-        <childnode refid="3" relation="public-inheritance">
+        <childnode refid="17" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="3">
+      <node id="17">
         <label>AuthenticationForm</label>
       </node>
     </collaborationgraph>

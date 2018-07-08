@@ -9,7 +9,7 @@
     </detaileddescription>
     <programlisting>
 <codeline lineno="1" refid="namespace_kases_1_1wsgi" refkind="compound"><highlight class="stringliteral">&quot;&quot;&quot;</highlight></codeline>
-<codeline lineno="2"><highlight class="stringliteral">WSGI<sp/>config<sp/>for<sp/>Audiad<sp/>project.</highlight></codeline>
+<codeline lineno="2"><highlight class="stringliteral">WSGI<sp/>config<sp/>for<sp/>Kases<sp/>project.</highlight></codeline>
 <codeline lineno="3"><highlight class="stringliteral"></highlight></codeline>
 <codeline lineno="4"><highlight class="stringliteral">This<sp/>module<sp/>contains<sp/>the<sp/>WSGI<sp/>application<sp/>used<sp/>by<sp/>Django&apos;s<sp/>development<sp/>server</highlight></codeline>
 <codeline lineno="5"><highlight class="stringliteral">and<sp/>any<sp/>production<sp/>WSGI<sp/>deployments.<sp/>It<sp/>should<sp/>expose<sp/>a<sp/>module-level<sp/>variable</highlight></codeline>
@@ -31,8 +31,8 @@
 <codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">#<sp/>This<sp/>application<sp/>object<sp/>is<sp/>used<sp/>by<sp/>any<sp/>WSGI<sp/>server<sp/>configured<sp/>to<sp/>use<sp/>this</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">#<sp/>file.<sp/>This<sp/>includes<sp/>Django&apos;s<sp/>development<sp/>server,<sp/>if<sp/>the<sp/>WSGI_APPLICATION</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">#<sp/>setting<sp/>points<sp/>here.</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>configurations.wsgi<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>get_wsgi_application<sp/><sp/></highlight><highlight class="comment">#<sp/>noqa</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">#from<sp/>raven.contrib.django.raven_compat.middleware.wsgi<sp/>import<sp/>Sentry<sp/><sp/>#<sp/>noqa</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>configurations.wsgi<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>get_wsgi_application</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/>raven.contrib.django.raven_compat.middleware.wsgi<sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Sentry</highlight></codeline>
 <codeline lineno="26"><highlight class="normal"></highlight></codeline>
 <codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">#application<sp/>=<sp/>Sentry(get_wsgi_application())</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="28"><highlight class="normal"></highlight></codeline>

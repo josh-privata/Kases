@@ -1,0 +1,35 @@
+﻿{% extends "global/auth_base.html" %}
+{#{% load crispy_forms_tags %}#}
+
+<!-- Content -->
+{% block content %}
+
+    <!-- Heading -->    
+    {% block heading %}{% endblock %}
+
+    <!-- Pre Form -->
+    {% block pre_form %}{% endblock %}
+
+    <!-- Form -->
+    {% block form %}
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+
+            <!-- Default to form.as_p -->
+            {% block form_as_p %}
+                {{ form.as_p }}
+                {#{% crispy form %}#}
+            {% endblock %}
+
+            {% block form_button %}        
+                <button type="submit" class="save btn btn-default">Create</button>
+            {% endblock %}
+            
+
+        </form>
+    {% endblock %}
+
+    <!-- Post Form -->
+    {% block post_form %}{% endblock %}
+
+{% endblock %}

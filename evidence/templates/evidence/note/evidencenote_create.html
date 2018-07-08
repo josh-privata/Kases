@@ -1,0 +1,10 @@
+﻿{% extends "global/auth_base.html" %}
+
+{% block content %}
+<h1>Create Evidence Note</h1>
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Create</button>
+</form>
+{% endblock %}

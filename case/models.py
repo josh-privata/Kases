@@ -2,23 +2,21 @@
 
 ## python imports
 from django.db import models
-from utils.models import ObjectDescriptionMixin
+from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
 from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 #import case.managers as managers
 from simple_history.models import HistoricalRecords
 from note.models import Note
-from tasks.models import Task
+from task.models import Task
 
 
 ## Admin Models
-class CaseAuthorisationType(ObjectDescriptionMixin):
+class CaseAuthorisation(Authorisation):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Classification")
 
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Case Classification')
         verbose_name_plural = _('Case Classifications')
 
@@ -29,12 +27,10 @@ class CaseAuthorisationType(ObjectDescriptionMixin):
         return '%s' % self.title
     
 
-class CaseClassificationType(ObjectDescriptionMixin):
+class CaseClassification(Classification):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Classification")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Case Classification')
         verbose_name_plural = _('Case Classifications')
 
@@ -45,12 +41,10 @@ class CaseClassificationType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class CaseType(ObjectDescriptionMixin):
+class CaseType(Type):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Type")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Case Type')
         verbose_name_plural = _('Case Types')
 
@@ -61,14 +55,10 @@ class CaseType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class CasePriority(ObjectDescriptionMixin):
+class CasePriority(Priority):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Priority")
-    colour = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Colour")
-    #action_delta_hours = models.IntegerField(blank=True, null=True, default=None, verbose_name="Action Delta Days")
    
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Case Priority')
         verbose_name_plural = _('Case Priorities')
 
@@ -79,12 +69,10 @@ class CasePriority(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class CaseCategory(ObjectDescriptionMixin):
+class CaseCategory(Category):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Category")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Case Category')
         verbose_name_plural = _('Case Categories')
 
@@ -95,14 +83,12 @@ class CaseCategory(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class CaseStatusType(ObjectDescriptionMixin):
+class CaseStatus(Status):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Status Type")
 
     class Meta:
-        ordering = ('id',)
-        verbose_name = _('Case Status Type')
-        verbose_name_plural = _('Case Status Types')
+        verbose_name = _('Case Status')
+        verbose_name_plural = _('Case Status')
 
     #def get_absolute_url(self):
     #    return reverse('case_detail', kwargs={'pk': self.pk})
@@ -111,7 +97,7 @@ class CaseStatusType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class CaseStatusGroup(ObjectDescriptionMixin):
+class CaseStatusGroup(StatusGroup):
     ## Choices
     # CREATED = 'Created'
     # PENDING = 'Awaiting Authorisation'
@@ -129,13 +115,10 @@ class CaseStatusGroup(ObjectDescriptionMixin):
     # forensic_statuses = [OPEN]
     
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, 
-                             verbose_name="Case Status Group")
     # Linked Fields
-    case_status = models.ManyToManyField(CaseStatusType, blank=True, verbose_name="Case Status")
+    status = models.ManyToManyField(CaseStatus, blank=True, verbose_name="Case Status")
 
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Case Status Group')
         verbose_name_plural = _('Case Status Groups')
 
@@ -158,22 +141,26 @@ class Case(ObjectDescriptionMixin):
     location = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Location")
     brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
     private = models.BooleanField(default=False, blank=True, verbose_name="Private")
-    deadline = models.DateTimeField(auto_now_add=True, null=True, verbose_name="Case Deadline")
     slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Case Slug")
     image_upload = models.FileField(blank=True, null=True, verbose_name="Case Image")
+
     # Linked Fields
     type = models.ForeignKey(CaseType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Type")
-    status = models.ForeignKey(CaseStatusType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Status")
-    classification = models.ForeignKey(CaseClassificationType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Classification")
+    status = models.ForeignKey(CaseStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Status")
+    classification = models.ForeignKey(CaseClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Classification")
     priority = models.ForeignKey(CasePriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Priority")
     category = models.ForeignKey(CaseCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Category")
-    authorisation = models.ForeignKey(CaseAuthorisationType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Authorisation")
+    authorisation = models.ForeignKey(CaseAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Authorisation")
     assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='case_assigned_to', blank=True, verbose_name="Assigned To")
-    case_manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Case Manager")
+    manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Case Manager")
     #legal = models.ManyToManyField(Personality, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Legal Advisor")
     #client = models.ManyToManyField(Personality, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Client")
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
     
+    # Auto Fields
+    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
+    deadline = models.DateTimeField(auto_now=True, null=True, verbose_name="Deadline")
+
     history = HistoricalRecords()
     #manager = managers.CaseManager()
 
@@ -225,14 +212,14 @@ class LinkedCase(ObjectDescriptionMixin):
     case = models.ManyToManyField(Case, blank=True, verbose_name="Case")
 
 
-class CaseTask(Task):
-    # Linked Fields
-    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
+#class CaseTask(Task):
+#    # Linked Fields
+#    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
 
 
-class CaseNote(Note):
-    # Linked Fields
-    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
+#class CaseNote(Note):
+#    # Linked Fields
+#    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
 
 
 class CaseLog(ObjectDescriptionMixin):

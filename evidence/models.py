@@ -2,7 +2,7 @@
 
 ## python imports
 from django.db import models
-from utils.models import ObjectDescriptionMixin
+from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
 from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -11,14 +11,12 @@ from simple_history.models import HistoricalRecords
 
 
 ## Admin Models
-class EvidenceAuthorisationType(ObjectDescriptionMixin):
+class EvidenceAuthorisation(Authorisation):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Classification")
 
     class Meta:
-        ordering = ('id',)
-        verbose_name = _('Evidence Classification')
-        verbose_name_plural = _('Evidence Classifications')
+        verbose_name = _('Evidence Authorisation')
+        verbose_name_plural = _('Evidence Authorisations')
 
     #def get_absolute_url(self):
     #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
@@ -27,12 +25,10 @@ class EvidenceAuthorisationType(ObjectDescriptionMixin):
         return '%s' % self.title
     
 
-class EvidenceClassificationType(ObjectDescriptionMixin):
+class EvidenceClassification(Classification):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Classification")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Evidence Classification')
         verbose_name_plural = _('Evidence Classifications')
 
@@ -43,12 +39,10 @@ class EvidenceClassificationType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class EvidenceType(ObjectDescriptionMixin):
+class EvidenceType(Type):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Type")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Evidence Type')
         verbose_name_plural = _('Evidence Types')
 
@@ -59,12 +53,10 @@ class EvidenceType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class EvidenceCategory(ObjectDescriptionMixin):
+class EvidenceCategory(Category):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Category")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Evidence Category')
         verbose_name_plural = _('Evidence Categories')
 
@@ -75,14 +67,10 @@ class EvidenceCategory(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class EvidencePriority(ObjectDescriptionMixin):
+class EvidencePriority(Priority):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Priority")
-    colour = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Colour")
-    #action_delta_hours = models.IntegerField(blank=True, null=True, default=None, verbose_name="Action Delta Days")
    
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Evidence Priority')
         verbose_name_plural = _('Evidence Priorities')
 
@@ -93,14 +81,12 @@ class EvidencePriority(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class EvidenceStatusType(ObjectDescriptionMixin):
+class EvidenceStatus(Status):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Status Type")
 
     class Meta:
-        ordering = ('id',)
-        verbose_name = _('Evidence Status Type')
-        verbose_name_plural = _('Evidence Status Types')
+        verbose_name = _('Evidence Status')
+        verbose_name_plural = _('Evidence Status')
 
     #def get_absolute_url(self):
     #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
@@ -109,7 +95,7 @@ class EvidenceStatusType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class EvidenceStatusGroup(ObjectDescriptionMixin):
+class EvidenceStatusGroup(StatusGroup):
     ## Choices
     # CREATED = 'Created'
     # PENDING = 'Awaiting Authorisation'
@@ -127,13 +113,10 @@ class EvidenceStatusGroup(ObjectDescriptionMixin):
     # forensic_statuses = [OPEN]
     
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, 
-                             verbose_name="Evidence Status Group")
     # Linked Fields
-    Evidence_status = models.ManyToManyField(EvidenceStatusType, blank=True, verbose_name="Evidence Status")
+    status = models.ManyToManyField(EvidenceStatus, blank=True, verbose_name="Evidence Status")
 
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Evidence Status Group')
         verbose_name_plural = _('Evidence Status Groups')
 
@@ -164,27 +147,44 @@ class Evidence(ObjectDescriptionMixin):
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Title")
     reference = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Reference")
     comment = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Comment")
-    evidence_bag_number = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Bag Number")
+    bag_number = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Bag Number")
     location = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Physical Location")
     uri = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="File Location")
     current_status = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Current Status")
     qr_code_text = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="QR Code Text")
     qr_code = models.BooleanField(default=False, blank=True, verbose_name="QR Code")
     retention_reminder_sent = models.BooleanField(default=False, blank=True, verbose_name="Retention Reminder")
-    retention_date = models.DateTimeField(auto_now=True, null=True, verbose_name="Retention Date")
-    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
-    retention_start_date = models.DateTimeField(auto_now=True, null=True, verbose_name="Retention Start Date")
+    slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Evidence Slug")
+
     # Linked Fields
     type = models.ForeignKey(EvidenceType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Type")
-    status = models.ForeignKey(EvidenceStatusType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Status")
-    classification = models.ForeignKey(EvidenceClassificationType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Classification")
+    status = models.ForeignKey(EvidenceStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Status")
+    classification = models.ForeignKey(EvidenceClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Classification")
     priority = models.ForeignKey(EvidencePriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Priority")
-    authorisation = models.ForeignKey(EvidenceAuthorisationType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Authorisation")
+    authorisation = models.ForeignKey(EvidenceAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Authorisation")
     category = models.ForeignKey(EvidenceCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Category")
     chain_of_custody = models.ForeignKey(ChainOfCustody, on_delete=models.SET_NULL, related_name='evidence_chain_of_custody', blank=True, null=True, verbose_name="Chain Of Custody")
     assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='evidence_assigned_to', blank=True, verbose_name="Assigned To")
     custodian = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='evidence_custodian', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Custodian")
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='evidence_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
 
+    # Auto Fields
+    retention_date = models.DateTimeField(auto_now=True, null=True, verbose_name="Retention Date")
+    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
+    deadline = models.DateTimeField(auto_now=True, null=True, verbose_name="Deadline")
+    retention_start_date = models.DateTimeField(auto_now=True, null=True, verbose_name="Retention Start Date")
+    
+    # Data Models
 
-## Data Models
+    history = HistoricalRecords()
+
+    class Meta:
+        verbose_name = _('Evidence')
+        verbose_name_plural = _('Evidence')
+        #abstract = True
+
+    def get_absolute_url(self):
+        return reverse('evidence_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title

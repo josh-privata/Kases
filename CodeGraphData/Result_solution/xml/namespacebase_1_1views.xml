@@ -2,34 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespacebase_1_1views" kind="namespace">
     <compoundname>base::views</compoundname>
-      <sectiondef kind="func">
-      <memberdef kind="function" id="namespacebase_1_1views_1ae759a95951d5bf38853a8beceab47de9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>def</type>
-        <definition>def base.views.home</definition>
-        <argsstring></argsstring>
-        <name>home</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Renders the home page.</verbatim> </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base/views.py" line="10" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base/views.py" bodystart="10" bodyend="21"/>
-      </memberdef>
-      <memberdef kind="function" id="namespacebase_1_1views_1af9d7408ee79455d2ed8e057e95891ced" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>def</type>
-        <definition>def base.views.contact</definition>
-        <argsstring></argsstring>
-        <name>contact</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Renders the contact page.</verbatim> </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base/views.py" line="22" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base/views.py" bodystart="22" bodyend="34"/>
-      </memberdef>
-      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

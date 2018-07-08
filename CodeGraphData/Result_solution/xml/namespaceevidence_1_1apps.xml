@@ -2,7 +2,7 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespaceevidence_1_1apps" kind="namespace">
     <compoundname>evidence::apps</compoundname>
-    <innerclass refid="classevidence_1_1apps_1_1music_config" prot="public">evidence::apps::musicConfig</innerclass>
+    <innerclass refid="classevidence_1_1apps_1_1evidence_config" prot="public">evidence::apps::evidenceConfig</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

@@ -2,21 +2,15 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespacecase_1_1views" kind="namespace">
     <compoundname>case::views</compoundname>
-      <sectiondef kind="func">
-      <memberdef kind="function" id="namespacecase_1_1views_1a79c2ab77fe01498880fd8d2cee6fe846" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>def</type>
-        <definition>def case.views.home</definition>
-        <argsstring></argsstring>
-        <name>home</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Renders the home page.</verbatim> </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/views.py" line="10" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/views.py" bodystart="10" bodyend="21"/>
-      </memberdef>
-      </sectiondef>
+    <innerclass refid="classcase_1_1views_1_1_ajaxable_response_mixin" prot="public">case::views::AjaxableResponseMixin</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_home" prot="public">case::views::CaseHome</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_detail" prot="public">case::views::CaseDetail</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_create" prot="public">case::views::CaseCreate</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_update" prot="public">case::views::CaseUpdate</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_delete" prot="public">case::views::CaseDelete</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_note_create" prot="public">case::views::CaseNoteCreate</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_table" prot="public">case::views::CaseTable</innerclass>
+    <innerclass refid="classcase_1_1views_1_1_case_list" prot="public">case::views::CaseList</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

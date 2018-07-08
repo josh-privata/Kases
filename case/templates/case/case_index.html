@@ -1,333 +1,110 @@
-{% extends "global/auth_base.html" %}
+{% extends "global/views/base_index.html" %}
 {% load render_table from django_tables2 %}
 
 <!-- Title -->
 {% block title %}Kases - Dashboard{% endblock %}
 
-<!-- Content -->
-{% block content %}
+<!-- Statistics Section -->
+    <!-- Active Cases -->
+    {% block stat1_name %}All Cases{% endblock %}
+    {% block stat1_count %}{{ all_count }}{% endblock %}
 
-    <!-- Statistics Section -->
-    <section class="dashboard-counts">
-        <div class="jumbotron">
-            <div class="container-fluid">
-                <div class="row">
+    <!-- Total Cases -->
+    {% block stat2_name %}Active Cases{% endblock %}
+    {% block stat2_count %}{{ active_count }}{% endblock %}
 
-                <!-- Active Cases -->
-                <div class="col-xl-2 col-md-4 col-6">
-                    <div class="wrapper count-title d-flex">
-                    <div class="name"><strong class="text-uppercase">Active Cases</strong><span></span>
-                        <div class="count-number">{{ active_count }}</div>
-                    </div>
-                    </div>
-                </div>
+    <!-- Approved Cases -->
+    {% block stat3_name %}Active Cases{% endblock %}
+    {% block stat3_count %}{{ active_count }}{% endblock %}
 
-                <!-- Total Cases -->
-                <div class="col-xl-2 col-md-4 col-6">
-                    <div class="wrapper count-title d-flex">
-                    <div class="name"><strong class="text-uppercase">Total Cases</strong><span></span>
-                        <div class="count-number">{{ all_count }}</div>
-                    </div>
-                    </div>
-                </div>
+    <!-- Pending Cases -->
+    {% block stat4_name %}Active Cases{% endblock %}
+    {% block stat4_count %}{{ active_count }}{% endblock %}
 
-                <!-- Approved Cases -->
-                <div class="col-xl-2 col-md-4 col-6">
-                    <div class="wrapper count-title d-flex">
-                    <div class="name"><strong class="text-uppercase">Approved Cases</strong><span></span>
-                        <div class="count-number">400</div>
-                    </div>
-                    </div>
-                </div>
+    <!-- Rejected Cases -->
+    {% block stat5_name %}Active Cases{% endblock %}
+    {% block stat5_count %}{{ active_count }}{% endblock %}
 
-                <!-- Pending Cases -->
-                <div class="col-xl-2 col-md-4 col-6">
-                    <div class="wrapper count-title d-flex">
-                    <div class="name"><strong class="text-uppercase">Pending Cases</strong><span></span>
-                        <div class="count-number">342</div>
-                    </div>
-                    </div>
-                </div>
+    <!-- Closed Cases -->
+    {% block stat6_name %}Active Cases{% endblock %}
+    {% block stat6_count %}{{ active_count }}{% endblock %}
 
-                <!-- Rejected Cases -->
-                <div class="col-xl-2 col-md-4 col-6">
-                    <div class="wrapper count-title d-flex">
-                    <div class="name"><strong class="text-uppercase">Rejected Cases</strong><span></span>
-                        <div class="count-number">123</div>
-                    </div>
-                    </div>
-                </div>
+<!-- Updates Section -->
+    <!-- Active Cases -->
+    <!-- Header -->
+    {% block left_update_header %}Active Cases{% endblock %}
+    {% block left_update_header_count %}{{ all_count }} cases{% endblock %}
 
-                <!-- Closed Cases -->
-                <div class="col-xl-2 col-md-4 col-6">
-                    <div class="wrapper count-title d-flex">
-                    <div class="name"><strong class="text-uppercase">Closed Cases</strong><span></span>
-                        <div class="count-number">92</div>
-                    </div>
-                    </div>
-                </div>
+    <!-- Update Box -->
+    {% block left_update_box_item_url %}{% url 'case_detail' object1.id %}{% endblock %}
+    {% block left_update_box_item_title %}{{ object1.title }}{% endblock %}
+    {% block left_update_box_item_body1 %}{{ object1.description }}{% endblock %}
+    {% block left_update_box_item_body2 %}{{ object1.creation_date }}{% endblock %}
 
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- No Item -->
+    {% block left_update_box_noitem %}There are no cases to show{% endblock %}
 
-    <!-- Updates Section -->
-    <section class="mt-30px mb-30px">
-        <div class="container-fluid">
-          <div class="row">
+    <!-- Recent Updates -->
+    <!-- Header -->
+    {% block centre_update_header %}Active Cases{% endblock %}
+    {% block centre_update_header_count %}{{ active_count }} cases{% endblock %}
 
-            <!-- Active Cases -->
-            <div class="col-lg-4 col-md-12">           
-                 <div id="new-updates" class="card updates recent-updated">
+    <!-- Update Box -->
+    {% block centre_update_box_item_url %}{% url 'case_detail' object2.id %}{% endblock %}
+    {% block centre_update_box_item_title %}{{ object2.title }}{% endblock %}
+    {% block centre_update_box_item_body1 %}{{ object2.description }}{% endblock %}
+    {% block centre_update_box_item_body2 %}{{ object2.creation_date }}{% endblock %}
 
-                <!-- Header -->
-                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display">
-                    <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
-                      Active Cases
-                    </a>
-                  </h2>
-                    <div class="right-column">
-                        <div class="badge badge-primary">{{ active_count }} cases</div>
-                        <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                    </div>
-                </div>
+    <!-- No Item -->
+    {% block centre_update_box_noitem %}There are no cases to show{% endblock %}
 
-                <div id="updates-box" role="tabpanel" class="collapse">
-                  <ul class="news list-unstyled">
+    <!-- Tasks -->
+    <!-- Header -->
+    {% block right_update_header %}Active Cases{% endblock %}
+    {% block right_update_header_count %}{{ active_count }} cases{% endblock %}
 
-                    {% if cases %}
-                        {% for case in cases %}
-                            <!-- Item -->
-                            <li class="d-flex justify-content-between"> 
-                              <div class="left-col d-flex">
-                                <div class="icon"><i class="icon-rss-feed"></i></div>
-                                <div class="title"><strong><a href="{% url 'case_detail' case.id %}" role="button">{{ case.title }}</a></strong>
-                                  <p>{{ case.description }}</p>
-                                </div>
-                              </div>
-                              <div class="right-col text-right">
-                                <div class="update-date"><span class="month">{{ case.creation_date }}</span></div>
-                              </div>
-                            </li>
-                        {% endfor %}
-                    {% else %}
-                      <!-- No Item -->
-                      <li class="d-flex justify-content-between"> 
-                              <div class="left-col d-flex">
-                                <div class="icon"><i class="icon-rss-feed"></i></div>
-                                <div class="title"><strong>There are no cases to show</strong>
-                                  <p></p>
-                                </div>
-                              </div>
-                              <div class="right-col text-right">
-                                <div class="update-date"><span class="month"></span></div>
-                              </div>
-                         </li>
-                    {% endif %}
+    <!-- Update Box -->
+    {% block right_update_box_item_url %}{% url 'case_detail' object3.id %}{% endblock %}
+    {% block right_update_box_item_title %}{{ object3.title }}{% endblock %}
+    {% block right_update_box_item_body1 %}{{ object3.description }}{% endblock %}
+    {% block right_update_box_item_body2 %}{{ object3.creation_date }}{% endblock %}
 
+    <!-- No Item -->
+    {% block right_update_box_noitem %}There are no cases to show{% endblock %}
 
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-
-            <!-- Recent Updates -->
-            <div class="col-lg-4 col-md-6">
-              <div id="daily-feeds" class="card updates daily-feeds">
-
-                <!-- Heading-->
-                <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display">
-                    <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
-                      Recent Updates
-                    </a>
-                  </h2>
-                  <div class="right-column">
-                    <div class="badge badge-primary">{{ history_count }} changes</div>
-                      <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
-                        <i class="fa fa-angle-down"></i>
-                      </a>
-                  </div>
-                </div>
-
-                <div id="feeds-box" role="tabpanel" class="collapse">
-                  <div class="feed-box">
-                    <ul class="feed-elements list-unstyled">
-
-
-                    {% if case_history %}
-                        {% for case in case_history %}
-                            <!-- Item -->
-                            <li class="d-flex justify-content-between"> 
-                              <div class="left-col d-flex">
-                                <div class="icon"><i class="icon-rss-feed"></i></div>
-                                <div class="title"><strong><a href="{% url 'case_detail' case.id %}" role="button">{{ case.title }}</a></strong>
-                                  <p>{{ case.history_date}}</p>
-                                </div>
-                              </div>
-                              <div class="right-col text-right">
-                                <div class="update-date"><span class="month">{{ case.creation_date }}</span></div>
-                              </div>
-                            </li>
-                        {% endfor %}
-                    {% else %}
-                      <!-- No Item -->
-                      <li class="d-flex justify-content-between"> 
-                              <div class="left-col d-flex">
-                                <div class="icon"><i class="icon-rss-feed"></i></div>
-                                <div class="title"><strong>There are no cases to show</strong>
-                                  <p></p>
-                                </div>
-                              </div>
-                              <div class="right-col text-right">
-                                <div class="update-date"><span class="month"></span></div>
-                              </div>
-                         </li>
-                    {% endif %}
-
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Tasks -->
-            <div class="col-lg-4 col-md-6">
-              <div id="recent-activities-wrapper" class="card updates activities">
-                
-                <!-- Heading -->
-                <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
-                  <h2 class="h5 display">
-                    <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
-                        Tasks
-                    </a>
-                  </h2>
-                    <div class="right-column">
-                        <div class="badge badge-primary">{{ active_count }} tasks</div>
-                        <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
-                            <i class="fa fa-angle-down"></i>
-                        </a>
-                        </div>
-                </div>
-
-                <div id="activities-box" role="tabpanel" class="collapse"> {#add  ' show' to class to show#}
-                  <ul class="activities list-unstyled">
-
-                    <!-- Item-->
-                    <li>
-                      <div class="row">
-                        <div class="col-4 date-holder text-right">
-                          <div class="icon"><i class="icon-clock"></i></div>
-                          <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                        </div>
-                        <div class="col-8 content"><strong>Meeting</strong>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                        </div>
-                      </div>
-                    </li>
-
-                    <!-- Item-->
-                    <li>
-                      <div class="row">
-                        <div class="col-4 date-holder text-right">
-                          <div class="icon"><i class="icon-clock"></i></div>
-                          <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                        </div>
-                        <div class="col-8 content"><strong>Meeting</strong>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                        </div>
-                      </div>
-                    </li>
-
-                    <!-- Item-->
-                    <li>
-                      <div class="row">
-                        <div class="col-4 date-holder text-right">
-                          <div class="icon"><i class="icon-clock"></i></div>
-                          <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                        </div>
-                        <div class="col-8 content"><strong>Meeting</strong>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                        </div>
-                      </div>
-                    </li>
-
-                    <!-- Item-->
-                    <li>
-                      <div class="row">
-                        <div class="col-4 date-holder text-right">
-                          <div class="icon"><i class="icon-clock"></i></div>
-                          <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                        </div>
-                        <div class="col-8 content"><strong>Meeting</strong>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                        </div>
-                      </div>
-                    </li>
-
-                  </ul>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-    <!-- Case Section -->
-    {% if cases %}
-        <table class="table">
-            <!-- Table Head -->
-            <thead>
-            <tr>
-                <th>Case ID</th>
-                <th>Case Title</th>
-                <th>Case Detail</th>
-                <th>Case Background</th>
-                <th>Case Status</th>
-                <th>Case Type</th>
-            </tr>
-            </thead>
+<!-- Case Section -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Case ID</th>
+        <th>Case Title</th>
+        <th>Case Detail</th>
+        <th>Case Background</th>
+        <th>Case Status</th>
+        <th>Case Type</th>
+    {% endblock %}
         
-            <!-- Table Body -->
-            <tbody>
-                {% for case in cases %}
-                    <tr>
+    <!-- Table Body -->
+    <!-- Case ID -->
+    {% block table_body_id_url %}{% url 'case_detail' table_object.id %}{% endblock %}
+    {% block table_body_id_column %} {{ table_object.id }} {% endblock %}                        
+    
+    <!-- Columns -->
+    {% block table_body_columns %}
+        <!-- Case Title -->
+        <td>{{ table_object.title }}</td>
 
-                        <!-- Case ID -->
-                        <td>
-                            <a href="{% url 'case_detail' case.id %}" role="button">
-                                {{ case.id }}
-                            </a>
-                        </td>
-                                    
-                        <!-- Case Title -->
-                        <td>{{ case.title }}</td>
+        <!-- Case Description -->
+        <td>{{ table_object.description }}</td>
 
-                        <!-- Case Description -->
-                        <td>{{ case.description }}</td>
+        <!-- Case Background -->
+        <td>{{ table_object.background }}</td>
 
-                        <!-- Case Background -->
-                        <td>{{ case.background }}</td>
+        <!-- Case Status -->
+        <td>{{ table_object.status }}</td>
 
-                        <!-- Case Status -->
-                        <td>{{ case.status }}</td>
-
-                        <!-- Case Type -->
-                        <td>{{ case.type }}</td>
-
-                    </tr>
-                {% endfor %}
-                </tbody>
-        </table>
-    {% else %}
-        <p>There are no cases to show</p>
-    {% endif %}
-
-{% endblock %}
+        <!-- Case Type -->
+        <td>{{ table_object.type }}</td>
+    {% endblock %}
+    
+    <!-- Table Else -->
+    {% block table_else %}<p>There are no cases to show</p>{% endblock %}

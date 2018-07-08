@@ -1,0 +1,37 @@
+﻿{% extends "global/views/base_list.html" %}
+
+<!-- Title -->
+{% block title %}{% endblock %}
+
+<!-- Results Table -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Task ID</th>
+        <th>Task Title</th>
+        <th>Task Detail</th>
+        <th>Task Background</th>
+        <th>Task Status</th>
+        <th>Task Type</th>
+    {% endblock %}
+
+    <!-- Table -->
+        <!-- Task ID -->
+        {% block table_body_id_url %}{% url 'task_detail' object.id %}{% endblock %}
+        {% block table_body_id_column %}{{ object.id }}{% endblock %}
+        <!-- Columns -->
+        {% block table_body_columns %} 
+            <!-- Task Title -->
+            <td>{{ object.title }}</td>
+            <!-- Task Description -->
+            <td>{{ object.description }}</td>
+            <!-- Task Background -->
+            <td>{{ object.background }}</td>
+            <!-- Task Status -->
+            <td>{{ object.status }}</td>
+            <!-- Task Type -->
+            <td>{{ object.type }}</td>
+        {% endblock %}           
+        <!-- Table Else -->
+        {% block table_else %}
+            <p>There is no task to show</p>
+        {% endblock %}

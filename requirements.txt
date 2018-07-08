@@ -25,11 +25,13 @@ selenium
 django>=2.0.0,<2.1.0
 django-tables2
 django-filter
+django-widget-tweaks
 django-digg-paginator
 django-debug-toolbar
 django-configurations
 django-simple-history
 django-crispy-forms
+django-extra-views
 #django-model-utils
 #django-vanilla-views
 #django-extensions

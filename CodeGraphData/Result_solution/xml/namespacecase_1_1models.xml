@@ -2,15 +2,19 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespacecase_1_1models" kind="namespace">
     <compoundname>case::models</compoundname>
-    <innerclass refid="classcase_1_1models_1_1_case" prot="public">case::models::Case</innerclass>
-    <innerclass refid="classcase_1_1models_1_1_case_authorisation" prot="public">case::models::CaseAuthorisation</innerclass>
-    <innerclass refid="classcase_1_1models_1_1_case_classification" prot="public">case::models::CaseClassification</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_authorisation_type" prot="public">case::models::CaseAuthorisationType</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_classification_type" prot="public">case::models::CaseClassificationType</innerclass>
     <innerclass refid="classcase_1_1models_1_1_case_type" prot="public">case::models::CaseType</innerclass>
     <innerclass refid="classcase_1_1models_1_1_case_priority" prot="public">case::models::CasePriority</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_category" prot="public">case::models::CaseCategory</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_status_type" prot="public">case::models::CaseStatusType</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_status_group" prot="public">case::models::CaseStatusGroup</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case" prot="public">case::models::Case</innerclass>
     <innerclass refid="classcase_1_1models_1_1_linked_case" prot="public">case::models::LinkedCase</innerclass>
-    <innerclass refid="classcase_1_1models_1_1_case_status" prot="public">case::models::CaseStatus</innerclass>
-    <innerclass refid="classcase_1_1models_1_1_case_history" prot="public">case::models::CaseHistory</innerclass>
-    <innerclass refid="classcase_1_1models_1_1_case_upload" prot="public">case::models::CaseUpload</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_task" prot="public">case::models::CaseTask</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_note" prot="public">case::models::CaseNote</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_log" prot="public">case::models::CaseLog</innerclass>
+    <innerclass refid="classcase_1_1models_1_1_case_contact" prot="public">case::models::CaseContact</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

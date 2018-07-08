@@ -49,28 +49,12 @@
         </inbodydescription>
         <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="38" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="38" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a7cca94accb941c1275c8dbaab0f2703f" prot="public" static="yes" mutable="no">
-        <type>list</type>
-        <definition>list Kases.settings.Common::INSTALLED_APPS</definition>
+      <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a60ced8b5eb96e80ab00d61d9c2d57de8" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string Kases.settings.Common::LOGIN_REDIRECT_URL</definition>
         <argsstring></argsstring>
-        <name>INSTALLED_APPS</name>
-        <initializer>= [
-        &apos;base&apos;,
-        &apos;evidence&apos;,
-        &apos;case&apos;,
-        &apos;personality&apos;,
-        &apos;tasks&apos;,
-        # Add your apps here to enable them
-        &apos;django.contrib.admin&apos;,
-        &apos;django.contrib.auth&apos;,
-        &apos;django.contrib.contenttypes&apos;,
-        &apos;django.contrib.sessions&apos;,
-        &apos;django.contrib.messages&apos;,
-        &apos;django.contrib.staticfiles&apos;,
-        &apos;django_tables2&apos;,
-        &apos;django_filters&apos;,
-        &apos;raven.contrib.django.raven_compat&apos;,
-    ]</initializer>
+        <name>LOGIN_REDIRECT_URL</name>
+        <initializer>= &apos;/&apos;</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -79,20 +63,36 @@
         </inbodydescription>
         <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="41" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="41" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a31d908539d65ae47ac5ca28a396b5684" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a7cca94accb941c1275c8dbaab0f2703f" prot="public" static="yes" mutable="no">
         <type>list</type>
-        <definition>list Kases.settings.Common::MIDDLEWARE_CLASSES</definition>
+        <definition>list Kases.settings.Common::INSTALLED_APPS</definition>
         <argsstring></argsstring>
-        <name>MIDDLEWARE_CLASSES</name>
+        <name>INSTALLED_APPS</name>
         <initializer>= [
-        &apos;django.middleware.security.SecurityMiddleware&apos;,
-        &apos;django.contrib.sessions.middleware.SessionMiddleware&apos;,
-        &apos;django.middleware.common.CommonMiddleware&apos;,
-        &apos;django.middleware.csrf.CsrfViewMiddleware&apos;,
-        &apos;django.contrib.auth.middleware.AuthenticationMiddleware&apos;,
-        &apos;django.contrib.auth.middleware.SessionAuthenticationMiddleware&apos;,
-        &apos;django.contrib.messages.middleware.MessageMiddleware&apos;,
-        &apos;django.middleware.clickjacking.XFrameOptionsMiddleware&apos;,
+        # Kases Apps
+        &apos;utils&apos;,
+        &apos;base&apos;,
+        &apos;evidence&apos;,
+        &apos;case&apos;,
+        &apos;entity&apos;,
+        &apos;tasks&apos;,
+        &apos;user&apos;,
+        &apos;configuration&apos;,
+        &apos;note&apos;,
+        # Django Apps
+        &apos;django.contrib.admin&apos;,
+        &apos;django.contrib.auth&apos;,
+        &apos;django.contrib.contenttypes&apos;,
+        &apos;django.contrib.sessions&apos;,
+        &apos;django.contrib.messages&apos;,
+        &apos;django.contrib.staticfiles&apos;,
+        # Additional Apps
+        &apos;django_tables2&apos;,
+        &apos;django_filters&apos;,
+        &apos;raven.contrib.django.raven_compat&apos;,
+        &apos;debug_toolbar&apos;,
+        &apos;simple_history&apos;,
+        &apos;crispy_forms&apos;,
     ]</initializer>
         <briefdescription>
         </briefdescription>
@@ -100,7 +100,32 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="59" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="59" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="44" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a44cdbf74495b4af252a0843431947f00" prot="public" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list Kases.settings.Common::MIDDLEWARE</definition>
+        <argsstring></argsstring>
+        <name>MIDDLEWARE</name>
+        <initializer>= [
+        &apos;django.middleware.security.SecurityMiddleware&apos;,
+        &apos;django.contrib.sessions.middleware.SessionMiddleware&apos;,
+        &apos;django.middleware.common.CommonMiddleware&apos;,
+        &apos;django.middleware.csrf.CsrfViewMiddleware&apos;,
+        &apos;django.contrib.auth.middleware.AuthenticationMiddleware&apos;,
+        #&apos;django.contrib.auth.middleware.SessionAuthenticationMiddleware&apos;,
+        &apos;django.contrib.messages.middleware.MessageMiddleware&apos;,
+        &apos;django.middleware.clickjacking.XFrameOptionsMiddleware&apos;,
+        &apos;debug_toolbar.middleware.DebugToolbarMiddleware&apos;,
+        &apos;simple_history.middleware.HistoryRequestMiddleware&apos;,
+    ]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="71" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="71" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a1c72a831dc60328993af110000600033" prot="public" static="yes" mutable="no">
         <type>string</type>
@@ -114,7 +139,35 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="70" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="70" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="84" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a770b90415a5b1848c424f33f67f2285e" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string Kases.settings.Common::DJANGO_TABLES2_TEMPLATE</definition>
+        <argsstring></argsstring>
+        <name>DJANGO_TABLES2_TEMPLATE</name>
+        <initializer>= &apos;django_tables2/bootstrap-responsive.html&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="86" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1aba6f656ffc528bcc72343e47543d049f" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string Kases.settings.Common::CRISPY_TEMPLATE_PACK</definition>
+        <argsstring></argsstring>
+        <name>CRISPY_TEMPLATE_PACK</name>
+        <initializer>= &quot;bootstrap3&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="87" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="87" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1ad9e7e03784ab627fe380bcf372665377" prot="public" static="yes" mutable="no">
         <type>list</type>
@@ -124,14 +177,13 @@
         <initializer>= [
         {
             &apos;BACKEND&apos;: &apos;django.template.backends.django.DjangoTemplates&apos;,
-            &apos;DIRS&apos;: [join(<ref refid="namespace_kases_1_1settings_1acbec6745d4e64aa69c43365faff9667c" kindref="member">BASE_DIR</ref>, &apos;templates&apos;)],
+            &apos;DIRS&apos;: [os.path.join(<ref refid="namespace_kases_1_1settings_1acbec6745d4e64aa69c43365faff9667c" kindref="member">BASE_DIR</ref>, &apos;templates&apos;)],
             &apos;APP_DIRS&apos;: True,
             &apos;OPTIONS&apos;: {
                 &apos;context_processors&apos;: [
                     &apos;django.template.context_processors.debug&apos;,
                     &apos;django.template.context_processors.request&apos;,
                     &apos;django.contrib.auth.context_processors.auth&apos;,
-                    &apos;django.contrib.messages.context_processors.messages&apos;,
                 ],
             },
         },
@@ -142,7 +194,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="72" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="72" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="88" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="88" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a6bac0edcc825b9cb2f31e8cc6ebaac6d" prot="public" static="yes" mutable="no">
         <type>string</type>
@@ -156,7 +208,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="88" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="88" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="103" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="103" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1ab3ab6f71de7d3f7ab348bcc7522c05af" prot="public" static="yes" mutable="no">
         <type>list</type>
@@ -183,7 +235,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="93" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="93" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="108" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="108" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1afcf6a41dd8bbbdadbe97eb60533b762e" prot="public" static="yes" mutable="no">
         <type>string</type>
@@ -197,7 +249,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="112" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="112" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="127" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="127" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a7a42ae47de0ff86f916011b955b0cd18" prot="public" static="yes" mutable="no">
         <type>string</type>
@@ -211,7 +263,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="114" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="114" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="129" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="129" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a27d5a44d3c115e8d9741930f54dab814" prot="public" static="yes" mutable="no">
         <type></type>
@@ -225,7 +277,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="116" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="116" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="131" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="131" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1ad69ad0c3a0df3a5a781ea24bd5525784" prot="public" static="yes" mutable="no">
         <type></type>
@@ -239,7 +291,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="118" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="118" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="133" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="133" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a60a27cfc33e15c6018d8d210f25cc5c7" prot="public" static="yes" mutable="no">
         <type></type>
@@ -253,7 +305,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="120" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="120" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="135" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="135" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a543e5b499217d1cf63b931dedb3fc8d6" prot="public" static="yes" mutable="no">
         <type>string</type>
@@ -267,7 +319,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="126" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="126" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="141" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="141" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_common_1a1f5c9dc723c57d5a111d07770259bf06" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -281,7 +333,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="128" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="128" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="143" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="143" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -289,41 +341,44 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="64">
+      <node id="166">
         <label>Kases.settings.Dev</label>
         <link refid="class_kases_1_1settings_1_1_dev"/>
-        <childnode refid="62" relation="public-inheritance">
+        <childnode refid="164" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="63">
+      <node id="165">
         <label>Configuration</label>
       </node>
-      <node id="62">
+      <node id="164">
         <label>Kases.settings.Common</label>
         <link refid="class_kases_1_1settings_1_1_common"/>
-        <childnode refid="63" relation="public-inheritance">
+        <childnode refid="165" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="66">
+      <node id="168">
         <label>Configuration</label>
       </node>
-      <node id="65">
+      <node id="167">
         <label>Kases.settings.Common</label>
         <link refid="class_kases_1_1settings_1_1_common"/>
-        <childnode refid="66" relation="public-inheritance">
+        <childnode refid="168" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="29" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="29" bodyend="132"/>
+    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="29" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="29" bodyend="146"/>
     <listofallmembers>
       <member refid="class_kases_1_1settings_1_1_common_1a7fca2f273225f8f10bcb267c873a3497" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>ADMINS</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a74fe7905d78e0abdb5164460fe16e3e8" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>ALLOWED_HOSTS</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1ab3ab6f71de7d3f7ab348bcc7522c05af" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>AUTH_PASSWORD_VALIDATORS</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1aba6f656ffc528bcc72343e47543d049f" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>CRISPY_TEMPLATE_PACK</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1a770b90415a5b1848c424f33f67f2285e" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>DJANGO_TABLES2_TEMPLATE</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a7cca94accb941c1275c8dbaab0f2703f" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>INSTALLED_APPS</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1afcf6a41dd8bbbdadbe97eb60533b762e" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>LANGUAGE_CODE</name></member>
-      <member refid="class_kases_1_1settings_1_1_common_1a31d908539d65ae47ac5ca28a396b5684" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>MIDDLEWARE_CLASSES</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1a60ced8b5eb96e80ab00d61d9c2d57de8" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>LOGIN_REDIRECT_URL</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1a44cdbf74495b4af252a0843431947f00" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>MIDDLEWARE</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a1c72a831dc60328993af110000600033" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>ROOT_URLCONF</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a27b47b886d544cbfe66729514243b537" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>SECRET_KEY</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a1f5c9dc723c57d5a111d07770259bf06" prot="public" virt="non-virtual"><scope>Kases::settings::Common</scope><name>STATIC_ROOT</name></member>

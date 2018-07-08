@@ -178,43 +178,155 @@ class ObjectDescriptionMixin(models.Model):
     description = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Description")
     created = models.DateTimeField(_("Creation date and time"),editable=False,)
     modified = models.DateTimeField(_("Modification date and time"),null=True,editable=False,)
+    #created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='created by', null=True, blank=True, editable=False, verbose_name="Created By")
+    #modified_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='modified by', null=True, blank=True, editable=False, verbose_name="Modified By")
     
     def save(self, *args, **kwargs):
         if not self.pk:
            self.created = timezone_now()
+           #self.created_by = request.user
         else:
-            # To ensure that we have a creation data always, we add this one
             if not self.created:
                 self.created = timezone_now()
-                self.modified = timezone_now()
+            self.modified = timezone_now()
+            #if not self.created_by:
+            #    self.created_by = request.user
+            #self.modified_by = request.user
         super(ObjectDescriptionMixin, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True
 
 
-class UserCreatedModifiedMixin(models.Model):
-    """
-    Abstract base class with a creation and modification User
-    """
+class Authorisation(ObjectDescriptionMixin):
+    # General Fields
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Authorisation")
 
-    created = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True, editable=False, verbose_name="Created By")
-    modified = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True, editable=False, verbose_name="Modified By")
-
-    def save(self, request, *args, **kwargs):
-        if not self.pk:
-           self.created = request.user
-        else:
-            # To ensure that we have a creation data always,
-            # we add this one
-            if not self.created:
-                self.created = request.user
-                self.modified = request.user
-                super(UserCreatedModifiedMixin, self).save(*args, **kwargs)
-                save.alters_data = True
-        
     class Meta:
         abstract = True
+        verbose_name = _('Authorisation')
+        verbose_name_plural = _('Authorisations')
+
+    #def get_absolute_url(self):
+    #    return reverse('authorisation_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title
+    
+
+class Classification(ObjectDescriptionMixin):
+    # General Fields
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Classification")
+    
+    class Meta:
+        abstract = True
+        verbose_name = _('Classification')
+        verbose_name_plural = _('Classifications')
+
+    #def get_absolute_url(self):
+    #    return reverse('classification_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title
+
+
+class Type(ObjectDescriptionMixin):
+    # General Fields
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Type")
+    
+    class Meta:
+        abstract = True
+        verbose_name = _('Type')
+        verbose_name_plural = _('Types')
+
+    #def get_absolute_url(self):
+    #    return reverse('type_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title
+
+
+class Priority(ObjectDescriptionMixin):
+    # General Fields
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Priority")
+    colour = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Colour")
+    #action_delta_hours = models.IntegerField(blank=True, null=True, default=None, verbose_name="Action Delta Days")
+   
+    class Meta:
+        abstract = True
+        verbose_name = _('Priority')
+        verbose_name_plural = _('Priorities')
+
+    #def get_absolute_url(self):
+    #    return reverse('priority_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title
+
+
+class Category(ObjectDescriptionMixin):
+    # General Fields
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Category")
+    
+    class Meta:
+        abstract = True
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
+
+    #def get_absolute_url(self):
+    #    return reverse('category_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title
+
+
+class Status(ObjectDescriptionMixin):
+    # General Fields
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Status")
+
+    class Meta:
+        abstract = True
+        verbose_name = _('Status')
+        verbose_name_plural = _('Status')
+
+    #def get_absolute_url(self):
+    #    return reverse('status_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title
+
+
+class StatusGroup(ObjectDescriptionMixin):
+    ## Choices
+    # CREATED = 'Created'
+    # PENDING = 'Awaiting Authorisation'
+    # REJECTED = 'Rejected'
+    # OPEN = 'Open'
+    # Active = 'Active'
+    # CLOSED = 'Closed'
+    # ARCHIVED = 'Archived'
+    ## Choice Groups
+    # closedStatuses = [CLOSED, ARCHIVED]
+    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
+    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
+    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
+    # workable_statuses = [CREATED, OPEN]
+    # forensic_statuses = [OPEN]
+    
+    # General Fields
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Status Group")
+    # Linked Fields
+
+    class Meta:
+        abstract = True
+        verbose_name = _('Status Group')
+        verbose_name_plural = _('Status Groups')
+
+    #def get_absolute_url(self):
+    #    return reverse('statusgroup_detail', kwargs={'pk': self.pk})
+
+    def __str__(self):
+        return '%s' % self.title
 
 
 #class UploadModel(models.Model):

@@ -2,7 +2,7 @@
 
 ## python imports
 from django.db import models
-from utils.models import ObjectDescriptionMixin
+from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
 from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -11,14 +11,12 @@ from simple_history.models import HistoricalRecords
 
 
 ## Admin Models
-class NoteAuthorisationType(ObjectDescriptionMixin):
+class NoteAuthorisation(Authorisation):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Classification")
 
     class Meta:
-        ordering = ('id',)
-        verbose_name = _('Note Classification')
-        verbose_name_plural = _('Note Classifications')
+        verbose_name = _('Note Authorisation')
+        verbose_name_plural = _('Note Authorisations')
 
     #def get_absolute_url(self):
     #    return reverse('Note_detail', kwargs={'pk': self.pk})
@@ -27,12 +25,10 @@ class NoteAuthorisationType(ObjectDescriptionMixin):
         return '%s' % self.title
     
 
-class NoteClassificationType(ObjectDescriptionMixin):
+class NoteClassification(Classification):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Classification")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Note Classification')
         verbose_name_plural = _('Note Classifications')
 
@@ -43,12 +39,10 @@ class NoteClassificationType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class NoteType(ObjectDescriptionMixin):
+class NoteType(Type):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Type")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Note Type')
         verbose_name_plural = _('Note Types')
 
@@ -59,14 +53,10 @@ class NoteType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class NotePriority(ObjectDescriptionMixin):
+class NotePriority(Priority):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Priority")
-    colour = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Colour")
-    #action_delta_hours = models.IntegerField(blank=True, null=True, default=None, verbose_name="Action Delta Days")
    
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Note Priority')
         verbose_name_plural = _('Note Priorities')
 
@@ -77,12 +67,10 @@ class NotePriority(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class NoteCategory(ObjectDescriptionMixin):
+class NoteCategory(Category):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Category")
     
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Note Category')
         verbose_name_plural = _('Note Categories')
 
@@ -93,14 +81,12 @@ class NoteCategory(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class NoteStatusType(ObjectDescriptionMixin):
+class NoteStatus(Status):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Status Type")
 
     class Meta:
-        ordering = ('id',)
-        verbose_name = _('Note Status Type')
-        verbose_name_plural = _('Note Status Types')
+        verbose_name = _('Note Status')
+        verbose_name_plural = _('Note Status')
 
     #def get_absolute_url(self):
     #    return reverse('Note_detail', kwargs={'pk': self.pk})
@@ -109,7 +95,7 @@ class NoteStatusType(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-class NoteStatusGroup(ObjectDescriptionMixin):
+class NoteStatusGroup(StatusGroup):
     ## Choices
     # CREATED = 'Created'
     # PENDING = 'Awaiting Authorisation'
@@ -127,13 +113,11 @@ class NoteStatusGroup(ObjectDescriptionMixin):
     # forensic_statuses = [OPEN]
     
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, 
-                             verbose_name="Note Status Group")
+    
     # Linked Fields
-    Note_status = models.ManyToManyField(NoteStatusType, blank=True, verbose_name="Note Status")
+    status = models.ManyToManyField(NoteStatus, blank=True, verbose_name="Note Status")
 
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Note Status Group')
         verbose_name_plural = _('Note Status Groups')
 
@@ -147,25 +131,32 @@ class NoteStatusGroup(ObjectDescriptionMixin):
 ## Main Models
 class Note(ObjectDescriptionMixin):
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Note Type")
-    slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Note NoteSlug")
-    image_upload = models.FileField(blank=True, null=True, verbose_name="Note Note Image")
+    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Title")
+    slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Note Slug")
+    image_upload = models.FileField(blank=True, null=True, verbose_name="Note Image")
     private = models.BooleanField(default=False, blank=True, verbose_name="Private")
+
     # Linked Fields
     type = models.ForeignKey(NoteType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Type")
-    status = models.ForeignKey(NoteStatusType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Status")
-    classification = models.ForeignKey(NoteClassificationType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Classification")
+    status = models.ForeignKey(NoteStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Status")
+    classification = models.ForeignKey(NoteClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Classification")
     priority = models.ForeignKey(NotePriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Priority")
     category = models.ForeignKey(NoteCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Category")
-    authorisation = models.ForeignKey(NoteAuthorisationType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Authorisation")
+    authorisation = models.ForeignKey(NoteAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Authorisation")
     assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='note_assigned_to', blank=True, verbose_name="Assigned To")
-    note_manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='note_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Note Manager")
+    manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='note_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Note Manager")
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='note_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
     
+    # Auto Fields
+    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
+    deadline = models.DateTimeField(auto_now=True, null=True, verbose_name="Deadline")
+
+    history = HistoricalRecords()
+
     class Meta:
-        ordering = ('id',)
         verbose_name = _('Note')
         verbose_name_plural = _('Notes')
+        #abstract = True
 
     def get_absolute_url(self):
         return reverse('note_detail', kwargs={'pk': self.pk})

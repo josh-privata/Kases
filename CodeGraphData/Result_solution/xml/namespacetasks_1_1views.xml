@@ -14,7 +14,20 @@
 <para><verbatim>Renders the home page.</verbatim> </para>        </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/views.py" line="10" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/views.py" bodystart="10" bodyend="21"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/views.py" line="11" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/views.py" bodystart="11" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="namespacetasks_1_1views_1a185a34dba325e4458bc313d0232b0fdd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tasks.views.new_task</definition>
+        <argsstring></argsstring>
+        <name>new_task</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/views.py" line="24" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/views.py" bodystart="24" bodyend="26"/>
       </memberdef>
       </sectiondef>
     <briefdescription>

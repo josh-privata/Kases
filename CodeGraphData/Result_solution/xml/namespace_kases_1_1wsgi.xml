@@ -21,7 +21,7 @@
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><verbatim>WSGI config for Audiad project.
+<para><verbatim>WSGI config for Kases project.
 
 This module contains the WSGI application used by Django&apos;s development server
 and any production WSGI deployments. It should expose a module-level variable

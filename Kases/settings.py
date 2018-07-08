@@ -48,7 +48,7 @@ class Common(Configuration):
         'evidence',
         'case',
         'entity',
-        'tasks',
+        'task',
         'user',
         'configuration',
         'note',
@@ -63,9 +63,11 @@ class Common(Configuration):
         'django_tables2',
         'django_filters',
         'raven.contrib.django.raven_compat',
-        'debug_toolbar',
+        #'debug_toolbar',
         'simple_history',
         'crispy_forms',
+        'widget_tweaks',
+
     ]
 
     MIDDLEWARE = [
@@ -77,14 +79,14 @@ class Common(Configuration):
         #'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
+        #'debug_toolbar.middleware.DebugToolbarMiddleware',
         'simple_history.middleware.HistoryRequestMiddleware',
     ]
 
     ROOT_URLCONF = 'Kases.urls'
 
     DJANGO_TABLES2_TEMPLATE = 'django_tables2/bootstrap-responsive.html'
-    CRISPY_TEMPLATE_PACK = "bootstrap3"
+    CRISPY_TEMPLATE_PACK = "bootstrap4"
     TEMPLATES = [
         {
             'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -2,11 +2,15 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespacecase_1_1forms" kind="namespace">
     <compoundname>case::forms</compoundname>
-    <innerclass refid="classcase_1_1forms_1_1_bootstrap_authentication_form" prot="public">case::forms::BootstrapAuthenticationForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_create_form" prot="public">case::forms::CaseCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_edit_form" prot="public">case::forms::CaseEditForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_note_create_form" prot="public">case::forms::CaseNoteCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_task_create_form" prot="public">case::forms::CaseTaskCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_form" prot="public">case::forms::CrispyCaseForm</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><verbatim>Definition of forms.
+<para><verbatim>Case Forms.
 </verbatim> </para>    </detaileddescription>
     <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/forms.py" line="1" column="1"/>
   </compounddef>

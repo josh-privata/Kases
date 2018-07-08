@@ -1,73 +1,37 @@
-﻿{% extends "global/auth_base.html" %}
+﻿{% extends "global/views/base_list.html" %}
 
-{% block content %}
-    <div class="row">
-        <div class="col-sm-12">
+<!-- Title -->
+{% block title %}{% endblock %}
 
-            <!-- Panel -->
-            <div class="panel panel-default">
+<!-- Results Table -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Case ID</th>
+        <th>Case Title</th>
+        <th>Case Detail</th>
+        <th>Case Background</th>
+        <th>Case Status</th>
+        <th>Case Type</th>
+    {% endblock %}
 
-                <!-- Panel Body -->
-                <div class="panel-body">
-
-                    <!-- Results Table -->
-                    <table class="table">
-
-                        <!-- Table Head -->
-                        <thead>
-                        <tr>
-                            <th>Case ID</th>
-                            <th>Case Title</th>
-                            <th>Case Detail</th>
-                            <th>Case Background</th>
-                            <th>Case Status</th>
-                            <th>Case Type</th>
-                        </tr>
-                        </thead>
-                        <!-- Table -->
-                        {% if cases_list %}
-                            <!-- Table Body -->
-                            <tbody>
-                            {% for case in cases_list %}
-                                <tr>
-
-                                    <!-- Case ID -->
-                                    <td>
-                                        <a href="{% url 'case_detail' case.id %}" role="button">
-                                            {{ case.id }}
-                                        </a>
-                                    </td>
-                                    
-                                    <!-- Case Title -->
-                                    <td>{{ case.title }}</td>
-
-                                    <!-- Case Description -->
-                                    <td>{{ case.description }}</td>
-
-                                    <!-- Case Background -->
-                                    <td>{{ case.background }}</td>
-
-                                    <!-- Case Status -->
-                                    <td>{{ case.status }}</td>
-
-                                    <!-- Case Type -->
-                                    <td>{{ case.type }}</td>
-
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-
-                            </table>
-
-                          
-                        {% else %}
-                            <p>There are no cases to show</p>
-
-                        {% endif %}
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-{% endblock %}
+    <!-- Table -->
+        <!-- Case ID -->
+        {% block table_body_id_url %}{% url 'case_detail' object.id %}{% endblock %}
+        {% block table_body_id_column %}{{ object.id }}{% endblock %}
+        <!-- Columns -->
+        {% block table_body_columns %} 
+            <!-- Case Title -->
+            <td>{{ object.title }}</td>
+            <!-- Case Description -->
+            <td>{{ object.description }}</td>
+            <!-- Case Background -->
+            <td>{{ object.background }}</td>
+            <!-- Case Status -->
+            <td>{{ object.status }}</td>
+            <!-- Case Type -->
+            <td>{{ object.type }}</td>
+        {% endblock %}           
+        <!-- Table Else -->
+        {% block table_else %}
+            <p>There are no cases to show</p>
+        {% endblock %}

@@ -2,10 +2,12 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespaceevidence_1_1migrations" kind="namespace">
     <compoundname>evidence::migrations</compoundname>
+    <innernamespace refid="namespaceevidence_1_1migrations_1_10001__initial">evidence::migrations::0001_initial</innernamespace>
+    <innernamespace refid="namespaceevidence_1_1migrations_1_10002__evidence__deadline">evidence::migrations::0002_evidence_deadline</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
     </detaileddescription>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/migrations/__init__.py" line="1" column="1"/>
+    <location file="[generated]" line="1" column="1"/>
   </compounddef>
 </doxygen>

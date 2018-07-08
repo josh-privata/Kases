@@ -1,17 +1,16 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.models import User
-from tasks.models import TaskPriority
-from tasks.models import TaskType
-from case.models import CaseTask
+from task.models import TaskPriority
+from task.models import TaskType
+#from case.models import CaseTask
 from case.models import Case
-from case.models import CaseAuthorisationType
-from case.models import CaseClassificationType
+from case.models import CaseAuthorisation
+from case.models import CaseClassification
 from case.models import CaseType
 from case.models import CasePriority
-from case.models import CaseStatusType
+from case.models import CaseStatus
 from case.models import CaseStatusGroup
-from evidence.models import Evidence
 from evidence.models import EvidenceType
 from evidence.models import ChainOfCustody
 from user.models import Profile
@@ -38,14 +37,13 @@ admin.site.register(User, CustomUserAdmin)
 admin.site.register(Options)
 admin.site.register(EvidenceType)
 admin.site.register(ChainOfCustody)
-admin.site.register(Evidence)
-admin.site.register(CaseAuthorisationType)
-admin.site.register(CaseClassificationType)
+admin.site.register(CaseAuthorisation)
+admin.site.register(CaseClassification)
 admin.site.register(CaseType)
 admin.site.register(CasePriority)
-admin.site.register(CaseStatusType)
+admin.site.register(CaseStatus)
 admin.site.register(CaseStatusGroup)
 admin.site.register(Case, SimpleHistoryAdmin)
-admin.site.register(CaseTask)
+#admin.site.register(CaseTask)
 admin.site.register(TaskPriority)
 admin.site.register(TaskType)

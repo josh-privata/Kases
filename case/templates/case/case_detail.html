@@ -1,138 +1,101 @@
-﻿{% extends "case/case_open_layout.html" %}
+﻿{% extends "global/views/base_detail.html" %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
 
 <!-- Title -->
 {% block title %}Kases - {{object.title}}{% endblock %}
 
-{% block content %}
 
-    <!-- Case Detail Tabs -->
-    <ul class="nav nav-tabs">
+<!-- Summary -->
+{% block header %}Case Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}
+        <h5>Case Title: {{ object.title }}</h5>
+        <h5>Case ID: {{ object.id }}</h5>
+        <h5>Case Brief: {{ object.brief }}</h5>
+        <h5>Case Reference: {{ object.reference }}</h5>
+        <h5>Case Location: {{ object.location }}</h5>
+        <h5>Comment: {{ object.comment }}</h5>
+        <h5>Private: {{ object.private }}</h5>
+    {% endblock %}          
 
-        <!-- Panel 1 - Summary -->
-        <li class="nav-item">
-            <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">Summary</a>
-        </li>
-        <!-- Panel 2 - Details -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">Details</a>
-        </li>
-        <!-- Panel 3 - Contacts -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">Contacts</a>
-        </li>
-        <!-- Panel 4 - Schedule -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">Schedule</a>
-        </li>
-        <!-- Panel 5 - Authorisation -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel5" role="tab">Authorisation</a>
-        </li>
-        <!-- Panel 6 - Questions -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel6" role="tab">Questions</a>
-        </li>
-        <!-- Panel 7 - Authorisation -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel7" role="tab">Authorisation</a>
-        </li>
-        <!-- Panel 8 - Authorisation -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel8" role="tab">Authorisation</a>
-        </li>
-        <!-- Panel 9 - Authorisation -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel9" role="tab">Authorisation</a>
-        </li>
-        <!-- Panel 10 - Case Log -->
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#panel10" role="tab">Case Log</a>
-        </li>
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}
+        <h5>Case Type: {{ object.type }}</h5>
+        <h5>Case Status: {{ object.status }}</h5>
+        <h5>Case Classification:{{ object.classification}}</h5>
+        <h5>Case Authorisation: {{ object.authorisation }}</h5>
+        <h5>Case Deadline: {{ object.deadline }}</h5>
+        <h5>Case Creation Date: {{ object.creation_date }}</h5>
+    {% endblock %} 
 
-    </ul>
+    {% block summary_buttonurl %}{% url 'case_edit' object.id %}{% endblock %}
+  
+<!-- Case Detail Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Schedule -->
+    {% block tab2_header %}Schedule{% endblock %}
+    <!-- Panel 3 - Contacts -->
+    {% block tab3_header %}Contacts{% endblock %}
+    <!-- Panel 4 - Questions -->
+    {% block tab4_header %}Questions{% endblock %}
+    <!-- Panel 5 - Authorisation -->
+    {% block tab5_header %}Authorisation{% endblock %}
+    <!-- Panel 6 - Case Log -->
+    {% block tab6_header %}Case Log{% endblock %}
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
 
-    <!-- Tab panels -->
-    <div class="tab-content">
-                
-        <!-- Panel 1 - Summary -->
-        <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
-            <div class="row">
-
-                <!-- Left Panel -->
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h2 class="card-header">Case Detail</h2>
-                        <div class="card-body">
-                            {#<p class="card-text">#}
-                                <h4>Case Title: {{ object.title }}</h4>
-                                <h4>Case ID: {{ object.id }}</h4>
-                                <h4>Case Brief: {{ object.brief }}</h4>
-                                <h4>Case Background: {{ object.background}}</h4>
-                                <h4>Case Description: {{ object.description }}</h4>
-                                <h4>Case Reference: {{ object.reference }}</h4>
-                                <h4>Case Location: {{ object.location }}</h4>
-                                <h4>Comment: {{ object.comment }}</h4>
-                                <h4>Private: {{ object.private }}</h4>
-                                <h4>Case Type: {{ object.type }}</h4>
-                                <h4>Case Status: {{ object.status }}</h4>
-                                <h4>Case Classification:{{ object.classification}}</h4>
-                                <h4>Case Authorisation: {{ object.authorisation }}</h4>
-                                <h4>Case Deadline: {{ object.deadline }}</h4>
-                                <h4>Case Creation Date: {{ object.creation_date }}</h4>
-                            {#</p>#}
-                            <br />
-                        <a href="{% url 'case_edit' object.id %}" class="btn btn-primary">Edit</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Panel -->
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">
-
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>                    
-        </div>
-
-        <!-- Panel 2 - Details -->
-        <div class="tab-pane fade" id="panel2" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+    <!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                    <p class="card-text">
+                        <h5>Case Background: {{ object.background}}</h5>
+                        <h5>Case Description: {{ object.description }}</h5>        
+                    </p>
                     </div>
                 </div>
             </div>
         </div>
+    {% endblock %}
 
-        <!-- Panel 3 - Contacts -->
-        <div class="tab-pane fade" id="panel3" role="tabpanel">
-            <br>
+    <!-- Panel 2 - Schedule -->
+    {% block panel2_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 3 - Contacts -->
+    {% block panel3_content %}
+        <div class="row">
             <section class="mt-30px mb-30px">
                 <div class="container-fluid">
                     <div class="row">
@@ -363,196 +326,85 @@
                 </div>
             </section>
         </div>
+    {% endblock %}
 
-        <!-- Panel 4 - Schedule -->
-        <div class="tab-pane fade" id="panel4" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+    <!-- Panel 4 - Questions -->
+    {% block panel4_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
         </div>
+    {% endblock %}
 
-        <!-- Panel 5 - Authorisation -->
-        <div class="tab-pane fade" id="panel5" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+    <!-- Panel 5 - Authorisation -->
+    {% block panel5_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
         </div>
+    {% endblock %}
 
-        <!-- Panel 6 - Questions -->
-        <div class="tab-pane fade" id="panel6" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header"></h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+    <!-- Panel 6 - Case Log -->
+    {% block panel6_content %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card">
+                    <h5 class="card-header">Featured</h5>
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
                     </div>
                 </div>
             </div>
         </div>
+    {% endblock %}
 
-        <!-- Panel 7 - Authorisation -->
-        <div class="tab-pane fade" id="panel7" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel 8 - Authorisation -->
-        <div class="tab-pane fade" id="panel8" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel 9 - Authorisation -->
-        <div class="tab-pane fade" id="panel9" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Panel 10 - Case Log -->
-        <div class="tab-pane fade" id="panel10" role="tabpanel">
-            <br>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="card">
-                        <h5 class="card-header">Featured</h5>
-                        <div class="card-body">
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-    </div>
-
-{% endblock %}
+    {% block panel7 %}{% endblock %}
+    {% block panel7_content %}{% endblock %}

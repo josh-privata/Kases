@@ -2,7 +2,6 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespacebase_1_1models" kind="namespace">
     <compoundname>base::models</compoundname>
-    <innerclass refid="classbase_1_1models_1_1_upload_model" prot="public">base::models::UploadModel</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

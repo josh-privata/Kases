@@ -10,7 +10,7 @@
         <argsstring></argsstring>
         <name>RAVEN_CONFIG</name>
         <initializer>= {
-                &apos;dsn&apos;: &apos;https://1c89626d8e02478e972af34e31360744:616e20a1933c4eb4ae3943c6b41dc3c7@sentry.io/240094&apos;,
+                &apos;dsn&apos;: &apos;https://b426ed2e887842ce83210c66c7d79c7c:2f4c7e06ce0b4e91be5fad1940821f81@sentry.io/1193654&apos;,
                 # If you are using git, you can also automatically configure the
                 # release based on the git info.
     }</initializer>
@@ -20,7 +20,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="145" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="145" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="195" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="195" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_log_1aca7368a4a8d16da1a5d4ad6e0b71dc93" prot="public" static="yes" mutable="no">
         <type>dictionary</type>
@@ -33,7 +33,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="151" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="151" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="201" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="201" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -41,18 +41,18 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="103">
+      <node id="323">
         <label>Kases.settings.Log</label>
         <link refid="class_kases_1_1settings_1_1_log"/>
       </node>
-      <node id="104">
+      <node id="324">
         <label>Kases.settings.Dev</label>
         <link refid="class_kases_1_1settings_1_1_dev"/>
-        <childnode refid="103" relation="public-inheritance">
+        <childnode refid="323" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="144" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="144" bodyend="204"/>
+    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="194" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="194" bodyend="254"/>
     <listofallmembers>
       <member refid="class_kases_1_1settings_1_1_log_1aca7368a4a8d16da1a5d4ad6e0b71dc93" prot="public" virt="non-virtual"><scope>Kases::settings::Log</scope><name>LOGGING</name></member>
       <member refid="class_kases_1_1settings_1_1_log_1a563077b76fb2bdcef4d254e4a6796fb4" prot="public" virt="non-virtual"><scope>Kases::settings::Log</scope><name>RAVEN_CONFIG</name></member>

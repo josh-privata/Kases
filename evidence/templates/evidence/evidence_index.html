@@ -1,0 +1,110 @@
+{% extends "global/views/base_index.html" %}
+{% load render_table from django_tables2 %}
+
+<!-- Title -->
+{% block title %}Kases - Dashboard{% endblock %}
+
+<!-- Statistics Section -->
+    <!-- Active Evidence -->
+    {% block stat1_name %}All Evidence{% endblock %}
+    {% block stat1_count %}{{ all_count }}{% endblock %}
+
+    <!-- Total Evidence -->
+    {% block stat2_name %}Active Evidence{% endblock %}
+    {% block stat2_count %}{{ active_count }}{% endblock %}
+
+    <!-- Approved Evidence -->
+    {% block stat3_name %}Active Evidence{% endblock %}
+    {% block stat3_count %}{{ active_count }}{% endblock %}
+
+    <!-- Pending Evidence -->
+    {% block stat4_name %}Active Evidence{% endblock %}
+    {% block stat4_count %}{{ active_count }}{% endblock %}
+
+    <!-- Rejected Evidence -->
+    {% block stat5_name %}Active Evidence{% endblock %}
+    {% block stat5_count %}{{ active_count }}{% endblock %}
+
+    <!-- Closed Evidence -->
+    {% block stat6_name %}Active Evidence{% endblock %}
+    {% block stat6_count %}{{ active_count }}{% endblock %}
+
+<!-- Updates Section -->
+    <!-- Active Evidence -->
+    <!-- Header -->
+    {% block left_update_header %}Active Evidence{% endblock %}
+    {% block left_update_header_count %}{{ all_count }} evidences{% endblock %}
+
+    <!-- Update Box -->
+    {% block left_update_box_item_url %}{% url 'evidence_detail' object1.id %}{% endblock %}
+    {% block left_update_box_item_title %}{{ object1.title }}{% endblock %}
+    {% block left_update_box_item_body1 %}{{ object1.description }}{% endblock %}
+    {% block left_update_box_item_body2 %}{{ object1.creation_date }}{% endblock %}
+
+    <!-- No Item -->
+    {% block left_update_box_noitem %}There is evidence to show{% endblock %}
+
+    <!-- Recent Updates -->
+    <!-- Header -->
+    {% block centre_update_header %}Active Evidence{% endblock %}
+    {% block centre_update_header_count %}{{ active_count }} evidences{% endblock %}
+
+    <!-- Update Box -->
+    {% block centre_update_box_item_url %}{% url 'evidence_detail' object2.id %}{% endblock %}
+    {% block centre_update_box_item_title %}{{ object2.title }}{% endblock %}
+    {% block centre_update_box_item_body1 %}{{ object2.description }}{% endblock %}
+    {% block centre_update_box_item_body2 %}{{ object2.creation_date }}{% endblock %}
+
+    <!-- No Item -->
+    {% block centre_update_box_noitem %}There are no evidences to show{% endblock %}
+
+    <!-- Tasks -->
+    <!-- Header -->
+    {% block right_update_header %}Active Evidence{% endblock %}
+    {% block right_update_header_count %}{{ active_count }} evidences{% endblock %}
+
+    <!-- Update Box -->
+    {% block right_update_box_item_url %}{% url 'evidence_detail' object3.id %}{% endblock %}
+    {% block right_update_box_item_title %}{{ object3.title }}{% endblock %}
+    {% block right_update_box_item_body1 %}{{ object3.description }}{% endblock %}
+    {% block right_update_box_item_body2 %}{{ object3.creation_date }}{% endblock %}
+
+    <!-- No Item -->
+    {% block right_update_box_noitem %}There are no evidences to show{% endblock %}
+
+<!-- Evidence Section -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Evidence ID</th>
+        <th>Evidence Title</th>
+        <th>Evidence Detail</th>
+        <th>Evidence Background</th>
+        <th>Evidence Status</th>
+        <th>Evidence Type</th>
+    {% endblock %}
+        
+    <!-- Table Body -->
+    <!-- Evidence ID -->
+    {% block table_body_id_url %}{% url 'evidence_detail' table_object.id %}{% endblock %}
+    {% block table_body_id_column %} {{ table_object.id }} {% endblock %}                        
+    
+    <!-- Columns -->
+    {% block table_body_columns %}
+        <!-- Evidence Title -->
+        <td>{{ table_object.title }}</td>
+
+        <!-- Evidence Description -->
+        <td>{{ table_object.description }}</td>
+
+        <!-- Evidence Background -->
+        <td>{{ table_object.background }}</td>
+
+        <!-- Evidence Status -->
+        <td>{{ table_object.status }}</td>
+
+        <!-- Evidence Type -->
+        <td>{{ table_object.type }}</td>
+    {% endblock %}
+    
+    <!-- Table Else -->
+    {% block table_else %}<p>There are no evidences to show</p>{% endblock %}

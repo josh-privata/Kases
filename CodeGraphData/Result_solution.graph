@@ -83,20 +83,42 @@ WARN_IF_DOC_ERROR = YES
 WARN_NO_PARAMDOC = NO
 WARN_FORMAT = "$file:$line: $text"
 WARN_LOGFILE = 
-INPUT = "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/app_template/migrations" \
-     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/app_template" \
+INPUT = "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/assets/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/assets" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base/migrations" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base/static/base/scripts" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/migrations" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/collection/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/collection" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/configuration/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/configuration" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/entity/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/entity/templatetags" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/entity/views" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/entity" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/migrations" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/expenditure/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/expenditure" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases" \
-     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/personality/migrations" \
-     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/personality" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/note/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/note" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/static/admin/js/admin" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/static/admin/js/vendor/jquery" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/static/admin/js/vendor/xregexp" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/static/admin/js" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/static/app/scripts" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/static/base/scripts" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks/migrations" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/timeline/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/timeline" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/user/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/user" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/utils/migrations" \
+     "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/utils" \
      "//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases"
 INPUT_ENCODING = UTF-8
 FILE_PATTERNS = *.c \

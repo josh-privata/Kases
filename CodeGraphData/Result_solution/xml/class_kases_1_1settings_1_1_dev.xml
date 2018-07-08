@@ -3,7 +3,6 @@
   <compounddef id="class_kases_1_1settings_1_1_dev" kind="class" prot="public">
     <compoundname>Kases::settings::Dev</compoundname>
     <basecompoundref refid="class_kases_1_1settings_1_1_common" prot="public" virt="non-virtual">Kases.settings.Common</basecompoundref>
-    <basecompoundref refid="class_kases_1_1settings_1_1_s_q_llite" prot="public" virt="non-virtual">Kases.settings.SQLlite</basecompoundref>
     <basecompoundref refid="class_kases_1_1settings_1_1_log" prot="public" virt="non-virtual">Kases.settings.Log</basecompoundref>
       <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_dev_1a65faeb6e54a3c57e9c6a6194472a3b5e" prot="public" static="yes" mutable="no">
@@ -18,7 +17,21 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="205" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="205" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="255" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="255" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_kases_1_1settings_1_1_dev_1abe2ecdddde9ace44d92b9830ca2e97c4" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string Kases.settings.Dev::EMAIL_BACKEND</definition>
+        <argsstring></argsstring>
+        <name>EMAIL_BACKEND</name>
+        <initializer>= &apos;django.core.mail.backends.console.EmailBackend&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="256" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="256" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_dev_1a329c7b3d88aabc52f896bc19de8d5bb7" prot="public" static="yes" mutable="no">
         <type>list</type>
@@ -32,7 +45,30 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="208" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="208" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="258" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="258" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_kases_1_1settings_1_1_dev_1a919178539ebfc624311df358c2bddd6b" prot="public" static="yes" mutable="no">
+        <type>dictionary</type>
+        <definition>dictionary Kases.settings.Dev::DATABASES</definition>
+        <argsstring></argsstring>
+        <name>DATABASES</name>
+        <initializer>= {
+        &apos;default&apos;: {
+            &apos;ENGINE&apos;: &apos;django.db.backends.mysql&apos;,
+            &apos;NAME&apos;: &apos;kases&apos;,
+            &apos;USER&apos;: &apos;root&apos;,
+            &apos;PASSWORD&apos;: &apos;21@coffee&apos;,
+            &apos;HOST&apos;: &apos;192.168.2.32&apos;,
+            &apos;PORT&apos;: &apos;3306&apos;,
+        }
+    }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="263" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="263" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -40,75 +76,67 @@
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="71">
+      <node id="228">
         <label>Kases.settings.Log</label>
         <link refid="class_kases_1_1settings_1_1_log"/>
       </node>
-      <node id="70">
-        <label>Kases.settings.SQLlite</label>
-        <link refid="class_kases_1_1settings_1_1_s_q_llite"/>
-      </node>
-      <node id="67">
+      <node id="225">
         <label>Kases.settings.Dev</label>
         <link refid="class_kases_1_1settings_1_1_dev"/>
-        <childnode refid="68" relation="public-inheritance">
+        <childnode refid="226" relation="public-inheritance">
         </childnode>
-        <childnode refid="70" relation="public-inheritance">
-        </childnode>
-        <childnode refid="71" relation="public-inheritance">
+        <childnode refid="228" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="69">
+      <node id="227">
         <label>Configuration</label>
       </node>
-      <node id="68">
+      <node id="226">
         <label>Kases.settings.Common</label>
         <link refid="class_kases_1_1settings_1_1_common"/>
-        <childnode refid="69" relation="public-inheritance">
+        <childnode refid="227" relation="public-inheritance">
         </childnode>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="76">
+      <node id="232">
         <label>Kases.settings.Log</label>
         <link refid="class_kases_1_1settings_1_1_log"/>
       </node>
-      <node id="75">
-        <label>Kases.settings.SQLlite</label>
-        <link refid="class_kases_1_1settings_1_1_s_q_llite"/>
-      </node>
-      <node id="72">
+      <node id="229">
         <label>Kases.settings.Dev</label>
         <link refid="class_kases_1_1settings_1_1_dev"/>
-        <childnode refid="73" relation="public-inheritance">
+        <childnode refid="230" relation="public-inheritance">
         </childnode>
-        <childnode refid="75" relation="public-inheritance">
-        </childnode>
-        <childnode refid="76" relation="public-inheritance">
+        <childnode refid="232" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="74">
+      <node id="231">
         <label>Configuration</label>
       </node>
-      <node id="73">
+      <node id="230">
         <label>Kases.settings.Common</label>
         <link refid="class_kases_1_1settings_1_1_common"/>
-        <childnode refid="74" relation="public-inheritance">
+        <childnode refid="231" relation="public-inheritance">
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="204" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="204" bodyend="279"/>
+    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" line="254" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/settings.py" bodystart="254" bodyend="343"/>
     <listofallmembers>
       <member refid="class_kases_1_1settings_1_1_common_1a7fca2f273225f8f10bcb267c873a3497" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>ADMINS</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a74fe7905d78e0abdb5164460fe16e3e8" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>ALLOWED_HOSTS</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1ab3ab6f71de7d3f7ab348bcc7522c05af" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>AUTH_PASSWORD_VALIDATORS</name></member>
-      <member refid="class_kases_1_1settings_1_1_s_q_llite_1a5ccb42a15be65fda5bfe8e1694b635d6" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>DATABASES</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1aba6f656ffc528bcc72343e47543d049f" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>CRISPY_TEMPLATE_PACK</name></member>
+      <member refid="class_kases_1_1settings_1_1_dev_1a919178539ebfc624311df358c2bddd6b" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>DATABASES</name></member>
       <member refid="class_kases_1_1settings_1_1_dev_1a65faeb6e54a3c57e9c6a6194472a3b5e" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>DEBUG</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1a770b90415a5b1848c424f33f67f2285e" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>DJANGO_TABLES2_TEMPLATE</name></member>
+      <member refid="class_kases_1_1settings_1_1_dev_1abe2ecdddde9ace44d92b9830ca2e97c4" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>EMAIL_BACKEND</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a7cca94accb941c1275c8dbaab0f2703f" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>INSTALLED_APPS</name></member>
       <member refid="class_kases_1_1settings_1_1_dev_1a329c7b3d88aabc52f896bc19de8d5bb7" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>INTERNAL_IPS</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1afcf6a41dd8bbbdadbe97eb60533b762e" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>LANGUAGE_CODE</name></member>
       <member refid="class_kases_1_1settings_1_1_log_1aca7368a4a8d16da1a5d4ad6e0b71dc93" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>LOGGING</name></member>
-      <member refid="class_kases_1_1settings_1_1_common_1a31d908539d65ae47ac5ca28a396b5684" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>MIDDLEWARE_CLASSES</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1a60ced8b5eb96e80ab00d61d9c2d57de8" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>LOGIN_REDIRECT_URL</name></member>
+      <member refid="class_kases_1_1settings_1_1_common_1a44cdbf74495b4af252a0843431947f00" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>MIDDLEWARE</name></member>
       <member refid="class_kases_1_1settings_1_1_log_1a563077b76fb2bdcef4d254e4a6796fb4" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>RAVEN_CONFIG</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a1c72a831dc60328993af110000600033" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>ROOT_URLCONF</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a27b47b886d544cbfe66729514243b537" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>SECRET_KEY</name></member>

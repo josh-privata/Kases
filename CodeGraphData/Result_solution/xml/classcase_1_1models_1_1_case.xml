@@ -2,247 +2,559 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="classcase_1_1models_1_1_case" kind="class" prot="public">
     <compoundname>case::models::Case</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Model</basecompoundref>
+    <basecompoundref refid="classutils_1_1models_1_1_object_description_mixin" prot="public" virt="non-virtual">utils.models.ObjectDescriptionMixin</basecompoundref>
+    <innerclass refid="classcase_1_1models_1_1_case_1_1_meta" prot="public">case::models::Case::Meta</innerclass>
       <sectiondef kind="public-static-attrib">
       <memberdef kind="variable" id="classcase_1_1models_1_1_case_1ae88f4c3c12f6b75a6bfe398ab07c74ac" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.Case::id</definition>
         <argsstring></argsstring>
         <name>id</name>
-        <initializer>= models.IntegerField(null=True, blank=True, default=&quot;&quot;)</initializer>
+        <initializer>= models.AutoField(primary_key=True)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="10" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="10" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="152" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="152" bodyend="-1"/>
+        <referencedby refid="classcase_1_1models_1_1_case_1ae0127cbbf8645a7f0b934089c37ab1c7" compoundref="case_2models_8py" startline="202" endline="204">case.models.Case._get_case_for_url</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1af893de4eb3981b01cb77f4b219af7943" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a0672bfe3382cdc703af7fcf274e7ddf8" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple case.models.Case::case_name</definition>
+        <definition>tuple case.models.Case::title</definition>
         <argsstring></argsstring>
-        <name>case_name</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <name>title</name>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Case Title&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="11" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="11" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="153" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="153" bodyend="-1"/>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_authorisation_type_1aaf708069592c51e41870020576139cb2" compoundref="evidence_2models_8py" startline="26" endline="29">evidence.models.EvidenceAuthorisationType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_authorisation_type_1a0069e5bc61eb551ed5e6f725cd9fdc1b" compoundref="note_2models_8py" startline="26" endline="29">note.models.NoteAuthorisationType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_authorisation_type_1acc5c990f3acac8a4084b296c710f42ce" compoundref="tasks_2models_8py" startline="26" endline="29">tasks.models.TaskAuthorisationType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_classification_type_1a495c50d957d737c69aeb42ab48ad84c8" compoundref="tasks_2models_8py" startline="42" endline="45">tasks.models.TaskClassificationType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_classification_type_1a0b30c16ee484afd410e44632c375383a" compoundref="evidence_2models_8py" startline="42" endline="45">evidence.models.EvidenceClassificationType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_classification_type_1a9271352cd19384650aafda0ffba4ef0d" compoundref="note_2models_8py" startline="42" endline="45">note.models.NoteClassificationType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_type_1a2eddceac2c1914c17ce6ab7100f5ea89" compoundref="evidence_2models_8py" startline="58" endline="61">evidence.models.EvidenceType.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_type_1aded107c5c6cbc1f0f119b4cb3ebba0b3" compoundref="tasks_2models_8py" startline="58" endline="61">tasks.models.TaskType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_type_1aa20fed8ad267b0a349f265dcc7b4abf5" compoundref="note_2models_8py" startline="58" endline="61">note.models.NoteType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_category_1a4e22d21c9169c633e62f4c1cf964e5ed" compoundref="evidence_2models_8py" startline="74" endline="77">evidence.models.EvidenceCategory.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_priority_1a38bba820f7c6791fe2363745d5dfe462" compoundref="tasks_2models_8py" startline="76" endline="79">tasks.models.TaskPriority.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_priority_1ac0b231198d001d5c05227039e7a6c41e" compoundref="note_2models_8py" startline="76" endline="79">note.models.NotePriority.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_category_1a11670b07da93a038f8cd706aa66142af" compoundref="tasks_2models_8py" startline="92" endline="95">tasks.models.TaskCategory.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_category_1adac7dc66b88624f9897d959a67e29a81" compoundref="note_2models_8py" startline="92" endline="95">note.models.NoteCategory.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_priority_1a81dfd2664e3bfbc441ed8f67ae638659" compoundref="evidence_2models_8py" startline="92" endline="95">evidence.models.EvidencePriority.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_status_type_1a4c94b28fc0308e5001ac1d674c7fb78d" compoundref="tasks_2models_8py" startline="108" endline="111">tasks.models.TaskStatusType.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_status_type_1a09a9efdcc4fd6ebc495b5ddd0d7cefbb" compoundref="evidence_2models_8py" startline="108" endline="111">evidence.models.EvidenceStatusType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_status_type_1a7cccdfa3deb4b0f9d164d1f77d51a9f0" compoundref="note_2models_8py" startline="108" endline="111">note.models.NoteStatusType.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_status_group_1a72f829d9a89e35c80ea10450a74c4343" compoundref="note_2models_8py" startline="143" endline="146">note.models.NoteStatusGroup.__str__</referencedby>
+        <referencedby refid="classtasks_1_1models_1_1_task_status_group_1aa95b51c33303b1fd0bc1d8644d850586" compoundref="tasks_2models_8py" startline="143" endline="146">tasks.models.TaskStatusGroup.__str__</referencedby>
+        <referencedby refid="classevidence_1_1models_1_1_evidence_status_group_1a76bec36fdc54a64ed74713a10b77a729" compoundref="evidence_2models_8py" startline="143" endline="146">evidence.models.EvidenceStatusGroup.__str__</referencedby>
+        <referencedby refid="classnote_1_1models_1_1_note_1a3d83b7a9ea56a1944bf5738176c6b672" compoundref="note_2models_8py" startline="178" endline="181">note.models.Note.__str__</referencedby>
+        <referencedby refid="classcase_1_1models_1_1_case_1a052fdf1f23178ce544eb7436288ab4de" compoundref="case_2models_8py" startline="192" endline="195">case.models.Case.__str__</referencedby>
+        <referencedby refid="classcase_1_1models_1_1_case_contact_1ae5e495e1fd68f1978ba040e601e2e725" compoundref="case_2models_8py" startline="267" endline="268">case.models.CaseContact.__str__</referencedby>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a8ecdca80db22ee2f4345abafa5d583e7" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.Case::reference</definition>
         <argsstring></argsstring>
         <name>reference</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Case Reference&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="12" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="12" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a3ec3fd18fdfdc8e81e08c62fefaff2e4" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple case.models.Case::currentStatus</definition>
-        <argsstring></argsstring>
-        <name>currentStatus</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="13" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="13" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a795ed71fec785084947ece3299644f74" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple case.models.Case::private</definition>
-        <argsstring></argsstring>
-        <name>private</name>
-        <initializer>= models.BooleanField(default=False, blank=True)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="14" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="14" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="155" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="155" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a61b93b6a72dcfc785c3601148d003eb1" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.Case::background</definition>
         <argsstring></argsstring>
         <name>background</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Case Background&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="15" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="15" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="156" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1ab6b0fb319df097083ea416db90cfbd79" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::purpose</definition>
+        <argsstring></argsstring>
+        <name>purpose</name>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Case Purpose&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="157" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="157" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_case_1ace914932117f0b4fcfa4b89e286a3c0e" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.Case::location</definition>
         <argsstring></argsstring>
         <name>location</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Case Location&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="16" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="16" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="158" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="158" bodyend="-1"/>
+        <referencedby refid="classentity_1_1models_1_1_street_address_1a9b6800b042d32aa18d822a2efe57a333" compoundref="entity_2models_8py" startline="32" endline="34">entity.models.StreetAddress.__str__</referencedby>
       </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a46d955ad720ad4d170f565e19a2933c5" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a9fc2db01995995662fcf6c7c3d4bd1e6" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple case.models.Case::creation_date</definition>
+        <definition>tuple case.models.Case::brief</definition>
         <argsstring></argsstring>
-        <name>creation_date</name>
-        <initializer>= models.DateTimeField(auto_now=True, null=True)</initializer>
+        <name>brief</name>
+        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name=&quot;Case Brief&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="17" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="17" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="159" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a795ed71fec785084947ece3299644f74" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::private</definition>
+        <argsstring></argsstring>
+        <name>private</name>
+        <initializer>= models.BooleanField(default=False, blank=True, verbose_name=&quot;Private&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="160" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a5c7a7278e58541463044f7d5e4cf3cd7" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::slug</definition>
+        <argsstring></argsstring>
+        <name>slug</name>
+        <initializer>= models.SlugField(blank=True, null=True, unique=True, verbose_name=&quot;Case Slug&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="161" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="161" bodyend="-1"/>
+        <referencedby refid="classentity_1_1models_1_1_person_1ae1bfd2a3acfc4d90033856e045e54782" compoundref="entity_2models_8py" startline="200" endline="205">entity.models.Person.get_absolute_url</referencedby>
+        <referencedby refid="classentity_1_1models_1_1_group_1ac86700eaa2cf4c0d8b7d3471c5e830ea" compoundref="entity_2models_8py" startline="246" endline="251">entity.models.Group.get_absolute_url</referencedby>
+        <referencedby refid="classentity_1_1models_1_1_person_1aeb50654a9eb68c0c6c9a48b71ff7498c" compoundref="entity_2models_8py" startline="214" endline="220">entity.models.Person.get_delete_url</referencedby>
+        <referencedby refid="classentity_1_1models_1_1_group_1a3dc9049ee7906bc3d84580e66d1a201a" compoundref="entity_2models_8py" startline="260" endline="265">entity.models.Group.get_delete_url</referencedby>
+        <referencedby refid="classentity_1_1models_1_1_person_1a923d844f1a60d3b0baf075496d5c4d08" compoundref="entity_2models_8py" startline="207" endline="212">entity.models.Person.get_update_url</referencedby>
+        <referencedby refid="classentity_1_1models_1_1_group_1af157b92ff4bedc566eaad2525657d5f7" compoundref="entity_2models_8py" startline="253" endline="258">entity.models.Group.get_update_url</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1af77286f85fa024a0a53ca0a5015da8df" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::image_upload</definition>
+        <argsstring></argsstring>
+        <name>image_upload</name>
+        <initializer>= models.FileField(blank=True, null=True, verbose_name=&quot;Case Image&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="162" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a957615f5982aeaa012dc4feedc50d344" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <initializer>= models.ForeignKey(<ref refid="classcase_1_1models_1_1_case_type" kindref="compound">CaseType</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;Case Type&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="165" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a1a31a96f5ce10a603ccd989fbfd22df7" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::status</definition>
+        <argsstring></argsstring>
+        <name>status</name>
+        <initializer>= models.ForeignKey(<ref refid="classcase_1_1models_1_1_case_status_type" kindref="compound">CaseStatusType</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;Case Status&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="166" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="166" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_case_1af0123b25773fc9b752dedf147c4f9dd5" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.Case::classification</definition>
         <argsstring></argsstring>
         <name>classification</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <initializer>= models.ForeignKey(<ref refid="classcase_1_1models_1_1_case_classification_type" kindref="compound">CaseClassificationType</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;Case Classification&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="18" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="18" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="167" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="167" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a6a32b6de99a65c90fc75417c2faccf12" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1aec15af5a9eafa1e94737486a4b2b35e2" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple case.models.Case::justification</definition>
+        <definition>tuple case.models.Case::priority</definition>
         <argsstring></argsstring>
-        <name>justification</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <name>priority</name>
+        <initializer>= models.ForeignKey(<ref refid="classcase_1_1models_1_1_case_priority" kindref="compound">CasePriority</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;Case Priority&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="19" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="19" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="168" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="168" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1ad6b44c2548a8751aebf50dbb9b13017c" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a88c353b7f77c97492ee31884323777ee" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple case.models.Case::case_type</definition>
+        <definition>tuple case.models.Case::category</definition>
         <argsstring></argsstring>
-        <name>case_type</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <name>category</name>
+        <initializer>= models.ForeignKey(<ref refid="classcase_1_1models_1_1_case_category" kindref="compound">CaseCategory</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;Case Category&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="20" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="20" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="169" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="169" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a6bb11442f7ff286a973228c2d66a76ba" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a4929ad23a92574f5623eceac1d8a7f92" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple case.models.Case::case_priority</definition>
+        <definition>tuple case.models.Case::authorisation</definition>
         <argsstring></argsstring>
-        <name>case_priority</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <name>authorisation</name>
+        <initializer>= models.ForeignKey(<ref refid="classcase_1_1models_1_1_case_authorisation_type" kindref="compound">CaseAuthorisationType</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;Case Authorisation&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="21" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="21" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="170" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="170" bodyend="-1"/>
       </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a580711fbe0ab0b7840a09c70d5c37beb" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a2914f496533c120bb5e5d8cd302781be" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple case.models.Case::case_priority_colour</definition>
+        <definition>tuple case.models.Case::assigned_to</definition>
         <argsstring></argsstring>
-        <name>case_priority_colour</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
+        <name>assigned_to</name>
+        <initializer>= models.ManyToManyField(settings.AUTH_USER_MODEL, related_name=&apos;case_assigned_to&apos;, blank=True, verbose_name=&quot;Assigned To&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="22" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="22" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="171" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="171" bodyend="-1"/>
+        <referencedby refid="classcase_1_1models_1_1_case_1a8817c2d761af4e0a08f1e2729153e664" compoundref="case_2models_8py" startline="207" endline="218">case.models.Case._get_assigned_to</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a03cdf1cc267914c03e65ae96fa93e49c" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::case_manager</definition>
+        <argsstring></argsstring>
+        <name>case_manager</name>
+        <initializer>= models.ForeignKey(settings.AUTH_USER_MODEL, related_name=&apos;case_manager&apos;, on_delete=models.CASCADE, blank=True, null=True, verbose_name=&quot;Case Manager&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="172" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a1500303a3676180f960ba6a30e442ad6" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::assigned_by</definition>
+        <argsstring></argsstring>
+        <name>assigned_by</name>
+        <initializer>= models.ForeignKey(settings.AUTH_USER_MODEL, related_name=&apos;case_assigned_by&apos;, on_delete=models.CASCADE, blank=True, null=True, verbose_name=&quot;Assigned By&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="175" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="175" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a25be72b1c600bf2c57439dd1953ad77b" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::date_added</definition>
+        <argsstring></argsstring>
+        <name>date_added</name>
+        <initializer>= models.DateTimeField(auto_now=True, null=True, verbose_name=&quot;Date Added&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="178" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="178" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_case_1aaa595c044583cd634def6b23b3f4565d" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.Case::deadline</definition>
         <argsstring></argsstring>
         <name>deadline</name>
-        <initializer>= models.DateTimeField(auto_now=True, null=True)</initializer>
+        <initializer>= models.DateTimeField(auto_now=True, null=True, verbose_name=&quot;Deadline&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="23" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="23" bodyend="-1"/>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="179" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="179" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_1a38fc551ef0765011fbf4950358fac017" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.Case::history</definition>
+        <argsstring></argsstring>
+        <name>history</name>
+        <initializer>= HistoricalRecords()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="181" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="181" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="classcase_1_1models_1_1_case_1a25381fc1e56da9c444f75210a31aa59c" prot="public" static="yes" readable="no" writable="no" gettable="no" settable="no">
+        <type></type>
+        <definition>case.models.Case::case</definition>
+        <argsstring></argsstring>
+        <name>case</name>
+        <initializer>= property(<ref refid="classcase_1_1models_1_1_case_1a7fb9d096938efee0722a39f76f77c593" kindref="member">_get_case</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="200" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="200" bodyend="-1"/>
+        <referencedby refid="classcase_1_1views_1_1_case_note_create_1a6be615825051e51bc205d18c7de61aa3" compoundref="case_2views_8py" startline="124" endline="147">case.views.CaseNoteCreate.get_form_kwargs</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="classcase_1_1models_1_1_case_1a8c2cc8a3e7b833c2dfc09432047cbeff" prot="public" static="yes" readable="no" writable="no" gettable="no" settable="no">
+        <type></type>
+        <definition>case.models.Case::case_for_url</definition>
+        <argsstring></argsstring>
+        <name>case_for_url</name>
+        <initializer>= property(<ref refid="classcase_1_1models_1_1_case_1ae0127cbbf8645a7f0b934089c37ab1c7" kindref="member">_get_case_for_url</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="205" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="205" bodyend="-1"/>
+        <referencedby refid="classcase_1_1models_1_1_case_1a7fb9d096938efee0722a39f76f77c593" compoundref="case_2models_8py" startline="197" endline="199">case.models.Case._get_case</referencedby>
+      </memberdef>
+      <memberdef kind="property" id="classcase_1_1models_1_1_case_1a015814b0ffc97abebe01db5b367fb107" prot="public" static="yes" readable="no" writable="no" gettable="no" settable="no">
+        <type></type>
+        <definition>case.models.Case::get_assigned_to</definition>
+        <argsstring></argsstring>
+        <name>get_assigned_to</name>
+        <initializer>= property(<ref refid="classcase_1_1models_1_1_case_1a8817c2d761af4e0a08f1e2729153e664" kindref="member">_get_assigned_to</ref>)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="219" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="219" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classcase_1_1models_1_1_case_1a24b853ef39dd2cea703411f95ff0155d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def case.models.Case.get_absolute_url</definition>
+        <argsstring></argsstring>
+        <name>get_absolute_url</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="189" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="189" bodyend="191"/>
+      </memberdef>
+      <memberdef kind="function" id="classcase_1_1models_1_1_case_1a052fdf1f23178ce544eb7436288ab4de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def case.models.Case.__str__</definition>
+        <argsstring></argsstring>
+        <name>__str__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="192" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="192" bodyend="195"/>
+        <references refid="classcase_1_1models_1_1_case_authorisation_type_1a798a93cde5965e44ec8142592aaee86d" compoundref="case_2models_8py" startline="18">case.models.CaseAuthorisationType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_create_form_1a8527eaf491022eb2eb2fc40a003cef7b" compoundref="case_2forms_8py" startline="19">case.forms.CaseCreateForm.title</references>
+        <references refid="classcase_1_1models_1_1_case_classification_type_1a213e29c19e87393bf3b57fe3e20b08a3" compoundref="case_2models_8py" startline="34">case.models.CaseClassificationType.title</references>
+        <references refid="classcase_1_1models_1_1_case_type_1aaf1fa9baeadd1116244521cc692025cb" compoundref="case_2models_8py" startline="50">case.models.CaseType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_edit_form_1a265327f697f8b579f4cc6344678949f0" compoundref="case_2forms_8py" startline="52">case.forms.CaseEditForm.title</references>
+        <references refid="classcase_1_1models_1_1_case_priority_1a876acd5e7567f2056c4caa98c094b22b" compoundref="case_2models_8py" startline="66">case.models.CasePriority.title</references>
+        <references refid="classcase_1_1models_1_1_case_category_1a1cee298c12254c8500ec5f2d6e3e905b" compoundref="case_2models_8py" startline="84">case.models.CaseCategory.title</references>
+        <references refid="classcase_1_1forms_1_1_case_note_create_form_1a8c8353b447713f3762c7ffc1b3fe9683" compoundref="case_2forms_8py" startline="90">case.forms.CaseNoteCreateForm.title</references>
+        <references refid="classcase_1_1models_1_1_case_status_type_1aa46bd8ba56ce10c545c1e304e90e4268" compoundref="case_2models_8py" startline="100">case.models.CaseStatusType.title</references>
+        <references refid="classcase_1_1forms_1_1_case_task_create_form_1a9862f8480f3eb6d142305e5874f04f32" compoundref="case_2forms_8py" startline="111">case.forms.CaseTaskCreateForm.title</references>
+        <references refid="classcase_1_1models_1_1_case_status_group_1a1766518747edec1e270d9c8e4857110e" compoundref="case_2models_8py" startline="132">case.models.CaseStatusGroup.title</references>
+        <references refid="classcase_1_1models_1_1_case_1a0672bfe3382cdc703af7fcf274e7ddf8" compoundref="case_2models_8py" startline="153">case.models.Case.title</references>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classcase_1_1models_1_1_case_1a7fb9d096938efee0722a39f76f77c593" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def case.models.Case._get_case</definition>
+        <argsstring></argsstring>
+        <name>_get_case</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A user-friendly Case ID, which is a combination of Case ID and queue slug. This is generally used in e-mail subjects. </verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="197" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="197" bodyend="199"/>
+        <references refid="classcase_1_1models_1_1_case_1a8c2cc8a3e7b833c2dfc09432047cbeff" compoundref="case_2models_8py" startline="205">case.models.Case.case_for_url</references>
+      </memberdef>
+      <memberdef kind="function" id="classcase_1_1models_1_1_case_1ae0127cbbf8645a7f0b934089c37ab1c7" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def case.models.Case._get_case_for_url</definition>
+        <argsstring></argsstring>
+        <name>_get_case_for_url</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A URL-friendly Case ID, used in links. </verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="202" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="202" bodyend="204"/>
+        <references refid="classcase_1_1models_1_1_case_1ae88f4c3c12f6b75a6bfe398ab07c74ac" compoundref="case_2models_8py" startline="152">case.models.Case.id</references>
+      </memberdef>
+      <memberdef kind="function" id="classcase_1_1models_1_1_case_1a8817c2d761af4e0a08f1e2729153e664" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def case.models.Case._get_assigned_to</definition>
+        <argsstring></argsstring>
+        <name>_get_assigned_to</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Custom property to allow us to easily print &apos;Unassigned&apos; if a Case has no owner, or the users name if it&apos;s assigned.
+If the user has a full name configured, we use that, otherwise their username.
+</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="207" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="207" bodyend="218"/>
+        <references refid="classcase_1_1models_1_1_case_1a2914f496533c120bb5e5d8cd302781be" compoundref="case_2models_8py" startline="171">case.models.Case.assigned_to</references>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Main Models. </para>    </briefdescription>
     <detaileddescription>
     </detaileddescription>
     <inheritancegraph>
-      <node id="24">
+      <node id="18">
         <label>case.models.Case</label>
         <link refid="classcase_1_1models_1_1_case"/>
-        <childnode refid="25" relation="public-inheritance">
+        <childnode refid="19" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="25">
+      <node id="19">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="20" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
         <label>Model</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="26">
+      <node id="21">
         <label>case.models.Case</label>
         <link refid="classcase_1_1models_1_1_case"/>
-        <childnode refid="27" relation="public-inheritance">
+        <childnode refid="22" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="27">
+      <node id="22">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="23" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
         <label>Model</label>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="8" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="8" bodyend="26"/>
+    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="150" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="150" bodyend="222"/>
     <listofallmembers>
+      <member refid="classcase_1_1models_1_1_case_1a052fdf1f23178ce544eb7436288ab4de" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>__str__</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a8817c2d761af4e0a08f1e2729153e664" prot="private" virt="non-virtual"><scope>case::models::Case</scope><name>_get_assigned_to</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a7fb9d096938efee0722a39f76f77c593" prot="private" virt="non-virtual"><scope>case::models::Case</scope><name>_get_case</name></member>
+      <member refid="classcase_1_1models_1_1_case_1ae0127cbbf8645a7f0b934089c37ab1c7" prot="private" virt="non-virtual"><scope>case::models::Case</scope><name>_get_case_for_url</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a1500303a3676180f960ba6a30e442ad6" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>assigned_by</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a2914f496533c120bb5e5d8cd302781be" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>assigned_to</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a4929ad23a92574f5623eceac1d8a7f92" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>authorisation</name></member>
       <member refid="classcase_1_1models_1_1_case_1a61b93b6a72dcfc785c3601148d003eb1" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>background</name></member>
-      <member refid="classcase_1_1models_1_1_case_1af893de4eb3981b01cb77f4b219af7943" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>case_name</name></member>
-      <member refid="classcase_1_1models_1_1_case_1a6bb11442f7ff286a973228c2d66a76ba" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>case_priority</name></member>
-      <member refid="classcase_1_1models_1_1_case_1a580711fbe0ab0b7840a09c70d5c37beb" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>case_priority_colour</name></member>
-      <member refid="classcase_1_1models_1_1_case_1ad6b44c2548a8751aebf50dbb9b13017c" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>case_type</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a9fc2db01995995662fcf6c7c3d4bd1e6" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>brief</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a25381fc1e56da9c444f75210a31aa59c" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>case</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a8c2cc8a3e7b833c2dfc09432047cbeff" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>case_for_url</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a03cdf1cc267914c03e65ae96fa93e49c" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>case_manager</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a88c353b7f77c97492ee31884323777ee" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>category</name></member>
       <member refid="classcase_1_1models_1_1_case_1af0123b25773fc9b752dedf147c4f9dd5" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>classification</name></member>
-      <member refid="classcase_1_1models_1_1_case_1a46d955ad720ad4d170f565e19a2933c5" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>creation_date</name></member>
-      <member refid="classcase_1_1models_1_1_case_1a3ec3fd18fdfdc8e81e08c62fefaff2e4" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>currentStatus</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a89803b13439a16bd49ffb3297d829cbb" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a342aa403491ad4f61eb13761d86f2c26" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>created</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a25be72b1c600bf2c57439dd1953ad77b" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>date_added</name></member>
       <member refid="classcase_1_1models_1_1_case_1aaa595c044583cd634def6b23b3f4565d" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>deadline</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1aa9db1a2dd800429f6bf3262708408379" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>description</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a24b853ef39dd2cea703411f95ff0155d" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>get_absolute_url</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a015814b0ffc97abebe01db5b367fb107" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>get_assigned_to</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a38fc551ef0765011fbf4950358fac017" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>history</name></member>
       <member refid="classcase_1_1models_1_1_case_1ae88f4c3c12f6b75a6bfe398ab07c74ac" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>id</name></member>
-      <member refid="classcase_1_1models_1_1_case_1a6a32b6de99a65c90fc75417c2faccf12" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>justification</name></member>
+      <member refid="classcase_1_1models_1_1_case_1af77286f85fa024a0a53ca0a5015da8df" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>image_upload</name></member>
       <member refid="classcase_1_1models_1_1_case_1ace914932117f0b4fcfa4b89e286a3c0e" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>location</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a895434b9b64caab6a48589e1efa1f5b2" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1ac1a737eefa43b91977c3193768f81c87" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>modified</name></member>
+      <member refid="classcase_1_1models_1_1_case_1aec15af5a9eafa1e94737486a4b2b35e2" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>priority</name></member>
       <member refid="classcase_1_1models_1_1_case_1a795ed71fec785084947ece3299644f74" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>private</name></member>
+      <member refid="classcase_1_1models_1_1_case_1ab6b0fb319df097083ea416db90cfbd79" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>purpose</name></member>
       <member refid="classcase_1_1models_1_1_case_1a8ecdca80db22ee2f4345abafa5d583e7" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>reference</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a8721aff9d00270cba53882d98b8de831" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>save</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a5c7a7278e58541463044f7d5e4cf3cd7" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>slug</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a1a31a96f5ce10a603ccd989fbfd22df7" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>status</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a0672bfe3382cdc703af7fcf274e7ddf8" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>title</name></member>
+      <member refid="classcase_1_1models_1_1_case_1a957615f5982aeaa012dc4feedc50d344" prot="public" virt="non-virtual"><scope>case::models::Case</scope><name>type</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

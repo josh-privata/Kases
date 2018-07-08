@@ -2,13 +2,20 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="dir_9c7a9727dc35ae86c68b0cd8fd860f76" kind="dir">
     <compoundname>//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases</compoundname>
-    <innerdir refid="dir_6a4c670826246228843fa46728ad249f">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/app_template</innerdir>
+    <innerdir refid="dir_c95f779f1bd101f38dce7b3aba4e0cbd">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/assets</innerdir>
     <innerdir refid="dir_0defa4c5b39ba522b0964de67a1e9d25">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/base</innerdir>
     <innerdir refid="dir_43d517474284abb38d805fa87582221a">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case</innerdir>
+    <innerdir refid="dir_5e2d760e03fe87c47dd9f5bff7f0ed67">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/collection</innerdir>
+    <innerdir refid="dir_c477040cce63f36939f32827ada154b9">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/configuration</innerdir>
+    <innerdir refid="dir_1992c5a146cddc4e553f98871fe67fb5">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/entity</innerdir>
     <innerdir refid="dir_a82957da1d7402749ff9bba150d73d11">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence</innerdir>
+    <innerdir refid="dir_7b85675403cec4392be01a657b05bf71">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/expenditure</innerdir>
     <innerdir refid="dir_751fac8be96ab8ee8c7fddfe362e5753">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases</innerdir>
-    <innerdir refid="dir_b2474d92aae5aa9e89f9396a46b8b5e1">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/personality</innerdir>
+    <innerdir refid="dir_0c936fc92c5961fcb15d89ca19f4a29d">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/note</innerdir>
     <innerdir refid="dir_d07fec62f2f462ea7033fffdd55ab659">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/tasks</innerdir>
+    <innerdir refid="dir_53949a28a63011d10be97c74f7914373">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/timeline</innerdir>
+    <innerdir refid="dir_5b87abeaa1145a520a042f2a92f5b17e">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/user</innerdir>
+    <innerdir refid="dir_be710f904c9ccaa910ae2d8b91781cd9">//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/utils</innerdir>
     <innerfile refid="manage_8py">manage.py</innerfile>
     <briefdescription>
     </briefdescription>
