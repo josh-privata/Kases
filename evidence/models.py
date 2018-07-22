@@ -155,23 +155,23 @@ class Evidence(ObjectDescriptionMixin):
     qr_code = models.BooleanField(default=False, blank=True, verbose_name="QR Code")
     retention_reminder_sent = models.BooleanField(default=False, blank=True, verbose_name="Retention Reminder")
     slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Evidence Slug")
+    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
+    retention_date = models.DateTimeField(auto_now=False, null=True, verbose_name="Retention Date")
+    brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
 
     # Linked Fields
+    chain_of_custody = models.ForeignKey(ChainOfCustody, on_delete=models.SET_NULL, related_name='evidence_chain_of_custody', blank=True, null=True, verbose_name="Chain Of Custody")
+    custodian = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='evidence_custodian', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Custodian")
     type = models.ForeignKey(EvidenceType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Type")
     status = models.ForeignKey(EvidenceStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Status")
     classification = models.ForeignKey(EvidenceClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Classification")
     priority = models.ForeignKey(EvidencePriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Priority")
     authorisation = models.ForeignKey(EvidenceAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Authorisation")
     category = models.ForeignKey(EvidenceCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Category")
-    chain_of_custody = models.ForeignKey(ChainOfCustody, on_delete=models.SET_NULL, related_name='evidence_chain_of_custody', blank=True, null=True, verbose_name="Chain Of Custody")
     assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='evidence_assigned_to', blank=True, verbose_name="Assigned To")
-    custodian = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='evidence_custodian', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Custodian")
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='evidence_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
 
     # Auto Fields
-    retention_date = models.DateTimeField(auto_now=True, null=True, verbose_name="Retention Date")
-    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
-    deadline = models.DateTimeField(auto_now=True, null=True, verbose_name="Deadline")
     retention_start_date = models.DateTimeField(auto_now=True, null=True, verbose_name="Retention Start Date")
     
     # Data Models
@@ -179,9 +179,7 @@ class Evidence(ObjectDescriptionMixin):
     history = HistoricalRecords()
 
     class Meta:
-        verbose_name = _('Evidence')
-        verbose_name_plural = _('Evidence')
-        #abstract = True
+        abstract = True
 
     def get_absolute_url(self):
         return reverse('evidence_detail', kwargs={'pk': self.pk})

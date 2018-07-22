@@ -1,0 +1,25 @@
+﻿{% extends "global/views/base_list.html" %}
+
+<!-- Title -->
+{% block title %}{% endblock %}
+
+<!-- Results Table -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Asset ID</th>
+        <th>Asset Title</th>
+    {% endblock %}
+
+    <!-- Table -->
+        <!-- Asset ID -->
+        {% block table_body_id_url %}{% url 'headphones_detail' object.id %}{% endblock %}
+        {% block table_body_id_column %}{{ object.id }}{% endblock %}
+        <!-- Columns -->
+        {% block table_body_columns %} 
+            <!-- Asset Title -->
+            <td>{{ object.title }}</td>
+        {% endblock %}           
+        <!-- Table Else -->
+        {% block table_else %}
+            <p>There are no assets to show</p>
+        {% endblock %}

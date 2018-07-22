@@ -52,6 +52,7 @@ class Common(Configuration):
         'user',
         'configuration',
         'note',
+        #'asset',
         # Django Apps
         'django.contrib.admin',
         'django.contrib.auth',
@@ -141,7 +142,9 @@ class Common(Configuration):
     # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
     STATIC_URL = '/static/'
-
+    STATICFILES_DIRS = [
+    '/var/www/static/',
+]
     STATIC_ROOT = posixpath.join(*(BASE_DIR.split(os.path.sep) + ['static']))
     
 

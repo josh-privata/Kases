@@ -9,18 +9,6 @@
 <!-- Content -->
 {% block content %}
     
-    <!-- Heading -->    
-    <h2>{% block heading %}{% endblock %}</h2>
-
-    <!-- Pre Table -->
-    {% block pre_table %}{% endblock %}
-
-    <!-- Table -->
-    {% block table %}
-        {% render_table table %}
-    {% endblock %}
-
-    <!-- Post Table -->
-    {% block post_table %}{% endblock %}
+    {% render_table table %}
 
 {% endblock %}

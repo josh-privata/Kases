@@ -133,8 +133,9 @@ class Task(ObjectDescriptionMixin):
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Title")
     background = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Background")
     location = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Location")
-    private = models.BooleanField(default=False, blank=True, verbose_name="Private")
+    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
     slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Evidence Slug")
+    brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
 
     # Linked Fields
     type = models.ForeignKey(TaskType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Type")
@@ -144,21 +145,16 @@ class Task(ObjectDescriptionMixin):
     category = models.ForeignKey(TaskCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Category")
     authorisation = models.ForeignKey(TaskAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Authorisation")
     assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='task_assigned_to', blank=True, verbose_name="Assigned To")
-    manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='task_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Case Manager")
+    manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='task_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Task Manager")
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='task_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
 
     # Auto Fields
-    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
-    deadline = models.DateTimeField(auto_now=True, null=True, verbose_name="Deadline")
-
     # Data Models
 
     history = HistoricalRecords()
 
     class Meta:
-        verbose_name = _('Task')
-        verbose_name_plural = _('Tasks')
-        #abstract = True
+        abstract = True
 
     def get_absolute_url(self):
         return reverse('task_detail', kwargs={'pk': self.pk})

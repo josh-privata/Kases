@@ -1,10 +1,13 @@
-﻿{% extends "case/case_open_layout.html" %}
+﻿{% extends "global/views/base_update.html" %}
+{#{% load crispy_forms_tags %}#}
+{% load widget_tweaks %}
 
-{% block content %}
-<h1>Update Case</h1>
-<form method="POST" class="post-form">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="save btn btn-default">Update</button>
-</form>
+<!-- Sidebar -->
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
 {% endblock %}
+
+<!-- Title -->
+{% block title %}Update Case{% endblock %}
+<!-- Heading -->
+{#{% block heading %}{{ pagetitle }} Create Case{% endblock %}#}

@@ -3,11 +3,9 @@
 ## python imports
 from django.db import models
 from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
-from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 #import note.managers as managers
-from simple_history.models import HistoricalRecords
 
 
 ## Admin Models
@@ -134,7 +132,8 @@ class Note(ObjectDescriptionMixin):
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Note Title")
     slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Note Slug")
     image_upload = models.FileField(blank=True, null=True, verbose_name="Note Image")
-    private = models.BooleanField(default=False, blank=True, verbose_name="Private")
+    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
+    brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
 
     # Linked Fields
     type = models.ForeignKey(NoteType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Note Type")
@@ -148,18 +147,9 @@ class Note(ObjectDescriptionMixin):
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='note_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
     
     # Auto Fields
-    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
-    deadline = models.DateTimeField(auto_now=True, null=True, verbose_name="Deadline")
-
-    history = HistoricalRecords()
 
     class Meta:
-        verbose_name = _('Note')
-        verbose_name_plural = _('Notes')
-        #abstract = True
-
-    def get_absolute_url(self):
-        return reverse('note_detail', kwargs={'pk': self.pk})
+        abstract = True
 
     def __str__(self):
         return '%s' % self.title

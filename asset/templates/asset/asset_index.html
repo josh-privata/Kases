@@ -1,0 +1,119 @@
+{% extends "global/views/base_index.html" %}
+{% load render_table from django_tables2 %}
+
+<!-- Title -->
+{% block title %}{{ device_type|title }}{% endblock %}
+
+<!-- Statistics Section -->
+    <!-- Active Assets -->
+    {% block stat1_name %}All Assets{% endblock %}
+    {% block stat1_count %}{{ all_count }}{% endblock %}
+
+    <!-- Total Assets -->
+    {% block stat2_name %}Active Assets{% endblock %}
+    {% block stat2_count %}{{ active_count }}{% endblock %}
+
+    <!-- Approved Assets -->
+    {% block stat3_name %}Active Assets{% endblock %}
+    {% block stat3_count %}{{ active_count }}{% endblock %}
+
+    <!-- Pending Assets -->
+    {% block stat4_name %}Active Assets{% endblock %}
+    {% block stat4_count %}{{ active_count }}{% endblock %}
+
+    <!-- Rejected Assets -->
+    {% block stat5_name %}Active Assets{% endblock %}
+    {% block stat5_count %}{{ active_count }}{% endblock %}
+
+    <!-- Closed Assets -->
+    {% block stat6_name %}Active Assets{% endblock %}
+    {% block stat6_count %}{{ active_count }}{% endblock %}
+
+<!-- Updates Section -->
+    <!-- Active Assets -->
+    <!-- Header -->
+    {% block left_update_header %}Active Assets{% endblock %}
+    {% block left_update_header_count %}{{ all_count }} assets{% endblock %}
+
+    <!-- Update Box -->
+    {% block left_update_box_item_url %}{#{% url 'asset_detail' object1.id %}#}{% endblock %}
+    {% block left_update_box_item_title %}{{ object1.title }}{% endblock %}
+    {% block left_update_box_item_body1 %}{{ object1.description }}{% endblock %}
+    {% block left_update_box_item_body2 %}{{ object1.creation_date }}{% endblock %}
+
+    <!-- No Item -->
+    {% block left_update_box_noitem %}There are no assets to show{% endblock %}
+
+    <!-- Recent Updates -->
+    <!-- Header -->
+    {% block centre_update_header %}Active Assets{% endblock %}
+    {% block centre_update_header_count %}{{ active_count }} assets{% endblock %}
+
+    <!-- Update Box -->
+    {% block centre_update_box_item_url %}{#{% url 'asset_detail' object2.id %}#}{% endblock %}
+    {% block centre_update_box_item_title %}{{ object2.title }}{% endblock %}
+    {% block centre_update_box_item_body1 %}{{ object2.description }}{% endblock %}
+    {% block centre_update_box_item_body2 %}{{ object2.creation_date }}{% endblock %}
+
+    <!-- No Item -->
+    {% block centre_update_box_noitem %}There are no assets to show{% endblock %}
+
+    <!-- Tasks -->
+    <!-- Header -->
+    {% block right_update_header %}Active Assets{% endblock %}
+    {% block right_update_header_count %}{{ active_count }} assets{% endblock %}
+
+    <!-- Update Box -->
+    {% block right_update_box_item_url %}{#{% url 'asset_detail' object3.id %}#}{% endblock %}
+    {% block right_update_box_item_title %}{{ object3.title }}{% endblock %}
+    {% block right_update_box_item_body1 %}{{ object3.description }}{% endblock %}
+    {% block right_update_box_item_body2 %}{{ object3.creation_date }}{% endblock %}
+
+    <!-- No Item -->
+    {% block right_update_box_noitem %}There are no assets to show{% endblock %}
+
+<!-- Case Section -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Name</th>
+        <th></th> {# Status #}
+        <th>Lent to</th>
+        <th>Lender</th>
+        <th>Serial number</th>
+        <th></th> {# Condition #}
+        <th>Updated at</th>
+    {% endblock %}
+        
+    <!-- Table Body -->
+    <!-- Case ID -->
+    {% block table_body_id_url %}{#{% url 'asset_detail' table_object.id %}#}{% endblock %}
+    {% block table_body_id_column %} {{ table_object.id }} {% endblock %}                        
+    
+    <!-- Columns -->
+    {% block table_body_columns %}
+        <td>{{ device.name }}</td>
+        <td style="color:{{ device.get_status_color }}">{{ device.get_status_display }}</td>
+        <td>
+          {% if device.lendee.user %}
+          {{ device.lendee.get_last_name_first }}
+          {% elif device.lendee.subject %}
+          Subject: {{ device.lendee.subject.subject_id }}
+          {% else %}
+          -----
+          {% endif %}
+        </td>
+        {# The Lender is a user, so need to get the last name and first name attributes "manually" #}
+        <td>
+          {% if device.lender %}
+          {{ device.lender.last_name }}, &nbsp;{{ device.lender.first_name }}
+          {% else %}
+          -----  
+          {% endif %}
+        </td> 
+        <td>{{ device.serial_number }}</td>
+        <td>{{ device.get_condition_display }}</td>
+        <td>{{ device.updated_at|date:"SHORT_DATETIME_FORMAT" }}</td>
+    {% endblock %}
+    
+    <!-- Table Else -->
+    {% block table_else %}<p>There are no assets to show</p>{% endblock %}

@@ -5,8 +5,6 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now as timezone_now
-from django.template.defaultfilters import escape
-from django.utils.safestring import mark_safe
 from django.db import models
 #from django.contrib.sites.models import Site
 from django.conf import settings
@@ -14,7 +12,6 @@ from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseRedirect
 from django.utils.encoding import force_text
 from django.views.generic.base import ContextMixin
-from django.contrib.auth.models import User
 
 
 class MultipleFormsMixin(ContextMixin):
@@ -178,6 +175,7 @@ class ObjectDescriptionMixin(models.Model):
     description = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Description")
     created = models.DateTimeField(_("Creation date and time"),editable=False,)
     modified = models.DateTimeField(_("Modification date and time"),null=True,editable=False,)
+    private = models.BooleanField(default=False, blank=True, verbose_name="Private")
     #created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='created by', null=True, blank=True, editable=False, verbose_name="Created By")
     #modified_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='modified by', null=True, blank=True, editable=False, verbose_name="Modified By")
     

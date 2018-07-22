@@ -1,0 +1,87 @@
+﻿{% extends "global/views/base_detail.html" %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}Task Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}
+        <h5>Task Title: {{ object.title }}</h5>
+        <h5>Task ID: {{ object.id }}</h5>
+        <h5>Task Brief: {{ object.brief }}</h5>
+        <h5>Task Reference: {{ object.reference }}</h5>
+        <h5>Task Location: {{ object.location }}</h5>
+        <h5>Comment: {{ object.comment }}</h5>
+        <h5>Private: {{ object.private }}</h5>
+    {% endblock %}          
+
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}
+        <h5>Task Type: {{ object.type }}</h5>
+        <h5>Task Status: {{ object.status }}</h5>
+        <h5>Task Classification:{{ object.classification}}</h5>
+        <h5>Task Authorisation: {{ object.authorisation }}</h5>
+        <h5>Task Deadline: {{ object.deadline }}</h5>
+        <h5>Task Creation Date: {{ object.creation_date }}</h5>
+    {% endblock %} 
+
+    {% block summary_buttonurl %}{% url 'casetask_update' object.case.id object.id %}{% endblock %}
+
+    <!-- Note Detail Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1 %}{% endblock %}
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Schedule -->
+    {% block tab2 %}{% endblock %}
+    {% block tab2_header %}Notes{% endblock %}
+    <!-- Panel 3 - Contacts -->
+    {% block tab3 %}{% endblock %}
+    {% block tab3_header %}Contacts{% endblock %}
+    <!-- Panel 4 - Questions -->
+    {% block tab4 %}{% endblock %}
+    {% block tab4_header %}Questions{% endblock %}
+    <!-- Panel 5 - Authorisation -->
+    {% block tab5 %}{% endblock %}
+    {% block tab5_header %}Authorisation{% endblock %}
+    <!-- Panel 6 - Task Log -->
+    {% block tab6 %}{% endblock %}
+    {% block tab6_header %}Task Log{% endblock %}
+    <!-- Panel 7 - Task Log -->
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
+
+    <!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}
+    {% endblock %}
+
+    <!-- Panel 2 - Task -->
+    {% block panel2_content %}
+    {% endblock %}
+
+    <!-- Panel 3 - Contacts -->
+    {% block panel3_content %}
+    {% endblock %}
+
+    <!-- Panel 4 - Questions -->
+    {% block panel4_content %}
+    {% endblock %}
+
+    <!-- Panel 5 - Authorisation -->
+    {% block panel5_content %}
+    {% endblock %}
+
+    <!-- Panel 6 - Task Log -->
+    {% block panel6_content %}
+    {% endblock %}
+
+    <!-- Panel 6 - Task  -->
+    {% block panel7 %}{% endblock %}
+    {% block panel7_content %}{% endblock %}

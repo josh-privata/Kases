@@ -1,0 +1,111 @@
+{% extends "global/views/base_detail.html" %}
+
+{% block sidebar_internal %}
+    {% include "asset/asset_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}{{ device.name }}{% endblock %}
+{% block summary_header_override %}{% endblock %}
+
+<h2 style="color:{{ device.get_status_color }}"class="center">{{ device.get_verbose_status }}</h2>
+
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}
+        <dl id="id-device_info" class="dl-horizontal">
+            <dt>Name</dt>
+            <dd>{{ device.name }}</dd>
+            <dt>Last updated</dt>
+            <dd>{{ device.updated_at }}</dd>
+            <dt>Status</dt>
+            <dd style="color:{{ device.get_status_color }}">{{ device.get_verbose_status }}</dd>
+            <dt>Condition</dt>
+            <dd>{{ device.get_condition_display }}</dd>
+            <dt>Description</dt>
+            {% if device.description %}
+            <dd>{{ device.description }}</dd>   
+            {% else %}
+            <dd>-----</dd> 
+            {% endif %}
+            {% if device.responsible_party %}
+            <dt>Responsible party</dt>
+            <dd>{{ device.responsible_party }}</dd>  
+            {% endif %}
+            <dt>Make</dt>
+            <dd>{{ device.make }}</dd>
+            <dt>Serial</dt>
+            {% if device.serial_number %}
+            <dd>{{ device.serial_number }}</dd>
+            {% else %}
+            <dd>-----</dd>
+            {% endif %}
+            <dt>Purchased at</dt>
+            <dd>{{ device.purchased_at }}</dd>
+        </dl>
+    {% endblock %}          
+
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}
+        <h3>Check-in Comments</h3>
+        <ul> 
+            {% for comment in comments %}
+                {# Comment text #}
+                <li data-id="{{ comment.pk }}">{{ comment.text }} 
+                    {# Comment info #}
+                    <div class="muted">
+            
+                    ({{ comment.created_at }} by 
+                        <a href="mailto:{{ comment.user.username }}">{{ comment.user.username }}</a>)
+                    </div>
+                    {% if request.user == comment.user %}
+                        {# TODO: url should correspond to device class #}
+                        <a href="{{ comment.edit_url }}"><i class="icon-pencil"></i>Edit</a>    
+                        <a id="id-comment_delete" href="#"><i class="icon-remove"></i>Delete</a>
+                    {% endif %}
+                </li>    
+            {% endfor %}
+        </ul>
+    {% endblock %} 
+
+    {% block summary_buttonurl %}{% url 'headphones_update' object.id %}{% endblock %}
+  
+<!-- Case Detail Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Schedule -->
+    {% block tab2_header %}Schedule{% endblock %}
+    <!-- Panel 3 - Contacts -->
+    {% block tab3_header %}Contacts{% endblock %}
+    <!-- Panel 4 - Questions -->
+    {% block tab4_header %}Questions{% endblock %}
+    <!-- Panel 5 - Authorisation -->
+    {% block tab5_header %}Authorisation{% endblock %}
+    <!-- Panel 6 - Case Log -->
+    {% block tab6_header %}Case Log{% endblock %}
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
+
+    <!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}{% endblock %}
+
+    <!-- Panel 2 - Schedule -->
+    {% block panel2_content %}{% endblock %}
+
+    <!-- Panel 3 - Contacts -->
+    {% block panel3_content %}{% endblock %}
+
+    <!-- Panel 4 - Questions -->
+    {% block panel4_content %}{% endblock %}
+
+    <!-- Panel 5 - Authorisation -->
+    {% block panel5_content %}{% endblock %}
+
+    <!-- Panel 6 - Case Log -->
+    {% block panel6_content %}{% endblock %}
+
+    {% block panel7 %}{% endblock %}
+    {% block panel7_content %}{% endblock %}

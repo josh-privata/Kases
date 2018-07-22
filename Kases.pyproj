@@ -34,15 +34,22 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="assets\admin.py" />
-    <Compile Include="assets\apps.py" />
-    <Compile Include="assets\migrations\__init__.py" />
-    <Compile Include="assets\models.py" />
-    <Compile Include="assets\tests.py" />
-    <Compile Include="assets\views.py" />
-    <Compile Include="assets\__init__.py" />
+    <Compile Include="asset\admin.py" />
+    <Compile Include="asset\apps.py" />
+    <Compile Include="asset\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="asset\migrations\__init__.py" />
+    <Compile Include="asset\models.py" />
+    <Compile Include="asset\tables.py" />
+    <Compile Include="asset\tests.py" />
+    <Compile Include="asset\views.py" />
+    <Compile Include="asset\__init__.py" />
     <Compile Include="base\admin.py" />
     <Compile Include="base\apps.py" />
+    <Compile Include="case\filters.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="case\managers.py">
       <SubType>Code</SubType>
     </Compile>
@@ -72,6 +79,8 @@
     <Compile Include="entity\views\group.py" />
     <Compile Include="entity\views\person.py" />
     <Compile Include="entity\views\__init__.py" />
+    <Compile Include="evidence\forms.py" />
+    <Compile Include="evidence\tables.py" />
     <Compile Include="note\tables.py">
       <SubType>Code</SubType>
     </Compile>
@@ -154,6 +163,9 @@
     <Compile Include="user\__init__.py" />
     <Compile Include="utils\admin.py" />
     <Compile Include="utils\apps.py" />
+    <Compile Include="utils\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils\migrations\__init__.py" />
     <Compile Include="utils\models.py" />
     <Compile Include="utils\tests.py" />
@@ -164,11 +176,14 @@
     <Folder Include="app_template\" />
     <Folder Include="app_template\migrations\" />
     <Folder Include="app_template\templates\" />
-    <Folder Include="assets\" />
-    <Folder Include="assets\migrations\" />
-    <Folder Include="assets\templates\" />
+    <Folder Include="asset\" />
+    <Folder Include="asset\migrations\" />
+    <Folder Include="asset\templates\" />
+    <Folder Include="asset\templates\asset\" />
     <Folder Include="base\static\base\webfonts\" />
+    <Folder Include="case\templates\case\evidence\" />
     <Folder Include="case\templates\case\note\" />
+    <Folder Include="case\templates\case\task\" />
     <Folder Include="collection\" />
     <Folder Include="collection\migrations\" />
     <Folder Include="collection\templates\" />
@@ -237,10 +252,6 @@
     <Folder Include="task\migrations\" />
     <Folder Include="task\templates\" />
     <Folder Include="task\templates\task\" />
-    <Folder Include="tasks\" />
-    <Folder Include="tasks\migrations\" />
-    <Folder Include="tasks\templates\" />
-    <Folder Include="tasks\templates\tasks\" />
     <Folder Include="case\" />
     <Folder Include="case\migrations\" />
     <Folder Include="case\templates\" />
@@ -262,7 +273,17 @@
     <Folder Include="Kases\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="assets\templates\index.html" />
+    <Content Include="asset\templates\asset\asset_create.html" />
+    <Content Include="asset\templates\asset\asset_delete.html" />
+    <Content Include="asset\templates\asset\asset_list.html" />
+    <Content Include="asset\templates\asset\asset_open_layout.html" />
+    <Content Include="asset\templates\asset\asset_table.html" />
+    <Content Include="asset\templates\asset\checkin.html" />
+    <Content Include="asset\templates\asset\checkout.html" />
+    <Content Include="asset\templates\asset\asset_detail.html" />
+    <Content Include="asset\templates\asset\asset_update.html" />
+    <Content Include="asset\templates\asset\edit_comment.html" />
+    <Content Include="asset\templates\asset\asset_index.html" />
     <Content Include="base\static\base\content\button.css" />
     <Content Include="base\static\base\content\card.css" />
     <Content Include="base\static\base\content\charts.css" />
@@ -298,6 +319,13 @@
     <Content Include="base\static\base\webfonts\glyphicons-halflings-regular.ttf" />
     <Content Include="base\static\base\webfonts\glyphicons-halflings-regular.woff" />
     <Content Include="case\templates\case\case_create.html" />
+    <Content Include="case\templates\case\case_filter.html" />
+    <Content Include="case\templates\case\evidence\caseevidence_create.html" />
+    <Content Include="case\templates\case\evidence\caseevidence_delete.html" />
+    <Content Include="case\templates\case\evidence\caseevidence_detail.html" />
+    <Content Include="case\templates\case\evidence\caseevidence_index.html" />
+    <Content Include="case\templates\case\evidence\caseevidence_list.html" />
+    <Content Include="case\templates\case\evidence\caseevidence_update.html" />
     <Content Include="case\templates\case\note\casenote_create.html" />
     <Content Include="case\templates\case\new_case_create.html" />
     <Content Include="case\templates\case\case_delete.html" />
@@ -311,6 +339,12 @@
     <Content Include="case\templates\case\note\casenote_index.html" />
     <Content Include="case\templates\case\note\casenote_list.html" />
     <Content Include="case\templates\case\note\casenote_update.html" />
+    <Content Include="case\templates\case\task\casetask_create.html" />
+    <Content Include="case\templates\case\task\casetask_delete.html" />
+    <Content Include="case\templates\case\task\casetask_detail.html" />
+    <Content Include="case\templates\case\task\casetask_index.html" />
+    <Content Include="case\templates\case\task\casetask_list.html" />
+    <Content Include="case\templates\case\task\casetask_update.html" />
     <Content Include="collection\templates\index.html" />
     <Content Include="configuration\templates\configration\index.html" />
     <Content Include="entity\templates\entity\entity_open_layout.html" />
@@ -535,6 +569,7 @@
     <Content Include="task\templates\task\note\evidencenote_delete.html" />
     <Content Include="task\templates\task\note\evidencenote_detail.html" />
     <Content Include="task\templates\task\note\evidencenote_index.html" />
+    <Content Include="templates\global\views\base_filter.html" />
     <Content Include="templates\global\views\base_table.html" />
     <Content Include="templates\global\views\base_list.html" />
     <Content Include="templates\global\views\base_index.html" />
@@ -555,6 +590,7 @@
     <Content Include="base\static\base\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="templates\global\auth_base.html" />
     <Content Include="templates\global\sidebar.html" />
+    <Content Include="templates\global\views\sidebar_open_layout.html" />
     <Content Include="templates\registration\logged_out.html" />
     <Content Include="templates\registration\login.html" />
     <Content Include="templates\registration\password_reset_complete.html" />

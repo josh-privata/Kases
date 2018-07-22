@@ -10,6 +10,8 @@ from django.utils.translation import ugettext_lazy as _
 from simple_history.models import HistoricalRecords
 from note.models import Note
 from task.models import Task
+from case.managers import CaseManager
+from evidence.models import Evidence
 
 
 ## Admin Models
@@ -140,9 +142,9 @@ class Case(ObjectDescriptionMixin):
     purpose = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Purpose")
     location = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Location")
     brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
-    private = models.BooleanField(default=False, blank=True, verbose_name="Private")
     slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Case Slug")
     image_upload = models.FileField(blank=True, null=True, verbose_name="Case Image")
+    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
 
     # Linked Fields
     type = models.ForeignKey(CaseType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Type")
@@ -152,17 +154,15 @@ class Case(ObjectDescriptionMixin):
     category = models.ForeignKey(CaseCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Category")
     authorisation = models.ForeignKey(CaseAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Authorisation")
     assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='case_assigned_to', blank=True, verbose_name="Assigned To")
-    manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Case Manager")
+    managed_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Case Manager")
     #legal = models.ManyToManyField(Personality, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Legal Advisor")
     #client = models.ManyToManyField(Personality, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Client")
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
     
     # Auto Fields
-    date_added = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Added")
-    deadline = models.DateTimeField(auto_now=True, null=True, verbose_name="Deadline")
 
     history = HistoricalRecords()
-    #manager = managers.CaseManager()
+    #manager = CaseManager()
 
     class Meta:
         ordering = ('id',)
@@ -202,7 +202,7 @@ class Case(ObjectDescriptionMixin):
     get_assigned_to = property(_get_assigned_to)
 
 
-## Data Models
+## Linked Models
 class LinkedCase(ObjectDescriptionMixin):
     # General Fields
     reason = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Reason For Link")
@@ -212,40 +212,77 @@ class LinkedCase(ObjectDescriptionMixin):
     case = models.ManyToManyField(Case, blank=True, verbose_name="Case")
 
 
-#class CaseTask(Task):
-#    # Linked Fields
-#    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
-
-
-#class CaseNote(Note):
-#    # Linked Fields
-#    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
-
-
-class CaseLog(ObjectDescriptionMixin):
-    # General Fields
-    entry = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Log Entry")
+class CaseNote(Note):
     # Linked Fields
     case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
-
-    def __str__(self):
-        return '%s' % self.entry
-
-
-class CaseContact(ObjectDescriptionMixin):
-    # General Fields
-    reason = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Reason for Association")
-    # Linked Fields
-    #contact = models.ForeignKey(Personality, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Contact")
-    case = models.ForeignKey(Case, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Case")
-
+    
+    history = HistoricalRecords()
+    
     class Meta:
-        ordering = ('id',)
-        verbose_name = _('Case Contact')
-        verbose_name_plural = _('Case Contacts')
+        verbose_name = _('Case Note')
+        verbose_name_plural = _('Case Notes')
+        #abstract = True
 
-    #def get_absolute_url(self):
-    #    return reverse('case_detail', kwargs={'pk': self.pk})
+    @property
+    def edit_url(self):
+        """Returns the url for the edit page for this comment."""
+        return reverse('casenote_edit', args=(self.case.pk, self.pk))
 
-    def __str__(self):
-        return '%s' % self.title
+    @property
+    def case_url(self):
+        '''Returns the url for the detail page of this comment's device.'''
+        return reverse('case_detail', args=(self.case.pk,))
+
+    def get_absolute_url(self):
+        '''Returns the absolute url'''
+        return reverse('casenote_detail', kwargs={'pk': self.pk})
+
+
+class CaseTask(Task):
+    # Linked Fields
+    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
+    
+    history = HistoricalRecords()
+    
+    class Meta:
+        verbose_name = _('Case Task')
+        verbose_name_plural = _('Case Task')
+
+    @property
+    def edit_url(self):
+        """Returns the url for the edit page for this comment."""
+        return reverse('casetask_edit', args=(self.case.pk, self.pk))
+
+    @property
+    def case_url(self):
+        '''Returns the url for the detail page of this comment's device.'''
+        return reverse('case_detail', args=(self.case.pk,))
+
+    def get_absolute_url(self):
+        '''Returns the absolute url'''
+        return reverse('casetask_detail', kwargs={'pk': self.pk})
+
+
+class CaseEvidence(Evidence):
+    # Linked Fields
+    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
+    
+    history = HistoricalRecords()
+    
+    class Meta:
+        verbose_name = _('Case Evidence')
+        verbose_name_plural = _('Case Evidence')
+
+    @property
+    def edit_url(self):
+        """Returns the url for the edit page for this comment."""
+        return reverse('caseevidence_edit', args=(self.case.pk, self.pk))
+
+    @property
+    def case_url(self):
+        '''Returns the url for the detail page of this comment's device.'''
+        return reverse('case_detail', args=(self.case.pk,))
+
+    def get_absolute_url(self):
+        '''Returns the absolute url'''
+        return reverse('caseevidence_detail', kwargs={'pk': self.pk})

@@ -1,0 +1,21 @@
+{% extends "global/views/base_create.html" %}
+{% load crispy_forms_tags %}
+
+{% block sidebar_internal %}
+    {% include "asset/asset_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Create Asset{% endblock %}
+<!-- Heading -->
+{#{% block heading %}{{ pagetitle }} Create Asset{% endblock %}#}
+
+{% block content %}
+<h1>Create Asset</h1>
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {#{{ form.as_p }}#}
+    {% crispy form %}
+    {#<button type="submit" class="save btn btn-default">Create</button>#}
+</form>
+{% endblock %}

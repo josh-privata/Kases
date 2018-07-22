@@ -9,16 +9,16 @@ class CaseTable(tables.Table):
 
     class Meta:
         model = Case
-        fields = ('id', 'title', 'reference', 'private', 'creation_date', 'deadline', 'status',)
+        #fields = ('id', 'title', 'reference', 'private', 'creation_date', 'deadline', 'status',)
         #exclude = ('Case Reference', 'Case Background', 'Case Location', 'Case Description', 'Case Brief', 'Comment', 'Case Authorisation' ,
         #                   #'Case Image Upload', 'Case Priority' )
 
 
 class FullCaseTable(tables.Table):  
-    view_entries = tables.TemplateColumn('<a href="{% url \'case_detail\' case.id %}">View</a>')
+    #view_entries = tables.TemplateColumn('<a href="{% url \'case_detail\' case.id %}">View</a>')
 
     class Meta:
         model = Case
-        fields = ('id', 'title', 'reference', 'private', 'creation_date', 'deadline', 'status',)
+        fields = '__all__'
         #exclude = ('Case Reference', 'Case Background', 'Case Location', 'Case Description', 'Case Brief', 'Comment', 'Case Authorisation' ,
         #                   #'Case Image Upload', 'Case Priority' )

@@ -4,6 +4,7 @@
     {% endblock %}
 <!-- Sidebar 2 - New Case -->
     {% block sidebar_2 %}{% endblock %}
+
 <!-- Sidebar 3 - Case Details -->
     {% block sidebar_3 %}
         <li>
@@ -18,57 +19,63 @@
             </ul>
         </li>
     {% endblock %}
-<!-- Sidebar 4 - Collections -->
-    {% block sidebar_4 %}
+
+<!-- Sidebar 4 - Assets -->
+    {% block sidebar_12 %}
         <li>
-            <a href="#submenu2" data-toggle="collapse"><i class="fa fa-fw fa-inbox"></i> Collections</a>
-            <ul id="submenu2" class="list-unstyled collapse">
-                <li><a href="#">New Collection</a></li>
-                <li><a href="#">View Collections</a></li>
-                <li><a href="#">Find Collection</a></li>
+            <a href="#submenu10" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Assets</a>
+            <ul id="submenu10" class="list-unstyled collapse">
+                {#<li><a href="{% url 'add' %}">New Asset</a></li>#}
+                {#<li><a href="{% url 'headphones' %}">All Assets</a></li>#}
+                <li><a href="#">Book Asset</a></li>
+                <li><a href="#">Case Assets</a></li>
             </ul>
         </li>
     {% endblock %}
+
 <!-- Sidebar 5 - Evidence -->
     {% block sidebar_5 %}
         <li>
             <a href="#submenu3" data-toggle="collapse"><i class="fa fa-fw fa-inbox"></i> Evidence</a>
             <ul id="submenu3" class="list-unstyled collapse">
-                <li><a href="{% url 'evidence_create' %}">New Evidence</a></li>
-                <li><a href="{% url 'evidence' %}">View Evidence</a></li>
+                {#<li><a href="{% url 'evidence_create' %}">New Evidence</a></li>#}
+                {#<li><a href="{% url 'evidence' %}">View Evidence</a></li>#}
                 <li><a href="#">Find Evidence</a></li>
             </ul>
         </li>
     {% endblock %}
+
 <!-- Sidebar 6 - Notes -->
     {% block sidebar_6 %}
         <li>
             <a href="#submenu4" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Notes</a>
             <ul id="submenu4" class="list-unstyled collapse">
-                <li><a href="#">New Notes</a></li>
-                <li><a href="#">View Notes</a></li>
+                {#<li><a href="{% url 'note_create' %}">New Notes</a></li>#}
+                {#<li><a href="{% url 'note' %}">View Notes</a></li>#}
                 <li><a href="#">Find Notes</a></li>
             </ul>
         </li>
     {% endblock %}
+
 <!-- Sidebar 7 - Tasks -->
     {% block sidebar_7 %}
         <li>
             <a href="#submenu5" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Tasks</a>
             <ul id="submenu5" class="list-unstyled collapse">
-                <li><a href="{% url 'task_create' %}">New Task</a></li>
-                <li><a href="{% url 'tasks' %}">View Tasks</a></li>
+                {#<li><a href="{% url 'task_create' %}">New Task</a></li>#}
+                {#<li><a href="{% url 'tasks' %}">View Tasks</a></li>#}
                 <li><a href="#">Find Tasks</a></li>
             </ul>
         </li>
     {% endblock %}
+
 <!-- Sidebar 8 - Entities -->
     {% block sidebar_8 %}
         <li>
             <a href="#submenu6" data-toggle="collapse"><i class="fa fa-fw fa-inbox"></i> Entities</a>
             <ul id="submenu6" class="list-unstyled collapse">
-                <li><a href="#">New Entities</a></li>
-                <li><a href="#">View Entities</a></li>
+                <li><a href="{% url 'company_create' %}">New Entities</a></li>
+                <li><a href="{% url 'company_list' %}">View Entities</a></li>
                 <li><a href="#">Find Entities</a></li>
             </ul>
         </li>
@@ -97,17 +104,7 @@
             </ul>
         </li>
     {% endblock %}
-<!-- Sidebar 12 - Assets -->
-    {% block sidebar_12 %}
-        <li>
-            <a href="#submenu10" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Assets</a>
-            <ul id="submenu10" class="list-unstyled collapse">
-                <li><a href="#">Book Asset</a></li>
-                <li><a href="#">All Assets</a></li>
-                <li><a href="#">Case Assets</a></li>
-            </ul>
-        </li>
-    {% endblock %}
+<!-- Sidebar 12 - 
 <!-- Sidebar 13 - Finance -->
     {% block sidebar_13 %}
         <li>
@@ -121,8 +118,18 @@
             </ul>
         </li>
     {% endblock %}
-<!-- Sidebar 14 -->
-    {% block sidebar_14 %}{% endblock %}
+<!-- Sidebar 14  - Collections -->
+    {% block sidebar_4 %}
+        <li>
+            <a href="#submenu2" data-toggle="collapse"><i class="fa fa-fw fa-inbox"></i> Collections</a>
+            <ul id="submenu2" class="list-unstyled collapse">
+                <li><a href="#">New Collection</a></li>
+                <li><a href="#">View Collections</a></li>
+                <li><a href="#">Find Collection</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+
 <!-- Sidebar 15 -->
     {% block sidebar_15 %}{% endblock %}
 <!-- Sidebar 16 -->

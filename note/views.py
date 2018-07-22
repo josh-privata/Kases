@@ -1,23 +1,16 @@
-"""
-Note views.evidence
-"""
+## Note Views ##
 
 from django.shortcuts import render
-from django.http import HttpRequest
-from django.template import RequestContext
-from datetime import datetime
-from note.forms import NoteCreateForm, NoteEditForm, CrispyNoteForm
+from note.forms import NoteEditForm, CrispyNoteForm
 from note.models import Note
 from django.http import JsonResponse
-from django.views import View
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView, TemplateView
 from django.urls import reverse_lazy
 from note.tables import NoteTable, FullNoteTable
-from django_tables2 import RequestConfig, SingleTableView
+from django_tables2 import SingleTableView
 from django.urls import reverse
-from django.shortcuts import get_object_or_404
 import base.views
 
 
@@ -46,7 +39,8 @@ class AjaxableResponseMixin:
         else:
             return response
         
-# Note Main
+
+# Main Views
 class NoteHome(TemplateView):
     template_name = 'note/note_index.html'
 
@@ -76,6 +70,7 @@ class NoteHome(TemplateView):
         return context
 
 
+## Detail Views
 class NoteDetail(DetailView):
     model = Note
     template_name_suffix = '_detail'
@@ -92,6 +87,7 @@ class NoteDetail(DetailView):
         return context
 
 
+## Create Views
 class NoteCreate(CreateView):
     model = Note
     template_name_suffix = '_create'
@@ -113,6 +109,7 @@ class NoteCreate(CreateView):
         return reverse('note_detail', kwargs={'pk': self.object.pk})
 
 
+## Update Views
 class NoteUpdate(UpdateView):
     model = Note
     form_class=NoteEditForm
@@ -133,6 +130,7 @@ class NoteUpdate(UpdateView):
             return super(NoteUpdate, self).dispatch(request, *args, **kwargs)
 
 
+## Delete Views
 class NoteDelete(DeleteView):
     model = Note
     success_url = reverse_lazy('note_list')
@@ -159,6 +157,7 @@ class NoteTable(SingleTableView):
             return super(NoteTable, self).dispatch(request, *args, **kwargs)
 
 
+## List Views
 class NoteList(ListView):
     paginate_by = 1
 

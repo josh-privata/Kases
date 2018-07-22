@@ -30,6 +30,11 @@
         <h5>Case Authorisation: {{ object.authorisation }}</h5>
         <h5>Case Deadline: {{ object.deadline }}</h5>
         <h5>Case Creation Date: {{ object.creation_date }}</h5>
+        
+        {% for note in casenotes %}
+            <h5>Note Title: {{ note.title }}</h5>         
+        {% endfor %}
+        
     {% endblock %} 
 
     {% block summary_buttonurl %}{% url 'case_edit' object.id %}{% endblock %}
@@ -37,16 +42,19 @@
 <!-- Case Detail Tabs -->
     <!-- Panel 1 - Details -->
     {% block tab1_header %}Details{% endblock %}
-    <!-- Panel 2 - Schedule -->
-    {% block tab2_header %}Schedule{% endblock %}
-    <!-- Panel 3 - Contacts -->
-    {% block tab3_header %}Contacts{% endblock %}
-    <!-- Panel 4 - Questions -->
-    {% block tab4_header %}Questions{% endblock %}
-    <!-- Panel 5 - Authorisation -->
-    {% block tab5_header %}Authorisation{% endblock %}
-    <!-- Panel 6 - Case Log -->
-    {% block tab6_header %}Case Log{% endblock %}
+    <!-- Panel 2 - Notes -->
+    {% block tab2_header %}Notes{% endblock %}
+    <!-- Panel 3 - Evidence -->
+    {% block tab3_header %}Evidence{% endblock %}
+    <!-- Panel 4 - Tasks -->
+    {% block tab4_header %}Tasks{% endblock %}
+    <!-- Panel 5 - -->
+    {% block tab5 %}{% endblock %}    
+    {% block tab5_header %}{% endblock %}
+    <!-- Panel 6 - -->
+    {% block tab6 %}{% endblock %}    
+    {% block tab6_header %}{% endblock %}
+    <!-- Panel 7 -  -->    
     {% block tab7 %}{% endblock %}
     {% block tab7_header %}{% endblock %}
 
@@ -67,343 +75,171 @@
         </div>
     {% endblock %}
 
-    <!-- Panel 2 - Schedule -->
+    <!-- Panel 2 - Notes -->
     {% block panel2_content %}
         <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if notes %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Note Title</th>
+                            <th>Note Detail</th>
+                            <th>Note Locatoin</th>
+                            <th>Note Status</th>
+                            <th>Note Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in notes %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'casenote_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
+
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Notes for this Case yet</p>
+                {% endif %}
         </div>
     {% endblock %}
 
-    <!-- Panel 3 - Contacts -->
+    <!-- Panel 3 - Evidence -->
     {% block panel3_content %}
         <div class="row">
-            <section class="mt-30px mb-30px">
-                <div class="container-fluid">
-                    <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if evidence %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Evidence Title</th>
+                            <th>Evidence Detail</th>
+                            <th>Evidence Locatoin</th>
+                            <th>Evidence Status</th>
+                            <th>Evidence Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in evidence %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'caseevidence_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
 
-                        <!-- Recent Updates -->
-                        <div class="col-lg-6 col-md-12">
-                            <div id="daily-feeds" class="card updates daily-feeds">
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
 
-                            <!-- Heading-->
-                            <div id="feeds-header" class="card-header d-flex justify-content-between align-items-center">
-                                <h2 class="h5 display">
-                                <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
-                                    Recent Updates
-                                </a>
-                                </h2>
-                                <div class="right-column">
-                                <div class="badge badge-primary">10 messages</div>
-                                    <a data-toggle="collapse" data-parent="#daily-feeds" href="#feeds-box" aria-expanded="true" aria-controls="feeds-box">
-                                    <i class="fa fa-angle-down"></i>
-                                    </a>
-                                </div>
-                            </div>
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
 
-                            <div id="feeds-box" role="tabpanel" class="collapse show">
-                                <div class="feed-box">
-                                <ul class="feed-elements list-unstyled">
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
 
-                                    <!-- List-->
-                                    <li class="clearfix">
-                                    <div class="feed d-flex justify-content-between">
-                                        <div class="feed-body d-flex justify-content-between">
-                                        <div class="content"><strong>Aria Smith</strong><small>Posted a new blog </small>
-                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                                        </div>
-                                        </div>
-                                        <div class="date"><small>5min ago</small></div>
-                                    </div>
-                                    </li>
-
-                                    <!-- List-->
-                                    <li class="clearfix">
-                                    <div class="feed d-flex justify-content-between">
-                                        <div class="feed-body d-flex justify-content-between">
-                                        <div class="content"><strong>Frank Williams</strong><small>Posted a new blog </small>
-                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                                        </div>
-                                        </div>
-                                        <div class="date"><small>5min ago</small></div>
-                                    </div>
-                                    </li>
-
-                                    <!-- List-->
-                                    <li class="clearfix">
-                                    <div class="feed d-flex justify-content-between">
-                                        <div class="feed-body d-flex justify-content-between">
-                                        <div class="content"><strong>Ashley Wood</strong><small>Posted a new blog </small>
-                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                                        </div>
-                                        </div>
-                                        <div class="date"><small>5min ago</small></div>
-                                    </div>
-                                    </li>
-
-                                    <!-- List-->
-                                    <li class="clearfix">
-                                    <div class="feed d-flex justify-content-between">
-                                        <div class="feed-body d-flex justify-content-between">
-                                        <div class="content"><strong>Jason Doe</strong><small>Posted a new blog </small>
-                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                                        </div>
-                                        </div>
-                                        <div class="date"><small>5min ago</small></div>
-                                    </div>
-                                    </li>
-
-                                    <!-- List-->
-                                    <li class="clearfix">
-                                    <div class="feed d-flex justify-content-between">
-                                        <div class="feed-body d-flex justify-content-between">
-                                        <div class="content"><strong>Sam Martinez</strong><small>Posted a new blog </small>
-                                            <div class="full-date"><small>Today 5:60 pm - 12.06.2014</small></div>
-                                        </div>
-                                        </div>
-                                        <div class="date"><small>5min ago</small></div>
-                                    </div>
-                                    </li>
-
-                                </ul>
-                                </div>
-                            </div>
-                            </div>
-                        </div>
-
-                        <!-- Tasks -->
-                        <div class="col-lg-6 col-md-12">
-                            <div id="recent-activities-wrapper" class="card updates activities">
-                
-                            <!-- Heading -->
-                            <div id="activites-header" class="card-header d-flex justify-content-between align-items-center">
-                                <h2 class="h5 display">
-                                <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
-                                    Tasks
-                                </a>
-                                </h2>
-                                <a data-toggle="collapse" data-parent="#recent-activities-wrapper" href="#activities-box" aria-expanded="true" aria-controls="activities-box">
-                                <i class="fa fa-angle-down"></i>
-                                </a>
-                            </div>
-
-                            <div id="activities-box" role="tabpanel" class="collapse show">
-                                <ul class="activities list-unstyled">
-
-                                <!-- Item-->
-                                <li>
-                                    <div class="row">
-                                    <div class="col-4 date-holder text-right">
-                                        <div class="icon"><i class="icon-clock"></i></div>
-                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                                    </div>
-                                    <div class="col-8 content"><strong>Meeting</strong>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                                    </div>
-                                    </div>
-                                </li>
-
-                                <!-- Item-->
-                                <li>
-                                    <div class="row">
-                                    <div class="col-4 date-holder text-right">
-                                        <div class="icon"><i class="icon-clock"></i></div>
-                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                                    </div>
-                                    <div class="col-8 content"><strong>Meeting</strong>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                                    </div>
-                                    </div>
-                                </li>
-
-                                <!-- Item-->
-                                <li>
-                                    <div class="row">
-                                    <div class="col-4 date-holder text-right">
-                                        <div class="icon"><i class="icon-clock"></i></div>
-                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                                    </div>
-                                    <div class="col-8 content"><strong>Meeting</strong>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                                    </div>
-                                    </div>
-                                </li>
-
-                                <!-- Item-->
-                                <li>
-                                    <div class="row">
-                                    <div class="col-4 date-holder text-right">
-                                        <div class="icon"><i class="icon-clock"></i></div>
-                                        <div class="date"> <span>6:00 am</span><span class="text-info">6 hours ago</span></div>
-                                    </div>
-                                    <div class="col-8 content"><strong>Meeting</strong>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.                </p>
-                                    </div>
-                                    </div>
-                                </li>
-
-                                </ul>
-                            </div>
-
-                            </div>
-                        </div>
-
-                        <!-- Active Cases -->
-                        <div class="col-lg-12 col-md-12">           
-                <div id="new-updates" class="card updates recent-updated">
-
-            <!-- Header -->
-            <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                <h2 class="h5 display">
-                <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
-                    Active Cases
-                </a>
-                </h2>
-                <a data-toggle="collapse" data-parent="#new-updates" href="#updates-box" aria-expanded="true" aria-controls="updates-box">
-                    <i class="fa fa-angle-down"></i>
-                </a>
-            </div>
-
-            <div id="updates-box" role="tabpanel" class="collapse show">
-                <ul class="news list-unstyled">
-
-                {% if cases %}
-                    {% for case in cases %}
-                        <!-- Item -->
-                        <li class="d-flex justify-content-between"> 
-                            <div class="left-col d-flex">
-                            <div class="icon"><i class="icon-rss-feed"></i></div>
-                            <div class="title"><strong><a href="{% url 'case_detail' case.id %}" role="button">{{ case.title }}</a></strong>
-                                <p>{{ case.description }}</p>
-                            </div>
-                            </div>
-                            <div class="right-col text-right">
-                            <div class="update-date"><span class="month">{{ case.creation_date }}</span></div>
-                            </div>
-                        </li>
-                    {% endfor %}
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
                 {% else %}
-                    <!-- No Item -->
-                    <li class="d-flex justify-content-between"> 
-                            <div class="left-col d-flex">
-                            <div class="icon"><i class="icon-rss-feed"></i></div>
-                            <div class="title"><strong>There are no cases to show</strong>
-                                <p></p>
-                            </div>
-                            </div>
-                            <div class="right-col text-right">
-                            <div class="update-date"><span class="month"></span></div>
-                            </div>
-                        </li>
+                    <p>There is no Evidence for this Case yet</p>
                 {% endif %}
-
-
-                </ul>
-            </div>
-
-            </div>
-        </div>
-
-                    </div>
-                </div>
-            </section>
         </div>
     {% endblock %}
 
-    <!-- Panel 4 - Questions -->
+    <!-- Panel 4 - Tasks -->
     {% block panel4_content %}
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
+    <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if tasks %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Tasks Title</th>
+                            <th>Tasks Detail</th>
+                            <th>Tasks Locatoin</th>
+                            <th>Tasks Status</th>
+                            <th>Tasks Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in tasks %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'casetask_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
+
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Tasks for this Case yet</p>
+                {% endif %}
         </div>
     {% endblock %}
 
     <!-- Panel 5 - Authorisation -->
     {% block panel5_content %}
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     {% endblock %}
 
     <!-- Panel 6 - Case Log -->
     {% block panel6_content %}
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <div class="card">
-                    <h5 class="card-header">Featured</h5>
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-        </div>
     {% endblock %}
 
     {% block panel7 %}{% endblock %}
