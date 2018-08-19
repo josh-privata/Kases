@@ -1,0 +1,239 @@
+﻿{% extends "case/entity/base_caseentity_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+<!-- Title -->
+{% block title %}Kases - Case {{object.case.pk}}; {{object.company.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}Company Summary{% endblock %}
+
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}
+        <a href="{% url 'company_detail' object.company.id %}" role="button">
+            <h5>{{ object.company.title }}</h5>
+        </a>
+        <h5>Comment: {{ object.comment }}</h5>
+        <h5>Private: {{ object.private }}</h5>
+    {% endblock %}          
+
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}
+        <h5>Person Creation Date: {{ object.creation_date }}</h5>
+    {% endblock %} 
+
+    {% block summary_buttonurl %}{% url 'casecompany_update' object.case.id object.id %}{% endblock %}
+
+<!-- Company Detail Tabs -->
+
+<!-- Tab panels -->      
+<!-- Panel 1 - Details -->
+{% block panel1_content %}
+<div class="row">
+
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h3>Details</h3>
+                        <h5>Company Type: {{ object.type }}</h5>
+                        <h5>Company Status: {{ object.status }}</h5>
+                        <h5>Company Classification:{{ object.classification}}</h5>
+                        <h5>Company Authorisation: {{ object.authorisation }}</h5>
+                        <h5>Company Deadline: {{ object.deadline }}</h5>
+                        <h5>Company Creation Date: {{ object.creation_date }}</h5>
+                    </p>
+                </div>
+            </div>
+        </div>
+            
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h3>Details</h3>
+                        <h5>Company Brief: {{ object.brief }}</h5>
+                        <h5>Company Reference: {{ object.reference }}</h5>
+                        <h5>Company Location: {{ object.location }}</h5>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
+
+<!-- Panel 2 - Contact -->
+{% block panel2_content %}
+<div class="row">
+    
+    <!-- Image -->
+    {% if object.image %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <img src={{object.image}} alt="{{object.first_name}}" title="{{object.first_name}}" style="float:right;" />
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Address -->
+    {% if object.company.address %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Addresses' %}</h3>
+                    <table>
+                        {% for addr in object.company.address.all %}
+                        <tr>
+                            <td class="name">
+                                <h6>
+                                    {% if addr.primary %}<strong>
+                                        {% endif %}
+                                        {{addr.location}}
+                                        {% if addr.primary %}
+                                    </strong>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Line 1 : {{addr.line1}}<br /></h6>
+                                <h6>Line 2 : {% if addr.line2 %}{{addr.line2}}<br />{% endif %}</h6>
+                                <h6>Line 3 : {% if addr.line3 %}{{addr.line3}}<br />{% endif %}</h6>
+                                <h6>{{addr.city}}, {{addr.state.long_name}}, {% if addr.postcode %}, {{addr.postcode}}{% endif %}</h6>
+                                <h6>{{addr.state.country.name}}</h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Phone -->
+    {% if object.company.telephone %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Telephone Numbers' %}</h3>
+                    <table>
+                        {% for tel in object.company.telephone.all %}
+                        <tr>
+                            <th><h6>{{tel.location|title}} {{tel.get_type_display|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    {% if tel.primary %}<b>
+                                        {% endif %}
+                                        {{tel.number}}
+                                        {% if tel.primary %}
+                                    </b>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Email -->
+    {% if object.company.email %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Email Addresses' %}</h3>
+                    <table>
+                        {% for email in object.company.email.all %}
+                        <tr>
+                            <th><h6>{{email.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="mailto:{{email.email}}">
+                                        {% if email.primary %}<b>
+                                            {% endif %}
+                                            {{email.email}}
+                                            {% if email.primary %}
+                                        </b>{% endif %}
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Web -->
+    {% if object.company.website %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Websites' %}</h3>
+                    <table>
+                        {% for web in object.company.website.all %}
+                        <tr>
+                            <th><h6>{{web.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="{{web.url}}">
+                                        {% if web.primary %}<b>
+                                            {% endif %}
+                                            {{web.url}}
+                                            {% if web.primary %}
+                                        </b>{% endif %}
+
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Notes -->
+    {% if object.company.notes %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Notes' %}</h3>
+                    <table>
+                        <tr>
+                            <td><h6>{{object.company.notes}}</h6></td>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+<!-- Panel 3 - Events -->
+{% block panel3_content %}{% endblock %}
+
+<!-- Panel 4 - Evidence -->
+{% block panel4_content %}{% endblock %}

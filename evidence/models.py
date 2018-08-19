@@ -13,6 +13,8 @@ from simple_history.models import HistoricalRecords
 ## Admin Models
 class EvidenceAuthorisation(Authorisation):
     # General Fields
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Evidence Authorisation')
@@ -28,6 +30,8 @@ class EvidenceAuthorisation(Authorisation):
 class EvidenceClassification(Classification):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Evidence Classification')
         verbose_name_plural = _('Evidence Classifications')
@@ -42,6 +46,8 @@ class EvidenceClassification(Classification):
 class EvidenceType(Type):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Evidence Type')
         verbose_name_plural = _('Evidence Types')
@@ -56,6 +62,8 @@ class EvidenceType(Type):
 class EvidenceCategory(Category):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Evidence Category')
         verbose_name_plural = _('Evidence Categories')
@@ -70,6 +78,8 @@ class EvidenceCategory(Category):
 class EvidencePriority(Priority):
     # General Fields
    
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Evidence Priority')
         verbose_name_plural = _('Evidence Priorities')
@@ -83,6 +93,8 @@ class EvidencePriority(Priority):
 
 class EvidenceStatus(Status):
     # General Fields
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Evidence Status')
@@ -115,6 +127,8 @@ class EvidenceStatusGroup(StatusGroup):
     # General Fields
     # Linked Fields
     status = models.ManyToManyField(EvidenceStatus, blank=True, verbose_name="Evidence Status")
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Evidence Status Group')
@@ -139,6 +153,8 @@ class ChainOfCustody(ObjectDescriptionMixin):
     assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='chainofcustody_assigned_to', blank=True, verbose_name="Assigned To")
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='chainofcustody_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
     custodian = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='chainofcustody_custodian', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Custodian")
+    
+    history = HistoricalRecords()
 
 
 ## Main Models
@@ -156,7 +172,7 @@ class Evidence(ObjectDescriptionMixin):
     retention_reminder_sent = models.BooleanField(default=False, blank=True, verbose_name="Retention Reminder")
     slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Evidence Slug")
     #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
-    retention_date = models.DateTimeField(auto_now=False, null=True, verbose_name="Retention Date")
+    retention_date = models.DateTimeField(auto_now=False, blank=True, null=True, verbose_name="Retention Date")
     brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
 
     # Linked Fields

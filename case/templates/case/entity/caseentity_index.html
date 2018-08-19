@@ -1,0 +1,105 @@
+{% extends "global/views/base_index.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - Case Entity Dashboard{% endblock %}
+
+<!-- Statistics Section -->
+<!-- Updates Section -->
+<!-- Case Section -->
+<!-- Table Head -->
+{% block table_head %}
+    <th>Person ID</th>
+    <th>Person Title</th>
+    <th>Person Detail</th>
+    <th>Person Background</th>
+    <th>Person Status</th>
+    <th>Person Type</th>
+{% endblock %}
+
+<!-- Table Body -->
+<!-- Person ID -->
+{% block table_body_id_url %}
+    {% url 'caseperson_detail' object.id table_object.id %}
+{% endblock %}
+
+{% block table_body_id_column %}
+    {{ table_object.id }}
+{% endblock %}
+
+<!-- Columns -->
+{% block table_body_columns %}
+    <!-- Person Title -->
+    <td>{{ table_object.title }}</td>
+    <!-- Person Description -->
+    <td>{{ table_object.description }}</td>
+    <!-- Person Background -->
+    <td>{{ table_object.background }}</td>
+    <!-- Person Status -->
+    <td>{{ table_object.status }}</td>
+    <!-- Person Type -->
+    <td>{{ table_object.type }}</td>
+{% endblock %}
+
+<!-- Table Else -->
+{% block table_else %}<p>There is no people to show</p>{% endblock %}
+
+<!-- Extra Body -->
+{% block extrabody %}
+    <!-- Table Section -->
+    {% if table_objects2 %}
+        <table class="table">
+
+            <!-- Table Head -->
+            <thead>
+            <tr>
+                <th>Company ID</th>
+                <th>Company Title</th>
+                <th>Company Detail</th>
+                <th>Company Background</th>
+                <th>Company Status</th>
+                <th>Company Type</th>
+            </tr>
+            </thead>
+        
+            <!-- Table Body -->
+            <tbody>
+                {% for table_object in table_objects2 %}
+                    <tr>
+                        
+                        <!-- ID -->
+                        <td>
+                            <a href="{% url 'casecompany_detail' object.id table_object.id %}" role="button">
+                                {{ table_object.id }}
+                            </a>
+                        </td>
+                                
+                        <!-- Columns -->
+                        <!-- Company Title -->
+                        <td>{{ table_object.title }}</td>
+                        <!-- Company Description -->
+                        <td>{{ table_object.description }}</td>
+                        <!-- Company Background -->
+                        <td>{{ table_object.background }}</td>
+                        <!-- Company Status -->
+                        <td>{{ table_object.status }}</td>
+                        <!-- Company Type -->
+                        <td>{{ table_object.type }}</td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+    <!-- Table Else -->
+    {% else %}
+        <p>There are no objects to show</p>
+    {% endif %}
+
+
+{% endblock %}

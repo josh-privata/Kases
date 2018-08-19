@@ -1,0 +1,49 @@
+{% extends "global/views/base_index.html" %}
+{% load render_table from django_tables2 %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - Case Inventory Dashboard{% endblock %}
+
+<!-- Statistics Section -->
+<!-- Updates Section -->
+<!-- Case Section -->
+<!-- Table Head -->
+{% block table_head %}
+    <th>Device ID</th>
+    <th>Device Title</th>
+    <th>Device Detail</th>
+    <th>Device Background</th>
+    <th>Device Status</th>
+    <th>Device Type</th>
+{% endblock %}
+
+<!-- Table Body -->
+<!-- Device ID -->
+{% block table_body_id_url %}
+    {% url 'casedevice_detail' object.id table_object.id %}
+{% endblock %}
+
+{% block table_body_id_column %}
+    {{ table_object.id }}
+{% endblock %}
+
+<!-- Columns -->
+{% block table_body_columns %}
+    <!-- Device Title -->
+    <td>{{ table_object.title }}</td>
+    <!-- Device Description -->
+    <td>{{ table_object.description }}</td>
+    <!-- Device Background -->
+    <td>{{ table_object.background }}</td>
+    <!-- Device Status -->
+    <td>{{ table_object.status }}</td>
+    <!-- Device Type -->
+    <td>{{ table_object.type }}</td>
+{% endblock %}
+
+<!-- Table Else -->
+{% block table_else %}<p>There are no devices to show</p>{% endblock %}

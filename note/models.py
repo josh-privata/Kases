@@ -6,11 +6,14 @@ from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classi
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 #import note.managers as managers
+from simple_history.models import HistoricalRecords
 
 
 ## Admin Models
 class NoteAuthorisation(Authorisation):
     # General Fields
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Note Authorisation')
@@ -26,6 +29,8 @@ class NoteAuthorisation(Authorisation):
 class NoteClassification(Classification):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Note Classification')
         verbose_name_plural = _('Note Classifications')
@@ -40,6 +45,8 @@ class NoteClassification(Classification):
 class NoteType(Type):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Note Type')
         verbose_name_plural = _('Note Types')
@@ -54,6 +61,8 @@ class NoteType(Type):
 class NotePriority(Priority):
     # General Fields
    
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Note Priority')
         verbose_name_plural = _('Note Priorities')
@@ -68,6 +77,8 @@ class NotePriority(Priority):
 class NoteCategory(Category):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Note Category')
         verbose_name_plural = _('Note Categories')
@@ -81,6 +92,8 @@ class NoteCategory(Category):
 
 class NoteStatus(Status):
     # General Fields
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Note Status')
@@ -114,6 +127,8 @@ class NoteStatusGroup(StatusGroup):
     
     # Linked Fields
     status = models.ManyToManyField(NoteStatus, blank=True, verbose_name="Note Status")
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Note Status Group')

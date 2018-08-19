@@ -1,0 +1,228 @@
+    {#<!-- Title -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.title.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.title.id_for_label  }}" class="col-sm-2 col-form-label">{{ form.title.label  }}</label>
+                <!-- Input -->
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="{{ form.title.id_for_label }}"
+                           placeholder="{{ form.title.label  }}">
+                </div>
+                <!-- Submit Messages -->
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please fill this in</div>
+            </div>
+
+            <!-- Reference -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.reference.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.reference.id_for_label  }}" class="col-sm-2 col-form-label">{{ form.reference.label  }}</label>
+                <!-- Input -->
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="{{ form.reference.id_for_label }}"
+                           placeholder="{{ form.reference.label  }}">
+                </div>
+                <!-- Submit Messages -->
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please fill this in</div>
+            </div>
+
+            <!-- Purpose -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.purpose.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.purpose.id_for_label  }}" class="col-sm-2 col-form-label">{{ form.purpose.label  }}</label>
+                <!-- Input -->
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="{{ form.purpose.id_for_label }}"
+                           placeholder="{{ form.purpose.label  }}">
+                </div>
+                <!-- Submit Messages -->
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please fill this in</div>
+            </div>
+
+            <!-- Brief -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.brief.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.brief.id_for_label  }}" class="col-sm-2 col-form-label">{{ form.brief.label  }}</label>
+                <!-- Input -->
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="{{ form.brief.id_for_label }}"
+                           placeholder="{{ form.brief.label  }}">
+                </div>
+                <!-- Submit Messages -->
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please fill this in</div>
+            </div>
+            
+            <!-- Location -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.location.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.location.id_for_label  }}" class="col-sm-2 col-form-label">{{ form.location.label  }}</label>
+                <!-- Input -->
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="{{ form.location.id_for_label }}"
+                           placeholder="{{ form.location.label  }}">
+                </div>
+                <!-- Submit Messages -->
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please fill this in</div>
+            </div>
+
+            <!-- Private -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.private.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <div class="col-sm-2">{{ form.private.label  }}</div>
+                <!-- Input -->
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="{{ form.private.id_for_label }}">
+                    </div>
+                </div>
+                <!-- Submit Messages -->
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please fill this in</div>
+            </div>
+            
+            <!-- Image Upload -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.image_upload.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.image_upload.id_for_label }}" class="col-sm-2 col-form-label">{{ form.image_upload.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10">{{ form.image_upload }}</div>
+            </div>
+
+            <!-- Type -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.type.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.type.id_for_label }}" class="col-sm-2 col-form-label">{{ form.type.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10"><div class="form-check">{{ form.type }}</div></div>
+            </div>
+
+            <!-- Status -->
+            <div class="form-row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.status.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.status.id_for_label }}" class="col-sm-2 col-form-label">{{ form.status.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10"><div class="form-check">{{ form.status }}</div></div>
+            </div>
+
+            <!-- Classification -->
+            <div class="form-row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.classification.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.classification.id_for_label }}" class="col-sm-2 col-form-label">{{ form.classification.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10"><div class="form-check">{{ form.classification }}</div></div>
+            </div>
+
+            <!-- Priority -->
+            <div class="form-row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.priority.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.priority.id_for_label }}" class="col-sm-2 col-form-label">{{ form.priority.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10"><div class="form-check">{{ form.priority }}</div></div>
+            </div>
+
+            <!-- Assigned By -->
+            <div class="form-row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.assigned_by.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.assigned_by.id_for_label }}" class="col-sm-2 col-form-label">{{ form.assigned_by.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10"><div class="form-check">{{ form.assigned_by }}</div></div>
+            </div>
+            
+            <!-- Assigned To -->
+            <div class="form-row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.assigned_to.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.assigned_to.id_for_label }}" class="col-sm-2 col-form-label">{{ form.assigned_to.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10"><div class="form-check">{{ form.assigned_to }}</div></div>
+            </div>
+
+            <!-- Case Manager -->
+            <div class="form-row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.manager.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.manager.id_for_label }}"class="col-sm-2 col-form-label">{{ form.manager.label }}</label>
+                <!-- Input -->
+                <div class="col-sm-10"><div class="form-check">{{ form.manager }}</div></div>
+            </div>
+
+             <!-- Change Reason -->
+            <div class="form-group row">
+                {% if field.errors %}            
+                    <div class="form-group has-errors text-danger small">{{form.change_reason.errors}}</div>
+                    <div class="form-group has-errors text-danger small"></div>
+                {% endif %}
+                <!-- Label -->
+                <label for="{{ form.change_reason.id_for_label  }}" class="col-sm-2 col-form-label">{{ form.change_reason.label  }}</label>
+                <!-- Input -->
+                <div class="col-sm-10">
+                    <input class="form-control"
+                           id="{{ form.change_reason.id_for_label }}"
+                           placeholder="{{ form.change_reason.label  }}">
+                </div>
+                <!-- Submit Messages -->
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Please fill this in</div>
+            </div> #}

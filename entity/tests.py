@@ -1,24 +1,47 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-"""
+# Entity Tests #
 
-import django
-from django.test import TestCase
+#from addressbook.models import Person
+#from django.test import TestCase
+#from django.core.urlresolvers import reverse
 
-# TODO: Configure your database in settings.py and sync before running tests.
+#class NoAddressTest(TestCase):
+#    fixtures = [] #['site']
 
-class ViewTest(TestCase):
-    """Tests for the application views."""
+#    def test_get_asset_list(self):
+#        """
+#        Test GET list of all people, when no people in database
+#        """
+#        self.failUnlessEqual(Person.objects.count(), 0, 'There should not be any people loaded from fixtures')
+#        url = reverse('ab_all',args=[])
+#        response = self.client.get(url)
 
-    if django.VERSION[:2] >= (1, 7):
-        # Django 1.7 requires an explicit setup() when running tests in PTVS
-        @classmethod
-        def setUpClass(cls):
-            super(ViewTest, cls).setUpClass()
-            django.setup()
+#        # Check some response details
+#        self.failUnlessEqual(response.status_code, 200)
+        
+#class AddressTest(TestCase):
+#    fixtures = ['addresses']
 
-    def test_home(self):
-        """Tests the home page."""
-        response = self.client.get('/')
-        self.assertContains(response, 'Home Page', 1, 200)
+#    def test_get_asset_list(self):
+#        """
+#        GET list of all people
+#        """
+#        self.failIfEqual(Person.objects.count(), 0, 'No people loaded from fixtures')
+
+#        url = reverse('ab_all',args=[])
+#        response = self.client.get(url)
+
+#        # Check some response details
+#        self.failUnlessEqual(response.status_code, 200)
+        
+#        self.assertContains(response, 'Bloggs')
+#        self.assertContains(response, '1 Example Road')
+        
+#    def test_edit_person(self):
+#        url = reverse('intranet.addressbook.views.person_edit',args=['bloggs','fred'])
+#        response = self.client.get(url)
+#        # Should re-direct to login required
+#        self.failUnlessEqual(response.status_code, 302)
+#        login = self.client.login(username='test', password='password')
+#        self.failUnless(login, 'Could not log in')
+#        response = self.client.get(url)
+#        self.failUnlessEqual(response.status_code, 200)

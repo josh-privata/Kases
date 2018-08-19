@@ -1,234 +1,352 @@
-from django.urls import reverse
-from django.template.defaultfilters import slugify
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from django.http import (Http404, HttpResponseForbidden,
-                         HttpResponseServerError, HttpResponseRedirect)
-from django.shortcuts import render_to_response, get_object_or_404, render
-from django.template import RequestContext
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic.detail import DetailView
-from django.views.generic import ListView, TemplateView
-from entity.models import Company
-from entity.forms import CompanyCreateForm, CompanyUpdateForm, PhoneNumberFormSet, EmailAddressFormSet, InstantMessengerFormSet, WebSiteFormSet, StreetAddressFormSet, SpecialDateFormSet
-from django.urls import reverse_lazy
+# Company Views #
+
+#import vobject
+import re
+from django import http
+from django.shortcuts import render_to_response, render
+#from django.core.urlresolvers import reverse
+#from django.forms.formsets import formset_factory
+from django.forms.models import modelformset_factory
+from django.contrib.sitemaps import Sitemap
+from entity.forms import AddressForm, TelephoneForm, EmailForm, WebsiteForm
+from entity.forms import CompanyForm, SearchForm, AdvancedSearchForm
+from entity.models.company import Company
+from entity.models.entity import Address, Telephone, Email, Website
 
 
-class CompanyDetail(DetailView):
+# Helper Classes
+class ListWrapper:
+    def __init__(self,lst):
+        self._list = lst
+    def count(self):
+        return len(self._list)
+    def __getitem__(self,i):
+        return self._list[i]
+      
 
-    model = Company
-    template_name = 'entity/company/company_detail.html'
+class AddressbookSitemap(Sitemap):
+    changefreq = "never"
+    priority = 0.5
 
-    def get_context_data(self, **kwargs):
-        context = super(CompanyDetail, self).get_context_data(**kwargs)
-        return context
+    def items(self):
+        return Company.objects.all()
 
-
-class CompanyCreate(CreateView):
-    model = Company
-    template_name = 'entity/company/company_create.html'
-    form_class = CompanyCreateForm
-    
-    #def get_context_data(self, **kwargs):
-    #    context = super(CompanyCreate, self).get_context_data(**kwargs)
-    #    if self.request.POST:
-    #        context['formset'] = CompanyFormSet(self.request.POST, instance=self.object)
-    #    else:
-    #        context['formset'] = CompanyFormSet(instance=self.object)
-    #    return context
-
-    def form_valid(self, form):
-        context = self.get_context_data()
-        formset = context['formset']
-        if formset.is_valid():
-            formset.instance = self.object
-            formset.save()
-        return super(CompanyCreate, self).form_valid(form)
-
-    def get_success_url(self, **kwargs):
-        return reverse('company_detail', kwargs={'pk': self.object.pk})
+    def lastmod(self, obj):
+        return obj.modified
 
 
-class CompanyUpdate(UpdateView):
-    model = Company
-    form_class=CompanyCreateForm
-    #fields = ['title', 'reference', 'background', 'location', 'description', 'brief', 'comment', 'private', 'type', 'status',
-    #             'classification', 'priority', 'authorisation', 'image_upload']
-    template_name = 'entity/company/company_update.html'
-
-
-class CompanyDelete(DeleteView):
-    model = Company
-    success_url = reverse_lazy('company_list')
-    template_name = 'entity/company/company_delete.html'
-
-
-def list(request, page=1, template='entity/company/company_list.html'):
-    """List of all the comapnies.
-
-    :param template: Add a custom template.
-    """
-
-    company_list = Company.objects.all()
-    paginator = Paginator(company_list, 20)
-
+def find_company(request,lastname,firstname):
     try:
-        companies = paginator.page(page)
-    except (EmptyPage, InvalidPage):
-        companies = paginator.page(paginator.num_pages)
-
-    kwvars = {
-        'object_list': companies.object_list,
-        'has_next': companies.has_next(),
-        'has_previous': companies.has_previous(),
-        'has_other_pages': companies.has_other_pages(),
-        'start_index': companies.start_index(),
-        'end_index': companies.end_index(),
-    }
-
-    try:
-        kwvars['previous_page_number'] = companies.previous_page_number()
-    except (EmptyPage, InvalidPage):
-        kwvars['previous_page_number'] = None
-    try:
-        kwvars['next_page_number'] = companies.next_page_number()
-    except (EmptyPage, InvalidPage):
-        kwvars['next_page_number'] = None
-
-    return render(request, template, kwvars)
-
-
-def detail(request, pk, slug=None, template='entity/company/company_detail.html'):
-    """Detail of a company.
-    :param template: Add a custom template.
-    """
-
-    try:
-        company = Company.objects.get(pk__iexact=pk)
+        company = Company.objects.get(slug_last__iexact=lastname,slug_first__iexact=firstname)
+        return ListWrapper([company])
     except Company.DoesNotExist:
-        raise Http404
-
-    kwvars = {
-        'object': company,
-    }
-
-    return render(request, template, kwvars)
+        qs = Company.objects.filter(last_name__istartswith=lastname, first_name__istartswith=firstname)
+        if qs.count()>0:
+            return qs
+        qs = Company.objects.filter(last_name__istartswith=lastname)
+        return qs
 
 
-def create(request, template='entity/company/company_create.html'):
-    """Create a company.
-    :param template: A custom template.
-    :param form: A custom form.
+def index(request):
+
     """
-
-    user = request.user
-    if not user.has_perm('{}.add_company'.format(Company._meta.app_label)):
-        return HttpResponseForbidden()
-
+    <form action="" method="post">
+    <table>
+    {% ifequal mode "advanced" %}
+    {{form}}
+    <tr><td><a href="#">Simple Search</a></td>
+    <td><input type="submit" name="submit" value="Search" /></td></tr>
+    {% else %}
+    <tr><td>{{form.first}}</td><td>{{form.last}}</td>
+    <td><input type="submit" name="submit" value="Search" /></td></tr>
+    <tr><td>{{form.first.label_tag}}</td><td>{{form.last.label_tag}}</td>
+    <td><a href="#">Advanced Search</a></td></tr>
+    <tr><td colspan="2" /><td><a href="?new=1">Add New Company</a></td></tr>
+    {% endifequal %}
+    </table>
+    </form>
+    """
+    if request.GET.get('new', False):
+        return company_edit(request)
+    #return company_search(request,None)
+    mode = request.GET.get('mode', 'normal')
+    mode = mode.lower()
     if request.method == 'POST':
-        company_form = CompanyCreateForm(request.POST)
-        if company_form.is_valid():
-            c = company_form.save(commit=False)
+        if mode=='advanced':
+            form = AdvancedSearchForm(request.POST,request.FILES)
+        else:
+            form = SearchForm(request.POST,request.FILES)
+        if form.is_valid():
+            data = form.cleaned_data
+            qs = Company.objects
+            all = True
+            fields = [ ('first','first_name__istartswith'),
+                      ('last','last_name__istartswith'),
+                      ('line1', 'addresses__line1__icontains'),
+                      ('line2', 'addresses__line2__icontains'),
+                      ('line3', 'addresses__line3__icontains'),
+                      ('city', 'addresses__city__icontains'),
+                      ('state', 'addresses__state__icontains'),
+                      ('postcode', 'addresses__postcode__icontains'),
+                      ('country', 'addresses__state__country__title__icontains'),
+                      ('phone', 'telephones__number__contains' ),
+                      ('email', 'emails__email__icontains'),
+                      ('website','websites__url__icontains'),
+                       ]
+            for name,query in fields:
+                try:
+                    if data[name] and re.match('[a-zA-Z0-9]+',data[name]):
+                        qs = eval('qs.filter('+query+'="'+data[name]+'")')
+                        all = False
+                except KeyError:
+                    pass
+            if data['has_phone']:
+                all = False
+                qs = qs.filter(telephones__number__regex=r'[0-9]+')
+                #data['has_phone'] = not data['has_phone']
+            if all:
+                qs = qs.all()
+            return do_company_search(request,qs)
+    else:
+        if mode=='advanced':
+            form = AdvancedSearchForm()
+        else:
+            form = SearchForm()
+    context = {'form':form, 'mode':mode, 'title':'Our Address Book'}
+    return render_to_response('entity/company/company_index.html',context)
 
-            # TODO Make sure that the slug isn't already in the database
-            if c.nickname:
-                c.slug = slugify(c.nickname)
+
+def company_search(request,query):
+    if query:
+        qs = Company.objects.filter(title__istartswith=query)
+    else:
+        qs = Company.objects.all()
+    return do_company_search(request, qs)
+
+
+def company_detail(request, object_id=None):
+    if object_id:
+        try:
+            company = Company.objects.get(pk=object_id)
+            context = { 'object':company,
+            'title':'%s'%(company.title),
+            'is_popup':request.GET.get('print',False) }
+            return render(request, 'entity/company/company_detail.html', context)
+        except Company.DoesNotExist:
+            raise http.Http404
+
+
+def company_add(request):
+    AddressFormSet = modelformset_factory(Address, form=AddressForm, can_delete=True)
+    TelephoneFormSet = modelformset_factory(Telephone, form=TelephoneForm, can_delete=True)
+    EmailFormSet = modelformset_factory(Email, form=EmailForm, can_delete=True)
+    WebsiteFormSet = modelformset_factory(Website, form=WebsiteForm, can_delete=True)
+    #SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
+    company = None   
+    if request.method == 'POST':
+        #if request.POST.has_key('cancel'):
+        #    return http.HttpResponseRedirect("..")
+        #if request.POST.has_key('delete'):
+        #    if object_id:
+        #        return http.HttpResponseRedirect(reverse('entity.views.company_delete',args=[company.slug_last,company.slug_first]))
+        #    else:
+        #        return http.HttpResponseRedirect(reverse('entity.views.company_delete',args=[lastname,firstname]))
+        form = CompanyForm(request.POST,request.FILES,prefix="company")
+        addr = AddressFormSet(request.POST,request.FILES,queryset=Address.objects.none(),prefix="addr")
+        tel = TelephoneFormSet(request.POST,request.FILES,queryset=Telephone.objects.none(),prefix="tel")
+        email = EmailFormSet(request.POST,request.FILES,queryset=Email.objects.none(),prefix="email")
+        web = WebsiteFormSet(request.POST,request.FILES,queryset=Website.objects.none(),prefix="web")
+        #social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
+        if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid():
+            company = form.save()
+            for a in addr.save():
+                company.addresses.add(a)
+            for t in tel.save():
+                company.telephones.add(t)
+            for e in email.save():
+                company.emails.add(e)
+            for w in web.save():
+                company.websites.add(w) 
+            company.save()
+            return http.HttpResponseRedirect(company.get_absolute_url())      
+    form = CompanyForm(prefix="company")
+    addr = AddressFormSet(queryset=Address.objects.none(),prefix="addr")
+    tel = TelephoneFormSet(queryset=Telephone.objects.none(),prefix="tel")
+    email = EmailFormSet(queryset=Email.objects.none(),prefix="email")
+    web = WebsiteFormSet(queryset=Website.objects.none(),prefix="web")
+    #social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
+    context = { 'object':company, 'company':form, 'telephones':tel, 'emails':email,
+               'websites':web, 'addresses':addr, }
+    context['title']='New Addressbook Entry'
+    return render(request, 'entity/company/company_create.html', context)
+
+
+def company_edit(request, object_id=None):
+    AddressFormSet = modelformset_factory(Address, form=AddressForm, can_delete=True)
+    TelephoneFormSet = modelformset_factory(Telephone, form=TelephoneForm, can_delete=True)
+    EmailFormSet = modelformset_factory(Email, form=EmailForm, can_delete=True)
+    WebsiteFormSet = modelformset_factory(Website, form=WebsiteForm, can_delete=True)
+    #SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
+    if object_id:
+        try:
+            company = Company.objects.get(pk=object_id)
+        except Company.DoesNotExist:
+            raise http.Http404
+    elif firstname and lastname:
+        qs = find_company(request,lastname,firstname)
+        if qs.count()>1:
+            return http.HttpResponseRedirect(reverse('entity.views.companysearch',args=[lastname]))
+        company = qs[0]
+    else:
+        company = None
+    if request.method == 'POST':
+        #if request.POST.has_key('cancel'):
+        #    return http.HttpResponseRedirect("..")
+        #if request.POST.has_key('delete'):
+        #    if object_id:
+        #        return http.HttpResponseRedirect(reverse('entity.views.company_delete',args=[company.slug_last,company.slug_first]))
+        #    else:
+        #        return http.HttpResponseRedirect(reverse('entity.views.company_delete',args=[lastname,firstname]))
+        if company:        
+            form = CompanyForm(request.POST,request.FILES,instance=company,prefix="company")
+            addr = AddressFormSet(request.POST,request.FILES,queryset=company.address.all(),prefix="addr")
+            tel = TelephoneFormSet(request.POST,request.FILES,queryset=company.telephone.all(),prefix="tel")
+            email = EmailFormSet(request.POST,request.FILES,queryset=company.email.all(),prefix="email")
+            web = WebsiteFormSet(request.POST,request.FILES,queryset=company.website.all(),prefix="web")
+            #social = SocialFormSet(request.POST,request.FILES,queryset=company.social.all(),prefix="social")
+        else:
+            form = CompanyForm(request.POST,request.FILES,prefix="company")
+            addr = AddressFormSet(request.POST,request.FILES,queryset=Address.objects.none(),prefix="addr")
+            tel = TelephoneFormSet(request.POST,request.FILES,queryset=Telephone.objects.none(),prefix="tel")
+            email = EmailFormSet(request.POST,request.FILES,queryset=Email.objects.none(),prefix="email")
+            web = WebsiteFormSet(request.POST,request.FILES,queryset=Website.objects.none(),prefix="web")
+            #social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
+        if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid():
+            if company:
+                company = form.save(commit=False)
             else:
-                c.slug = slugify(c.name)
+                company = form.save()
+            for a in addr.save():
+                company.address.add(a)
+            for t in tel.save():
+                company.telephone.add(t)
+            for e in email.save():
+                company.email.add(e)
+            for w in web.save():
+                company.website.add(w) 
+            #for s in social.save():
+            #    company.social.add(w) 
+            company.save()
+            return http.HttpResponseRedirect(company.get_absolute_url())       
+    elif company:
+        form = CompanyForm(instance=company,prefix="company")
+        addr = AddressFormSet(queryset=company.address.all(),prefix="addr")
+        tel = TelephoneFormSet(queryset=company.telephone.all(),prefix="tel")
+        email = EmailFormSet(queryset=company.email.all(),prefix="email")
+        web = WebsiteFormSet(queryset=company.website.all(),prefix="web")
+        #social = WebsiteFormSet(queryset=company.websites.all(),prefix="social")
+    else:
+        form = CompanyForm(prefix="company")
+        addr = AddressFormSet(queryset=Address.objects.none(),prefix="addr")
+        tel = TelephoneFormSet(queryset=Telephone.objects.none(),prefix="tel")
+        email = EmailFormSet(queryset=Email.objects.none(),prefix="email")
+        web = WebsiteFormSet(queryset=Website.objects.none(),prefix="web")
+        #social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
+    context = { 'object':company, 'company':form, 'telephones':tel, 'emails':email,
+               'websites':web, 'addresses':addr, }
+    if company:
+        context['title']='Edit %s' % (company.title)
+        context['can_delete']=True
+    else:
+        context['title']='New Addressbook Entry'
+    return render(request, 'entity/company/company_update.html', context)
 
-            c.save()
-            return HttpResponseRedirect(c.get_absolute_url())
-        else:
-            return HttpResponseServerError()
 
-    kwvars = {
-        'form': CompanyCreateForm(request.POST)
-    }
-
-    return render(request, template, kwvars)
-
-
-def update(request, pk, slug=None, template='entity/company/company_update.html'):
-    """Update a company.
-    :param template: A custom template.
-    :param form: A custom form.
-    """
-
-    user = request.user
-    if not user.has_perm('{}.change_company'.format(Company._meta.app_label)):
-        return HttpResponseForbidden()
-
-    try:
-        company = Company.objects.get(pk__iexact=pk)
-    except Company.DoesNotExist:
-        raise Http404
-
-    form = CompanyUpdateForm(instance=company)
-    phone_formset = PhoneNumberFormSet(instance=company)
-    email_formset = EmailAddressFormSet(instance=company)
-    im_formset = InstantMessengerFormSet(instance=company)
-    website_formset = WebSiteFormSet(instance=company)
-    address_formset = StreetAddressFormSet(instance=company)
-    special_date_formset = SpecialDateFormSet(instance=company)
-
+def company_delete(request, object_id=None):
+    company = company_detail(request, object_id)
+    del company
     if request.method == 'POST':
-        form = CompanyUpdateForm(request.POST, instance=company)
-        phone_formset = PhoneNumberFormSet(request.POST, instance=company)
-        email_formset = EmailAddressFormSet(request.POST, instance=company)
-        im_formset = InstantMessengerFormSet(request.POST, instance=company)
-        website_formset = WebSiteFormSet(request.POST, instance=company)
-        address_formset = StreetAddressFormSet(request.POST, instance=company)
-        special_date_formset = SpecialDateFormSet(request.POST, instance=company)
-
-        if form.is_valid() and phone_formset.is_valid() and \
-                email_formset.is_valid() and im_formset.is_valid() and \
-                website_formset.is_valid() and address_formset.is_valid():
-            form.save()
-            phone_formset.save()
-            email_formset.save()
-            im_formset.save()
-            website_formset.save()
-            address_formset.save()
-            special_date_formset.save()
-            return HttpResponseRedirect(company.get_absolute_url())
-
-    kwvars = {
-        'form': form,
-        'phone_formset': phone_formset,
-        'email_formset': email_formset,
-        'im_formset': im_formset,
-        'website_formset': website_formset,
-        'address_formset': address_formset,
-        'special_date_formset': special_date_formset,
-        'object': company,
-    }
-
-    return render(request, template, kwvars)
+        if request.POST.has_key('cancel'):
+            return http.HttpResponseRedirect(reverse('entity.views.company_detail',args=[object_id]))
+        for a in list(object.addresses.all())+list(object.telephones.all())+list(object.emails.all())+list(object.websites.all()):
+            a.delete()
+        object.delete()
+        return http.HttpResponseRedirect(reverse('entity.views.index'))
+    return render_to_response('entity/company/company_delete.html',locals())
 
 
-def delete(request, pk, slug=None, template='entity/company/company_delete.html'):
-    """Update a company.
-    :param template: A custom template.
-    """
+#def vcard_export(request):
+#    filename = 'addresses'
+#    if request.method == 'POST':
+#        form = ExportForm(request.POST,request.FILES)
+#        if form.is_valid():
+#            data = form.cleaned_data
+#            qs = Company.objects.filter(pk__in=data['ids'].split(','))
+#            result = []
+#            for company in qs:
+#                print(company)
+#                vc = vobject.vCard()
+#                vc.add('n')
+#                vc.n.value = vobject.vcard.Name(family=company.last_name, given=company.first_name)
+#                vc.add('fn')
+#                vc.fn.value = ' '.join([company.first_name,company.last_name])
+#                for email in company.emails.all():
+#                    obj = vc.add('email')
+#                    obj.value = email.email
+#                    obj.type_param = email.location.value
+#                for tel in company.telephones.all():
+#                    obj = vc.add('tel')
+#                    obj.value = tel.number
+#                    obj.type_param = ','.join([tel.location.value,tel.get_type_display()])
+#                for addr in company.addresses.all():
+#                    obj = vc.add('adr')
+#                    street = ''
+#                    if addr.line1:
+#                        street = [addr.line1]
+#                    if addr.line2:
+#                        street.append(addr.line2)
+#                    if addr.line3:
+#                        street.append(addr.line3)
+#                    region=addr.state.long_name if addr.state else ''
+#                    country=addr.state.country.name if addr.state else ''
+#                    obj.value = vobject.vcard.Address(street=street, city=addr.city, region=region, country=country, code=addr.postcode)
+#                    obj.type_param = addr.location.value
+#                if company.image:
+#                    obj = vc.add('photo')
+#                    obj.value = company.image
+#                    obj.value_param='URL'
+#                vc.add('rev').value = company.modified.isoformat()
+#                result.append(vc.serialize())
+#            if len(result)==1:
+#                filename = '_'.join([qs[0].first_name, qs[0].last_name])
+#            else:
+#                filename += '-'+datetime.datetime.now().date().isoformat()
+#            resp = http.HttpResponse('\n\n'.join(result),content_type='text/vcard')
+#            resp['Content-Disposition'] = 'attachment; filename="'+filename+'.vcf"'
+#            return resp
+#    raise http.Http404
+ 
 
-    user = request.user
-    if not user.has_perm('{}.delete_company'.format(Company._meta.app_label)):
-        return HttpResponseForbidden()
 
-    try:
-        company = Company.objects.get(pk__iexact=pk)
-    except Company.DoesNotExist:
-        raise Http404
+#def do_company_search(request,queryset):
+#    def get_url(object):
+#        e = object.primary_email()
+#        if e:
+#            return e.url()
+#        return None
+    
+#    table = Table( [ TableColumn('First Name','first_name',url=True, clazz="name"),
+#                    TableColumn('Last Name','last_name',url=True, clazz="name"),
+#                    TableColumn('Address','primary_address()',sort=False,url=False, clazz="address"),
+#                    TableColumn('Telephone','primary_telephone()',sort=False,url=False),
+#                    TableColumn('Email','primary_email()',sort=False, 
+#                                url=get_url),
+#                    ],
+#                    context={'title':'Our Address Book', 'table_class':'addressbook'},
+#                    default='last_name'
+#                    )
+#    table.paginate(request,queryset)
+#    table.context['export_form'] = ExportForm({ 'ids':','.join([str(qs.pk) for qs in queryset]) })
+#    return render_to_response('entity/company/company_list.html',table.context,context_instance=RequestContext(request))
+   
 
-    if request.method == 'POST':
-        new_data = request.POST.copy()
-        if new_data['delete_company'] == 'Yes':
-            company.delete()
-            return HttpResponseRedirect(reverse('contacts_company_list'))
-        else:
-            return HttpResponseRedirect(company.get_absolute_url())
-
-    kwvars = {
-        'object': company,
-    }
-
-    return render(request, template, kwvars)

@@ -1,5 +1,5 @@
-from django.base import AppConfig
+from django.apps import AppConfig
 
 
-class personalityConfig(AppConfig):
+class entityConfig(AppConfig):
     name = 'entity'

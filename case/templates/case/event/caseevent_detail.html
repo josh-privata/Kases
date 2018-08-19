@@ -1,0 +1,161 @@
+﻿{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}Event Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}
+        <h5>Event Title: {{ object.title }}</h5>
+        <h5>Event ID: {{ object.id }}</h5>
+        <h5>Event Brief: {{ object.brief }}</h5>
+    {% endblock %}          
+
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}
+        <h5>Event Deadline: {{ object.deadline }}</h5>
+        <h5>Event Creation Date: {{ object.creation_date }}</h5>
+    {% endblock %} 
+
+    {% block summary_buttonurl %}{% url 'caseevent_update' object.case.id object.id %}{% endblock %}
+
+<!-- Event Detail Tabs -->
+<!-- Panel 1 - Details -->
+{% block tab1_header %}Details{% endblock %}
+<!-- Panel 2 - Entities -->
+{% block tab2_header %}Related Entities{% endblock %}
+<!-- Panel 3 - Events -->
+{% block tab3_header %}Related Events{% endblock %}
+<!-- Panel 4 - Evidence -->
+{% block tab4_header %}Related Evidence{% endblock %}
+<!-- Panel 5 - -->
+{% block tab5 %}{% endblock %}
+{% block tab5_header %}{% endblock %}
+<!-- Panel 6 - -->
+{% block tab6 %}{% endblock %}
+{% block tab6_header %}{% endblock %}
+<!-- Panel 7 - -->
+{% block tab7 %}{% endblock %}
+{% block tab7_header %}{% endblock %}
+<!-- Panel 8 -  -->    
+{% block tab8 %}{% endblock %}
+{% block tab8_header %}{% endblock %}
+<!-- Panel 9 -  -->    
+{% block tab9 %}{% endblock %}
+{% block tab9_header %}{% endblock %}
+<!-- Panel 10 -  -->    
+{% block tab10 %}{% endblock %}
+{% block tab10_header %}{% endblock %}
+<!-- Panel 11 -  -->    
+{% block tab11 %}{% endblock %}
+{% block tab11_header %}{% endblock %}
+<!-- Panel 12 -  -->    
+{% block tab12 %}{% endblock %}
+{% block tab12_header %}{% endblock %}
+<!-- Panel 13 -  -->    
+{% block tab13 %}{% endblock %}
+{% block tab13_header %}{% endblock %}
+<!-- Panel 14 -  -->    
+{% block tab14 %}{% endblock %}
+{% block tab14_header %}{% endblock %}
+<!-- Panel 15 -  -->    
+{% block tab15_header %}Billing{% endblock %}
+
+<!-- Tab panels -->      
+<!-- Panel 1 - Details -->
+{% block panel1_content %}
+<div class="row">
+
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h3>Details</h3>
+                        <h5>Event Reference: {{ object.reference }}</h5>
+                        <h5>Event Location: {{ object.location }}</h5>
+                        <h5>Comment: {{ object.comment }}</h5>
+                        <h5>Private: {{ object.private }}</h5>
+                    </p>
+                </div>
+            </div>
+        </div>
+            
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h3>Details</h3>
+                        <h5>Event Type: {{ object.type }}</h5>
+                        <h5>Event Status: {{ object.status }}</h5>
+                        <h5>Event Classification:{{ object.classification}}</h5>
+                        <h5>Event Authorisation: {{ object.authorisation }}</h5>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
+
+<!-- Panel 2 - Entities -->
+{% block panel2_content %}{% endblock %}
+
+<!-- Panel 3 - Events -->
+{% block panel3_content %}{% endblock %}
+
+<!-- Panel 4 - Evidence -->
+{% block panel4_content %}{% endblock %}
+
+<!-- Panel 5 -  -->
+{% block panel5 %}{% endblock %}
+{% block panel5_content %}{% endblock %}
+
+<!-- Panel 6 -  -->
+{% block panel6 %}{% endblock %}
+{% block panel6_content %}{% endblock %}
+
+<!-- Panel 7 -  -->
+{% block panel7 %}{% endblock %}
+{% block panel7_content %}{% endblock %}
+
+<!-- Panel 8 -  -->
+{% block panel8 %}{% endblock %}
+{% block panel8_content %}{% endblock %}
+
+<!-- Panel 9 -  -->
+{% block panel9 %}{% endblock %}
+{% block panel9_content %}{% endblock %}
+
+<!-- Panel 10 -  -->
+{% block panel10 %}{% endblock %}
+{% block panel10_content %}{% endblock %}
+
+<!-- Panel 11 -  -->
+{% block panel11 %}{% endblock %}
+{% block panel11_content %}{% endblock %}
+
+<!-- Panel 12 -  -->
+{% block panel12 %}{% endblock %}
+{% block panel12_content %}{% endblock %}
+
+<!-- Panel 13 -  -->
+{% block panel13 %}{% endblock %}
+{% block panel13_content %}{% endblock %}
+
+<!-- Panel 14 -  -->
+{% block panel14 %}{% endblock %}
+{% block panel14_content %}{% endblock %}
+
+<!-- Panel 15 - Billing -->
+{% block panel15_content %}Billing{% endblock %}

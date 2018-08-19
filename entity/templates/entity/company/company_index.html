@@ -1,0 +1,98 @@
+{% extends "global/views/base_index.html" %}
+{% load render_table from django_tables2 %}
+
+{% block sidebar_internal %}
+    {% include "entity/entity_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - Dashboard{% endblock %}
+
+<!-- Statistics Section -->
+<!-- Active Entities -->
+    {% block stat1_name %}All Entities{% endblock %}
+    {% block stat1_count %}{{ all_count }}{% endblock %}
+
+<!-- Total Entities -->
+    {% block stat2_name %}Active Entities{% endblock %}
+    {% block stat2_count %}{{ active_count }}{% endblock %}
+
+<!-- Approved Entities -->
+    {% block stat3_name %}Active Entities{% endblock %}
+    {% block stat3_count %}{{ active_count }}{% endblock %}
+
+<!-- Pending Entities -->
+    {% block stat4_name %}Active Entities{% endblock %}
+    {% block stat4_count %}{{ active_count }}{% endblock %}
+
+<!-- Rejected Entities -->
+    {% block stat5_name %}Active Entities{% endblock %}
+    {% block stat5_count %}{{ active_count }}{% endblock %}
+
+<!-- Closed Entities -->
+    {% block stat6_name %}Active Entities{% endblock %}
+    {% block stat6_count %}{{ active_count }}{% endblock %}
+
+<!-- Updates Section -->
+<!-- Active Entities -->
+<!-- Header -->
+    {% block left_update_header %}Active Entities{% endblock %}
+    {% block left_update_header_count %}{{ all_count }} entities{% endblock %}
+
+<!-- Update Box -->
+    {% block left_update_box_item_url %}{% url 'entity_detail' object1.slug_last object1.slug_first  %}{% endblock %}
+    {% block left_update_box_item_title %}{{ object1.first_name }} {{ object1.last_name }}{% endblock %}
+    {% block left_update_box_item_body1 %}{{ object1.created }}{% endblock %}
+    {% block left_update_box_item_body2 %}{{ object1.created }}{% endblock %}
+
+<!-- No Item -->
+    {% block left_update_box_noitem %}There are no entities to show{% endblock %}
+
+<!-- Recent Updates -->
+<!-- Header -->
+    {% block centre_update_header %}Active Entitys{% endblock %}
+    {% block centre_update_header_count %}{{ active_count }} entities{% endblock %}
+
+<!-- Update Box -->
+    {% block centre_update_box_item_url %}{% url 'entity_detail' object2.slug_last object2.slug_first  %}{% endblock %}
+    {% block centre_update_box_item_title %}{{ object2.first_name }} {{ object2.last_name }}{% endblock %}
+    {% block centre_update_box_item_body1 %}{{ object2.created }}{% endblock %}
+    {% block centre_update_box_item_body2 %}{{ object2.created }}{% endblock %}
+
+<!-- No Item -->
+    {% block centre_update_box_noitem %}There are no entities to show{% endblock %}
+
+<!-- Tasks -->
+<!-- Header -->
+    {% block right_update_header %}Active Entitys{% endblock %}
+    {% block right_update_header_count %}{{ active_count }} entities{% endblock %}
+
+<!-- Update Box -->
+    {% block right_update_box_item_url %}{% url 'entity_detail' object3.slug_last object3.slug_first  %}{% endblock %}
+    {% block right_update_box_item_title %}{{ object3.first_name }} {{ object3.last_name }}{% endblock %}
+    {% block right_update_box_item_body1 %}{{ object3.created }}{% endblock %}
+    {% block right_update_box_item_body2 %}{{ object3.created }}{% endblock %}
+
+<!-- No Item -->
+    {% block right_update_box_noitem %}There are no entities to show{% endblock %}
+
+<!-- Entity Section -->
+<!-- Table Head -->
+    {% block table_head %}
+<th>Entity ID</th>
+<th>Entity Title</th>
+    {% endblock %}
+
+<!-- Table Body -->
+<!-- Entity ID -->
+    {% block table_body_id_url %}{% url 'entity_detail' table_object.slug_last table_object.slug_first  %}{% endblock %}
+    {% block table_body_id_column %} {{ table_object.id }} {% endblock %}
+
+<!-- Columns -->
+    {% block table_body_columns %}
+<!-- Entity Title -->
+<td>{{ table_object.first_name }} {{ table_object.last_name }}</td>
+    {% endblock %}
+
+<!-- Table Else -->
+    {% block table_else %}<p>There are no entities to show</p>{% endblock %}

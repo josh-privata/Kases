@@ -1,73 +1,62 @@
 ﻿{% extends "global/auth_base.html" %}
 
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
 {% block content %}
-    <div class="row">
-        <div class="col-sm-12">
-
-            <!-- Panel -->
-            <div class="panel panel-default">
-
-                <!-- Panel Body -->
-                <div class="panel-body">
-
-                    <!-- Results Table -->
-                    <table class="table">
-
-                        <!-- Table Head -->
-                        <thead>
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Panel -->
+        <div class="panel panel-default">
+            <!-- Panel Body -->
+            <div class="panel-body">
+                <!-- Results Table -->
+                <table class="table">
+                    <!-- Table Head -->
+                    <thead>
                         <tr>
-                            <th>Task ID</th>
-                            <th>Task Title</th>
-                            <th>Task Detail</th>
-                            <th>Task Background</th>
-                            <th>Task Status</th>
-                            <th>Task Type</th>
+                            <th>Device ID</th>
+                            <th>Device Title</th>
+                            <th>Device Detail</th>
+                            <th>Device Background</th>
+                            <th>Device Status</th>
+                            <th>Device Type</th>
                         </tr>
-                        </thead>
-                        <!-- Table -->
-                        {% if tasks_list %}
-                            <!-- Table Body -->
-                            <tbody>
-                            {% for task in tasks_list %}
-                                <tr>
+                    </thead>
+                    <!-- Table -->
+                    {% if devices_list %}
+                    <!-- Table Body -->
+                    <tbody>
+                        {% for device in devices_list %}
+                        <tr>
+                            <!-- Device ID -->
+                            <td>
+                                <a href="{% url 'casedevice_detail' device.id %}" role="button">
+                                    {{ device.id }}
+                                </a>
+                            </td>
 
-                                    <!-- Task ID -->
-                                    <td>
-                                        <a href="{% url 'casetask_detail' task.id %}" role="button">
-                                            {{ task.id }}
-                                        </a>
-                                    </td>
-                                    
-                                    <!-- Task Title -->
-                                    <td>{{ task.title }}</td>
+                            <!-- Device Title -->
+                            <td>{{ device.title }}</td>
+                            <!-- Device Description -->
+                            <td>{{ device.description }}</td>
+                            <!-- Device Background -->
+                            <td>{{ device.background }}</td>
+                            <!-- Device Status -->
+                            <td>{{ device.status }}</td>
+                            <!-- Device Type -->
+                            <td>{{ device.type }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
-                                    <!-- Task Description -->
-                                    <td>{{ task.description }}</td>
-
-                                    <!-- Task Background -->
-                                    <td>{{ task.background }}</td>
-
-                                    <!-- Task Status -->
-                                    <td>{{ task.status }}</td>
-
-                                    <!-- Task Type -->
-                                    <td>{{ task.type }}</td>
-
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-
-                            </table>
-
-                          
-                        {% else %}
-                            <p>There are no tasks to show</p>
-
-                        {% endif %}
-                </div>
-
+                {% else %}
+                <p>There are no devices to show</p>
+                {% endif %}
             </div>
-
         </div>
     </div>
+</div>
 {% endblock %}

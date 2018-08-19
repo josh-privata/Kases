@@ -19,13 +19,13 @@
         <link rel="stylesheet" type="text/css" href="{% static 'base/content/site.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'base/content/navs.css' %}" />
         <link rel="stylesheet" type="text/css" href="{% static 'base/content/button.css' %}" />
-        {#<link rel="stylesheet" type="text/css" href="{% static 'base/content/card.css' %}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{% static 'base/content/dashboard.css' %}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{% static 'base/content/statistics.css' %}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{% static 'base/content/updates.css' %}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{% static 'base/content/forms.css' %}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{% static 'base/content/footer.css' %}" />#}
-        {#<link rel="stylesheet" type="text/css" href="{% static 'base/content/charts.css' %}" />#}
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/card.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/dashboard.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/statistics.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/updates.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/forms.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/footer.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/charts.css' %}" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
         {% endblock %}
         {% block stylesheets %}{% endblock %}
@@ -37,6 +37,18 @@
     <!-- Body -->
     <body class="{% block bodyclass %}{% endblock %}">
 
+            <!-- Scripts -->
+        {% block base_scripts %}
+            <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="{% static 'base/scripts/popper.min.js' %}"></script>
+            <script src="{% static 'base/scripts/bootstrap.min.js' %}"></script>
+            <script src="{% static 'base/scripts/bsadmin.js' %}"></script>
+            <script src="{% static 'base/scripts/respond.min.js' %}"></script>
+            <script src="{% static 'base/scripts/modernizr-2.6.2.js' %}"></script>
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}
         <!-- Default Page -->
         {% block page %}
 
@@ -69,17 +81,7 @@
              </div>
 
         {% endblock %}
-    
-    <!-- Scripts -->
-        {% block base_scripts %}
-            <script src="{% static 'base/scripts/jquery.min.js' %}"></script>
-            <script src="{% static 'base/scripts/opper.min.js' %}"></script>
-            <script src="{% static 'base/scripts/bootstrap.min.js' %}"></script>
-            <script src="{% static 'base/scripts/bsadmin.js' %}"></script>
-            <script src="{% static 'base/scripts/respond.min.js' %}"></script>
-            <script src="{% static 'base/scripts/modernizr-2.6.2.js' %}"></script>
-        {% endblock %}
-        {% block scripts %}{% endblock %}
+   
 
     </body>
 </html>

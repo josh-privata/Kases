@@ -1,20 +1,20 @@
 ﻿{% extends "global/auth_base.html" %}
 
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
 {% block content %}
-    <div class="row">
-        <div class="col-sm-12">
-
-            <!-- Panel -->
-            <div class="panel panel-default">
-
-                <!-- Panel Body -->
-                <div class="panel-body">
-
-                    <!-- Results Table -->
-                    <table class="table">
-
-                        <!-- Table Head -->
-                        <thead>
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Panel -->
+        <div class="panel panel-default">
+            <!-- Panel Body -->
+            <div class="panel-body">
+                <!-- Results Table -->
+                <table class="table">
+                    <!-- Table Head -->
+                    <thead>
                         <tr>
                             <th>Evidence ID</th>
                             <th>Evidence Title</th>
@@ -23,51 +23,40 @@
                             <th>Evidence Status</th>
                             <th>Evidence Type</th>
                         </tr>
-                        </thead>
-                        <!-- Table -->
-                        {% if evidences_list %}
-                            <!-- Table Body -->
-                            <tbody>
-                            {% for evidence in evidences_list %}
-                                <tr>
+                    </thead>
+                    <!-- Table -->
+                    {% if evidences_list %}
+                    <!-- Table Body -->
+                    <tbody>
+                        {% for evidence in evidences_list %}
+                        <tr>
+                            <!-- Evidence ID -->
+                            <td>
+                                <a href="{% url 'evidence_detail' evidence.id %}" role="button">
+                                    {{ evidence.id }}
+                                </a>
+                            </td>
 
-                                    <!-- Evidence ID -->
-                                    <td>
-                                        <a href="{% url 'evidence_detail' evidence.id %}" role="button">
-                                            {{ evidence.id }}
-                                        </a>
-                                    </td>
-                                    
-                                    <!-- Evidence Title -->
-                                    <td>{{ evidence.title }}</td>
+                            <!-- Evidence Title -->
+                            <td>{{ evidence.title }}</td>
+                            <!-- Evidence Description -->
+                            <td>{{ evidence.description }}</td>
+                            <!-- Evidence Background -->
+                            <td>{{ evidence.background }}</td>
+                            <!-- Evidence Status -->
+                            <td>{{ evidence.status }}</td>
+                            <!-- Evidence Type -->
+                            <td>{{ evidence.type }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
-                                    <!-- Evidence Description -->
-                                    <td>{{ evidence.description }}</td>
-
-                                    <!-- Evidence Background -->
-                                    <td>{{ evidence.background }}</td>
-
-                                    <!-- Evidence Status -->
-                                    <td>{{ evidence.status }}</td>
-
-                                    <!-- Evidence Type -->
-                                    <td>{{ evidence.type }}</td>
-
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-
-                            </table>
-
-                          
-                        {% else %}
-                            <p>There are no evidences to show</p>
-
-                        {% endif %}
-                </div>
-
+                {% else %}
+                <p>There are no evidences to show</p>
+                {% endif %}
             </div>
-
         </div>
     </div>
+</div>
 {% endblock %}

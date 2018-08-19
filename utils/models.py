@@ -12,6 +12,7 @@ from django.core.exceptions import ImproperlyConfigured
 from django.http import HttpResponseRedirect
 from django.utils.encoding import force_text
 from django.views.generic.base import ContextMixin
+from simple_history.models import HistoricalRecords
 
 
 class MultipleFormsMixin(ContextMixin):
@@ -178,7 +179,7 @@ class ObjectDescriptionMixin(models.Model):
     private = models.BooleanField(default=False, blank=True, verbose_name="Private")
     #created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='created by', null=True, blank=True, editable=False, verbose_name="Created By")
     #modified_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='modified by', null=True, blank=True, editable=False, verbose_name="Modified By")
-    
+        
     def save(self, *args, **kwargs):
         if not self.pk:
            self.created = timezone_now()

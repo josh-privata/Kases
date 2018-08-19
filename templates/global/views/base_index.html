@@ -3,58 +3,8 @@
 
     {#{% block title %}{% endblock %}#}
     {#{% block content %}{% endblock %}#}
-
     {#{% block stats %}{% endblock %}#}
-    {#{% block stat1 %}{% endblock %}#}
-    {#{% block stat1_name %}{% endblock %}#}
-    {#{% block stat1_count %}{% endblock %}#}
-    {#{% block stat2 %}{% endblock %}#}
-    {#{% block stat2_name %}{% endblock %}#}
-    {#{% block stat2_count %}{% endblock %}#}
-    {#{% block stat3 %}{% endblock %}#}
-    {#{% block stat3_name %}{% endblock %}#}
-    {#{% block stat3_count %}{% endblock %}#}
-    {#{% block stat4 %}{% endblock %}#}
-    {#{% block stat4_name %}{% endblock %}#}
-    {#{% block stat4_count %}{% endblock %}#}
-    {#{% block stat5 %}{% endblock %}#}
-    {#{% block stat5_name %}{% endblock %}#}
-    {#{% block stat5_count %}{% endblock %}#}
-    {#{% block stat6 %}{% endblock %}#}
-    {#{% block stat6_name %}{% endblock %}#}
-    {#{% block stat6_count %}{% endblock %}#}
-
     {#{% block updates %}{% endblock %}#}
-    {#{% block left_update %}{% endblock %}#}
-    {#{% block left_update_header %}{% endblock %}#}
-    {#{% block left_update_header_count %}{% endblock %}#}
-    {#{% block left_update_box %}{% endblock %}#}
-    {#{% block left_update_box_if %}{% endblock %}#}
-    {#{% block left_update_box_item_url %}{% endblock %}#}
-    {#{% block left_update_box_item_title %}{% endblock %}#}
-    {#{% block left_update_box_item_body1 %}{% endblock %}#}
-    {#{% block left_update_box_item_body2 %}{% endblock %}#}
-    {#{% block left_update_box_noitem %}{% endblock %}#}
-    {#{% block centre_update %}{% endblock %}#}
-    {#{% block centre_update_header %}{% endblock %}#}
-    {#{% block centre_update_header_count %}{% endblock %}#}
-    {#{% block centre_update_box %}{% endblock %}#}
-    {#{% block centre_update_box_if %}{% endblock %}#}
-    {#{% block centre_update_box_item_url %}{% endblock %}#}
-    {#{% block centre_update_box_item_title %}{% endblock %}#}
-    {#{% block centre_update_box_item_body1 %}{% endblock %}#}
-    {#{% block centre_update_box_item_body2 %}{% endblock %}#}
-    {#{% block centre_update_box_noitem %}{% endblock %}#}
-    {#{% block right_update %}{% endblock %}#}
-    {#{% block right_update_header %}{% endblock %}#}
-    {#{% block right_update_header_count %}{% endblock %}#}
-    {#{% block right_update_box %}{% endblock %}#}
-    {#{% block right_update_box_if %}{% endblock %}#}
-    {#{% block right_update_box_item_url %}{% endblock %}#}
-    {#{% block right_update_box_item_title %}{% endblock %}#}
-    {#{% block right_update_box_item_body1 %}{% endblock %}#}
-    {#{% block right_update_box_item_body2 %}{% endblock %}#}
-    {#{% block right_update_box_noitem %}{% endblock %}#}
 
     {#{% block table %}{% endblock %}#}
     {#{% block table_if %}{% endblock %}#}
@@ -73,74 +23,18 @@
     {% block stats %}
         <section class="dashboard-counts">
             <div class="jumbotron">
-                <div class="container-fluid">
-                    <div class="row">
+                <div class="container align-items-center">
+                    <div class="row text-center">
 
-                    <!-- Stat 1 -->
-                    {% block stat1 %}
-                        <div class="col-xl-2 col-md-4 col-6">
-                            <div class="wrapper count-title d-flex">
-                            <div class="name"><strong class="text-uppercase">{% block stat1_name %}{% endblock %}</strong><span></span>
-                                <div class="count-number">{% block stat1_count %}{% endblock %}</div>
+                    {% for key,value in counts.items %}
+                        <div class="col-xl-2 col-md-4 col-6  align-items-center">
+                            <div class="wrapper count-title d-flex text-center">
+                            <div class="name"><strong class="text-uppercase">{{ value.name }}</strong><span></span>
+                                <div class="count-number">{{ value.value }}</div>
                             </div>
                             </div>
                         </div>
-                    {% endblock %}
-
-                    <!-- Stat 2 -->
-                    {% block stat2 %}
-                        <div class="col-xl-2 col-md-4 col-6">
-                            <div class="wrapper count-title d-flex">
-                            <div class="name"><strong class="text-uppercase">{% block stat2_name %}{% endblock %}</strong><span></span>
-                                <div class="count-number">{% block stat2_count %}{% endblock %}</div>
-                            </div>
-                            </div>
-                        </div>
-                    {% endblock %}
-
-                    <!-- Stat 3 -->
-                    {% block stat3 %}
-                        <div class="col-xl-2 col-md-4 col-6">
-                            <div class="wrapper count-title d-flex">
-                            <div class="name"><strong class="text-uppercase">{% block stat3_name %}{% endblock %}</strong><span></span>
-                                <div class="count-number">{% block stat3_count %}{% endblock %}</div>
-                            </div>
-                            </div>
-                        </div>
-                    {% endblock %}
-
-                    <!-- Stat 4 -->
-                    {% block stat4 %}
-                        <div class="col-xl-2 col-md-4 col-6">
-                            <div class="wrapper count-title d-flex">
-                            <div class="name"><strong class="text-uppercase">{% block stat4_name %}{% endblock %}</strong><span></span>
-                                <div class="count-number">{% block stat4_count %}{% endblock %}</div>
-                            </div>
-                            </div>
-                        </div>
-                    {% endblock %}
-
-                    <!-- Stat 5 -->
-                    {% block stat5 %}
-                        <div class="col-xl-2 col-md-4 col-6">
-                            <div class="wrapper count-title d-flex">
-                            <div class="name"><strong class="text-uppercase">{% block stat5_name %}{% endblock %}</strong><span></span>
-                                <div class="count-number">{% block stat5_count %}{% endblock %}</div>
-                            </div>
-                            </div>
-                        </div>
-                    {% endblock %}
-
-                    <!-- Stat 6 -->
-                    {% block stat6 %}
-                        <div class="col-xl-2 col-md-4 col-6">
-                            <div class="wrapper count-title d-flex">
-                            <div class="name"><strong class="text-uppercase">{% block stat6_name %}{% endblock %}</strong><span></span>
-                                <div class="count-number">{% block stat6_count %}{% endblock %}</div>
-                            </div>
-                            </div>
-                        </div>
-                    {% endblock %}
+                    {% endfor %}
 
                     </div>
                 </div>
@@ -154,47 +48,46 @@
             <div class="container-fluid">
                 <div class="row">
 
-                    <!-- Left Update -->
-                    {% block left_update %}
+                    <!-- Updates -->
+                    {% for key,value in updates.items %}
                         <div class="col-lg-4 col-md-12">           
-                                <div id="left-updates" class="card updates recent-updated">
+                            <div id="{{ value.side }}-updates" class="card updates recent-updated">
 
-                            <!-- Header -->
-                            <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                                <h2 class="h5 display">
-                                <a data-toggle="collapse" data-parent="#left-updates" href="#left-box" aria-expanded="true" aria-controls="left-box">
-                                    {% block left_update_header %}
-                                    {% endblock %}
-                                </a>
-                                </h2>
-                                <div class="right-column">
-                                    <div class="badge badge-primary">{% block left_update_header_count %}{% endblock %}</div>
-                                    <a data-toggle="collapse" data-parent="#left-updates" href="#left-box" aria-expanded="true" aria-controls="left-box">
-                                        <i class="fa fa-angle-down"></i>
+                                <!-- Header -->
+                                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                                    <h2 class="h5 display">
+                                    <a data-toggle="collapse" data-parent="#{{ value.side }}-updates" href="#{{ value.side }}-box" aria-expanded="true" aria-controls="{{ value.side }}-box">
+                                        {{ value.name }}
                                     </a>
+                                    </h2>
+                                    <div class="right-column">
+                                        <div class="badge badge-primary">{{ value.count }} {{ value.object_type_plural }}</div>
+                                        <a data-toggle="collapse" data-parent="#{{ value.side }}-updates" href="#{{ value.side }}-box" aria-expanded="true" aria-controls="{{ value.side }}-box">
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <!-- Update Box -->
-                            {% block left_update_box %}
-                                <div id="left-box" role="tabpanel" class="collapse">
+                                <!-- Update Box -->
+                                <div id="{{ value.side }}-box" role="tabpanel" class="collapse">
                                     <ul class="news list-unstyled">
 
-                                        {% block left_update_box_if %}
-                                            {% if objects1 %}
-                                                {% for object1 in objects1 %}
+                                            {% if value.content %}
+                                                {% for object in value.content %}
 
                                                     <!-- Item -->
                                                     <li class="d-flex justify-content-between"> 
                                                         <div class="left-col d-flex">
                                                             <div class="icon"><i class="icon-rss-feed"></i></div>
-                                                            <div class="title"><strong><a href="{% block left_update_box_item_url %}{% endblock %}"
-                                                                                            role="button">{% block left_update_box_item_title %}{% endblock %}</a></strong>
-                                                                <p>{% block left_update_box_item_body1 %}{% endblock %}</p>
+                                                            <div class="title">
+                                                                <strong><a href="{% url 'case_detail' object.id %}" role="button">
+                                                                    {{ object }}
+                                                                    </a></strong>
+                                                                <p>{{ object.description }}</p>
                                                             </div>
                                                         </div>
                                                         <div class="right-col text-right">
-                                                            <div class="update-date"><span class="month">{% block left_update_box_item_body2 %}{% endblock %}</span></div>
+                                                            <div class="update-date"><span class="month">{{ object.created }}</span></div>
                                                         </div>
                                                     </li>
 
@@ -205,158 +98,22 @@
                                                     <li class="d-flex justify-content-between"> 
                                                         <div class="left-col d-flex">
                                                             <div class="icon"><i class="icon-rss-feed"></i></div>
-                                                            <p>{% block left_update_box_noitem %}{% endblock %}</p>
+                                                            <p>There are no items to show here</p>
                                                         </div>
                                                     </li>
 
                                             {% endif %}
-                                        {% endblock %}
 
                                     </ul>
                                 </div>
-                            {% endblock %}
 
                             </div>
                         </div>
-                    {% endblock %}
+                    {% endfor %}
 
-                    <!-- Centre Update -->
-                    {% block centre_update %}
-                        <div class="col-lg-4 col-md-12">           
-                                <div id="centre-updates" class="card updates recent-updated">
-
-                            <!-- Header -->
-                            <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                                <h2 class="h5 display">
-                                <a data-toggle="collapse" data-parent="#centre-updates" href="#centre-box" aria-expanded="true" aria-controls="centre-box">
-                                    {% block centre_update_header %}
-                                        Active Cases
-                                    {% endblock %}
-                                </a>
-                                </h2>
-                                <div class="right-column">
-                                    <div class="badge badge-primary">{% block centre_update_header_count %}{% endblock %}</div>
-                                    <a data-toggle="collapse" data-parent="#centre-updates" href="#centre-box" aria-expanded="true" aria-controls="centre-box">
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Update Box -->
-                            {% block centre_update_box %}
-                                <div id="centre-box" role="tabpanel" class="collapse">
-                                    <ul class="news list-unstyled">
-
-                                        {% block centre_update_box_if %}
-                                            {% if objects2 %}
-                                                {% for object2 in objects2 %}
-
-                                                    <!-- Item -->
-                                                    <li class="d-flex justify-content-between"> 
-                                                        <div class="left-col d-flex">
-                                                            <div class="icon"><i class="icon-rss-feed"></i></div>
-                                                            <div class="title"><strong><a href="{% block centre_update_box_item_url %}{% endblock %}"
-                                                                                            role="button">{% block centre_update_box_item_title %}{% endblock %}</a></strong>
-                                                                <p>{% block centre_update_box_item_body1 %}{% endblock %}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="right-col text-right">
-                                                            <div class="update-date"><span class="month">{% block centre_update_box_item_body2 %}{% endblock %}</span></div>
-                                                        </div>
-                                                    </li>
-
-                                                {% endfor %}
-                                                {% else %}
-
-                                                    <!-- No Item -->
-                                                    <li class="d-flex justify-content-between"> 
-                                                        <div class="left-col d-flex">
-                                                            <div class="icon"><i class="icon-rss-feed"></i></div>
-                                                            <p>{% block centre_update_box_noitem %}{% endblock %}</p>
-                                                        </div>
-                                                    </li>
-
-                                            {% endif %}
-                                        {% endblock %}
-
-                                    </ul>
-                                </div>
-                            {% endblock %}
-
-                            </div>
-                        </div>
-                    {% endblock %}
-
-                    <!-- Right Update -->
-                    {% block right_update %}
-                        <div class="col-lg-4 col-md-12">           
-                                <div id="right-updates" class="card updates recent-updated">
-
-                            <!-- Header -->
-                            <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
-                                <h2 class="h5 display">
-                                <a data-toggle="collapse" data-parent="#right-updates" href="#right-box" aria-expanded="true" aria-controls="right-box">
-                                    {% block right_update_header %}
-                                        Active Cases
-                                    {% endblock %}
-                                </a>
-                                </h2>
-                                <div class="right-column">
-                                    <div class="badge badge-primary">{% block right_update_header_count %}{% endblock %}</div>
-                                    <a data-toggle="collapse" data-parent="#right-updates" href="#right-box" aria-expanded="true" aria-controls="right-box">
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                </div>
-                            </div>
-
-                            <!-- Update Box -->
-                            {% block right_update_box %}
-                                <div id="right-box" role="tabpanel" class="collapse">
-                                    <ul class="news list-unstyled">
-
-                                        {% block right_update_box_if %}
-                                            {% if objects3 %}
-                                                {% for object3 in objects3 %}
-
-                                                    <!-- Item -->
-                                                    <li class="d-flex justify-content-between"> 
-                                                        <div class="left-col d-flex">
-                                                            <div class="icon"><i class="icon-rss-feed"></i></div>
-                                                            <div class="title"><strong><a href="{% block right_update_box_item_url %}{% endblock %}"
-                                                                                            role="button">{% block right_update_box_item_title %}{% endblock %}</a></strong>
-                                                                <p>{% block right_update_box_item_body1 %}{% endblock %}</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="right-col text-right">
-                                                            <div class="update-date"><span class="month">{% block right_update_box_item_body2 %}{% endblock %}</span></div>
-                                                        </div>
-                                                    </li>
-
-                                                {% endfor %}
-                                                {% else %}
-
-                                                    <!-- No Item -->
-                                                    <li class="d-flex justify-content-between"> 
-                                                        <div class="left-col d-flex">
-                                                            <div class="icon"><i class="icon-rss-feed"></i></div>
-                                                            <p>{% block right_update_box_noitem %}{% endblock %}</p>
-                                                        </div>
-                                                    </li>
-
-                                            {% endif %}
-                                        {% endblock %}
-
-                                    </ul>
-                                </div>
-                            {% endblock %}
-
-                            </div>
-                        </div>
-                    {% endblock %}
-
-              </div>
+                </div>
             </div>
-          </section>
+        </section>
     {% endblock %}
 
     <!-- Table Section -->

@@ -1,6 +1,8 @@
 ﻿{% extends "global/auth_base.html" %}
 {#{% load crispy_forms_tags %}#}
 
+{% block title %}Kases - Create{% endblock %}
+
 <!-- Content -->
 {% block content %}
 
@@ -22,7 +24,6 @@
             {% endblock %}
 
             {% block form_button %}        
-                <button type="submit" class="save btn btn-default">Create</button>
             {% endblock %}
             
 
@@ -33,3 +34,4 @@
     {% block post_form %}{% endblock %}
 
 {% endblock %}
+

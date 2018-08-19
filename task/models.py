@@ -13,6 +13,8 @@ from simple_history.models import HistoricalRecords
 ## Admin Models
 class TaskAuthorisation(Authorisation):
     # General Fields
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Authorisation')
@@ -28,6 +30,8 @@ class TaskAuthorisation(Authorisation):
 class TaskClassification(Classification):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Task Classification')
         verbose_name_plural = _('Task Classifications')
@@ -42,6 +46,8 @@ class TaskClassification(Classification):
 class TaskType(Type):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Task Type')
         verbose_name_plural = _('Task Types')
@@ -56,6 +62,8 @@ class TaskType(Type):
 class TaskPriority(Priority):
     # General Fields
    
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Task Priority')
         verbose_name_plural = _('Task Priorities')
@@ -70,6 +78,8 @@ class TaskPriority(Priority):
 class TaskCategory(Category):
     # General Fields
     
+    history = HistoricalRecords()
+
     class Meta:
         verbose_name = _('Task Category')
         verbose_name_plural = _('Task Categories')
@@ -83,6 +93,8 @@ class TaskCategory(Category):
 
 class TaskStatus(Status):
     # General Fields
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Status')
@@ -115,6 +127,8 @@ class TaskStatusGroup(StatusGroup):
     # General Fields
     # Linked Fields
     status = models.ManyToManyField(TaskStatus, blank=True, verbose_name="Task Status")
+    
+    history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Status Group')

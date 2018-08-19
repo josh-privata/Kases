@@ -1,110 +1,49 @@
 {% extends "global/views/base_index.html" %}
 {% load render_table from django_tables2 %}
 
+{% block sidebar_internal %}
+    {% include "global/views/sidebar_open_layout.html" %}
+{% endblock %}
+
 <!-- Title -->
-{% block title %}Kases - Dashboard{% endblock %}
+{% block title %}Kases - Case Dashboard{% endblock %}
 
 <!-- Statistics Section -->
-    <!-- Active Cases -->
-    {% block stat1_name %}All Cases{% endblock %}
-    {% block stat1_count %}{{ all_count }}{% endblock %}
-
-    <!-- Total Cases -->
-    {% block stat2_name %}Active Cases{% endblock %}
-    {% block stat2_count %}{{ active_count }}{% endblock %}
-
-    <!-- Approved Cases -->
-    {% block stat3_name %}Active Cases{% endblock %}
-    {% block stat3_count %}{{ active_count }}{% endblock %}
-
-    <!-- Pending Cases -->
-    {% block stat4_name %}Active Cases{% endblock %}
-    {% block stat4_count %}{{ active_count }}{% endblock %}
-
-    <!-- Rejected Cases -->
-    {% block stat5_name %}Active Cases{% endblock %}
-    {% block stat5_count %}{{ active_count }}{% endblock %}
-
-    <!-- Closed Cases -->
-    {% block stat6_name %}Active Cases{% endblock %}
-    {% block stat6_count %}{{ active_count }}{% endblock %}
-
 <!-- Updates Section -->
-    <!-- Active Cases -->
-    <!-- Header -->
-    {% block left_update_header %}Active Cases{% endblock %}
-    {% block left_update_header_count %}{{ all_count }} cases{% endblock %}
-
-    <!-- Update Box -->
-    {% block left_update_box_item_url %}{% url 'case_detail' object1.id %}{% endblock %}
-    {% block left_update_box_item_title %}{{ object1.title }}{% endblock %}
-    {% block left_update_box_item_body1 %}{{ object1.description }}{% endblock %}
-    {% block left_update_box_item_body2 %}{{ object1.creation_date }}{% endblock %}
-
-    <!-- No Item -->
-    {% block left_update_box_noitem %}There are no cases to show{% endblock %}
-
-    <!-- Recent Updates -->
-    <!-- Header -->
-    {% block centre_update_header %}Active Cases{% endblock %}
-    {% block centre_update_header_count %}{{ active_count }} cases{% endblock %}
-
-    <!-- Update Box -->
-    {% block centre_update_box_item_url %}{% url 'case_detail' object2.id %}{% endblock %}
-    {% block centre_update_box_item_title %}{{ object2.title }}{% endblock %}
-    {% block centre_update_box_item_body1 %}{{ object2.description }}{% endblock %}
-    {% block centre_update_box_item_body2 %}{{ object2.creation_date }}{% endblock %}
-
-    <!-- No Item -->
-    {% block centre_update_box_noitem %}There are no cases to show{% endblock %}
-
-    <!-- Tasks -->
-    <!-- Header -->
-    {% block right_update_header %}Active Cases{% endblock %}
-    {% block right_update_header_count %}{{ active_count }} cases{% endblock %}
-
-    <!-- Update Box -->
-    {% block right_update_box_item_url %}{% url 'case_detail' object3.id %}{% endblock %}
-    {% block right_update_box_item_title %}{{ object3.title }}{% endblock %}
-    {% block right_update_box_item_body1 %}{{ object3.description }}{% endblock %}
-    {% block right_update_box_item_body2 %}{{ object3.creation_date }}{% endblock %}
-
-    <!-- No Item -->
-    {% block right_update_box_noitem %}There are no cases to show{% endblock %}
-
 <!-- Case Section -->
-    <!-- Table Head -->
-    {% block table_head %}
-        <th>Case ID</th>
-        <th>Case Title</th>
-        <th>Case Detail</th>
-        <th>Case Background</th>
-        <th>Case Status</th>
-        <th>Case Type</th>
-    {% endblock %}
-        
-    <!-- Table Body -->
-    <!-- Case ID -->
-    {% block table_body_id_url %}{% url 'case_detail' table_object.id %}{% endblock %}
-    {% block table_body_id_column %} {{ table_object.id }} {% endblock %}                        
-    
-    <!-- Columns -->
-    {% block table_body_columns %}
-        <!-- Case Title -->
-        <td>{{ table_object.title }}</td>
+<!-- Table Head -->
+{% block table_head %}
+    <th>Case ID</th>
+    <th>Case Title</th>
+    <th>Case Detail</th>
+    <th>Case Background</th>
+    <th>Case Status</th>
+    <th>Case Type</th>
+{% endblock %}
 
-        <!-- Case Description -->
-        <td>{{ table_object.description }}</td>
+<!-- Table Body -->
+<!-- Case ID -->
+{% block table_body_id_url %}
+    {% url 'case_detail' table_object.id %}
+{% endblock %}
 
-        <!-- Case Background -->
-        <td>{{ table_object.background }}</td>
+{% block table_body_id_column %}
+    {{ table_object.id }}
+{% endblock %}
 
-        <!-- Case Status -->
-        <td>{{ table_object.status }}</td>
+<!-- Columns -->
+{% block table_body_columns %}
+    <!-- Case Title -->
+    <td>{{ table_object.title }}</td>
+    <!-- Case Description -->
+    <td>{{ table_object.description }}</td>
+    <!-- Case Background -->
+    <td>{{ table_object.background }}</td>
+    <!-- Case Status -->
+    <td>{{ table_object.status }}</td>
+    <!-- Case Type -->
+    <td>{{ table_object.type }}</td>
+{% endblock %}
 
-        <!-- Case Type -->
-        <td>{{ table_object.type }}</td>
-    {% endblock %}
-    
-    <!-- Table Else -->
-    {% block table_else %}<p>There are no cases to show</p>{% endblock %}
+<!-- Table Else -->
+{% block table_else %}<p>There are no cases to show</p>{% endblock %}

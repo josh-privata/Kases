@@ -1,0 +1,77 @@
+﻿{% extends "global/auth_base.html" %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+            
+            <!-- Panel -->
+            <div class="panel panel-default">
+
+                <!-- Panel Body -->
+                <div class="panel-body">
+
+                    <!-- Results Table -->
+                    <table class="table">
+
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Company ID</th>
+                            <th>Company Title</th>
+                            <th>Company Detail</th>
+                            <th>Company Background</th>
+                            <th>Company Status</th>
+                            <th>Company Type</th>
+                        </tr>
+                        </thead>
+                        <!-- Table -->
+                        {% if companySs_list %}
+                            <!-- Table Body -->
+                            <tbody>
+                            {% for company in companys_list %}
+                                <tr>
+
+                                    <!-- Company ID -->
+                                    <td>
+                                        <a href="{% url 'company_detail' company.id %}" role="button">
+                                            {{ company.id }}
+                                        </a>
+                                    </td>
+                                    
+                                    <!-- Company Title -->
+                                    <td>{{ company.title }}</td>
+
+                                    <!-- Company Description -->
+                                    <td>{{ company.description }}</td>
+
+                                    <!-- Company Background -->
+                                    <td>{{ company.background }}</td>
+
+                                    <!-- Company Status -->
+                                    <td>{{ company.status }}</td>
+
+                                    <!-- Company Type -->
+                                    <td>{{ company.type }}</td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                            </table>
+
+                          
+                        {% else %}
+                            <p>There are no companys to show</p>
+
+                        {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

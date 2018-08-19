@@ -1,13 +1,10 @@
-﻿{% extends "global/views/base_update.html" %}
-{#{% load crispy_forms_tags %}#}
-{% load widget_tweaks %}
+﻿{% extends "global/views/base_create.html" %}
+{% load crispy_forms_tags %}
 
-<!-- Sidebar -->
 {% block sidebar_internal %}
     {% include "case/case_open_layout.html" %}
 {% endblock %}
 
-<!-- Title -->
-{% block title %}Update Task{% endblock %}
-<!-- Heading -->
-{#{% block heading %}{{ pagetitle }} Create Case{% endblock %}#}
+{% block form_as_p %}
+{% crispy form %}
+{% endblock %}

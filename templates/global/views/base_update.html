@@ -9,6 +9,8 @@
     {#{% block form_button %}{% endblock %}#}
     {#{% block post_form %}{% endblock %}#}
 
+{% block title %}Kases - {{object.title}}{% endblock %}
+
 <!-- Content -->
 {% block content %}
 
@@ -29,7 +31,6 @@
             {% endblock %}
 
             {% block form_button %}
-                <button type="submit" class="save btn btn-default">Update</button>
             {% endblock %}
 
         </form>
