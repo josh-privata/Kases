@@ -13,26 +13,7 @@
 
                 <!-- Nav -->
                 <ul class="navbar-nav mr-auto">
-                    <!-- Search -->
-                    <li class="nav-item {% block search_active %}{% endblock %}">
-                        {#<a class="nav-link" href="{% url 'home' %}">Global Search<span class="sr-only">(current)</span></a>#}
-                    </li>
-                    <!-- Knowledge Base -->
-                    <li class="nav-item">
-                        {#<a class="nav-link" href="{% url 'evidence' %}">Knowledge Base</a>#}
-                    </li>
-                    <!-- Inventory -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'devices' %}">Inventory</a>
-                    </li>
-                    <!-- Entities -->
-                    <li class="nav-item}">
-                        <a class="nav-link" href="{% url 'entities' %}">Entities</a>
-                    </li>
-                    <!-- Administration -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin">Administration</a>
-                    </li>
+
                 </ul>
 
                 <!-- Login -->
@@ -51,11 +32,11 @@
 
             {% block sidebar_internal %}
                 <!-- Sidebar 1 - Dashboard -->
-                    {% block sidebar_1 %}<li><a href="{% url 'home' %}"><i class="fa fa-fw fa-home"></i> Dashboard</a></li>{% endblock %}
+                    {% block sidebar_1 %}{% endblock %}
                 <!-- Sidebar 2  -- -->
-                    {% block sidebar_2 %}<li><a href="{% url 'case_create' %}"><i class="fa fa-fw fa-plus"></i> New Case</a></li>{% endblock %}
+                    {% block sidebar_2 %}{% endblock %}
                 <!-- Sidebar 3  -- -->
-                    {% block sidebar_3 %}<li><a href="{% url 'case_list' %}"><i class="fa fa-fw fa-plus"></i> Open Case</a></li>{% endblock %}
+                    {% block sidebar_3 %}{% endblock %}
                 <!-- Sidebar 4 -->
                     {% block sidebar_4 %}{% endblock %}
                 <!-- Sidebar 5 -->

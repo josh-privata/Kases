@@ -10,6 +10,7 @@
     {#{% block summary_rightpanel %}{% endblock %}#}
     {#{% block summary_button %}{% endblock %}#}
     {#{% block summary_buttonurl %}{% endblock %}#}
+    {#{% block extra_summary %}{% endblock %}#}
 
     {#{% block tabs %}{% endblock %}#}
     {#{% block tab1 %}{% endblock %}#}
@@ -26,6 +27,22 @@
     {#{% block tab6_header %}{% endblock %}#}
     {#{% block tab7 %}{% endblock %}#}
     {#{% block tab7_header %}{% endblock %}#}
+    {#{% block tab8 %}{% endblock %}#}
+    {#{% block tab8_header %}{% endblock %}#}
+    {#{% block tab9 %}{% endblock %}#}
+    {#{% block tab9_header %}{% endblock %}#}
+    {#{% block tab10 %}{% endblock %}#}
+    {#{% block tab10_header %}{% endblock %}#}
+    {#{% block tab11 %}{% endblock %}#}
+    {#{% block tab11_header %}{% endblock %}#}
+    {#{% block tab12 %}{% endblock %}#}
+    {#{% block tab12_header %}{% endblock %}#}
+    {#{% block tab13 %}{% endblock %}#}
+    {#{% block tab13_header %}{% endblock %}#}
+    {#{% block tab14 %}{% endblock %}#}
+    {#{% block tab14_header %}{% endblock %}#}
+    {#{% block tab15 %}{% endblock %}#}
+    {#{% block tab15_header %}{% endblock %}#}
 
     {#{% block panels %}{% endblock %}#}
     {#{% block panel1 %}{% endblock %}#}
@@ -42,6 +59,22 @@
     {#{% block panel6_content %}{% endblock %}#}
     {#{% block panel7 %}{% endblock %}#}
     {#{% block panel7_content %}{% endblock %}#}
+    {#{% block panel8 %}{% endblock %}#}
+    {#{% block panel8_content %}{% endblock %}#}    
+    {#{% block panel9 %}{% endblock %}#}
+    {#{% block panel9_content %}{% endblock %}#}
+    {#{% block panel10 %}{% endblock %}#}
+    {#{% block panel10_content %}{% endblock %}#}
+    {#{% block panel11 %}{% endblock %}#}
+    {#{% block panel11_content %}{% endblock %}#}
+    {#{% block panel12 %}{% endblock %}#}
+    {#{% block panel12_content %}{% endblock %}#}
+    {#{% block panel13 %}{% endblock %}#}
+    {#{% block panel13_content %}{% endblock %}#}
+    {#{% block panel14 %}{% endblock %}#}
+    {#{% block panel14_content %}{% endblock %}#}
+    {#{% block panel15 %}{% endblock %}#}
+    {#{% block panel15_content %}{% endblock %}#}
     
 
 {% block title %}Kases - {{object.title}}{% endblock %}
@@ -80,6 +113,7 @@
                         </div>
                         <br />
                         {% block summary_button %}<a href="{% block summary_buttonurl %}{% endblock %}" class="btn btn-primary">Edit</a>{% endblock %}
+                        {% block extra_summary %}{% endblock %}
                     
                     </div>
                 </div>

@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="149" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="149" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="195" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="195" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1aedb7ea14974d62de2bbfa97ea7a37666" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -30,7 +30,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="150" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="150" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="196" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="196" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1aa6ca7990eec9d06fbf109ca11d13a4a1" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -44,7 +44,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="151" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="151" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="197" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="197" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1a90e44aa96435004090db1a1b939bb372" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -58,7 +58,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="152" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="152" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="198" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="198" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1a00ee630999c91675f36a529c30a03846" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -72,7 +72,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="153" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="153" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="199" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="199" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1ae091b27a5c9cd4af8493723bcd64e1c1" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -86,7 +86,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="154" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="154" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="200" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="200" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1ab8150de1bb5ca0ab2bbd624b574132f8" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -100,7 +100,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="156" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="156" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="202" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="202" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1a5a0a0f12206dfe06d6ad4c10631c7cdf" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -114,7 +114,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="157" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="157" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="203" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="203" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1a19ce7aed45741da4e054ab302c841831" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -128,48 +128,78 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="158" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="158" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="204" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="204" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classevidence_1_1models_1_1_chain_of_custody_1a2fa38c416802b0836c46bfa3b785b1c2" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple evidence.models.ChainOfCustody::history</definition>
+        <argsstring></argsstring>
+        <name>history</name>
+        <initializer>= HistoricalRecords()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="206" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="206" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para><verbatim>Model to contain information about evidence chain of custody.
+
+:date_recorded (optional):
+:date_of_custody (optional):
+:check_in (optional):
+:comment (optional):
+:custody_receipt (optional):
+:custody_receipt_label (optional):
+:assigned_to (optional):
+:assigned_by (optional):
+:custodian (optional):
+:private (optional): Is it private Boolean
+:description (optional): Description
+:created (auto): Date Created
+:modified (auto): Date Modified
+:created_by (auto): Created by linked User model  
+:modified_by (auto): Modified by linked User model</verbatim> </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="154">
+      <node id="588">
         <label>evidence.models.ChainOfCustody</label>
         <link refid="classevidence_1_1models_1_1_chain_of_custody"/>
-        <childnode refid="155" relation="public-inheritance">
+        <childnode refid="589" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="155">
+      <node id="589">
         <label>utils.models.ObjectDescriptionMixin</label>
         <link refid="classutils_1_1models_1_1_object_description_mixin"/>
-        <childnode refid="156" relation="public-inheritance">
+        <childnode refid="590" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="156">
+      <node id="590">
         <label>Model</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="157">
+      <node id="591">
         <label>evidence.models.ChainOfCustody</label>
         <link refid="classevidence_1_1models_1_1_chain_of_custody"/>
-        <childnode refid="158" relation="public-inheritance">
+        <childnode refid="592" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="158">
+      <node id="592">
         <label>utils.models.ObjectDescriptionMixin</label>
         <link refid="classutils_1_1models_1_1_object_description_mixin"/>
-        <childnode refid="159" relation="public-inheritance">
+        <childnode refid="593" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="159">
+      <node id="593">
         <label>Model</label>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="147" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="147" bodyend="161"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="172" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="172" bodyend="209"/>
     <listofallmembers>
       <member refid="classevidence_1_1models_1_1_chain_of_custody_1a5a0a0f12206dfe06d6ad4c10631c7cdf" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>assigned_by</name></member>
       <member refid="classevidence_1_1models_1_1_chain_of_custody_1ab8150de1bb5ca0ab2bbd624b574132f8" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>assigned_to</name></member>
@@ -183,8 +213,10 @@
       <member refid="classevidence_1_1models_1_1_chain_of_custody_1aedb7ea14974d62de2bbfa97ea7a37666" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>date_of_custody</name></member>
       <member refid="classevidence_1_1models_1_1_chain_of_custody_1a8444abe03515a625f8256dfdae306bc2" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>date_recorded</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1aa9db1a2dd800429f6bf3262708408379" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>description</name></member>
+      <member refid="classevidence_1_1models_1_1_chain_of_custody_1a2fa38c416802b0836c46bfa3b785b1c2" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>history</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1a895434b9b64caab6a48589e1efa1f5b2" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>modified</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1ac1a737eefa43b91977c3193768f81c87" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a27dad54dd71954c2f6130d7b66b34d1c" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>private</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1a8721aff9d00270cba53882d98b8de831" prot="public" virt="non-virtual"><scope>evidence::models::ChainOfCustody</scope><name>save</name></member>
     </listofallmembers>
   </compounddef>

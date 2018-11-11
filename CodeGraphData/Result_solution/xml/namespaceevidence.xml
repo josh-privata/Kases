@@ -7,6 +7,7 @@
     <innernamespace refid="namespaceevidence_1_1forms">evidence::forms</innernamespace>
     <innernamespace refid="namespaceevidence_1_1migrations">evidence::migrations</innernamespace>
     <innernamespace refid="namespaceevidence_1_1models">evidence::models</innernamespace>
+    <innernamespace refid="namespaceevidence_1_1tables">evidence::tables</innernamespace>
     <innernamespace refid="namespaceevidence_1_1tests">evidence::tests</innernamespace>
     <innernamespace refid="namespaceevidence_1_1views">evidence::views</innernamespace>
     <briefdescription>

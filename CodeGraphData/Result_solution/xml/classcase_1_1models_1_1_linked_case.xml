@@ -16,7 +16,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="225" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="225" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="307" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="307" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_linked_case_1a50664f570c0124e55cc27af761febda9" prot="public" static="yes" mutable="no">
         <type>tuple</type>
@@ -30,86 +30,113 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="226" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="226" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="308" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="308" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_linked_case_1aee270edb1e669758befd2e946e5fa18d" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.LinkedCase::linked_by</definition>
         <argsstring></argsstring>
         <name>linked_by</name>
-        <initializer>= models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;the&quot;)</initializer>
+        <initializer>= models.ForeignKey(settings.AUTH_USER_MODEL, related_name=&apos;case_linked_by&apos;, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;Linked By&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="228" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="228" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="311" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="311" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="classcase_1_1models_1_1_linked_case_1a8265bb91a4e092afb62e0e3ea1b70f0f" prot="public" static="yes" mutable="no">
         <type>tuple</type>
         <definition>tuple case.models.LinkedCase::case</definition>
         <argsstring></argsstring>
         <name>case</name>
-        <initializer>= models.ManyToManyField(<ref refid="classcase_1_1models_1_1_case" kindref="compound">Case</ref>, blank=True, verbose_name=&quot;Case&quot;)</initializer>
+        <initializer>= models.ManyToManyField(<ref refid="classcase_1_1models_1_1_case" kindref="compound">Case</ref>, blank=True, related_name=&apos;case_linked_case&apos;, verbose_name=&quot;Case&quot;)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="229" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="229" bodyend="-1"/>
-        <referencedby refid="classcase_1_1views_1_1_case_note_create_1a6be615825051e51bc205d18c7de61aa3" compoundref="case_2views_8py" startline="124" endline="147">case.views.CaseNoteCreate.get_form_kwargs</referencedby>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="312" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="312" bodyend="-1"/>
+        <referencedby refid="classloan_1_1models_1_1_loan_1a84d4f6f729953992481f642b3948df89" compoundref="loan_2models_8py" startline="115" endline="117">loan.models.Loan.__str__</referencedby>
+      </memberdef>
+      <memberdef kind="variable" id="classcase_1_1models_1_1_linked_case_1a42f5abcc0524db1594c5e589f78bb69f" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple case.models.LinkedCase::history</definition>
+        <argsstring></argsstring>
+        <name>history</name>
+        <initializer>= HistoricalRecords()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="314" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="314" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-<para>Data Models. </para>    </briefdescription>
+<para>Linked Models. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para><verbatim>Model to contain information about a case link.
+
+:reason (optional):
+:description (optional):
+:created (optional):
+:modified (optional):
+:private (optional):
+:created_by (optional):
+:modified_by (optional):
+:date_time (optional):
+:linked_by (optional):
+:case (optional):</verbatim> </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="313">
+      <node id="1213">
         <label>case.models.LinkedCase</label>
         <link refid="classcase_1_1models_1_1_linked_case"/>
-        <childnode refid="314" relation="public-inheritance">
+        <childnode refid="1214" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="314">
+      <node id="1214">
         <label>utils.models.ObjectDescriptionMixin</label>
         <link refid="classutils_1_1models_1_1_object_description_mixin"/>
-        <childnode refid="315" relation="public-inheritance">
+        <childnode refid="1215" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="315">
+      <node id="1215">
         <label>Model</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="316">
+      <node id="1216">
         <label>case.models.LinkedCase</label>
         <link refid="classcase_1_1models_1_1_linked_case"/>
-        <childnode refid="317" relation="public-inheritance">
+        <childnode refid="1217" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="317">
+      <node id="1217">
         <label>utils.models.ObjectDescriptionMixin</label>
         <link refid="classutils_1_1models_1_1_object_description_mixin"/>
-        <childnode refid="318" relation="public-inheritance">
+        <childnode refid="1218" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="318">
+      <node id="1218">
         <label>Model</label>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="223" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="223" bodyend="232"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="289" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="289" bodyend="317"/>
     <listofallmembers>
       <member refid="classcase_1_1models_1_1_linked_case_1a8265bb91a4e092afb62e0e3ea1b70f0f" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>case</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1a89803b13439a16bd49ffb3297d829cbb" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>created</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1a342aa403491ad4f61eb13761d86f2c26" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>created</name></member>
       <member refid="classcase_1_1models_1_1_linked_case_1a50664f570c0124e55cc27af761febda9" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>date_time</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1aa9db1a2dd800429f6bf3262708408379" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>description</name></member>
+      <member refid="classcase_1_1models_1_1_linked_case_1a42f5abcc0524db1594c5e589f78bb69f" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>history</name></member>
       <member refid="classcase_1_1models_1_1_linked_case_1aee270edb1e669758befd2e946e5fa18d" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>linked_by</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1a895434b9b64caab6a48589e1efa1f5b2" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>modified</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1ac1a737eefa43b91977c3193768f81c87" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a27dad54dd71954c2f6130d7b66b34d1c" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>private</name></member>
       <member refid="classcase_1_1models_1_1_linked_case_1a8ac72b96a8da0c82442e6acd642ba194" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>reason</name></member>
       <member refid="classutils_1_1models_1_1_object_description_mixin_1a8721aff9d00270cba53882d98b8de831" prot="public" virt="non-virtual"><scope>case::models::LinkedCase</scope><name>save</name></member>
     </listofallmembers>

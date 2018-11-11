@@ -1,0 +1,725 @@
+{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "inventory/inventory_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}Loan Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+
+
+<!-- Left Panel -->
+    {% block summary_leftpanel %}
+<h5>Device: <a href="{% url 'device_detail' object.device.id %}">{{ object.device }}</a></h5>
+<h5>Returned: {{ object.returned }}</h5>
+<h5>Condition: {{ object.condition }}</h5>
+<h5>Loaned To: {{ object.loaned_to }}</h5>
+<h5>Loaned By: {{ object.loaned_by }}</h5>
+<h5>Case: <a href="{% url 'case_detail' object.case.id %}">{{ object.case }}</a></h5>
+<h5>Reason: {{ object.reason }}</h5>
+<h5>Description: {{ object.description }}</h5>
+    {% endblock %}
+
+<!-- Right Panel -->
+    {% block summary_rightpanel %}
+<h5>Booked From: {{ object.booked_from }}</h5>
+<h5>Booked Until: {{ object.booked_until }}</h5>
+<h5>Private: {{ object.private }}</h5>
+<h5>Created: {{ object.created }}</h5>
+<h5>Modified: {{ object.modified }}</h5>
+{#<h5>Created By: {{ object.created_by }}</h5>#}
+{#<h5>Modified By: {{ object.modified_by }}</h5>#}
+    {% endblock %}
+
+    {% block summary_buttonurl %}{% url 'loan_update' object.id %}{% endblock %}
+
+<!-- Case Detail Tabs -->
+<!-- Panel 1 -  -->
+    {% block tab1_header %}Details{% endblock %}
+<!-- Panel 2 -  -->
+    {% block tab2_header %}Manufacturer{% endblock %}
+<!-- Panel 3 -  -->
+    {% block tab3_header %}Vendor{% endblock %}
+<!-- Panel 4 -  -->
+    {% block tab4_header %}Sales Rep{% endblock %}
+<!-- Panel 5 - -->
+    {% block tab5_header %}Service Contract{% endblock %}
+<!-- Panel 6 - -->
+    {% block tab6_header %}Usage History{% endblock %}
+<!-- Panel 7 -  -->
+    {% block tab7_header %}Service History{% endblock %}
+<!-- Panel 8 -  -->
+    {% block tab8 %}{% endblock %}
+    {% block tab8_header %}{% endblock %}   
+<!-- Panel 9 -  -->
+    {% block tab9 %}{% endblock %}
+    {% block tab9_header %}{% endblock %}
+<!-- Panel 10 -  -->
+    {% block tab10 %}{% endblock %}
+    {% block tab10_header %}{% endblock %}
+<!-- Panel 11 -  -->
+    {% block tab11 %}{% endblock %}
+    {% block tab11_header %}{% endblock %}
+<!-- Panel 12 -  -->
+    {% block tab12 %}{% endblock %}
+    {% block tab12_header %}{% endblock %}
+<!-- Panel 13 -  -->
+    {% block tab13 %}{% endblock %}
+    {% block tab13_header %}{% endblock %}
+<!-- Panel 14 -  -->
+    {% block tab14 %}{% endblock %}
+    {% block tab14_header %}{% endblock %}
+<!-- Panel 15 -  -->
+    {% block tab15 %}{% endblock %}
+    {% block tab15_header %}{% endblock %}
+
+<!-- Tab panels -->
+<!-- Panel 1 - Details -->
+    {% block panel1_content %}
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h5>{{ object.device.title }}</h5>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock %}
+
+<!-- Panel 2 - Manufacturer -->
+    {% block panel2_content %}
+<div class="row">
+    <!-- Details -->
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{{ object.device.manufacturer.title }}</h3>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Image -->
+    {% if object.device.image %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <img src={{object.device.image}} alt="{{object.device.first_name}}" title="{{object.device.first_name}}" style="float:right;" />
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Address -->
+    {% if object.device.manufacturer.address %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Addresses' %}</h3>
+                    <table>
+                        {% for addr in object.device.manufacturer.address.all %}
+                        <tr>
+                            <td class="name">
+                                <h6>
+                                    {% if addr.primary %}<strong>
+                                        {% endif %}
+                                        {{addr.location}}
+                                        {% if addr.primary %}
+                                    </strong>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Line 1 : {{addr.line1}}<br /></h6>
+                                <h6>Line 2 : {% if addr.line2 %}{{addr.line2}}<br />{% endif %}</h6>
+                                <h6>Line 3 : {% if addr.line3 %}{{addr.line3}}<br />{% endif %}</h6>
+                                <h6>{{addr.city}}, {{addr.state.long_name}}, {% if addr.postcode %}, {{addr.postcode}}{% endif %}</h6>
+                                <h6>{{addr.state.country.name}}</h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Phone -->
+    {% if object.device.manufacturer.telephone %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Telephone Numbers' %}</h3>
+                    <table>
+                        {% for tel in object.device.manufacturer.telephone.all %}
+                        <tr>
+                            <th><h6>{{tel.location|title}} {{tel.get_type_display|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    {% if tel.primary %}<b>
+                                        {% endif %}
+                                        {{tel.number}}
+                                        {% if tel.primary %}
+                                    </b>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Email -->
+    {% if object.device.manufacturer.email %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Email Addresses' %}</h3>
+                    <table>
+                        {% for email in object.device.manufacturer.email.all %}
+                        <tr>
+                            <th><h6>{{email.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="mailto:{{email.email}}">
+                                        {% if email.primary %}<b>
+                                            {% endif %}
+                                            {{email.email}}
+                                            {% if email.primary %}
+                                        </b>{% endif %}
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Web -->
+    {% if object.device.manufacturer.website %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Websites' %}</h3>
+                    <table>
+                        {% for web in object.device.manufacturer.website.all %}
+                        <tr>
+                            <th><h6>{{web.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="{{web.url}}">
+                                        {% if web.primary %}<b>
+                                            {% endif %}
+                                            {{web.url}}
+                                            {% if web.primary %}
+                                        </b>{% endif %}
+
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Notes -->
+    {% if object.device.manufacturer.notes %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Notes' %}</h3>
+                    <table>
+                        <tr>
+                            <td><h6>{{object.device.manufacturer.notes}}</h6></td>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+    {% endblock %}
+
+<!-- Panel 3 - Vendor -->
+    {% block panel3_content %}
+<div class="row">
+    <!-- Details -->
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{{ object.device.vendor.title }}</h3>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Image -->
+    {% if object.device.image %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <img src={{object.device.image}} alt="{{object.device.first_name}}" title="{{object.device.first_name}}" style="float:right;" />
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Address -->
+    {% if object.device.vendor.address %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Addresses' %}</h3>
+                    <table>
+                        {% for addr in object.device.vendor.address.all %}
+                        <tr>
+                            <td class="name">
+                                <h6>
+                                    {% if addr.primary %}<strong>
+                                        {% endif %}
+                                        {{addr.location}}
+                                        {% if addr.primary %}
+                                    </strong>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Line 1 : {{addr.line1}}<br /></h6>
+                                <h6>Line 2 : {% if addr.line2 %}{{addr.line2}}<br />{% endif %}</h6>
+                                <h6>Line 3 : {% if addr.line3 %}{{addr.line3}}<br />{% endif %}</h6>
+                                <h6>{{addr.city}}, {{addr.state.long_name}}, {% if addr.postcode %}, {{addr.postcode}}{% endif %}</h6>
+                                <h6>{{addr.state.country.name}}</h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Phone -->
+    {% if object.device.vendor.telephone %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Telephone Numbers' %}</h3>
+                    <table>
+                        {% for tel in object.device.vendor.telephone.all %}
+                        <tr>
+                            <th><h6>{{tel.location|title}} {{tel.get_type_display|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    {% if tel.primary %}<b>
+                                        {% endif %}
+                                        {{tel.number}}
+                                        {% if tel.primary %}
+                                    </b>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Email -->
+    {% if object.device.vendor.email %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Email Addresses' %}</h3>
+                    <table>
+                        {% for email in object.device.vendor.email.all %}
+                        <tr>
+                            <th><h6>{{email.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="mailto:{{email.email}}">
+                                        {% if email.primary %}<b>
+                                            {% endif %}
+                                            {{email.email}}
+                                            {% if email.primary %}
+                                        </b>{% endif %}
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Web -->
+    {% if object.device.vendor.website %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Websites' %}</h3>
+                    <table>
+                        {% for web in object.device.vendor.website.all %}
+                        <tr>
+                            <th><h6>{{web.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="{{web.url}}">
+                                        {% if web.primary %}<b>
+                                            {% endif %}
+                                            {{web.url}}
+                                            {% if web.primary %}
+                                        </b>{% endif %}
+
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Notes -->
+    {% if object.device.vendor.notes %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Notes' %}</h3>
+                    <table>
+                        <tr>
+                            <td><h6>{{object.device.vendor.notes}}</h6></td>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+    {% endblock %}
+
+<!-- Panel 4 - Sales Rep -->
+    {% block panel4_content %}
+<div class="row">
+    <!-- Details -->
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{{ object.device.rep.first_name }} {{ object.device.rep.last_name }}</h3>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Image -->
+    {% if object.device.image %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <img src={{object.device.image}} alt="{{object.device.first_name}}" title="{{object.device.first_name}}" style="float:right;" />
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Address -->
+    {% if object.device.rep.address %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Addresses' %}</h3>
+                    <table>
+                        {% for addr in object.device.rep.address.all %}
+                        <tr>
+                            <td class="name">
+                                <h6>
+                                    {% if addr.primary %}<strong>
+                                        {% endif %}
+                                        {{addr.location}}
+                                        {% if addr.primary %}
+                                    </strong>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Line 1 : {{addr.line1}}<br /></h6>
+                                <h6>Line 2 : {% if addr.line2 %}{{addr.line2}}<br />{% endif %}</h6>
+                                <h6>Line 3 : {% if addr.line3 %}{{addr.line3}}<br />{% endif %}</h6>
+                                <h6>{{addr.city}}, {{addr.state.long_name}}, {% if addr.postcode %}, {{addr.postcode}}{% endif %}</h6>
+                                <h6>{{addr.state.country.name}}</h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Phone -->
+    {% if object.device.rep.telephone %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Telephone Numbers' %}</h3>
+                    <table>
+                        {% for tel in object.device.rep.telephone.all %}
+                        <tr>
+                            <th><h6>{{tel.location|title}} {{tel.get_type_display|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    {% if tel.primary %}<b>
+                                        {% endif %}
+                                        {{tel.number}}
+                                        {% if tel.primary %}
+                                    </b>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Email -->
+    {% if object.device.rep.email %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Email Addresses' %}</h3>
+                    <table>
+                        {% for email in object.device.rep.email.all %}
+                        <tr>
+                            <th><h6>{{email.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="mailto:{{email.email}}">
+                                        {% if email.primary %}<b>
+                                            {% endif %}
+                                            {{email.email}}
+                                            {% if email.primary %}
+                                        </b>{% endif %}
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Web -->
+    {% if object.device.rep.website %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Websites' %}</h3>
+                    <table>
+                        {% for web in object.device.rep.website.all %}
+                        <tr>
+                            <th><h6>{{web.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="{{web.url}}">
+                                        {% if web.primary %}<b>
+                                            {% endif %}
+                                            {{web.url}}
+                                            {% if web.primary %}
+                                        </b>{% endif %}
+
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Notes -->
+    {% if object.device.rep.notes %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Notes' %}</h3>
+                    <table>
+                        <tr>
+                            <td><h6>{{object.device.rep.notes}}</h6></td>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+    {% endblock %}
+
+<!-- Panel 5 - Service Contract -->
+    {% block panel5_content %}
+<div class="row">
+    <!-- Service Contract -->
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>Service Contract</h3>
+                    <h5>{{ object.device.service_contract.title }}</h5>
+                    <h5>Duration: {{ object.device.service_contract.duration }}</h5>
+                    <h5>Contract ID: {{ object.device.service_contract.contract_id }}</h5>
+                    <h5>Service ID: {{ object.device.service_contract.service_id }}</h5>
+                    <h5>Terms: {{ object.device.service_contract.terms }}</h5>
+                    <h5>Renewal Date: {{ object.device.service_contract.renewal_date }}</h5>
+                    <h5>Renewal Cost: {{ object.device.service_contract.renewal_cost }}</h5>
+                    <h5>Vendor: {{ object.device.service_contract.vendor }}</h5>
+                    <h5>Contact: {{ object.device.service_contract.contact }}</h5>
+                    <h5>Responsible: {{ object.device.service_contract.responsible }}</h5>
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- Warranty -->
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>Warranty</h3>
+                    <h5>{{ object.device.warranty_title }}</h5>
+                    <h5>Contact: {{ object.device.warranty_contact }}</h5>
+                    <h5>Duration: {{ object.device.warranty_duration }}</h5>
+                    <h5>ID: {{ object.device.warranty_id }}</h5>
+                    <h5>Terms: {{ object.device.warranty_terms }}</h5>
+                    <h5>Vendor: {{ object.device.warranty_vendor }}</h5>
+                    <h5>Responsible: {{ object.device.warranty_responsible }}</h5>
+                    <h5>Start: {{ object.device.warranty_start }}</h5>
+                    <h5>End: {{ object.device.warranty_end }}</h5>
+                    <h5>Extended Warranty: {{ object.device.warranty_extended }}</h5>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock %}
+
+<!-- Panel 6 - Loan History -->
+    {% block panel6_content %}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    Loan History
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock %}
+
+<!-- Panel 7 - Service History -->
+    {% block panel7_content %}
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    Service History
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    {% endblock %}
+
+<!-- Panel 8 - -->
+    {% block panel8 %}{% endblock %}
+    {% block panel8_content %}{% endblock %}
+<!-- Panel 9 - -->
+    {% block panel9 %}{% endblock %}
+    {% block panel9_content %}{% endblock %}
+<!-- Panel 10 - -->
+    {% block panel10 %}{% endblock %}
+    {% block panel10_content %}{% endblock %}
+<!-- Panel 11 - -->
+    {% block panel11 %}{% endblock %}
+    {% block panel11_content %}{% endblock %}
+<!-- Panel 12 - -->
+    {% block panel12 %}{% endblock %}
+    {% block panel12_content %}{% endblock %}
+<!-- Panel 13 - -->
+    {% block panel13 %}{% endblock %}
+    {% block panel13_content %}{% endblock %}
+<!-- Panel 14 - -->
+    {% block panel14 %}{% endblock %}
+    {% block panel14_content %}{% endblock %}
+<!-- Panel 15 - -->
+    {% block panel15 %}{% endblock %}
+    {% block panel15_content %}{% endblock %}

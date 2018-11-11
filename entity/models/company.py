@@ -10,55 +10,85 @@ from django.utils.timezone import now as timezone_now
 
 ## Admin Models
 class CompanyAuthorisation(Authorisation):
-    # General Fields
+    """
+    Inherited model to contain information about a company authorisation.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Company Authorisation')
         verbose_name_plural = _('Company Authorisations')
-
-    #def get_absolute_url(self):
-    #    return reverse('company_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
     
 
 class CompanyClassification(Classification):
-    # General Fields
+    """
+    Inherited model to contain information about a company classification.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Company Classification')
         verbose_name_plural = _('Company Classifications')
 
-    #def get_absolute_url(self):
-    #    return reverse('company_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class CompanyType(Type):
-    # General Fields
+    """
+    Inherited model to contain information about a company type.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Company Type')
         verbose_name_plural = _('Company Types')
 
-    #def get_absolute_url(self):
-    #    return reverse('company_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class CompanyCategory(Category):
-    # General Fields
+    """
+    Inherited model to contain information about a company category.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
     
     history = HistoricalRecords()
 
@@ -66,15 +96,21 @@ class CompanyCategory(Category):
         verbose_name = _('Company Category')
         verbose_name_plural = _('Company Categories')
 
-    #def get_absolute_url(self):
-    #    return reverse('company_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class CompanyStatus(Status):
-    # General Fields
+    """
+    Inherited model to contain information about a company status.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -82,31 +118,23 @@ class CompanyStatus(Status):
         verbose_name = _('Company Status')
         verbose_name_plural = _('Company Status')
 
-    #def get_absolute_url(self):
-    #    return reverse('company_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class CompanyStatusGroup(StatusGroup):
-    ## Choices
-    # CREATED = 'Created'
-    # PENDING = 'Awaiting Authorisation'
-    # REJECTED = 'Rejected'
-    # OPEN = 'Open'
-    # Active = 'Active'
-    # CLOSED = 'Closed'
-    # ARCHIVED = 'Archived'
-    ## Choice Groups
-    # closedStatuses = [CLOSED, ARCHIVED]
-    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
-    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
-    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
-    # workable_statuses = [CREATED, OPEN]
-    # forensic_statuses = [OPEN]
+    """
+    Inherited model to contain information about a comapny status group.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    :status (optional): Status in group linked by Status model
     
-    # General Fields
+    """
+
     # Linked Fields
     status = models.ManyToManyField(CompanyStatus, blank=True, verbose_name="Company Status")
     
@@ -116,23 +144,31 @@ class CompanyStatusGroup(StatusGroup):
         verbose_name = _('Company Status Group')
         verbose_name_plural = _('Company Status Groups')
 
-    #def get_absolute_url(self):
-    #    return reverse('company_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
     
 class CompanyAddress(ContactMethod):
+    """
+    Inherited model to contain information about a company address.
+
+    :line1 (optional):
+    :line2 (optional):
+    :line3 (optional):
+    :city (optional):
+    :private (optional):
+    :state (optional):
+    :postcode (optional):
+    
+    """
+
     # General Fields
     line1 = models.CharField(max_length=255, null=True, blank=True)
     line2 = models.CharField(max_length=255, null=True, blank=True)
     line3 = models.CharField(max_length=255, null=True, blank=True)
     city = models.CharField(max_length=255, null=True, blank=True)
-    #state = models.ForeignKey(State, on_delete=models.DO_NOTHING)
     postcode = models.CharField(max_length=31, blank=True)
 
     # Linked Fields
+    #state = models.ForeignKey(State, on_delete=models.DO_NOTHING)
+
     # Auto Fields
     
     history = HistoricalRecords()
@@ -159,7 +195,37 @@ class CompanyAddress(ContactMethod):
 
 
 ## Main Models
-class Company(models.Model):
+class Company(ObjectDescriptionMixin):
+    """
+    Model to contain information about a company.
+
+    :title (optional):
+    :code (optional):
+    :image (optional):
+    :notes (optional):
+    :primary_market (optional):
+    :industry (optional):
+    :prefix (optional):
+    :social (optional):
+    :address (optional):
+    :telephone (optional):
+    :email (optional):
+    :website (optional):
+    :type (optional):
+    :category (optional):
+    :status (optional):
+    :classification (optional):
+    :authorisation (optional):
+    :slug (optional):
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
+
     # General Fields
     title = models.CharField(max_length=255, db_index=True, null=True, blank=True, verbose_name="Company Title")
     code = models.CharField(max_length=255, db_index=True, null=True, blank=True, verbose_name="Issuer Code")
@@ -183,8 +249,6 @@ class Company(models.Model):
     
     # Auto Fields
     slug = models.SlugField(editable=False, null=True, blank=True)
-    created = models.DateTimeField(_("Creation date and time"),editable=False,)
-    modified = models.DateTimeField(_("Modification date and time"),null=True,editable=False,)
 
     class Meta:
         verbose_name_plural = _("People")

@@ -3,7 +3,6 @@
   <compounddef id="namespaceevidence_1_1migrations" kind="namespace">
     <compoundname>evidence::migrations</compoundname>
     <innernamespace refid="namespaceevidence_1_1migrations_1_10001__initial">evidence::migrations::0001_initial</innernamespace>
-    <innernamespace refid="namespaceevidence_1_1migrations_1_10002__evidence__deadline">evidence::migrations::0002_evidence_deadline</innernamespace>
     <briefdescription>
     </briefdescription>
     <detaileddescription>

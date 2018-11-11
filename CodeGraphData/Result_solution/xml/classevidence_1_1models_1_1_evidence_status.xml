@@ -2,187 +2,95 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="classevidence_1_1models_1_1_evidence_status" kind="class" prot="public">
     <compoundname>evidence::models::EvidenceStatus</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">HistoryModel</basecompoundref>
+    <basecompoundref refid="classutils_1_1models_1_1_status" prot="public" virt="non-virtual">utils.models.Status</basecompoundref>
+    <innerclass refid="classevidence_1_1models_1_1_evidence_status_1_1_meta" prot="public">evidence::models::EvidenceStatus::Meta</innerclass>
       <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a58a3c3f6d7f281e189084d1bd6857bcf" prot="public" static="yes" mutable="no">
-        <type>string</type>
-        <definition>string evidence.models.EvidenceStatus::INACTIVE</definition>
-        <argsstring></argsstring>
-        <name>INACTIVE</name>
-        <initializer>= &apos;Inactive&apos;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="53" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="53" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1aed706c28bf5b2910278a5a27dedd4e66" prot="public" static="yes" mutable="no">
-        <type>string</type>
-        <definition>string evidence.models.EvidenceStatus::ACTIVE</definition>
-        <argsstring></argsstring>
-        <name>ACTIVE</name>
-        <initializer>= &apos;Active&apos;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="54" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="54" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a5cba8c42c5f5479b689d1942b3c6408e" prot="public" static="yes" mutable="no">
-        <type>string</type>
-        <definition>string evidence.models.EvidenceStatus::ARCHIVED</definition>
-        <argsstring></argsstring>
-        <name>ARCHIVED</name>
-        <initializer>= &apos;Archived&apos;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="55" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="55" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a44180e724c194edd4b1d1541027c0758" prot="public" static="yes" mutable="no">
-        <type>string</type>
-        <definition>string evidence.models.EvidenceStatus::DESTROYED</definition>
-        <argsstring></argsstring>
-        <name>DESTROYED</name>
-        <initializer>= &apos;Destroyed&apos;</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="56" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="56" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1aeb78f0c9296c033c2b420d24d5809391" prot="public" static="yes" mutable="no">
-        <type>list</type>
-        <definition>list evidence.models.EvidenceStatus::statuses</definition>
-        <argsstring></argsstring>
-        <name>statuses</name>
-        <initializer>= [<ref refid="classevidence_1_1models_1_1_evidence_status_1a58a3c3f6d7f281e189084d1bd6857bcf" kindref="member">INACTIVE</ref>, <ref refid="classevidence_1_1models_1_1_evidence_status_1aed706c28bf5b2910278a5a27dedd4e66" kindref="member">ACTIVE</ref>, <ref refid="classevidence_1_1models_1_1_evidence_status_1a5cba8c42c5f5479b689d1942b3c6408e" kindref="member">ARCHIVED</ref>, <ref refid="classevidence_1_1models_1_1_evidence_status_1a44180e724c194edd4b1d1541027c0758" kindref="member">DESTROYED</ref>]</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="58" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="58" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a5a500dffca56517ea40f6a79bc52097b" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a22f4635645f6a8679da6d1216accc5cc" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple evidence.models.EvidenceStatus::id</definition>
+        <definition>tuple evidence.models.EvidenceStatus::history</definition>
         <argsstring></argsstring>
-        <name>id</name>
-        <initializer>= models.IntegerField(null=True, blank=True, default=&quot;&quot;)</initializer>
+        <name>history</name>
+        <initializer>= HistoricalRecords()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="61" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="61" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1affe0b0ea1180ada3b0f624c0d8eefd47" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple evidence.models.EvidenceStatus::date_time</definition>
-        <argsstring></argsstring>
-        <name>date_time</name>
-        <initializer>= models.DateTimeField(auto_now=True, null=True)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="62" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="62" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a00efd49f2c7ba2d318a3ab11271d8d46" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple evidence.models.EvidenceStatus::status</definition>
-        <argsstring></argsstring>
-        <name>status</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="63" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="63" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a0159d574fb097673d8956dd29a6d7c00" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple evidence.models.EvidenceStatus::note</definition>
-        <argsstring></argsstring>
-        <name>note</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="64" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="64" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classevidence_1_1models_1_1_evidence_status_1a4b15e0a0f490b255cb53325001f1d056" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple evidence.models.EvidenceStatus::evidence</definition>
-        <argsstring></argsstring>
-        <name>evidence</name>
-        <initializer>= models.ForeignKey(<ref refid="classevidence_1_1models_1_1_evidence" kindref="compound">Evidence</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;the&quot;)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="67" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="67" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="139" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="139" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para><verbatim>Inherited model to contain information about evidence status.
+
+:title (optional): Title
+:description (optional): Description
+:private (optional): Is it private Boolean
+:colour (optional): Colour representation
+:created (auto): Date Created
+:modified (auto): Date Modified
+:created_by (auto): Created by linked User model  
+:modified_by (auto): Modified by linked User model</verbatim> </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="92">
-        <label>HistoryModel</label>
+      <node id="1158">
+        <label>utils.models.Status</label>
+        <link refid="classutils_1_1models_1_1_status"/>
+        <childnode refid="1159" relation="public-inheritance">
+        </childnode>
       </node>
-      <node id="91">
+      <node id="1157">
         <label>evidence.models.EvidenceStatus</label>
         <link refid="classevidence_1_1models_1_1_evidence_status"/>
-        <childnode refid="92" relation="public-inheritance">
+        <childnode refid="1158" relation="public-inheritance">
         </childnode>
+      </node>
+      <node id="1159">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="1160" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1160">
+        <label>Model</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="94">
-        <label>HistoryModel</label>
-      </node>
-      <node id="93">
-        <label>evidence.models.EvidenceStatus</label>
-        <link refid="classevidence_1_1models_1_1_evidence_status"/>
-        <childnode refid="94" relation="public-inheritance">
+      <node id="1162">
+        <label>utils.models.Status</label>
+        <link refid="classutils_1_1models_1_1_status"/>
+        <childnode refid="1163" relation="public-inheritance">
         </childnode>
       </node>
+      <node id="1161">
+        <label>evidence.models.EvidenceStatus</label>
+        <link refid="classevidence_1_1models_1_1_evidence_status"/>
+        <childnode refid="1162" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1163">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="1164" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1164">
+        <label>Model</label>
+      </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" line="51" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/models.py" bodystart="51" bodyend="70"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" line="124" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/models.py" bodystart="124" bodyend="146"/>
     <listofallmembers>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1aed706c28bf5b2910278a5a27dedd4e66" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>ACTIVE</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1a5cba8c42c5f5479b689d1942b3c6408e" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>ARCHIVED</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1affe0b0ea1180ada3b0f624c0d8eefd47" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>date_time</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1a44180e724c194edd4b1d1541027c0758" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>DESTROYED</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1a4b15e0a0f490b255cb53325001f1d056" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>evidence</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1a5a500dffca56517ea40f6a79bc52097b" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>id</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1a58a3c3f6d7f281e189084d1bd6857bcf" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>INACTIVE</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1a0159d574fb097673d8956dd29a6d7c00" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>note</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1a00efd49f2c7ba2d318a3ab11271d8d46" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>status</name></member>
-      <member refid="classevidence_1_1models_1_1_evidence_status_1aeb78f0c9296c033c2b420d24d5809391" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>statuses</name></member>
+      <member refid="classutils_1_1models_1_1_status_1a6412a32ba44d3f4d7e6a1d076f96844f" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>__str__</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a89803b13439a16bd49ffb3297d829cbb" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a342aa403491ad4f61eb13761d86f2c26" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1aa9db1a2dd800429f6bf3262708408379" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>description</name></member>
+      <member refid="classevidence_1_1models_1_1_evidence_status_1a22f4635645f6a8679da6d1216accc5cc" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>history</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a895434b9b64caab6a48589e1efa1f5b2" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1ac1a737eefa43b91977c3193768f81c87" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a27dad54dd71954c2f6130d7b66b34d1c" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>private</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a8721aff9d00270cba53882d98b8de831" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>save</name></member>
+      <member refid="classutils_1_1models_1_1_status_1a51fb6c031845886ad8908546f936bae2" prot="public" virt="non-virtual"><scope>evidence::models::EvidenceStatus</scope><name>title</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

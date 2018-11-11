@@ -1,16 +1,139 @@
-﻿{% extends "global/auth_base.html" %}
+﻿{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "global/views/sidebar_open_layout.html" %}
+{% endblock %}
 
 <!-- Title -->
-{% block title %}Kases{% endblock %}
-{% block tasks_active %}active{% endblock %}
+{% block title %}Change Profile{% endblock %}
+<!-- Heading -->
+{#{% block heading %}{{ pagetitle }} Create Case{% endblock %}#}
 
-{% block content %}
+<!-- Summary -->
+{% block header %}Entity Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+{% block form_override_top %}
+<div class="form-group">
+    <form enctype="multipart/form-data" method="POST" novalidate>
+        {% csrf_token %}
+        {% endblock %}
+        <!-- Left Panel -->
+        {% block summary_leftpanel %}
+        <!-- Form -->
+        <div>
+            <table>
+                {{ addresses.management_form }}
+                {{ telephones.management_form }}
+                {{ emails.management_form }}
+                {{ websites.management_form }}
+                {{ user.as_table }}
+                {{ profile.as_table }}
+            </table>
+        </div>
+        <br />
 
-<form method="post">
-  {% csrf_token %}
-  {{ user_form.as_p }}
-  {{ profile_form.as_p }}
-  <button type="submit">Save changes</button>
-</form>
+        <!-- Address -->
+        <div>
+            <table>
+                {% for addr in addresses.forms %}
+                <tr><td><b>Address:</b></td><td>{{addr.id}}{{addr.line1.label_tag}}</td><td>{{addr.line1}}</td><td>{{addr.location}}</td></tr>
+                <tr><td /><td>{{addr.line2.label_tag}}</td><td>{{addr.line2}}</td><td>{{addr.type}}</td></tr>
+                <tr><td /><td>{{addr.line3.label_tag}}</td><td>{{addr.line3}}</td><td>{{addr.primary.label_tag}}{{addr.primary}}</td></tr>
+                <tr><td /><td>{{addr.city.label_tag}}</td><td>{{addr.city}}</td><td>{{addr.DELETE.label_tag}}{{addr.DELETE}}</td></tr>
+                <tr><td /><td>{{addr.state.label_tag}}</td><td>{{addr.state}}</td><td>{{addr.errors}}</td></tr>
+                <tr><td /><td>{{addr.zip.label_tag}}</td><td>{{addr.zip}}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br />
 
+        {% endblock %}
+
+        <!-- Right Panel -->
+        {% block summary_rightpanel %}
+        <!-- Telephone -->
+        <div>
+            <table>
+                {% for tel in telephones.forms %}
+                <tr>
+                    <td><b>Telephone:</b></td>
+                    <td>{{tel.id}}{{tel.number}}</td>
+                    <td>{{tel.location}}</td>
+                    <td>{{tel.type}}</td>
+                    <td>{{tel.primary.label_tag}}{{tel.primary}}</td>
+                    <td>{{tel.DELETE.label_tag}}{{tel.DELETE}}</td>
+                    <td>{{tel.errors}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br />
+        <!-- Email -->
+        <div>
+            <table>
+                {% for email in emails.forms %}
+                <tr><td><b>Email:</b></td><td>{{email.id}}{{email.email}}</td><td>{{email.location}}</td><td>{{email.primary.label_tag}}{{email.primary}}</td><td>{{email.DELETE.label_tag}}{{email.DELETE}}</td><td>{{email.errors}}</td></tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br />
+        <!-- Web -->
+        <div>
+            <table>
+                {% for web in websites.forms %}
+                <tr>
+                    <td><b>Website:</b></td>
+                    <td>{{web.id}}{{web.url}}</td>
+                    <td>{{web.location}}</td>
+                    <td>{{web.primary.label_tag}}{{web.primary}}</td>
+                    <td>{{web.DELETE.label_tag}}{{web.DELETE}}</td>
+                    <td>{{web.errors}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <br />
+
+        <!-- Created -->
+        <table>
+            <!--  -->
+            <thead>
+                <tr>
+                    <th>Created</th>
+                    <td>{{object.profile.created}}</td>
+                </tr>
+                <tr>
+                    <th>Modified</th>
+                    <td>{{object.profile.modified}}</td>
+                </tr>
+            </thead>
+        </table>
+        <br />
+        <!-- Buttons -->
+        <div>
+            {#{% if user.is_authenticated %}#}
+            <input type="submit" method="post" name="submit" value="Save" />
+            {#{% endif %}#}
+            {% if is_popup %}
+            <input type="submit" name="cancel" value="Close" onclick="window.close();" />
+            {% else %}
+            <input type="submit" name="cancel" value="Back" />
+            {% endif %}
+            {% if user.is_authenticated and can_delete %}
+            <input type="submit" name="delete" value="Delete" />
+            {% endif %}
+        </div>
+        <br />
+        {% endblock %}
+        {% block summary_button %}{% endblock %}
+        {% block form_override_bottom %}
+    </form>
+</div>
 {% endblock %}
+
+{% block tabs %}{% endblock %}
+{% block panels %}{% endblock %}
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+

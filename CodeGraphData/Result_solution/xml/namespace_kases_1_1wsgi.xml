@@ -15,7 +15,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/wsgi.py" line="33" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/wsgi.py" bodystart="33" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/wsgi.py" line="33" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/wsgi.py" bodystart="33" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -33,6 +33,6 @@ might make sense to replace the whole Django WSGI application with a custom one
 that later delegates to the Django one. For example, you could introduce WSGI
 middleware here, or combine a Django application with an application of another
 framework.</verbatim> </para>    </detaileddescription>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/wsgi.py" line="1" column="1"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/wsgi.py" line="1" column="1"/>
   </compounddef>
 </doxygen>

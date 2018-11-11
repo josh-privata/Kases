@@ -12,87 +12,129 @@ from simple_history.models import HistoricalRecords
 
 ## Admin Models
 class TaskAuthorisation(Authorisation):
-    # General Fields
+    """
+    Inherited model to contain information about a task authorisation.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Authorisation')
         verbose_name_plural = _('Task Authorisations')
-
-    #def get_absolute_url(self):
-    #    return reverse('Task_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
     
 
 class TaskClassification(Classification):
-    # General Fields
+    """
+    Inherited model to contain information about a task classification.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Classification')
         verbose_name_plural = _('Task Classifications')
 
-    #def get_absolute_url(self):
-    #    return reverse('Task_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class TaskType(Type):
-    # General Fields
+    """
+    Inherited model to contain information about a task type.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Type')
         verbose_name_plural = _('Task Types')
 
-    #def get_absolute_url(self):
-    #    return reverse('Task_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class TaskPriority(Priority):
-    # General Fields
-   
+    """
+    Inherited model to contain information about a task priority.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Priority')
         verbose_name_plural = _('Task Priorities')
 
-    #def get_absolute_url(self):
-    #    return reverse('Task_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class TaskCategory(Category):
-    # General Fields
+    """
+    Inherited model to contain information about a task category.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Task Category')
         verbose_name_plural = _('Task Categories')
 
-    #def get_absolute_url(self):
-    #    return reverse('task_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class TaskStatus(Status):
-    # General Fields
+    """
+    Inherited model to contain information about a task status.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -100,31 +142,23 @@ class TaskStatus(Status):
         verbose_name = _('Task Status')
         verbose_name_plural = _('Task Status')
 
-    #def get_absolute_url(self):
-    #    return reverse('Task_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class TaskStatusGroup(StatusGroup):
-    ## Choices
-    # CREATED = 'Created'
-    # PENDING = 'Awaiting Authorisation'
-    # REJECTED = 'Rejected'
-    # OPEN = 'Open'
-    # Active = 'Active'
-    # CLOSED = 'Closed'
-    # ARCHIVED = 'Archived'
-    ## Choice Groups
-    # closedStatuses = [CLOSED, ARCHIVED]
-    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
-    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
-    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
-    # workable_statuses = [CREATED, OPEN]
-    # forensic_statuses = [OPEN]
+    """
+    Inherited model to contain information about a task status group.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    :status (optional): Status in group linked by Status model
     
-    # General Fields
+    """
+
     # Linked Fields
     status = models.ManyToManyField(TaskStatus, blank=True, verbose_name="Task Status")
     
@@ -134,15 +168,35 @@ class TaskStatusGroup(StatusGroup):
         verbose_name = _('Task Status Group')
         verbose_name_plural = _('Task Status Groups')
 
-    #def get_absolute_url(self):
-    #    return reverse('Task_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 ## Main Models
 class Task(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about a task.
+
+    :title (optional): 
+    :slug (optional): 
+    :background (optional): 
+    :deadline (optional): 
+    :brief (optional): 
+    :location (optional): 
+    :assigned_to (optional): 
+    :assigned_by (optional): 
+    :type (optional): 
+    :status (optional): 
+    :classification (optional): 
+    :priority (optional): 
+    :category (optional): 
+    :authorisation (optional): 
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Title")
     background = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Background")
@@ -163,7 +217,6 @@ class Task(ObjectDescriptionMixin):
     assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='task_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
 
     # Auto Fields
-    # Data Models
 
     history = HistoricalRecords()
 

@@ -2,10 +2,11 @@
 
 {% load i18n %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block sidebar_internal %}
     {% include "entity/entity_open_layout.html" %}
+    
 {% endblock %}
 
 <!-- Title -->
@@ -17,133 +18,122 @@
 {% block summary_header_override %}{% endblock %}
 
 {% block form_override_top %}
-<div class="form-group">
+
     <form enctype="multipart/form-data" method="POST" novalidate>
-        {% csrf_token %}
+        {% csrf_token %}        
         {% endblock %}
 
         <!-- Left Panel -->
         {% block summary_leftpanel %}
-
-        <!-- Form -->
-        <div>
-            <table>
+            <!-- Form -->
+            <div class="form-group">
                 {{ addresses.management_form }}
                 {{ telephones.management_form }}
                 {{ emails.management_form }}
                 {{ websites.management_form }}
-                {{ person.as_table }}
-            </table>
-        </div>
-        <br />
-
-        <!-- Address -->
-        <div>
-            <table>
-                {% for addr in addresses.forms %}
-                <tr><td><b>Address:</b></td><td>{{addr.id}}{{addr.line1.label_tag}}</td><td>{{addr.line1}}</td><td>{{addr.location}}</td></tr>
-                <tr><td /><td>{{addr.line2.label_tag}}</td><td>{{addr.line2}}</td><td>{{addr.primary.label_tag}}{{addr.primary}}</td></tr>
-                <tr><td /><td>{{addr.line3.label_tag}}</td><td>{{addr.line3}}</td><td>{{addr.DELETE.label_tag}}{{addr.DELETE}}</td></tr>
-                <tr><td /><td>{{addr.city.label_tag}}</td><td>{{addr.city}}</td></tr>
-                <tr><td /><td>{{addr.state.label_tag}}</td><td>{{addr.state}}</td><td>{{addr.errors}}</td></tr>
-                <tr><td /><td>{{addr.zip.label_tag}}</td><td>{{addr.zip}}</td></tr>
-                {% endfor %}
-            </table>
-        </div>
-        <br />
-
+                {% crispy person %}
+                <br />
+            </div>
         {% endblock %}
-
 
         <!-- Right Panel -->
         {% block summary_rightpanel %}
+            <!-- Address -->
+            <div class="form-group">
+                <div class="col-lg-12 col-md-12">           
+                    <div id="address-updates" class="card updates recent-updated">
 
-        <!-- Telephone -->
-        <div>
-            <table>
+                        <!-- Header -->
+                        <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                            <!-- Heading -->
+                            <h1 class="display">
+                            <a data-toggle="collapse" data-parent="#address-updates" href="#address-box"
+                                aria-expanded="true" aria-controls="address-box">
+                                Address
+                            </a>
+                            </h1>
+                            <!-- Number -->
+                            <div class="right-column">
+                                <div class="badge badge-primary">6 address</div>
+                                <a data-toggle="collapse" data-parent="#address-updates" href="#address-box"
+                                    aria-expanded="true" aria-controls="address-box">
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Update Box -->
+                        <div id="address-box" role="tabpanel" class="collapse">
+                            <!-- Item -->
+                            {% for addr in addresses.forms %}
+                                {% crispy addr %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+            </div>
+            <!-- Telephone -->
+            <div class="form-group">
                 {% for tel in telephones.forms %}
-                <tr>
-                    <td><b>Telephone:</b></td>
-                    <td>{{tel.id}}{{tel.number}}</td>
-                    <td>{{tel.location}}</td>
-                    <td>{{tel.type}}</td>
-                    <td>{{tel.primary.label_tag}}{{tel.primary}}</td>
-                    <td>{{tel.DELETE.label_tag}}{{tel.DELETE}}</td>
-                    <td>{{tel.errors}}</td>
-                </tr>
+                    {% crispy tel %}
                 {% endfor %}
-            </table>
-        </div>
-        <br />
-        <!-- Email -->
-        <div>
-            <table>
+                <br />
+            </div>
+            <!-- Email -->
+            <div class="form-group">
                 {% for email in emails.forms %}
-                <tr>
-                    <td><b>Email:</b></td>
-                    <td>{{email.id}}{{email.email}}</td>
-                    <td>{{email.location}}</td>
-                    <td>{{email.primary.label_tag}}{{email.primary}}</td>
-                    <td>{{email.errors}}</td>
-                </tr>
+                    {% crispy email %}
                 {% endfor %}
-            </table>
-        </div>
-        <br />
-        <!-- Web -->
-        <div>
-            <table>
+                <br />
+            </div>
+            <!-- Web -->
+            <div class="form-group">
                 {% for web in websites.forms %}
-                <tr>
-                    <td><b>Website:</b></td>
-                    <td>{{web.id}}{{web.url}}</td>
-                    <td>{{web.location}}</td>
-                    <td>{{web.primary.label_tag}}{{web.primary}}</td>
-                    <td>{{web.errors}}</td>
-                </tr>
+                    {% crispy web %}
                 {% endfor %}
-            </table>
-        </div>
-        <br />
+                <br />
+            </div>
+            <!-- Created -->
+            <div>
+                <table>
+                    <!--  -->
+                    <thead>
+                        <tr>
+                            <th>Created</th>
+                            <td>{{object.created}}</td>
+                        </tr>
+                        <tr>
+                            <th>Modified</th>
+                            <td>{{object.modified}}</td>
+                        </tr>
+                    </thead>
+                </table>
+                <br />
+            </div>
+            <!-- Buttons -->
+            <div>
+                {#{% if user.is_authenticated %}#}
+                <input type="submit" method="post" name="submit" value="Save" />
+                {#{% endif %}#}
 
-        <!-- Created -->
-        <table>
-            <!--  -->
-            <thead>
-                <tr>
-                    <th>Fucked</th>
-                    <td>{{object.created}}</td>
-                </tr>
-                <tr>
-                    <th>Modified</th>
-                    <td>{{object.modified}}</td>
-                </tr>
-            </thead>
-        </table>
-        <br />
-        <!-- Buttons -->
-        <div>
-            {#{% if user.is_authenticated %}#}
-            <input type="submit" method="post" name="submit" value="Save" />
-            {#{% endif %}#}
+                {% if is_popup %}
+                <input type="submit" name="cancel" value="Close" onclick="window.close();" />
+                {% else %}
+                <input type="submit" name="cancel" value="Back" />
+                {% endif %}
 
-            {% if is_popup %}
-            <input type="submit" name="cancel" value="Close" onclick="window.close();" />
-            {% else %}
-            <input type="submit" name="cancel" value="Back" />
-            {% endif %}
-
-            {% if user.is_authenticated and can_delete %}
-            <input type="submit" name="delete" value="Delete" />
-            {% endif %}
-        </div>
-        <br />
+                {% if user.is_authenticated and can_delete %}
+                <input type="submit" name="delete" value="Delete" />
+                {% endif %}
+            <br />
+            </div>
         {% endblock %}
 
         {% block summary_button %}{% endblock %}
         {% block form_override_bottom %}
     </form>
-</div>
 {% endblock %}
 
 {% block tabs %}{% endblock %}

@@ -11,7 +11,7 @@ from django.views.generic import ListView, TemplateView
 from case.forms import CaseUpdateForm, CrispyCaseForm, CrispyCaseUpdateForm
 from case.forms import CrispyCaseNoteCreateForm, CrispyCaseNoteUpdateForm
 from case.forms import CrispyCaseTaskCreateForm, CrispyCaseTaskUpdateForm
-from case.forms import CrispyCaseEventCreateForm, CrispyCaseEventUpdateForm, CaseEventCreateForm, CaseEventUpdateForm, EventPersonFormset
+from case.forms import CrispyCaseEventCreateForm, CrispyCaseEventUpdateForm, CaseEventCreateForm, CaseEventUpdateForm
 from case.forms import CrispyCaseEvidenceCreateForm, CrispyCaseEvidenceUpdateForm
 from case.forms import CaseCompanyCreateForm, CaseCompanyUpdateForm
 from case.forms import CrispyCaseCompanyCreateForm, CrispyCaseCompanyUpdateForm
@@ -90,6 +90,21 @@ class CaseHome(TemplateView):
                            'content':cases,
                            'count':all_case_count}
         updates["right"] = {'side':"right",
+                           'name':"Case History",
+                           'object_type_plural':'Cases',
+                           'content':case_history,
+                           'count':history_count}
+        updates["left2"] = {'side':"left2",
+                           'name':"Active Cases",
+                           'object_type_plural':'Cases',
+                           'content':active_cases,
+                           'count':active_case_count}
+        updates["centre2"] = {'side':"centre2",
+                           'name':"All Cases",
+                           'object_type_plural':'Cases',
+                           'content':cases,
+                           'count':all_case_count}
+        updates["right2"] = {'side':"right2",
                            'name':"Case History",
                            'object_type_plural':'Cases',
                            'content':case_history,
@@ -293,8 +308,9 @@ class CaseNoteHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CaseNoteHome, self).get_context_data(**kwargs)
-        notes = CaseNote.objects.all()
-        active_notes = CaseNote.objects.filter(status__title__icontains='active')
+        thiscase = Case.objects.get(pk=self.kwargs['casepk'])
+        notes = CaseNote.objects.filter(case=thiscase).all()
+        active_notes = CaseNote.objects.filter(case=thiscase).filter(status__title__icontains='active')
         note_history = []
         history_count = 0
         counts = {}
@@ -302,8 +318,8 @@ class CaseNoteHome(TemplateView):
         for note in notes:
             note_history.append(note.history.most_recent())
             history_count += 1
-        all_note_count = CaseNote.objects.count()
-        active_note_count = CaseNote.objects.filter(status__title__icontains='active').count()
+        all_note_count = CaseNote.objects.filter(case=thiscase).count()
+        active_note_count = CaseNote.objects.filter(case=thiscase).filter(status__title__icontains='active').count()
         # Count Dictionaries
         counts["history"] = {'name':"Note History",'value':history_count}
         counts["all"] = {'name':"All Notes",'value':all_note_count}
@@ -333,7 +349,7 @@ class CaseNoteHome(TemplateView):
         context['counts'] = counts
         context['updates'] = updates
         context['object_type_plural'] = 'Notes'
-        context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+        context['object'] = thiscase
         return context
 
 
@@ -464,8 +480,9 @@ class CaseEventHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CaseEventHome, self).get_context_data(**kwargs)
-        events = CaseEvent.objects.all()
-        active_events = CaseEvent.objects.filter(status__title__icontains='active')
+        thiscase = Case.objects.get(pk=self.kwargs['casepk'])
+        events = CaseEvent.objects.filter(case=thiscase).all()
+        active_events = CaseEvent.objects.filter(case=thiscase).filter(status__title__icontains='active')
         event_history = []
         history_count = 0
         counts = {}
@@ -473,8 +490,8 @@ class CaseEventHome(TemplateView):
         for event in events:
             event_history.append(event.history.most_recent())
             history_count += 1
-        all_event_count = CaseEvent.objects.count()
-        active_event_count = CaseEvent.objects.filter(status__title__icontains='active').count()
+        all_event_count = CaseEvent.objects.filter(case=thiscase).count()
+        active_event_count = CaseEvent.objects.filter(case=thiscase).filter(status__title__icontains='active').count()
         # Count Dictionaries
         counts["history"] = {'name':"Event History",'value':history_count}
         counts["all"] = {'name':"All Events",'value':all_event_count}
@@ -504,7 +521,7 @@ class CaseEventHome(TemplateView):
         context['counts'] = counts
         context['updates'] = updates
         context['object_type_plural'] = 'Events'
-        context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+        context['object'] = thiscase
         return context
 
 
@@ -627,30 +644,6 @@ class CaseEventList(ListView):
         return context
 
 
-def create_event(request, casepk):
-    template_name = 'case/event/caseevent_create1.html'
-    if request.method == 'GET':
-        eventform = CaseEventCreateForm(request.GET or None)
-        formset = EventPersonFormset(queryset=Person.objects.none())
-    elif request.method == 'POST':
-        eventform = CaseEventCreateForm(request.POST)
-        formset = EventPersonFormset(request.POST)
-        if eventform.is_valid() and formset.is_valid():
-            # first save this book, as its reference will be used in `Author`
-            eventform.instance.case = Case.objects.get(pk=casepk)
-            caseevent = eventform.save()
-            for form in formset:
-                # so that `book` instance can be attached.
-                eventperson = form.save(commit=False)
-                eventperson.event = event
-                eventperson.save()
-            return http.HttpResponseRedirect(caseevent.get_absolute_url())  
-    return render(request, template_name, {
-        'eventform': eventform,
-        'formset': formset,
-})
-
-
 ## Case Task 
 class CaseTaskHome(TemplateView):
     template_name = 'case/task/casetask_index.html'
@@ -664,8 +657,9 @@ class CaseTaskHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CaseTaskHome, self).get_context_data(**kwargs)
-        tasks = CaseTask.objects.all()
-        active_tasks = CaseTask.objects.filter(status__title__icontains='active')
+        thiscase = Case.objects.get(pk=self.kwargs['casepk'])
+        tasks = CaseTask.objects.filter(case=thiscase).filter(case__pk=self.kwargs['casepk'])
+        active_tasks = CaseTask.objects.filter(case=thiscase).filter(status__title__icontains='active')
         task_history = []
         history_count = 0
         counts = {}
@@ -673,8 +667,8 @@ class CaseTaskHome(TemplateView):
         for task in tasks:
             task_history.append(task.history.most_recent())
             history_count += 1
-        all_task_count = CaseTask.objects.count()
-        active_task_count = CaseTask.objects.filter(status__title__icontains='active').count()
+        all_task_count = CaseTask.objects.filter(case=thiscase).count()
+        active_task_count = CaseTask.objects.filter(case=thiscase).filter(status__title__icontains='active').count()
         # Count Dictionaries
         counts["history"] = {'name':"Task History",'value':history_count}
         counts["all"] = {'name':"All Tasks",'value':all_task_count}
@@ -704,7 +698,7 @@ class CaseTaskHome(TemplateView):
         context['counts'] = counts
         context['updates'] = updates
         context['object_type_plural'] = 'Tasks'
-        context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+        context['object'] = thiscase
         return context
 
 
@@ -840,8 +834,9 @@ class CaseEvidenceHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CaseEvidenceHome, self).get_context_data(**kwargs)
-        evidences = CaseEvidence.objects.all()
-        active_evidence = CaseEvidence.objects.filter(status__title__icontains='active')
+        thiscase = Case.objects.get(pk=self.kwargs['casepk'])
+        evidences = CaseEvidence.objects.filter(case=thiscase).all()
+        active_evidence = CaseEvidence.objects.filter(case=thiscase).filter(status__title__icontains='active')
         evidence_history = []
         history_count = 0
         counts = {}
@@ -849,8 +844,8 @@ class CaseEvidenceHome(TemplateView):
         for evidence in evidences:
             evidence_history.append(evidence.history.most_recent())
             history_count += 1
-        all_evidence_count = CaseEvidence.objects.count()
-        active_evidence_count = CaseEvidence.objects.filter(status__title__icontains='active').count()
+        all_evidence_count = CaseEvidence.objects.filter(case=thiscase).count()
+        active_evidence_count = CaseEvidence.objects.filter(case=thiscase).filter(status__title__icontains='active').count()
         # Count Dictionaries
         counts["history"] = {'name':"Evidence History",'value':history_count}
         counts["all"] = {'name':"All Evidence",'value':all_evidence_count}
@@ -880,7 +875,7 @@ class CaseEvidenceHome(TemplateView):
         context['counts'] = counts
         context['updates'] = updates
         context['object_type_plural'] = 'Evidence'
-        context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+        context['object'] = thiscase
         return context
 
 
@@ -1016,9 +1011,10 @@ class CaseEntityHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CaseEntityHome, self).get_context_data(**kwargs)
+        thiscase = Case.objects.get(pk=self.kwargs['casepk'])
         # Companies
-        companies = CaseCompany.objects.all()
-        all_company_count = CaseCompany.objects.count()
+        companies = CaseCompany.objects.filter(case=thiscase).all()
+        all_company_count = CaseCompany.objects.filter(case=thiscase).count()
         active_company_count = all_company_count
         active_companies = companies
         company_history = []
@@ -1027,8 +1023,8 @@ class CaseEntityHome(TemplateView):
             company_history.append(company.history.most_recent())
             company_history_count += 1        
         # People
-        people = CasePerson.objects.all()
-        all_person_count = CasePerson.objects.count()
+        people = CasePerson.objects.filter(case=thiscase).all()
+        all_person_count = CasePerson.objects.filter(case=thiscase).count()
         active_person_count = all_person_count
         active_people = people
         people_history = []
@@ -1069,7 +1065,7 @@ class CaseEntityHome(TemplateView):
         context['counts'] = counts
         context['updates'] = updates
         context['object_type_plural'] = 'Entities'
-        context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+        context['object'] = thiscase
         return context
 
 
@@ -1267,7 +1263,8 @@ class CaseDeviceHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(CaseDeviceHome, self).get_context_data(**kwargs)
-        devices = CaseInventory.objects.all()
+        thiscase = Case.objects.get(pk=self.kwargs['casepk'])
+        devices = CaseInventory.objects.filter(case=thiscase).all()
         active_devices = devices
         device_history = []
         history_count = 0
@@ -1276,7 +1273,7 @@ class CaseDeviceHome(TemplateView):
         for device in devices:
             device_history.append(device.history.most_recent())
             history_count += 1
-        all_device_count = CaseInventory.objects.count()
+        all_device_count = CaseInventory.objects.filter(case=thiscase).count()
         active_device_count = all_device_count
         # Count Dictionaries
         counts["history"] = {'name':"Device History",'value':history_count}
@@ -1307,7 +1304,7 @@ class CaseDeviceHome(TemplateView):
         context['counts'] = counts
         context['updates'] = updates
         context['object_type_plural'] = 'Devices'
-        context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+        context['object'] = thiscase
         return context
 
 

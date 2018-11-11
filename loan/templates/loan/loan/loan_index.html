@@ -1,0 +1,51 @@
+{% extends "global/views/base_index.html" %}
+{% load render_table from django_tables2 %}
+
+{% block sidebar_internal %}
+    {% if sidebar == 'case' %}
+        {% include "case/case_open_layout.html" %}
+    {% elif sidebar == 'device' %}
+        {% include "inventory/inventory_open_layout.html" %}
+    {% else %}
+        {% include "inventory/inventory_open_layout.html" %}
+    {% endif %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - Loans Dashboard{% endblock %}
+
+<!-- Statistics Section -->
+ 
+<!-- Updates Section -->
+ 
+<!-- Case Section -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>ID</th>
+        <th>Case</th>
+        <th>Device</th>
+        <th>Reason</th>
+        <th>Status1</th>
+        <th>Loaned To</th>
+        <th>Booked From</th>
+        <th>Booked Until</th>
+    {% endblock %}
+        
+    <!-- Table Body -->
+    <!-- Case ID -->
+    {% block table_body_id_url %}{% url 'loan_detail' table_object.id %}{% endblock %}
+    {% block table_body_id_column %} {{ table_object.id }} {% endblock %}                        
+    
+    <!-- Columns -->
+    {% block table_body_columns %}
+        <td><a href="{% url 'case_detail' table_object.case.id %}">{{ table_object.case }}</a></td>        
+        <td><a href="{% url 'device_detail' table_object.device.id %}">{{ table_object.device }}</a></td>
+        <td>{{ table_object.reason }}</td>
+        <td>{{ table_object.get_status_display }}</td>
+        <td>{{ table_object.loaned_to }}</td>
+        <td>{{ table_object.booked_from }}</td>
+        <td>{{ table_object.booked_until }}</td>
+    {% endblock %}
+    
+    <!-- Table Else -->
+    {% block table_else %}<p>There are no devices to show</p>{% endblock %}

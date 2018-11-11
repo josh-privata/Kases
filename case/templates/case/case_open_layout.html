@@ -16,10 +16,9 @@
         <li>
             <a href="#submenu4" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Assets</a>
             <ul id="submenu4" class="list-unstyled collapse">
-                <li><a href="{% url 'casedevice' object.id %}">Assets</a></li>
-                <li><a href="{% url 'casedevice_create' object.id %}">New Asset</a></li>
-                {#<li><a href="{% url 'casedevice_list' object.id %}">Asset List</a></li>#}
-                <li><a href="#">Book Asset</a></li>
+                <li><a href="{% url 'casedevice' object.id %}">Case Assets</a></li>
+                <li><a href="{% url 'loanswithcase' object.id %}">Asset Requests</a></li>
+                <li><a href="{% url 'loanwithcase_create' object.id %}">New Request</a></li>
             </ul>
         </li>
     {% endblock %}
@@ -97,10 +96,6 @@
 <!-- Sidebar 15 -->
     {% block sidebar_15 %}{% endblock %}
 <!-- Sidebar 16 -->
-    {% block sidebar_16 %}{% endblock %}
 <!-- Sidebar 17 -->
-    {% block sidebar_17 %}{% endblock %}
 <!-- Sidebar 18 -->
-    {% block sidebar_18 %}{% endblock %}
 <!-- Sidebar 19 -->
-    {% block sidebar_19 %}{% endblock %}

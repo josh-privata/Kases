@@ -3,7 +3,7 @@
         <li>
             <a href="{% url 'cases' %}">
                 <i class="fa fa-fw fa-home"></i>
-                Case Home
+                Dashboard
             </a>
         </li>
     {% endblock %}
@@ -42,11 +42,46 @@
     {% block sidebar_14 %}{% endblock %}
 <!-- Sidebar 15 -->
     {% block sidebar_15 %}{% endblock %}
-<!-- Sidebar 16 -->
-    {% block sidebar_16 %}{% endblock %}
-<!-- Sidebar 17 -->
-    {% block sidebar_17 %}{% endblock %}
-<!-- Sidebar 18 -->
-    {% block sidebar_18 %}{% endblock %}
-<!-- Sidebar 19 -->
-    {% block sidebar_19 %}{% endblock %}
+<!-- Sidebar 16 - Knowledge Base -->
+    {% block sidebar_16 %}
+        <li>
+            <a href="#submenu16" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Knowledge Base</a>
+            <ul id="submenu16" class="list-unstyled collapse">
+                {#<li><a href="/admin">Knowledge Base</a></li>#}
+                <li><a href="#">Find Notes</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 17 - Company Assets -->
+    {% block sidebar_17 %}
+        <li>
+            <a href="#submenu17" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Company Assets</a>
+            <ul id="submenu17" class="list-unstyled collapse">
+                <li><a href="{% url 'devices' %}">Assets</a></li>
+                <li><a href="{% url 'device_create' %}">New Asset</a></li>
+                <li><a href="#">Find Assets</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 18 - Entities -->
+    {% block sidebar_18 %}
+        <li>
+            <a href="#submenu18" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Entities</a>
+            <ul id="submenu18" class="list-unstyled collapse">
+                <li><a href="{% url 'entities' %}">Entities</a></li>
+                <li><a href="{% url 'person_add' %}">New Person</a></li>
+                <li><a href="{% url 'company_add' %}">New Company</a></li>
+                <li><a href="#">Find Entities</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 19 - Administration -->
+    {% block sidebar_19 %}
+        <li>
+            <a href="#submenu19" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Administration</a>
+            <ul id="submenu19" class="list-unstyled collapse">
+                <li><a href="/user">Change Profile</a></li>
+                <li><a href="/admin">Main Administration</a></li>
+            </ul>
+        </li>
+    {% endblock %}

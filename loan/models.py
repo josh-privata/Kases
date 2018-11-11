@@ -4,85 +4,99 @@
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
-from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now as timezone_now
-from django.contrib.auth.models import User, Permission
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import fields
 from simple_history.models import HistoricalRecords
-from model_utils.managers import InheritanceManager
-from utils.models import ObjectDescriptionMixin, Authorisation, Category
-from utils.models import Classification, Priority, Type, Status, StatusGroup
+from utils.models import ObjectDescriptionMixin
 #import loan.managers as managers
-from case.models import Case
+from case.models import Case, CaseInventory
 from inventory.models import Device
 
+# Define choices for status
+LOAN_PENDING = 'LP'
+LOAN_APPROVED = 'LA'
+LOAN_REJECTED = 'LR'
+LOAN_HOLD = 'LH'
+LOAN_WITHDRAWN = 'LW'
+RETURN_PENDING = 'RP'
+RETURN_APPROVED = 'RA'
+RETURN_REJECTED = 'RR'
+RETURN_HOLD = 'RH'
+RETURN_WITHDRAWN = 'RW'
+LOAN_CLOSED = 'CL'
 
-class Request(ObjectDescriptionMixin):
-    
-    # These constants define choices for a device's condition
-    PENDING = 'PE'
-    APPROVED = 'AP'
-    REJECTED = 'RE'
-    HOLD = 'HO'
-    WITHDRAWN = 'WI'
+STATUS_CHOICES = (
+    (LOAN_PENDING, 'Loan Pending'),
+    (LOAN_APPROVED, 'Loan Approved'),
+    (LOAN_REJECTED, 'Loan Rejected'),
+    (LOAN_HOLD, 'Loan On Hold'),
+    (LOAN_WITHDRAWN, 'Loan Withdrawn'),
+    (RETURN_PENDING, 'Return Pending'),
+    (RETURN_APPROVED, 'Return Approved'),
+    (RETURN_REJECTED, 'Return Rejected'),
+    (RETURN_HOLD, 'Return On Hold'),
+    (RETURN_WITHDRAWN, 'Return Withdrawn'),
+    (LOAN_CLOSED, 'Loan Closed'),
+)
 
-    # Define possible choices for condition field
-    STATUS_CHOICES = (
-        (PENDING, 'Pending'),
-        (APPROVED, 'Approved'),
-        (REJECTED, 'Rejected'),
-        (HOLD, 'On Hold'),
-        (WITHDRAWN, 'Withdrawn'),
-    )
-    
-    # General Fields
-    reason = models.TextField(max_length=1000, null=False, blank=False, verbose_name='Reason')
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=PENDING, verbose_name="Status")
+# Define choices for condition
+NEW = 'NW'
+EXCELLENT = 'EX'
+GOOD = 'GD'
+AVERAGE = 'AV'
+BELOW_AVERAGE = 'BA'
+POOR = 'PR'
+DAMAGED = 'DM'
+LOST = 'LO'
 
-    # Linked Fields   
-    # Auto Fields
-
-    history = HistoricalRecords()
-    
-    class Meta:
-        abstract = True
+CONDITION_CHOICES = (
+    (NEW, 'New'),
+    (EXCELLENT, 'Excellent'),
+    (GOOD, 'Good'),
+    (AVERAGE, 'Average'),
+    (BELOW_AVERAGE, 'Below Average'),
+    (POOR, 'Poor'),
+    (DAMAGED, 'Damaged'),
+    (LOST, 'Lost'),
+)
 
 
 class Loan(ObjectDescriptionMixin):
-    
-    # These constants define choices for a device's condition
-    NEW = 'NW'
-    EXCELLENT = 'EX'
-    GOOD = 'GD'
-    AVERAGE = 'AV'
-    BELOW_AVERAGE = 'BA'
-    POOR = 'PR'
-    DAMAGED = 'DM'
-    LOST = 'LO'
+    """
+    Model to contain information about a loan.
 
-    # Define possible choices for condition field
-    CONDITION_CHOICES = (
-        (NEW, 'New'),
-        (EXCELLENT, 'Excellent'),
-        (GOOD, 'Good'),
-        (AVERAGE, 'Average'),
-        (BELOW_AVERAGE, 'Below Average'),
-        (POOR, 'Poor'),
-        (DAMAGED, 'Damaged'),
-        (LOST, 'Lost'),
-    )
+    :reason (optional):
+    :booked_from (optional):
+    :booked_until (optional):
+    :condition (optional):
+    :returned (optional):
+    :status:
+    :case (optional):
+    :device (optional):
+    :loaned_to (optional):
+    :loaned_by (optional):
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
 
     # General Fields
-    reason = models.TextField(max_length=1000, null=False, blank=False, verbose_name='Reason')
+    reason = models.TextField(max_length=1000, null=False, blank=False, verbose_name='Loan Reason')
+    approver_note = models.TextField(max_length=1000, null=True, blank=True, verbose_name='Approver Note')
     booked_from = models.TextField(max_length=100, null=False, blank=False, verbose_name='Booked From')
     booked_until = models.TextField(max_length=100, null=False, blank=False, verbose_name='Booked Until')
-    condition = models.CharField(max_length=2, choices=CONDITION_CHOICES, default=EXCELLENT, verbose_name="Device Condition")
+    original_condition = models.CharField(max_length=2, choices=CONDITION_CHOICES, default=EXCELLENT, verbose_name="Original Condition")
+    return_condition = models.CharField(max_length=2, choices=CONDITION_CHOICES, default=EXCELLENT, verbose_name="Returned Condition")
     returned = models.BooleanField(default=False, verbose_name="Returned")
+    taken = models.BooleanField(default=False, verbose_name="Taken")
+    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=LOAN_PENDING, verbose_name="Status")
 
     # Linked Fields
-    case = case = models.ForeignKey(Case, on_delete=models.DO_NOTHING, related_name='loan_case', blank=True, verbose_name="Case")
+    case = models.ForeignKey(Case, on_delete=models.DO_NOTHING, related_name='loan_case', blank=True, verbose_name="Case")
     device = models.ForeignKey(Device, on_delete=models.DO_NOTHING, related_name='loan_device', blank=True, verbose_name="Device")
     loaned_to = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='loaned_to', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Loaned To")
     loaned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='loaned_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Loaned By")
@@ -95,103 +109,112 @@ class Loan(ObjectDescriptionMixin):
         verbose_name = _('Device Loan')
         verbose_name_plural = _('Device Loans')
 
-    def save(self,force_insert=False, force_update=False):
-        models.Model.save(self,force_insert,force_update)
+    def get_absolute_url(self):
+        return reverse('loan_detail', kwargs={'pk': self.pk})
 
-
-class LoanRequest(Request):
-
-    # General Fields
-    booked_from = models.TextField(max_length=100, null=False, blank=False, verbose_name='Booked From')
-    booked_until = models.TextField(max_length=100, null=False, blank=False, verbose_name='Booked Until')
-
-    # Linked Fields
-    device = models.ForeignKey(Device, on_delete=models.DO_NOTHING, related_name='loan_request_device', blank=True, verbose_name="Device")
-    requested_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='loan_requested_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Requested By")
-    approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='loan_approved_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Approved By")
-    case = models.ForeignKey(Case, on_delete=models.DO_NOTHING, related_name='loan_request_case', blank=True, verbose_name="Case")
-
-    # Auto Fields
-    
-    class Meta:
-        verbose_name = _('Loan Request')
-        verbose_name_plural = _('Loan Requests')
+    def __str__(self):
+        return '%s - %s' % (self.case, self.device)
 
     def save(self,force_insert=False, force_update=False):
+        
         device = self.device
 
-        # Change device status based on request status
-        if self.status == 'PE':
+        # Needed as we are overriding abstract save() method
+        if not self.pk:
+           if device.status != 'RE':
+                self.status = 'LR'
+                self.approver_note = 'Device Currently On Loan'
+                self.created = timezone_now()
+        else:
+            if not self.created:
+                self.created = timezone_now()
+            self.modified = timezone_now()
+        
+        # LOAN_PENDING = 'LP'
+        if self.status == 'LP':
             device.status = 'AW'
+            self.returned = True
 
-        if self.status == 'HO':
-            device.status = 'AW' 
-
-        if self.status == 'AP':
+        # LOAN_APPROVED = 'LA'
+        if self.status == 'LA':
+            try:
+                caseinventory = CaseInventory.objects.get(case = self.case, device = self.device)
+                caseinventory.reason = self.reason
+                caseinventory.returned = self.returned
+                caseinventory.description = self.description
+                caseinventory.private = self.private
+                caseinventory.status = self.status
+                caseinventory.case_id = self.case_id
+                caseinventory.device_id = self.device_id
+                caseinventory.linked_by_id = self.loaned_by_id
+                caseinventory.modified = timezone_now()
+            except CaseInventory.DoesNotExist:
+                caseinventory = CaseInventory(reason = self.reason,
+                description = self.description,
+                returned = self.returned,
+                private = self.private,
+                status = self.status,
+                case = self.case,
+                device = self.device,
+                linked_by = self.loaned_by,
+                created = timezone_now(),
+                modified = timezone_now())
+            caseinventory.save()
             device.status = 'CO'
-            loan = Loan(reason=self.reason,
-                        description=self.description,
-                        private=self.private,
-                        booked_from=self.booked_from,
-                        booked_until=self.booked_until,
-                        case_id=self.case_id,
-                        condition=device.condition,
-                        device=device,
-                        returned=False,
-                        loaned_to=self.requested_by,
-                        loaned_by=self.rapproved_by
-                        )
-            loan.save()
+            self.returned = True   
 
-        if self.status == 'RE':
-            pass
+        # LOAN_REJECTED = 'LR'
+        if self.status == 'LR':
 
-        if self.status == 'WI':
-            pass
+            self.returned = True
 
-        device.save()
-        models.Model.save(self,force_insert,force_update)
+        # LOAN_HOLD = 'LH'
+        if self.status == 'LH':
 
+            self.returned = True
 
-class ReturnRequest(Request):
+        # LOAN_WITHDRAWN = 'LW'
+        if self.status == 'LW':
 
-    # General Fields
-    actual_use = models.TextField(max_length=1000, null=False, blank=False, verbose_name='Actual Use Time')
+            self.returned = True    
 
-    # Linked Fields
-    device = models.ForeignKey(Device, on_delete=models.DO_NOTHING, related_name='return_request_device', blank=True, verbose_name="Device")
-    requested_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='return_requested_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Requested By")
-    approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='return_approved_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Approved By")
-    loan = models.ForeignKey(Loan, on_delete=models.DO_NOTHING, related_name='device_loan', blank=True, verbose_name="Loan")
-    case = models.ForeignKey(Case, on_delete=models.DO_NOTHING, related_name='return_request_case', blank=True, verbose_name="Case")
+        # RETURN_PENDING = 'RP'
+        if self.status == 'RP':
 
-    # Auto Fields
-    
-    class Meta:
-        verbose_name = _('Return Request')
-        verbose_name_plural = _('Return Requests')
+            self.returned = True    
 
-    def save(self,force_insert=False, force_update=False):
-        device = self.device
+        # RETURN_APPROVED = 'RA'
+        if self.status == 'RA':
 
-        # Change device status based on request status
-        if self.status == 'PE':
-            device.status = 'RT'
+            self.returned = True   
+            
+        # RETURN_REJECTED = 'RR'
+        if self.status == 'RP':
 
-        if self.status == 'HO':
-            device.status = 'RT' 
+            self.returned = True   
+            
+        # RETURN_HOLD = 'RH'
+        if self.status == 'RH':
 
-        if self.status == 'AP':
-            device.status = 'NR'
-            loan = self.loan
-            loan.returned = True
-            loan.save()
+            self.returned = True 
+            
+        # RETURN_WITHDRAWN = 'RW'
+        if self.status == 'RW':
 
-        if self.status == 'RE':
-            pass
+            self.returned = True    
 
-        if self.status == 'WI':
-            pass
+        # LOAN_CLOSED = 'CL'
+        if self.status == 'CL':
 
+            self.returned = True    
+
+        if not self.pk:
+           self.created = timezone_now()
+           #self.created_by = request.user
+        else:
+            if not self.created:
+                self.created = timezone_now()
+            self.modified = timezone_now()
+        
         device.save()
         models.Model.save(self,force_insert,force_update)

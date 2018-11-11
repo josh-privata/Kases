@@ -2,39 +2,11 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespaceevidence_1_1views" kind="namespace">
     <compoundname>evidence::views</compoundname>
-      <sectiondef kind="func">
-      <memberdef kind="function" id="namespaceevidence_1_1views_1a00d3290a9e60f9ea8829073e5c96a234" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>def</type>
-        <definition>def evidence.views.home</definition>
-        <argsstring></argsstring>
-        <name>home</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-<para><verbatim>Renders the home page.</verbatim> </para>        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/views.py" line="11" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/views.py" bodystart="11" bodyend="23"/>
-      </memberdef>
-      <memberdef kind="function" id="namespaceevidence_1_1views_1a363cf7bacfed4f0f98ee09c9cf5273e2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
-        <type>def</type>
-        <definition>def evidence.views.new_evidence</definition>
-        <argsstring></argsstring>
-        <name>new_evidence</name>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/views.py" line="24" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/views.py" bodystart="24" bodyend="26"/>
-      </memberdef>
-      </sectiondef>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
-<para><verbatim>Definition of views.
+<para><verbatim>Evidence views.
 </verbatim> </para>    </detaileddescription>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/evidence/views.py" line="1" column="1"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/views.py" line="1" column="1"/>
   </compounddef>
 </doxygen>

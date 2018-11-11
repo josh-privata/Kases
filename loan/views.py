@@ -1,32 +1,28 @@
 ## Loan Views ##
 
 import re
-from django import http
-from django.shortcuts import render
 #from django.utils import simplejson as json
-from django.urls import reverse_lazy
 from django.http import HttpResponse
 from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
-from django_tables2 import SingleTableView
-from django.utils.translation import ugettext_lazy as _
-from django.forms.models import modelformset_factory
+from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
-from django.views.generic import ListView, TemplateView
-from django.contrib.contenttypes.models import ContentType
 #from inventory.forms import LoanCreateForm, LoanUpdateForm
 from loan.forms import CrispyLoanCreateForm, CrispyLoanUpdateForm
+from loan.forms import CrispyLoanWithBothCreateForm, CrispyLoanWithCaseCreateForm
+from loan.forms import CrispyLoanWithDeviceCreateForm
+from loan.forms import CrispyLoanWithBothUpdateForm, CrispyLoanWithCaseUpdateForm, CrispyLoanWithDeviceUpdateForm
 from loan.models import Loan
+from case.models import Case
+from inventory.models import Device
 from utils.forms import BootstrapAuthenticationForm
 
 
-EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
-
-## Main View 
+## Loan Views
 class LoanHome(TemplateView):
-    template_name = 'loan/loan_index.html'
+    template_name = 'loan/loan/loan_index.html'
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -37,21 +33,57 @@ class LoanHome(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(LoanHome, self).get_context_data(**kwargs)
-        loans = Loan.objects.all()
-        available_loans = Loan.objects.all()
+
+        # Empty Variables
         loan_history = []
+        all_loan_count = 0
+        available_loan_count = 0
         history_count = 0
         counts = {}
         updates = {}
+        device = None 
+        case = None
+
+        # Determine Sender
+        try: device = self.kwargs['devicepk']
+        except: pass        
+        try: case = self.kwargs['casepk']
+        except: pass  
+        
+        # Sent Via Case
+        if case != None:
+            loans = Loan.objects.filter(case__pk=case)
+            available_loans = Loan.objects.filter(case__pk=case)
+            all_loan_count = Loan.objects.filter(case__pk=case).count()
+            available_loant_count = Loan.objects.filter(case__pk=case).count()
+            context['sidebar'] = 'case'
+            context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+
+        # Sent Via Inventory
+        elif device != None:
+            loans = Loan.objects.filter(device__pk=device)
+            available_loans = Loan.objects.filter(device__pk=device)
+            all_loan_count = Loan.objects.filter(device__pk=device).count()
+            available_loant_count = Loan.objects.filter(device__pk=device).count()
+            context['sidebar'] = 'device'
+
+        # Sent Via Loans
+        else:
+            loans = Loan.objects.all()
+            available_loans = Loan.objects.all()
+            all_loan_count = Loan.objects.all().count()
+            available_loant_count = Loan.objects.all().count()
+
+        # Get Loan Context History
         for loan in loans:
             loan_history.append(loan.history.most_recent())
             history_count += 1
-        all_loan_count = Loan.objects.count()
-        available_loan_count = Loan.objects.count()
+        
         # Count Dictionaries
         counts["history"] = {'name':"Loan History",'value':history_count}
         counts["all"] = {'name':"All Loans",'value':all_loan_count}
         counts["active"] = {'name':"Available Loans",'value':available_loan_count}
+        
         # Updates Dictionaries
         updates["left"] = {'side':"left",
                            'name':"All Loans",
@@ -68,17 +100,17 @@ class LoanHome(TemplateView):
                            'object_type_plural':'Loans',
                            'content':loan_history,
                            'count':history_count}
-        # Context
+        
+        # Define Context
         context['counts'] = counts
         context['updates'] = updates
         context['table_objects'] = loans
         return context
 
 
-### Abstract Views ###
 class LoanDetail(DetailView):
     model = Loan
-    template_name = 'loan/loan_detail.html'
+    template_name = 'loan/loan/loan_detail.html'
     context_object_name = 'loan'
 
     def dispatch(self, request, *args, **kwargs):
@@ -98,7 +130,7 @@ class LoanDetail(DetailView):
 
 class LoanCreate(CreateView):
     model = Loan
-    template_name = 'loan/loan_create.html'
+    template_name = 'loan/loan/loan_create.html'
     form_class=CrispyLoanCreateForm
 
     def dispatch(self, request, *args, **kwargs):
@@ -128,7 +160,7 @@ class LoanUpdate(UpdateView):
 class LoanDelete(DeleteView):
     model = Loan
     success_url = reverse_lazy('loans')
-    template_name = 'loan/loan_update.html'
+    template_name = 'loan/loan/loan_update.html'
     
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -148,53 +180,248 @@ class LoanDelete(DeleteView):
         return HttpResponse(json_data, mimetype="application/json")
 
 
-#class CommentUpdate(UpdateView):
-#    '''An abstract CommentEdit View.'''
-#    template_name = 'loan/edit_comment.html'
-#    # Must define the comment model to update, like so:
-#    # model = IpadComment
-#    form_class = CommentUpdateForm
-#    pk_url_kwarg = 'comment_id'
-
-#    def get_success_url(self):
-#        """On success, redirect to the loan's detail page."""
-#        comment = self.get_object()
-#        return comment.loan_url
-
-
-#class CommentDelete(DeleteView):
-#    '''An abstract CommentDelete View.'''
-
-#    def get_comment_class(self):
-#        """Returns the comment class corresponding to a 
-#        specific loan type. Must be implemented by descendant classes.
-        
-#        Example:
-#            return IpadComment
-#        """
-#        raise NotImplementedError
-
-#    def post(self, request, loan_id, comment_id):
-#        response_data = {}
-#        # Delete the comment
-#        comment_class = self.get_comment_class()
-#        comment_class.objects.filter(pk=comment_id).delete()
-#        # Display a message
-#        messages.success(request, 'Successfully deleted comment.')
-#        response_data['success'] = True
-#        response_data['pk'] = comment_id
-#        json_data = json.dumps(response_data)
-#        return HttpResponse(json_data, mimetype='application/json')
-
-
-class LoansList(TemplateView):
+class LoanList(TemplateView):
     '''Index view for loans. This serves as a list view 
     for all loan types.'''
-    template_name = 'loan/loan_list.html'
+    template_name = 'loan/loan/loan_list.html'
 
     def get(self, request, **kwargs):
-        #if request.user.is_authenticated():
-        return super(LoansListView, self).get(request)
-        #else:
-            #return super(LoansListView, self).get(request)
-            #return redirect('home')
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(LoanList, self).get(request)
+
+
+## Loan With Case
+class LoanCreateWithCase(CreateView):
+    model = Loan
+    template_name = 'loan/loan/loan_create.html'
+    form_class=CrispyLoanWithCaseCreateForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(LoanCreateWithCase, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self, **kwargs):
+        casepk = self.kwargs['casepk']
+        return reverse('loanwithcase_detail', kwargs={'pk': self.object.pk, 'casepk' : casepk})
+
+    def form_valid(self, form):
+        form.instance.case = Case.objects.get(pk=self.kwargs['casepk'])
+        return super(LoanCreateWithCase, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(LoanCreateWithCase, self).get_context_data(**kwargs)
+        context['case'] = Case.objects.get(pk=self.kwargs['casepk'])
+        return context
+
+
+class LoanUpdateWithCase(CreateView):
+    model = Loan
+    template_name = 'loan/loan/loan_create.html'
+    form_class=CrispyLoanWithCaseUpdateForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(LoanUpdateWithCase, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self, **kwargs):
+        casepk = self.kwargs['casepk']
+        return reverse('loanwithcase_detail', kwargs={'pk': self.object.pk, 'casepk' : casepk})
+
+    def form_valid(self, form):
+        form.instance.case = Case.objects.get(pk=self.kwargs['casepk'])
+        return super(LoanUpdateWithCase, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(LoanUpdateWithCase, self).get_context_data(**kwargs)
+        context['case'] = Case.objects.get(pk=self.kwargs['casepk'])
+        return context
+
+
+# Loan With Device
+class LoanCreateWithDevice(CreateView):
+    model = Loan
+    template_name = 'loan/loan/loan_create.html'
+    form_class=CrispyLoanWithDeviceCreateForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(LoanCreateWithDevice, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self, **kwargs):
+        devicepk = self.kwargs['devicepk']
+        return reverse('loanwithdevice_detail', kwargs={'pk': self.object.pk, 'devicepk' : devicepk})
+
+    def form_valid(self, form):
+        form.instance.device = Device.objects.get(pk=self.kwargs['devicepk'])
+        return super(LoanCreateWithDevice, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(LoanCreateWithDevice, self).get_context_data(**kwargs)
+        context['device'] = Case.objects.get(pk=self.kwargs['devicepk'])
+        return context
+
+
+class LoanUpdateWithDevice(CreateView):
+    model = Loan
+    template_name = 'loan/loan/loan_create.html'
+    form_class=CrispyLoanWithDeviceUpdateForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(LoanUpdateWithDevice, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self, **kwargs):
+        devicepk = self.kwargs['devicepk']
+        return reverse('loanwithdevice_detail', kwargs={'pk': self.object.pk, 'devicepk' : devicepk})
+
+    def form_valid(self, form):
+        form.instance.device = Device.objects.get(pk=self.kwargs['devicepk'])
+        return super(LoanUpdateWithDevice, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(LoanUpdateWithDevice, self).get_context_data(**kwargs)
+        context['device'] = Case.objects.get(pk=self.kwargs['devicepk'])
+        return context
+
+
+# Loan With Both
+class LoanCreateWithBoth(CreateView):
+    model = Loan
+    template_name = 'loan/loan/loan_create.html'
+    form_class=CrispyLoanWithBothCreateForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(LoanCreateWithBoth, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self, **kwargs):
+        casepk = self.kwargs['casepk']
+        devicepk = self.kwargs['devicepk']
+        return reverse('loanwithboth_detail', kwargs={'pk': self.object.pk, 'casepk' : casepk, 'devicepk' : devicepk})
+
+    def form_valid(self, form):
+        form.instance.case = Case.objects.get(pk=self.kwargs['casepk'])
+        form.instance.case = Device.objects.get(pk=self.kwargs['devicepk'])
+        return super(LoanCreateWithBoth, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(LoanCreateWithBoth, self).get_context_data(**kwargs)
+        context['device'] = Case.objects.get(pk=self.kwargs['devicepk'])
+        context['case'] = Case.objects.get(pk=self.kwargs['casepk'])
+        return context
+
+
+class LoanUpdateWithBoth(CreateView):
+    model = Loan
+    template_name = 'loan/loan/loan_create.html'
+    form_class=CrispyLoanWithBothUpdateForm
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(LoanUpdateWithBoth, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self, **kwargs):
+        casepk = self.kwargs['casepk']
+        devicepk = self.kwargs['devicepk']
+        return reverse('loanwithboth_detail', kwargs={'pk': self.object.pk, 'casepk' : casepk, 'devicepk' : devicepk})
+
+    def form_valid(self, form):
+        form.instance.case = Case.objects.get(pk=self.kwargs['casepk'])
+        form.instance.case = Device.objects.get(pk=self.kwargs['devicepk'])
+        return super(LoanUpdateWithBoth, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(LoanUpdateWithBoth, self).get_context_data(**kwargs)
+        context['device'] = Case.objects.get(pk=self.kwargs['devicepk'])
+        context['case'] = Case.objects.get(pk=self.kwargs['casepk'])
+        return context
+
+
+## Loan Admin Views
+
+#    def get_context_data(self, **kwargs):
+#        context = super(LoanRequestHome, self).get_context_data(**kwargs)
+#        loanrequest_history = []
+#        history_count = 0
+#        counts = {}
+#        updates = {}
+#        device = None 
+#        case = None
+
+#        try: device = self.kwargs['devicepk']
+#        except: pass        
+#        try: case = self.kwargs['casepk']
+#        except: pass  
+
+#        if case != None:
+#            loanrequests = LoanRequest.objects.filter(case__pk=case)
+#            available_loanrequests = LoanRequest.objects.filter(case__pk=case)
+#            all_loanrequest_count = LoanRequest.objects.filter(case__pk=case).count()
+#            available_loanrequest_count = LoanRequest.objects.filter(case__pk=case).count()
+#            context['sidebar'] = 'case'
+#            context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
+#        elif device != None:
+#            loanrequests = LoanRequest.objects.filter(device__pk=device)
+#            available_loanrequests = LoanRequest.objects.filter(device__pk=device)
+#            all_loanrequest_count = LoanRequest.objects.filter(device__pk=device).count()
+#            available_loanrequest_count = LoanRequest.objects.filter(device__pk=device).count()
+#            context['sidebar'] = 'device'
+#        else:
+#            loanrequests = LoanRequest.objects.all()
+#            available_loanrequests = LoanRequest.objects.all()
+#            all_loanrequest_count = LoanRequest.objects.count()
+#            available_loanrequest_count = LoanRequest.objects.count()
+
+#        for loan in loanrequests:
+#            loanrequest_history.append(loan.history.most_recent())
+#            history_count += 1
+
+#        # Count Dictionaries
+#        counts["history"] = {'name':"Loan History",'value':history_count}
+#        counts["all"] = {'name':"All Loans",'value':all_loanrequest_count}
+#        counts["active"] = {'name':"Available Loans",'value':available_loanrequest_count}
+
+#        # Updates Dictionaries
+#        updates["left"] = {'side':"left",
+#                           'name':"All Loans",
+#                           'object_type_plural':'Loans',
+#                           'content':loanrequests,
+#                           'count':all_loanrequest_count}
+#        updates["centre"] = {'side':"centre",
+#                           'name':"Available Loans",
+#                           'object_type_plural':'Loans',
+#                           'content':available_loanrequests,
+#                           'count':available_loanrequest_count}
+#        updates["right"] = {'side':"right",
+#                           'name':"Loans History",
+#                           'object_type_plural':'Loans',
+#                           'content':loanrequest_history,
+#                           'count':history_count}
+        
+#        # Context
+#        context['counts'] = counts
+#        context['updates'] = updates
+#        context['table_objects'] = loanrequests
+#        return context
+

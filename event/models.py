@@ -11,23 +11,41 @@ from simple_history.models import HistoricalRecords
 
 ## Admin Models
 class EventAuthorisation(Authorisation):
-    # General Fields
+    """
+    Inherited model to contain information about an event authorisation.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Event Authorisation')
         verbose_name_plural = _('Event Authorisations')
-
-    #def get_absolute_url(self):
-    #    return reverse('Event_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
     
 
 class EventClassification(Classification):
-    # General Fields
+    """
+    Inherited model to contain information about an event classification.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
     
     history = HistoricalRecords()
 
@@ -35,15 +53,21 @@ class EventClassification(Classification):
         verbose_name = _('Event Classification')
         verbose_name_plural = _('Event Classifications')
 
-    #def get_absolute_url(self):
-    #    return reverse('Event_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EventType(Type):
-    # General Fields
+    """
+    Inherited model to contain information about an event type.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
     
     history = HistoricalRecords()
 
@@ -51,15 +75,21 @@ class EventType(Type):
         verbose_name = _('Event Type')
         verbose_name_plural = _('Event Types')
 
-    #def get_absolute_url(self):
-    #    return reverse('Event_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EventPriority(Priority):
-    # General Fields
+    """
+    Inherited model to contain information about an event priority.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
    
     history = HistoricalRecords()
 
@@ -67,15 +97,21 @@ class EventPriority(Priority):
         verbose_name = _('Event Priority')
         verbose_name_plural = _('Event Priorities')
 
-    #def get_absolute_url(self):
-    #    return reverse('Event_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EventCategory(Category):
-    # General Fields
+    """
+    Inherited model to contain information about an event category.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -83,15 +119,21 @@ class EventCategory(Category):
         verbose_name = _('Event Category')
         verbose_name_plural = _('Event Categories')
 
-    #def get_absolute_url(self):
-    #    return reverse('event_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EventStatus(Status):
-    # General Fields
+    """
+    Inherited model to contain information about an event status.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -99,32 +141,23 @@ class EventStatus(Status):
         verbose_name = _('Event Status')
         verbose_name_plural = _('Event Status')
 
-    #def get_absolute_url(self):
-    #    return reverse('Event_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EventStatusGroup(StatusGroup):
-    ## Choices
-    # CREATED = 'Created'
-    # PENDING = 'Awaiting Authorisation'
-    # REJECTED = 'Rejected'
-    # OPEN = 'Open'
-    # Active = 'Active'
-    # CLOSED = 'Closed'
-    # ARCHIVED = 'Archived'
-    ## Choice Groups
-    # closedStatuses = [CLOSED, ARCHIVED]
-    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
-    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
-    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
-    # workable_statuses = [CREATED, OPEN]
-    # forensic_statuses = [OPEN]
+    """
+    Inherited model to contain information about a person status group.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    :status (optional): Status in group linked by Status model
     
-    # General Fields
-    
+    """
+
     # Linked Fields
     status = models.ManyToManyField(EventStatus, blank=True, verbose_name="Event Status")
     
@@ -134,15 +167,35 @@ class EventStatusGroup(StatusGroup):
         verbose_name = _('Event Status Group')
         verbose_name_plural = _('Event Status Groups')
 
-    #def get_absolute_url(self):
-    #    return reverse('Event_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 ## Main Models
 class Event(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about an event.
+
+    :title (optional): 
+    :slug (optional): 
+    :image_upload (optional): 
+    :deadline (optional): 
+    :brief (optional): 
+    :assigned_to (optional): 
+    :manager (optional): 
+    :assigned_by (optional): 
+    :type (optional): 
+    :status (optional): 
+    :classification (optional): 
+    :priority (optional): 
+    :category (optional): 
+    :authorisation (optional): 
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Event Title")
     slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Event Slug")
@@ -168,6 +221,3 @@ class Event(ObjectDescriptionMixin):
 
     def __str__(self):
         return '%s' % self.title
-
-
-## Data Models

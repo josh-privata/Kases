@@ -2,129 +2,95 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="classcase_1_1models_1_1_case_authorisation" kind="class" prot="public">
     <compoundname>case::models::CaseAuthorisation</compoundname>
-    <basecompoundref prot="public" virt="non-virtual">Model</basecompoundref>
+    <basecompoundref refid="classutils_1_1models_1_1_authorisation" prot="public" virt="non-virtual">utils.models.Authorisation</basecompoundref>
+    <innerclass refid="classcase_1_1models_1_1_case_authorisation_1_1_meta" prot="public">case::models::CaseAuthorisation::Meta</innerclass>
       <sectiondef kind="public-static-attrib">
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_authorisation_1a8139e6086242af303e76764715c68ad3" prot="public" static="yes" mutable="no">
-        <type>dictionary</type>
-        <definition>dictionary case.models.CaseAuthorisation::STATUS</definition>
-        <argsstring></argsstring>
-        <name>STATUS</name>
-        <initializer>= {&apos;AUTH&apos;: {&apos;description&apos;: &apos;Authorised&apos;},
-              &apos;NOAUTH&apos;: {&apos;description&apos;: &apos;Rejected&apos;},
-              &apos;PENDING&apos;: {&apos;description&apos;: &apos;Pending&apos;},}</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="28" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="28" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_authorisation_1ab316eadcc33c2c08b269b2d5e6ea1c8d" prot="public" static="yes" mutable="no">
+      <memberdef kind="variable" id="classcase_1_1models_1_1_case_authorisation_1aed85120d42dfaae7d52616794201f243" prot="public" static="yes" mutable="no">
         <type>tuple</type>
-        <definition>tuple case.models.CaseAuthorisation::id</definition>
+        <definition>tuple case.models.CaseAuthorisation::history</definition>
         <argsstring></argsstring>
-        <name>id</name>
-        <initializer>= models.IntegerField(null=True, blank=True, default=&quot;&quot;)</initializer>
+        <name>history</name>
+        <initializer>= HistoricalRecords()</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="33" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="33" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_authorisation_1ac0e0f10f924a473b3961e8768b1fdf31" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple case.models.CaseAuthorisation::reason</definition>
-        <argsstring></argsstring>
-        <name>reason</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="34" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="34" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_authorisation_1af1c640a7e1c0c465805fe3f9520bd48c" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple case.models.CaseAuthorisation::date_time</definition>
-        <argsstring></argsstring>
-        <name>date_time</name>
-        <initializer>= models.DateTimeField(auto_now=True, null=True)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="35" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="35" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_authorisation_1a04e619d13dece6a0c69ef5f339bf3044" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple case.models.CaseAuthorisation::case_authorised</definition>
-        <argsstring></argsstring>
-        <name>case_authorised</name>
-        <initializer>= models.CharField(max_length=250, blank=True, null=True, default=None)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="36" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="36" bodyend="-1"/>
-      </memberdef>
-      <memberdef kind="variable" id="classcase_1_1models_1_1_case_authorisation_1ad3df41b28e2098e2b331a8e9cfe77121" prot="public" static="yes" mutable="no">
-        <type>tuple</type>
-        <definition>tuple case.models.CaseAuthorisation::case</definition>
-        <argsstring></argsstring>
-        <name>case</name>
-        <initializer>= models.ForeignKey(<ref refid="classcase_1_1models_1_1_case" kindref="compound">Case</ref>, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=&quot;the&quot;)</initializer>
-        <briefdescription>
-        </briefdescription>
-        <detaileddescription>
-        </detaileddescription>
-        <inbodydescription>
-        </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="39" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="39" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="39" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="39" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
-    </briefdescription>
+<para>Admin Models. </para>    </briefdescription>
     <detaileddescription>
-    </detaileddescription>
+<para><verbatim>Inherited model to contain information about a case authorisation.
+
+:title (optional): Title
+:description (optional): Description
+:private (optional): Is it private Boolean
+:colour (optional): Colour representation
+:created (auto): Date Created
+:modified (auto): Date Modified
+:created_by (auto): Created by linked User model  
+:modified_by (auto): Modified by linked User model </verbatim> </para>    </detaileddescription>
     <inheritancegraph>
-      <node id="28">
-        <label>case.models.CaseAuthorisation</label>
-        <link refid="classcase_1_1models_1_1_case_authorisation"/>
-        <childnode refid="29" relation="public-inheritance">
+      <node id="112">
+        <label>utils.models.Authorisation</label>
+        <link refid="classutils_1_1models_1_1_authorisation"/>
+        <childnode refid="113" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="29">
+      <node id="111">
+        <label>case.models.CaseAuthorisation</label>
+        <link refid="classcase_1_1models_1_1_case_authorisation"/>
+        <childnode refid="112" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="114" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="114">
         <label>Model</label>
       </node>
     </inheritancegraph>
     <collaborationgraph>
-      <node id="30">
-        <label>case.models.CaseAuthorisation</label>
-        <link refid="classcase_1_1models_1_1_case_authorisation"/>
-        <childnode refid="31" relation="public-inheritance">
+      <node id="116">
+        <label>utils.models.Authorisation</label>
+        <link refid="classutils_1_1models_1_1_authorisation"/>
+        <childnode refid="117" relation="public-inheritance">
         </childnode>
       </node>
-      <node id="31">
+      <node id="115">
+        <label>case.models.CaseAuthorisation</label>
+        <link refid="classcase_1_1models_1_1_case_authorisation"/>
+        <childnode refid="116" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="117">
+        <label>utils.models.ObjectDescriptionMixin</label>
+        <link refid="classutils_1_1models_1_1_object_description_mixin"/>
+        <childnode refid="118" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="118">
         <label>Model</label>
       </node>
     </collaborationgraph>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" line="26" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/models.py" bodystart="26" bodyend="42"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" line="24" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py" bodystart="24" bodyend="46"/>
     <listofallmembers>
-      <member refid="classcase_1_1models_1_1_case_authorisation_1ad3df41b28e2098e2b331a8e9cfe77121" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>case</name></member>
-      <member refid="classcase_1_1models_1_1_case_authorisation_1a04e619d13dece6a0c69ef5f339bf3044" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>case_authorised</name></member>
-      <member refid="classcase_1_1models_1_1_case_authorisation_1af1c640a7e1c0c465805fe3f9520bd48c" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>date_time</name></member>
-      <member refid="classcase_1_1models_1_1_case_authorisation_1ab316eadcc33c2c08b269b2d5e6ea1c8d" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>id</name></member>
-      <member refid="classcase_1_1models_1_1_case_authorisation_1ac0e0f10f924a473b3961e8768b1fdf31" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>reason</name></member>
-      <member refid="classcase_1_1models_1_1_case_authorisation_1a8139e6086242af303e76764715c68ad3" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>STATUS</name></member>
+      <member refid="classutils_1_1models_1_1_authorisation_1adbfc122cde8163254deee282cc97479a" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>__str__</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a89803b13439a16bd49ffb3297d829cbb" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a342aa403491ad4f61eb13761d86f2c26" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>created</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1aa9db1a2dd800429f6bf3262708408379" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>description</name></member>
+      <member refid="classcase_1_1models_1_1_case_authorisation_1aed85120d42dfaae7d52616794201f243" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>history</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a895434b9b64caab6a48589e1efa1f5b2" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1ac1a737eefa43b91977c3193768f81c87" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>modified</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a27dad54dd71954c2f6130d7b66b34d1c" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>private</name></member>
+      <member refid="classutils_1_1models_1_1_object_description_mixin_1a8721aff9d00270cba53882d98b8de831" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>save</name></member>
+      <member refid="classutils_1_1models_1_1_authorisation_1ac7ce75d6c513ba18f26d7aec9194b1bd" prot="public" virt="non-virtual"><scope>case::models::CaseAuthorisation</scope><name>title</name></member>
     </listofallmembers>
   </compounddef>
 </doxygen>

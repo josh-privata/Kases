@@ -7,6 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.conf import settings
 from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
 
+
 ## Admin Models
 class Country(models.Model):
     # General Fields

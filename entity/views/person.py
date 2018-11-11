@@ -198,6 +198,7 @@ def person_update(request, object_id=None):
     EmailFormSet = modelformset_factory(Email, form=EmailForm, can_delete=True)
     WebsiteFormSet = modelformset_factory(Website, form=WebsiteForm, can_delete=True)
     #SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
+
     if object_id:
         try:
             person = Person.objects.get(pk=object_id)
@@ -210,6 +211,7 @@ def person_update(request, object_id=None):
         person = qs[0]
     else:
         person = None
+
     if request.method == 'POST':
         #if request.POST.has_key('cancel'):
         #    return http.HttpResponseRedirect("..")
@@ -248,7 +250,7 @@ def person_update(request, object_id=None):
             #for s in social.save():
             #    person.social.add(w) 
             person.save()
-            return http.HttpResponseRedirect(person.get_absolute_url())       
+            return http.HttpResponseRedirect(person.get_absolute_url())   
     elif person:
         form = PersonForm(instance=person,prefix="person")
         addr = AddressFormSet(queryset=person.address.all(),prefix="addr")
@@ -265,6 +267,7 @@ def person_update(request, object_id=None):
         #social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
     context = { 'object':person, 'person':form, 'telephones':tel, 'emails':email,
                'websites':web, 'addresses':addr, }
+
     if person:
         context['title']='Edit %s %s'%(person.first_name,person.last_name)
         context['can_delete']=True

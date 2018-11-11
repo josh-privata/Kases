@@ -171,8 +171,17 @@ class UrlMixin(models.Model):
 
 class ObjectDescriptionMixin(models.Model):
     """
-    Abstract base class with a tile and Description
+    Abstract base class for most models.
+
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
     """
+
     description = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Description")
     created = models.DateTimeField(_("Creation date and time"),editable=False,)
     modified = models.DateTimeField(_("Modification date and time"),null=True,editable=False,)
@@ -198,22 +207,45 @@ class ObjectDescriptionMixin(models.Model):
 
 
 class Authorisation(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about an object authorisation.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Authorisation")
 
     class Meta:
         abstract = True
-        verbose_name = _('Authorisation')
-        verbose_name_plural = _('Authorisations')
-
-    #def get_absolute_url(self):
-    #    return reverse('authorisation_detail', kwargs={'pk': self.pk})
 
     def __str__(self):
         return '%s' % self.title
     
 
 class Classification(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about an object classification.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Classification")
     
@@ -230,6 +262,20 @@ class Classification(ObjectDescriptionMixin):
 
 
 class Type(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about an object type.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Type")
     
@@ -246,6 +292,20 @@ class Type(ObjectDescriptionMixin):
 
 
 class Priority(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about an object priority.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Priority")
     colour = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Colour")
@@ -264,6 +324,20 @@ class Priority(ObjectDescriptionMixin):
 
 
 class Category(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about an object category.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
+    
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Category")
     
@@ -280,6 +354,20 @@ class Category(ObjectDescriptionMixin):
 
 
 class Status(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about an object status.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Status")
 
@@ -296,25 +384,23 @@ class Status(ObjectDescriptionMixin):
 
 
 class StatusGroup(ObjectDescriptionMixin):
-    ## Choices
-    # CREATED = 'Created'
-    # PENDING = 'Awaiting Authorisation'
-    # REJECTED = 'Rejected'
-    # OPEN = 'Open'
-    # Active = 'Active'
-    # CLOSED = 'Closed'
-    # ARCHIVED = 'Archived'
-    ## Choice Groups
-    # closedStatuses = [CLOSED, ARCHIVED]
-    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
-    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
-    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
-    # workable_statuses = [CREATED, OPEN]
-    # forensic_statuses = [OPEN]
+    """
+    Abstract model to contain information about an object status group.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    :status (optional): Status in group linked by Status model
     
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Status Group")
-    # Linked Fields
 
     class Meta:
         abstract = True
@@ -328,283 +414,43 @@ class StatusGroup(ObjectDescriptionMixin):
         return '%s' % self.title
 
 
-#class UploadModel(models.Model):
-#    # General Fields
-#    date_time = models.DateTimeField(auto_now=True, null=True)
-#    file_note = models.CharField(max_length=250, blank=True, null=True, default=None)
-#    file_hash = models.CharField(max_length=250, blank=True, null=True, default=None)
-#    file_name = models.CharField(max_length=250, blank=True, null=True, default=None)
-#    upload_location = models.CharField(max_length=250, blank=True, null=True, default=None)
-#    file_title = models.CharField(max_length=250, blank=True, null=True, default=None)
-#    deleted = models.BooleanField(default=False, blank=True)
-#    date_deleted = models.DateTimeField(auto_now=True, null=True)
+class UploadModel(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about a file upload.
+
+    :date_time (optional):
+    :file_note (optional):
+    :file_hash (optional):
+    :file_name (optional):
+    :upload_location (optional):
+    :file_title (optional):
+    :created_by (optional):
+    :deleted (optional):
+    :date_deleted (optional):
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
+
+    # General Fields
+    date_time = models.DateTimeField(auto_now=True, null=True)
+    file_note = models.CharField(max_length=250, blank=True, null=True, default=None)
+    file_hash = models.CharField(max_length=250, blank=True, null=True, default=None)
+    file_name = models.CharField(max_length=250, blank=True, null=True, default=None)
+    upload_location = models.CharField(max_length=250, blank=True, null=True, default=None)
+    file_title = models.CharField(max_length=250, blank=True, null=True, default=None)
+    deleted = models.BooleanField(default=False, blank=True)
+    date_deleted = models.DateTimeField(auto_now=True, null=True)
   
-    #    @declared_attr
-    #    def deleter_id(cls):
-    ##        return Column(Integer, ForeignKey('users.id'))
-    #        pass
+    @property
+    def file_path(self):
+        return path.join(self.upload_location, self.file_name)
 
-    ##    ROOT = path.join(ROOT_DIR)
-
-    #    def __init__(self, uploader_id, file_name, file_note, title):
-    #        self.uploader_id = uploader_id
-    #        self.date_time = datetime.now()
-    #        self.file_name = file_name
-    #        self.file_note = file_note
-    #        self.file_title = title
-    #        self.file_hash = self.compute_hash()
-    #        self.deleted = False
-
-    #    @property
-    #    def date(self):
-    ##        return ForemanOptions.get_date(self.date_time)
-    #        pass
-
-    #    @property
-    #    def deleted_date(self):
-    ##        return ForemanOptions.get_date(self.date_deleted)
-    #        pass
-
-    #    @property
-    #    def file_path(self):
-    ##        return path.join(self.upload_location, self.file_name)
-    #        pass
-
-    #    def check_hash(self):
-    ##        return self.file_hash == self.compute_hash()
-    #        pass
-
-    #    def compute_hash(self):
-    ##        blocksize = 65536
-    ##        hasher = hash_library()
-    ##        with open(path.join(self.ROOT, self.upload_location, self.file_name), "rb") as f:
-    ##            buf = f.read(blocksize)
-    ##            while len(buf) > 0:
-    ##                hasher.update(buf)
-    ##                buf = f.read(blocksize)
-    ##        return hasher.hexdigest()
-    #        pass
-
-    #    def delete(self, user):
-    ##        if path.exists(path.join(self.ROOT, self.upload_location, self.file_name)):
-    ##            remove(path.join(self.ROOT, self.upload_location, self.file_name))
-    ##        self.deleted = True
-    ##        self.deleter = user
-    ##        self.date_deleted = datetime.now()
-    #        pass
-
-    #    @property
-    #    def url_path(self):
-    ##        file_loc = path.join(self.upload_location, self.file_name)
-    ##        if file_loc.startswith("files"):
-    ##            file_loc = file_loc[5:]
-    ##        return file_loc.replace("\\", "/")
-    #        pass
-
-
-#class Model(object):
-#    @classmethod
-#    def get(cls, cid):
-#        #return session.query(cls).get(cid)
-#        pass
-
-#    @classmethod
-#    def get_filter_by(cls, **variables):
-#        #return session.query(cls).filter_by(**variables)
-#        pass
-
-#    @classmethod
-#    def get_all(cls, descending=False):
-#        #if descending:
-#            #return session.query(cls).order_by(desc(cls.id))
-#        #else:
-#            #return session.query(cls).order_by(asc(cls.id))
-#        pass
-
-#    @classmethod
-#    def get_amount(cls):
-#        #return session.query(cls).count()
-#        pass
-
-
-#class HistoryModel(Model):
-##    comparable_fields = {}
-##    history_backref = 'history'
-##    object_name = None  # override this to add an entry for "<object_name> created"
-##    history_name = (None, None, None)  # override this for user history of this object
-
-#    @classmethod
-#    def get_changes(cls, current_obj):
-##        change_log = []
-##        history_list = getattr(current_obj, cls.history_backref)
-
-##        for new_obj, old_obj in zip(history_list, history_list[1:]):
-##            change_log.append({'date': old_obj.date,
-##                               'user': old_obj.user,
-##                               'current': current_obj,
-##                               'date_time': old_obj.date_time,
-##                               'change_log': new_obj.difference(old_obj)})
-
-##        if cls.object_name is not None:
-##            try:
-##                oldest_entry = history_list[0]
-##                change_log.append({'date': oldest_entry.date,
-##                               'user': oldest_entry.user,
-##                               'current': current_obj,
-##                               'date_time': oldest_entry.date_time,
-##                               'change_log': "Created " + cls.object_name})
-##            except IndexError:
-##                # no entries
-##                pass
-
-##        return change_log
-#         pass
-
-#    def difference(self, previous_object):
-##        differences = {}
-
-##        for field_name, field in self.comparable_fields.iteritems():
-##            current_value = getattr(self, field)
-##            old_value = getattr(previous_object, field)
-##            if current_value != old_value:
-##                if current_value == "":
-##                    current_value = "None"
-##                elif old_value == "":
-##                    old_value = "None"
-##                differences[field_name] = (current_value, old_value)
-##        return differences
-#         pass
-
-#    @classmethod
-#    def get_changes_for_user(cls, user):
-##        change_log = []
-##        q = session.query(cls).filter_by(user=user).all()
-##        for i in xrange(0, len(q)):
-##            entry = q[i]
-##            previous_entry_list = entry.previous
-##            if previous_entry_list is None:
-##                change_log.append({'date': entry.date,
-##                                   'date_time': entry.date_time,
-##                                   'object': (entry.history_name[0], getattr(entry, entry.history_name[1]),
-##                                              getattr(entry, entry.history_name[2]),
-##                                              getattr(entry, entry.history_name[3]) if len(entry.history_name) > 3 else None),
-##                                   'change_log': entry.history_name[0] + " created"})
-##            elif previous_entry_list is False:
-##                pass # used for case on 1st case/task/evidence creation:
-##                # status is set to created and case is set to created,
-##                # therefore duplicating the entry from two different sources, e.g. CaseStatus.previous = False
-##                # if the 1st one
-##            else:
-##                change_log.append({'date': entry.date,
-##                                   'date_time': entry.date_time,
-##                                   'object': (entry.history_name[0], getattr(entry, entry.history_name[1]),
-##                                              getattr(entry, entry.history_name[2]),
-##                                              getattr(entry, entry.history_name[3]) if len(entry.history_name) > 3 else None),
-##                                   'change_log': previous_entry_list.difference(entry)})
-##        return change_log
-#         pass
-
-#    def __repr__(self):
-##        return "<{} History id {}>".format(self.history_name[0], self.id)
-#        pass
-
-
-#class UserHistoryModel(Model):
-#    #history_name = (None, None, None)  # override this for user history of this object
-
-#    @classmethod
-#    def get_changes(cls, current_obj, role):
-##        change_log = []
-##        history_list = cls.get_roles_for_obj(current_obj, role)
-
-##        for new_obj, old_obj in zip(history_list, history_list[1:]):
-##            change_log.append({'date': old_obj.date,
-##                               'user': old_obj.changes_user,
-##                               'current': current_obj,
-##                               'date_time': old_obj.date_time,
-##                               'change_log': new_obj.difference(old_obj, role)})
-
-##        try:
-##            oldest_entry = history_list[0]
-##            if oldest_entry.removed is False:
-##                change_log.append({'date': oldest_entry.date,
-##                                   'user': oldest_entry.changes_user,
-##                                   'current': current_obj,
-##                                   'date_time': oldest_entry.date_time,
-##                                   'change_log': {role: ("ADD", oldest_entry.user.fullname)}})
-##        except IndexError:
-##            # no entries
-##            pass
-##        return change_log
-#        pass
-
-#    @classmethod
-#    def get_changes_for_user(cls, user):
-##        change_log = []
-##        q = session.query(cls).filter_by(changes_user=user).all()
-##        for i in xrange(0, len(q)):
-##            entry = q[i]
-##            previous_entry_list = entry.previous
-##            if previous_entry_list is None:
-##                change_log.append({'date': entry.date,
-##                                   'date_time': entry.date_time,
-##                                   'object': (entry.history_name[0], getattr(entry, entry.history_name[1]),
-##                                              getattr(entry, entry.history_name[2]),
-##                                              getattr(entry, entry.history_name[3]) if len(entry.history_name) > 3 else None),
-##                                   'change_log': {entry.role: ("ADD", entry.user.fullname)}})
-##            elif previous_entry_list is False and not entry.removed:
-##                change_log.append({'date': entry.date,
-##                                   'date_time': entry.date_time,
-##                                   'object': (entry.history_name[0], getattr(entry, entry.history_name[1]),
-##                                              getattr(entry, entry.history_name[2]),
-##                                              getattr(entry, entry.history_name[3]) if len(entry.history_name) > 3 else None),
-##                                   'change_log': {entry.role: ("ADD", entry.user.fullname)}})
-##            elif previous_entry_list is False and entry.removed:
-##                pass
-##            else:
-##                change_log.append({'date': entry.date,
-##                                   'date_time': entry.date_time,
-##                                   'object': (entry.history_name[0], getattr(entry, entry.history_name[1]),
-##                                              getattr(entry, entry.history_name[2]),
-##                                              getattr(entry, entry.history_name[3]) if len(entry.history_name) > 3 else None),
-##                                   'change_log': previous_entry_list.difference(entry, entry.role)})
-##        return change_log
-#        pass
-
-#    def difference(self, previous_object, role_name):
-##        differences = {}
-##        if previous_object.removed:
-##            differences[role_name] = ("DEL", previous_object.user.fullname)
-##        elif self.removed:
-##            differences[role_name] = ("ADD", previous_object.user.fullname)
-##        return differences
-#        pass
-
-#    @classmethod
-#    def change_user(cls, role_for_user, new_user, changes_made_by_user):
-##        current_user_id = role_for_user.user.id
-##        if new_user is True:
-##            old_removed = cls(role_for_user, changes_made_by_user, True)
-##            session.add(old_removed)
-##            session.delete(role_for_user)
-##            session.flush()
-##        elif new_user is not None and new_user.id != current_user_id:
-##            old_removed = cls(role_for_user, changes_made_by_user, True)
-##            session.add(old_removed)
-
-##            role_for_user.user = new_user
-##            new_added = cls(role_for_user, changes_made_by_user)
-##            session.add(new_added)
-##        else:
-##            new_added = cls(role_for_user, changes_made_by_user)
-##            session.add(new_added)
-##            session.flush()
-#        pass
-
-#    def __repr__(self):
-##        return "<{} History id {}>".format(self.history_name[0], self.id)
-#        pass
-
+    
 
 #class ForemanOptions(Model):
 #    __tablename__ = 'options'

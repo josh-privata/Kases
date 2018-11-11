@@ -8,6 +8,7 @@
     <PythonRunWebServerCommandArguments>runserver --settings=Kases.settings 0.0.0.0:8080 $(CommandLineArguments) --configuration=Dev</PythonRunWebServerCommandArguments>
     <PythonDebugWebServerCommandArguments>runserver --noreload --settings=Kases.settings 0.0.0.0:8080 $(CommandLineArguments) --configuration=Dev</PythonDebugWebServerCommandArguments>
     <WebBrowserPort>8080</WebBrowserPort>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -109,6 +110,9 @@
     <Compile Include="loan\models.py" />
     <Compile Include="loan\tests.py" />
     <Compile Include="loan\views.py" />
+    <Compile Include="loan\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="note\tables.py">
       <SubType>Code</SubType>
     </Compile>
@@ -191,6 +195,7 @@
     <Folder Include="case\templates\case\event\" />
     <Folder Include="entity\migrations\" />
     <Folder Include="entity\models\" />
+    <Folder Include="entity\templates\entity\forms\" />
     <Folder Include="entity\views\" />
     <Folder Include="entity\templates\entity\company\" />
     <Folder Include="entity\templates\entity\person\" />
@@ -211,6 +216,9 @@
     <Folder Include="loan\" />
     <Folder Include="loan\migrations\" />
     <Folder Include="loan\templates\" />
+    <Folder Include="loan\templates\loan\loan\" />
+    <Folder Include="loan\templates\loan\loanrequest\" />
+    <Folder Include="loan\templates\loan\returnrequest\" />
     <Folder Include="note\" />
     <Folder Include="note\migrations\" />
     <Folder Include="note\templates\" />
@@ -318,6 +326,7 @@
     <Content Include="entity\templates\entity\company\company_delete.html" />
     <Content Include="entity\templates\entity\company\company_detail.html" />
     <Content Include="entity\templates\entity\company\company_index.html" />
+    <Content Include="entity\templates\entity\forms\person_create.html" />
     <Content Include="entity\templates\entity\person\person_create.html" />
     <Content Include="entity\templates\entity\person\person_delete.html" />
     <Content Include="entity\templates\entity\person\person_detail.html" />
@@ -355,16 +364,33 @@
     <Content Include="inventory\templates\inventory\checkin.html" />
     <Content Include="inventory\templates\inventory\checkout.html" />
     <Content Include="inventory\templates\inventory\comment\edit_comment.html" />
-    <Content Include="loan\templates\loan\loan_request.html" />
-    <Content Include="loan\templates\loan\return_request.html" />
-    <Content Include="loan\templates\loan_index.html" />
-    <Content Include="loan\templates\loan_open_layout.html" />
-    <Content Include="loan\templates\loan\loan_create.html" />
-    <Content Include="loan\templates\loan\loan_delete.html" />
-    <Content Include="loan\templates\loan\loan_detail.html" />
-    <Content Include="loan\templates\loan\loan_list.html" />
-    <Content Include="loan\templates\loan\loan_table.html" />
-    <Content Include="loan\templates\loan\loan_update.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_create.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_delete.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_detail.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_index.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_list.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_request.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_table.html" />
+    <Content Include="loan\templates\loan\loanrequest\loanrequest_update.html" />
+    <Content Include="loan\templates\loan\loan\loan_create.html" />
+    <Content Include="loan\templates\loan\loan\loan_delete.html" />
+    <Content Include="loan\templates\loan\loan\loan_detail.html" />
+    <Content Include="loan\templates\loan\loan\loan_index.html" />
+    <Content Include="loan\templates\loan\loan\loan_list.html" />
+    <Content Include="loan\templates\loan\loan\loan_request.html" />
+    <Content Include="loan\templates\loan\loan\loan_table.html" />
+    <Content Include="loan\templates\loan\loan\loan_update.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_create.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_delete.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_detail.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_index.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_list.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_request.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_table.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest_update.html" />
+    <Content Include="loan\templates\loan\returnrequest\returnrequest.html" />
+    <Content Include="loan\templates\loan\loan_index.html" />
+    <Content Include="loan\templates\loan\loan_open_layout.html" />
     <Content Include="note\templates\note\note\new_note_create.html" />
     <Content Include="note\templates\note\note\note_create.html" />
     <Content Include="note\templates\note\note\note_delete.html" />

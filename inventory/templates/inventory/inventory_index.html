@@ -17,6 +17,11 @@
     {% block table_head %}
         <th>ID</th>
         <th>Name</th>
+        <th>Make</th>
+        <th>Model</th>
+        {% if table_object.manufacturer %}<th>Manufacturer</th>{% endif %}
+        <th>Status</th>
+        <th>Purpose</th>
     {% endblock %}
         
     <!-- Table Body -->
@@ -27,6 +32,13 @@
     <!-- Columns -->
     {% block table_body_columns %}
         <td>{{ table_object.title }}</td>
+        <td>{{ table_object.make }}</td>
+        <td>{{ table_object.model }}</td>
+        {% if table_object.manufacturer %}
+            <td><a href="{% url 'company_detail' table_object.manufacturer.id %}">{{ table_object.manufacturer }}</a></td>
+        {% endif %}
+        <td>{{ table_object.get_status_display }}</td>
+        <td>{{ table_object.purpose }}</td>
     {% endblock %}
     
     <!-- Table Else -->

@@ -100,8 +100,6 @@ admin.site.register(CasePerson, SimpleHistoryAdmin)
 admin.site.register(CaseCompany, SimpleHistoryAdmin)
 admin.site.register(CaseInventory, SimpleHistoryAdmin)
 admin.site.register(CaseEvent, SimpleHistoryAdmin)
-admin.site.register(EventPerson, SimpleHistoryAdmin)
-admin.site.register(EventCompany, SimpleHistoryAdmin)
 
 
 #admin.site.register(ContactLocation)

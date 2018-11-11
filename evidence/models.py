@@ -12,39 +12,63 @@ from simple_history.models import HistoricalRecords
 
 ## Admin Models
 class EvidenceAuthorisation(Authorisation):
-    # General Fields
+    """
+    Inherited model to contain information about an evidence authorisation.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Evidence Authorisation')
         verbose_name_plural = _('Evidence Authorisations')
-
-    #def get_absolute_url(self):
-    #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
     
 
 class EvidenceClassification(Classification):
-    # General Fields
+    """
+    Inherited model to contain information about evidence classification.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Evidence Classification')
         verbose_name_plural = _('Evidence Classifications')
 
-    #def get_absolute_url(self):
-    #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EvidenceType(Type):
-    # General Fields
+    """
+    Inherited model to contain information about evidence type.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
     
     history = HistoricalRecords()
 
@@ -52,15 +76,21 @@ class EvidenceType(Type):
         verbose_name = _('Evidence Type')
         verbose_name_plural = _('Evidence Types')
 
-    #def get_absolute_url(self):
-    #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EvidenceCategory(Category):
-    # General Fields
+    """
+    Inherited model to contain information about evidence category.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -68,15 +98,21 @@ class EvidenceCategory(Category):
         verbose_name = _('Evidence Category')
         verbose_name_plural = _('Evidence Categories')
 
-    #def get_absolute_url(self):
-    #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EvidencePriority(Priority):
-    # General Fields
+    """
+    Inherited model to contain information about evidence priority.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
    
     history = HistoricalRecords()
 
@@ -84,15 +120,21 @@ class EvidencePriority(Priority):
         verbose_name = _('Evidence Priority')
         verbose_name_plural = _('Evidence Priorities')
 
-    #def get_absolute_url(self):
-    #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EvidenceStatus(Status):
-    # General Fields
+    """
+    Inherited model to contain information about evidence status.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -100,31 +142,23 @@ class EvidenceStatus(Status):
         verbose_name = _('Evidence Status')
         verbose_name_plural = _('Evidence Status')
 
-    #def get_absolute_url(self):
-    #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class EvidenceStatusGroup(StatusGroup):
-    ## Choices
-    # CREATED = 'Created'
-    # PENDING = 'Awaiting Authorisation'
-    # REJECTED = 'Rejected'
-    # OPEN = 'Open'
-    # Active = 'Active'
-    # CLOSED = 'Closed'
-    # ARCHIVED = 'Archived'
-    ## Choice Groups
-    # closedStatuses = [CLOSED, ARCHIVED]
-    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
-    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
-    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
-    # workable_statuses = [CREATED, OPEN]
-    # forensic_statuses = [OPEN]
+    """
+    Inherited model to contain information about evidence status group.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    :status (optional): Status in group linked by Status model
     
-    # General Fields
+    """
+
     # Linked Fields
     status = models.ManyToManyField(EvidenceStatus, blank=True, verbose_name="Evidence Status")
     
@@ -134,14 +168,29 @@ class EvidenceStatusGroup(StatusGroup):
         verbose_name = _('Evidence Status Group')
         verbose_name_plural = _('Evidence Status Groups')
 
-    #def get_absolute_url(self):
-    #    return reverse('Evidence_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class ChainOfCustody(ObjectDescriptionMixin):
+    """
+    Model to contain information about evidence chain of custody.
+
+    :date_recorded (optional):
+    :date_of_custody (optional):
+    :check_in (optional):
+    :comment (optional):
+    :custody_receipt (optional):
+    :custody_receipt_label (optional):
+    :assigned_to (optional):
+    :assigned_by (optional):
+    :custodian (optional):
+    :private (optional): Is it private Boolean
+    :description (optional): Description
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
+
     # General Fields
     date_recorded = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Recorded")
     date_of_custody = models.DateTimeField(auto_now=True, null=True, verbose_name="Date of Custody")
@@ -159,6 +208,42 @@ class ChainOfCustody(ObjectDescriptionMixin):
 
 ## Main Models
 class Evidence(ObjectDescriptionMixin):
+    """
+    Abstract model to contain information about evidence.
+
+    :title (optional): 
+    :reference (optional): 
+    :comment (optional): 
+    :bag_number (optional): 
+    :location (optional): 
+    :uri (optional): 
+    :current_status (optional): 
+    :qr_code_text (optional): 
+    :qr_code (optional): 
+    :retention_reminder_sent (optional): 
+    :retention_start_date (optional): 
+    :retention_date (optional): 
+    :deadline (optional): 
+    :brief (optional): 
+    :chain_of_custody (optional): 
+    :custodian (optional): 
+    :assigned_to (optional): 
+    :assigned_by (optional): 
+    :type (optional): 
+    :status (optional): 
+    :classification (optional): 
+    :priority (optional): 
+    :category (optional): 
+    :authorisation (optional): 
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
+
     # General Fields
     title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Title")
     reference = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Reference")

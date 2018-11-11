@@ -1,23 +1,25 @@
 ## Loan Forms ##
 
 from django import forms
-from django.utils import timezone
-from django.forms import CharField, Select, FileInput
+from django.forms import CharField
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms import layout, bootstrap
 from crispy_forms.helper import FormHelper
 from simple_history.utils import update_change_reason
 from loan.models import  Loan
 
-# Loan 
-#'reason', 'booked_from', 'booked_until', 'condition', 'returned', 'case', 'device', 'loaned_to',
-#'loaned_by', 'description', 'private'
+
+''' Loan 
+'reason', 'booked_from', 'booked_until', 'original_condition', 'returned_condition', 'returned', 'case', 'device', 'loaned_to',
+'loaned_by', 'description', 'private', 'status', 'taken'
+'''
+
 
 ## Abstract Forms
-class CrispyLoanCreateForm(forms.ModelForm):
-    
+class LoanForm(forms.ModelForm):
+
     def __init__(self, *args, **kwargs):
-        super(CrispyLoanCreateForm, self).__init__(*args, **kwargs)
+        super(LoanForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_action = ""
         self.helper.form_method = "POST"
@@ -28,9 +30,10 @@ class CrispyLoanCreateForm(forms.ModelForm):
             
             layout.Div(layout.Fieldset(_("Main data"),
                         layout.Field('reason', wrapper_class='col-md-6'),
+                        layout.Field('change_reason', wrapper_class='col-md-6'),
                         layout.Field('booked_from', wrapper_class='col-md-6'),
                         layout.Field('booked_until', wrapper_class='col-md-6'),
-                        layout.Field('condition', wrapper_class='col-md-6'),
+                        layout.Field('original_condition', wrapper_class='col-md-6'),
                         layout.Field('returned', wrapper_class='col-md-6'),
                         layout.Field('case', wrapper_class='col-md-6'),
                         layout.Field('device'),
@@ -44,9 +47,21 @@ class CrispyLoanCreateForm(forms.ModelForm):
 
     class Meta:
         model = Loan
-        fields = ('reason', 'booked_from', 'booked_until', 'condition', 'returned', 'case', 'device', 'loaned_to',
+        fields = ('reason', 'booked_from', 'booked_until', 'original_condition', 'returned', 'case', 'device', 'loaned_to',
                   'loaned_by', 'description', 'private')
 
+
+class __LoanForm(forms.ModelForm):
+    
+    class Meta:
+        model = Loan
+        fields = ('reason', 'booked_from', 'booked_until', 'original_condition', 'returned', 'case', 'device', 'loaned_to',
+                  'loaned_by', 'description', 'private')
+
+
+## Loan Forms
+class CrispyLoanCreateForm(LoanForm):
+    
     def save(self):
         instance = super(CrispyLoanCreateForm, self).save(commit=False)
         changereason = 'Initial Creation'
@@ -55,41 +70,10 @@ class CrispyLoanCreateForm(forms.ModelForm):
         return instance
 
 
-class CrispyLoanUpdateForm(forms.ModelForm):
+class CrispyLoanUpdateForm(LoanForm):
     
     change_reason = CharField(required=False, label='Reason For Change',)
-
-    def __init__(self, *args, **kwargs):
-        super(CrispyLoanUpdateForm, self).__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_action = ""
-        self.helper.form_method = "POST"
-        self.helper.form_class = 'form-horizontal'
-        self.helper.label_class = 'col-lg-2'
-        self.helper.field_class = 'col-lg-8'
-        self.helper.layout = layout.Layout(
-            
-            layout.Div(layout.Fieldset(_("Main data"),
-                        layout.Field('reason', wrapper_class='col-md-6'),
-                        layout.Field('booked_from', wrapper_class='col-md-6'),
-                        layout.Field('booked_until', wrapper_class='col-md-6'),
-                        layout.Field('condition', wrapper_class='col-md-6'),
-                        layout.Field('returned', wrapper_class='col-md-6'),
-                        layout.Field('case', wrapper_class='col-md-6'),
-                        layout.Field('device'),
-                        layout.Field('loaned_to'),
-                        layout.Field('loaned_by', wrapper_class='col-md-6'),
-                        layout.Field('description', wrapper_class='col-md-6'),
-                        layout.Field('private', wrapper_class='col-md-6'),
-                        )),
-
-            bootstrap.FormActions(layout.Submit("submit", _("Save")),))
-
-    class Meta:
-        model = Loan
-        fields = ('reason', 'booked_from', 'booked_until', 'condition', 'returned', 'case', 'device', 'loaned_to',
-                  'loaned_by', 'description', 'private')
-
+    
     def save(self):
         instance = super(CrispyLoanUpdateForm, self).save(commit=False)
         changereason = self.cleaned_data['change_reason']
@@ -98,13 +82,8 @@ class CrispyLoanUpdateForm(forms.ModelForm):
         return instance
 
 
-class LoanCreateForm(forms.ModelForm):
-    
-    class Meta:
-        model = Loan
-        fields = ('reason', 'booked_from', 'booked_until', 'condition', 'returned', 'case', 'device', 'loaned_to',
-                  'loaned_by', 'description', 'private')
-    
+class LoanCreateForm(__LoanForm):
+
     def save(self):
         instance = super(LoanForm, self).save(commit=False)
         changereason = 'Initial Creation'
@@ -113,14 +92,9 @@ class LoanCreateForm(forms.ModelForm):
         return instance
 
 
-class LoanUpdateForm(forms.ModelForm):
+class LoanUpdateForm(__LoanForm):
     
     change_reason = CharField(required=False, label='Reason For Change',)
-
-    class Meta:
-        model = Loan
-        fields = ('reason', 'booked_from', 'booked_until', 'condition', 'returned', 'case', 'device', 'loaned_to',
-                  'loaned_by', 'description', 'private')
 
     def save(self):
         instance = super(LoanUpdateForm, self).save(commit=False)
@@ -130,54 +104,47 @@ class LoanUpdateForm(forms.ModelForm):
         return instance
 
 
-#class CommentCreateForm(forms.ModelForm):
-#    '''Form for updating a comment.
-#    '''
-#    text = forms.CharField(label='Comment: ', widget=forms.Textarea,
-#                             max_length=500, required=True)
-#    class Meta:
-#        fields = ('text',)
+## Loan With Case Forms
+class CrispyLoanWithCaseCreateForm(CrispyLoanCreateForm):
+
+    class Meta:
+        model = Loan
+        fields = ('booked_from', 'device', 'loaned_to', 'reason', 'booked_until', 'description', 'private')
+
+
+class CrispyLoanWithCaseUpdateForm(CrispyLoanUpdateForm):
+
+    class Meta:
+        model = Loan
+        fields = ('booked_from', 'device', 'loaned_to', 'reason', 'booked_until', 'description', 'private')
+
+
+## Loan With Device Forms
+class CrispyLoanWithDeviceCreateForm(CrispyLoanCreateForm):
     
-#    def __init__(self, *args, **kwargs):
-#        self.helper = FormHelper()
-#        self.helper.form_id = 'id-edit_comment_form'
-#        self.helper.form_class = "form-widget"
-#        self.helper.form_method = 'post'
-#        self.helper.layout = Layout(
-#            Fieldset(
-#                "Edit comment",
-#                "text",
-#            ),
-#            ButtonHolder(
-#                Submit('submit', "Submit")
-#            )
-#        )
-#        return super(CommentUpdateForm, self).__init__(*args, **kwargs)
+    class Meta:
+        model = Loan
+        fields = ('booked_from', 'case', 'loaned_to', 'reason', 'booked_until', 'description', 'private')
 
 
-#class CommentUpdateForm(forms.ModelForm):
-#    '''Form for updating a comment.
-#    '''
-#    text = forms.CharField(label='Comment: ', widget=forms.Textarea,
-#                             max_length=500, required=True)
-#    class Meta:
-#        fields = ('text',)
+class CrispyLoanWithDeviceUpdateForm(CrispyLoanUpdateForm):
+
+    class Meta:
+        model = Loan
+        fields = ('booked_from', 'case', 'loaned_to', 'reason', 'booked_until', 'description', 'private')
+
+
+## Loan With Both Forms
+class CrispyLoanWithBothCreateForm(CrispyLoanCreateForm):
     
-#    def __init__(self, *args, **kwargs):
-#        self.helper = FormHelper()
-#        self.helper.form_id = 'id-edit_comment_form'
-#        self.helper.form_class = "form-widget"
-#        self.helper.form_method = 'post'
-#        self.helper.layout = Layout(
-#            Fieldset(
-#                "Edit comment",
-#                "text",
-#            ),
-#            ButtonHolder(
-#                Submit('submit', "Submit")
-#            )
-#        )
-#        return super(CommentUpdateForm, self).__init__(*args, **kwargs)
+    class Meta:
+        model = Loan
+        fields = ('booked_from', 'loaned_to', 'reason', 'status', 
+                  'booked_until', 'description', 'private')
 
 
-## Main Forms
+class CrispyLoanWithBothUpdateForm(CrispyLoanUpdateForm):
+
+    class Meta:
+        model = Loan
+        fields = ('booked_from', 'loaned_to', 'reason', 'booked_until', 'description', 'private')

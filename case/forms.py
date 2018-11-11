@@ -4,7 +4,6 @@ Case Forms.
 
 import itertools
 from django import forms
-from django import forms
 from django.forms import CharField, Select, FileInput, modelformset_factory
 from django.utils.translation import ugettext_lazy as _
 from django.utils.text import slugify
@@ -12,7 +11,7 @@ from crispy_forms import layout, bootstrap
 from crispy_forms.helper import FormHelper
 from simple_history.utils import update_change_reason
 from case.models import Case, CaseInventory
-from case.models import CaseNote, CaseTask, CaseEvidence, CaseCompany, CasePerson, CaseEvent, EventPerson
+from case.models import CaseNote, CaseTask, CaseEvidence, CaseCompany, CasePerson, CaseEvent
 
 
 """ Case
@@ -445,7 +444,7 @@ class CrispyCaseEventCreateForm(CaseEventForm):
             instance.slug = '%s-%d' % (orig, x)
         instance.save()
         update_change_reason(instance, 'Initial Event Creation')
-        self.save_m2m()
+        #self.save_m2m()
         return instance
 
 
@@ -463,7 +462,7 @@ class CrispyCaseEventUpdateForm(CaseEventForm):
         changereason = self.cleaned_data['change_reason']
         instance.save()
         update_change_reason(instance, changereason)
-        self.save_m2m()
+        #self.save_m2m()
         return instance
 
 
@@ -497,22 +496,6 @@ class CaseEventUpdateForm(__CaseEventForm):
         instance.save()
         update_change_reason(instance, changereason)
         return instance
-
-
-EventPersonFormset = modelformset_factory(
-    EventPerson,
-    fields=('person', 'role', 'notes', 'type' ),
-    # case, event, linked_by
-    extra=1,
-    #widgets={
-    #    'name': forms.TextInput(
-    #        attrs={
-    #            'class': 'form-control',
-    #            'placeholder': 'Enter Author Name here'
-    #        }
-    #    )
-    #}
-)
 
 
 # Case Task
@@ -998,7 +981,6 @@ class CaseDeviceForm(forms.ModelForm):
             layout.Div(layout.Fieldset(_("Main data"),
                         layout.Field('reason', wrapper_class='col-md-6'),
                         layout.Field('description', wrapper_class='col-md-6'),
-                        layout.Field('expected_use', wrapper_class='col-md-9'),
                         #css_class='form-row'
                         )),
 
@@ -1011,7 +993,7 @@ class CaseDeviceForm(forms.ModelForm):
 
     class Meta:
         model = CaseInventory
-        fields = ['reason', 'description', 'expected_use', 'device', 'linked_by']
+        fields = ['reason', 'description', 'device', 'linked_by']
 
 
 class __CaseDeviceForm(forms.ModelForm):
@@ -1020,7 +1002,7 @@ class __CaseDeviceForm(forms.ModelForm):
     
     class Meta:
         model = CaseInventory
-        fields = ('reason', 'description', 'expected_use', 'device', 'linked_by')
+        fields = ('reason', 'description', 'device', 'linked_by')
 
 
 class CrispyCaseDeviceCreateForm(CaseDeviceForm):
@@ -1047,15 +1029,6 @@ class CrispyCaseDeviceUpdateForm(CaseDeviceForm):
 
 class CaseDeviceCreateForm(__CaseDeviceForm):
         
-    #def __init__(self, casepk=None, *args, **kwargs):
-    #    super(CaseDeviceCreateForm,self).__init__(*args,**kwargs)
-    #    self.case = Case.objects.get(id=kwargs['casepk'])
-    title = CharField(max_length=200, required=False, label='Title',)
-    
-    class Meta:
-        model = CaseInventory
-        fields = ('reason', 'description', 'expected_use', 'device', 'linked_by')
-
     def save(self):
         instance = super(CaseDeviceCreateForm, self).save(commit=False)
         changereason = 'Initial Creation'
@@ -1067,10 +1040,6 @@ class CaseDeviceCreateForm(__CaseDeviceForm):
 class CaseDeviceUpdateForm(__CaseDeviceForm):
 
     change_reason = CharField(required=False, label='Reason For Change',)
-    
-    class Meta:
-        model = CaseInventory
-        fields = ('reason', 'description', 'expected_use', 'device', 'linked_by')
 
     def save(self):
         instance = super(CaseDeviceUpdateForm, self).save(commit=False)

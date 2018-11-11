@@ -2,14 +2,6 @@
 <ProfilingTarget xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectTarget>
     <TargetProject>5b8abc3e-c78f-488d-b4a9-e49d2737e3c9</TargetProject>
-    <FriendlyName>Audiad</FriendlyName>
+    <FriendlyName>Kases</FriendlyName>
   </ProjectTarget>
-  <Reports>
-    <Report>
-      <Filename>C:\Users\josh\AppData\Local\Temp\Performance_20180330.vsp</Filename>
-    </Report>
-    <Report>
-      <Filename>C:\Users\josh\AppData\Local\Temp\Performance_20180330(1).vsp</Filename>
-    </Report>
-  </Reports>
 </ProfilingTarget>

@@ -51,6 +51,9 @@
     {% endblock %}
 
     {% block summary_buttonurl %}{% url 'device_update' object.id %}{% endblock %}
+    {% block extra_summary %}
+        <a href="{% url 'loanwithdevice_create' object.id %}" class="btn btn-primary">Request</a>
+    {% endblock %}
 
 <!-- Tabs -->
 <!-- Panel 1 -  -->
@@ -79,7 +82,7 @@
             <div class="card-body">
                 <p class="card-text">
                     <h3>Details</h3>
-                    <h5>Status: {{ object.status }}</h5>
+                    <h5>Status: {{ object.get_status_display }}</h5>
                     <h5>Classification: {{ object.classification}}</h5>
                     <h5>Authorisation: {{ object.authorisation }}</h5>
                     <h5>Category: {{ object.category }}</h5>
@@ -103,7 +106,7 @@
                     <h5>Authorisation: {{ object.authorisation }}</h5>
                     <h5>Variation: {{ object.variation }}</h5>
                     <h5>Serial Number: {{ object.serial_number }}</h5>
-                    <h5>Condition: {{ object.condition }}</h5>
+                    <h5>Condition: {{ object.get_condition_display }}</h5>
                     <h5>Returnable: {{ object.returnable }}</h5>
                     <h5>Service ID: {{ object.service_id }}</h5>
                     <h5>Model Number: {{ object.model_number }}</h5>

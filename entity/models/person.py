@@ -11,39 +11,63 @@ from django.utils.timezone import now as timezone_now
 
 ## Admin Models
 class PersonAuthorisation(Authorisation):
-    # General Fields
+    """
+    Inherited model to contain information about a person authorisation.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
     
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Person Authorisation')
         verbose_name_plural = _('Person Authorisations')
-
-    #def get_absolute_url(self):
-    #    return reverse('person_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
     
 
 class PersonClassification(Classification):
-    # General Fields
+    """
+    Inherited model to contain information about a person classification.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Person Classification')
         verbose_name_plural = _('Person Classifications')
 
-    #def get_absolute_url(self):
-    #    return reverse('person_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class PersonType(Type):
-    # General Fields
+    """
+    Inherited model to contain information about a person type.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+    
+    """
     
     history = HistoricalRecords()
 
@@ -51,15 +75,21 @@ class PersonType(Type):
         verbose_name = _('Person Type')
         verbose_name_plural = _('Person Types')
 
-    #def get_absolute_url(self):
-    #    return reverse('person_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class PersonCategory(Category):
-    # General Fields
+    """
+    Inherited model to contain information about a case category.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -67,15 +97,21 @@ class PersonCategory(Category):
         verbose_name = _('Person Category')
         verbose_name_plural = _('Person Categories')
 
-    #def get_absolute_url(self):
-    #    return reverse('person_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class PersonStatus(Status):
-    # General Fields
+    """
+    Inherited model to contain information about a person status.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    
+    """
     
     history = HistoricalRecords()
 
@@ -83,31 +119,23 @@ class PersonStatus(Status):
         verbose_name = _('Person Status')
         verbose_name_plural = _('Person Status')
 
-    #def get_absolute_url(self):
-    #    return reverse('person_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class PersonStatusGroup(StatusGroup):
-    ## Choices
-    # CREATED = 'Created'
-    # PENDING = 'Awaiting Authorisation'
-    # REJECTED = 'Rejected'
-    # OPEN = 'Open'
-    # Active = 'Active'
-    # CLOSED = 'Closed'
-    # ARCHIVED = 'Archived'
-    ## Choice Groups
-    # closedStatuses = [CLOSED, ARCHIVED]
-    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
-    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
-    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
-    # workable_statuses = [CREATED, OPEN]
-    # forensic_statuses = [OPEN]
+    """
+    Inherited model to contain information about a person status group.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    :status (optional): Status in group linked by Status model
     
-    # General Fields
+    """
+
     # Linked Fields
     status = models.ManyToManyField(PersonStatus, blank=True, verbose_name="Person Status")
     
@@ -117,17 +145,61 @@ class PersonStatusGroup(StatusGroup):
         verbose_name = _('Person Status Group')
         verbose_name_plural = _('Person Status Groups')
 
-    #def get_absolute_url(self):
-    #    return reverse('person_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 ## Main Models
-class Person(models.Model):
+class Person(ObjectDescriptionMixin):
+    """
+    Model to contain information about a person.
+
+    :first_name (optional):
+    :last_name (optional):
+    :middle_names (optional):
+    :nickname (optional):
+    :aliases (optional):
+    :suffix (optional):
+    :notes (optional):
+    :image (optional):
+    :gender (optional):
+    :birthday (optional):
+    :anniversary (optional):
+    :height (optional):
+    :weight (optional):
+    :age (optional):
+    :spouse (optional):
+    :taxfile (optional):
+    :date_started (optional):
+    :salary (optional):
+    :job_title (optional):
+    :role (optional):
+    :company (optional):
+    :social (optional):
+    :address (optional):
+    :telephone (optional):
+    :email (optional):
+    :website (optional):
+    :prefix (optional):
+    :type (optional):
+    :status (optional):
+    :classification (optional):
+    :category (optional):
+    :authorisation (optional):
+    :slug_first (optional):
+    :slug_last (optional):
+    :slug_middle (optional):
+    :created (optional):
+    :modified (optional):
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
+
     # General Fields
     #image = models.ImageField(upload_to='mugshots',null=True, blank=True, verbose_name="Person Type")
+    prefix = models.ForeignKey(Prefix, on_delete=models.DO_NOTHING, null=True, blank=True)
     first_name = models.CharField(max_length=255, db_index=True, null=True, blank=True, verbose_name="First Name")
     last_name = models.CharField(max_length=255, db_index=True, null=True, blank=True, verbose_name="Last Name")
     middle_names = models.CharField(max_length=255, db_index=True, null=True, blank=True, verbose_name="Middle Names")
@@ -145,7 +217,6 @@ class Person(models.Model):
     height = models.CharField(max_length=55, null=True, blank=True, verbose_name="Height")
     weight = models.CharField(max_length=55, null=True, blank=True, verbose_name="Weight")
     age = models.CharField(max_length=55, null=True, blank=True, verbose_name="Age")
-
     #spouse = models.ForeignKey(Person, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="Spouse")
 
     # Work Fields
@@ -157,14 +228,13 @@ class Person(models.Model):
     #company = models.ForeignKey(Company, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="Company")
 
     # Contact Fields Social
-    #social = models.ManyToManyField(Social, verbose_name="Social")
     address = models.ManyToManyField(Address, verbose_name="Address")
     telephone = models.ManyToManyField(Telephone, verbose_name="Telephone")
     email = models.ManyToManyField(Email, verbose_name="Email")
     website = models.ManyToManyField(Website, verbose_name="Website")
+    #social = models.ManyToManyField(Social, verbose_name="Social")
 
-    # Other Fields
-    prefix = models.ForeignKey(Prefix, on_delete=models.DO_NOTHING, null=True, blank=True)
+    # Other Fields    
     type = models.ForeignKey(PersonType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Type")
     status = models.ForeignKey(PersonStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Status")
     classification = models.ForeignKey(PersonClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Classification")
@@ -175,8 +245,6 @@ class Person(models.Model):
     slug_first = models.SlugField(editable=False, null=True, blank=True, verbose_name="First Name Slug")
     slug_last = models.SlugField(editable=False, null=True, blank=True, verbose_name="Last Name Slug")
     slug_middle = models.SlugField(editable=False, null=True, blank=True, verbose_name="Middle Name Slug")
-    created = models.DateTimeField(_("Creation date and time"),editable=False,)
-    modified = models.DateTimeField(_("Modification date and time"),null=True,editable=False,)
 
     class Meta:
         verbose_name_plural = _("People")

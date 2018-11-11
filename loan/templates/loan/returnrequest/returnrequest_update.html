@@ -1,0 +1,20 @@
+{% extends "global/views/base_update.html" %}
+
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "loan/loan_open_layout.html" %}
+{% endblock %}
+
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+{% block sidebar_internal %}
+    {% include "global/views/sidebar_open_layout.html" %}
+{% endblock %}
+
+{% block form_as_p %}
+    {% crispy form %}
+{% endblock %}

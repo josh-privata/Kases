@@ -12,6 +12,6 @@
 <codeline lineno="2"><highlight class="normal"></highlight></codeline>
 <codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">#<sp/>Register<sp/>your<sp/>models<sp/>here.</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/admin.py"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/admin.py"/>
   </compounddef>
 </doxygen>

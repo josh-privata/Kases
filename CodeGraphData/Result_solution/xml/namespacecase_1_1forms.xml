@@ -2,16 +2,59 @@
 <doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.6">
   <compounddef id="namespacecase_1_1forms" kind="namespace">
     <compoundname>case::forms</compoundname>
-    <innerclass refid="classcase_1_1forms_1_1_case_create_form" prot="public">case::forms::CaseCreateForm</innerclass>
-    <innerclass refid="classcase_1_1forms_1_1_case_edit_form" prot="public">case::forms::CaseEditForm</innerclass>
-    <innerclass refid="classcase_1_1forms_1_1_case_note_create_form" prot="public">case::forms::CaseNoteCreateForm</innerclass>
-    <innerclass refid="classcase_1_1forms_1_1_case_task_create_form" prot="public">case::forms::CaseTaskCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_form" prot="public">case::forms::CaseForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_create_form" prot="public">case::forms::__CaseCreateForm</innerclass>
     <innerclass refid="classcase_1_1forms_1_1_crispy_case_form" prot="public">case::forms::CrispyCaseForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_update_form" prot="public">case::forms::CrispyCaseUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_create_form" prot="public">case::forms::CaseCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_update_form" prot="public">case::forms::CaseUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_note_form" prot="public">case::forms::CaseNoteForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_note_form" prot="public">case::forms::__CaseNoteForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_note_create_form" prot="public">case::forms::CrispyCaseNoteCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_note_update_form" prot="public">case::forms::CrispyCaseNoteUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_note_create_form" prot="public">case::forms::CaseNoteCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_note_update_form" prot="public">case::forms::CaseNoteUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_event_form" prot="public">case::forms::CaseEventForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_event_form" prot="public">case::forms::__CaseEventForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_event_create_form" prot="public">case::forms::CrispyCaseEventCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_event_update_form" prot="public">case::forms::CrispyCaseEventUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_event_create_form" prot="public">case::forms::CaseEventCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_event_update_form" prot="public">case::forms::CaseEventUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_task_form" prot="public">case::forms::CaseTaskForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_task_form" prot="public">case::forms::__CaseTaskForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_task_create_form" prot="public">case::forms::CrispyCaseTaskCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_task_update_form" prot="public">case::forms::CrispyCaseTaskUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_task_create_form" prot="public">case::forms::CaseTaskCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_task_update_form" prot="public">case::forms::CaseTaskUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_evidence_form" prot="public">case::forms::CaseEvidenceForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_evidence_form" prot="public">case::forms::__CaseEvidenceForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_evidence_create_form" prot="public">case::forms::CrispyCaseEvidenceCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_evidence_update_form" prot="public">case::forms::CrispyCaseEvidenceUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_evidence_create_form" prot="public">case::forms::CaseEvidenceCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_evidence_update_form" prot="public">case::forms::CaseEvidenceUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_person_form" prot="public">case::forms::CasePersonForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_person_form" prot="public">case::forms::__CasePersonForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_person_create_form" prot="public">case::forms::CrispyCasePersonCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_person_update_form" prot="public">case::forms::CrispyCasePersonUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_person_create_form" prot="public">case::forms::CasePersonCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_person_update_form" prot="public">case::forms::CasePersonUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_company_form" prot="public">case::forms::CaseCompanyForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_company_form" prot="public">case::forms::__CaseCompanyForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_company_create_form" prot="public">case::forms::CrispyCaseCompanyCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_company_update_form" prot="public">case::forms::CrispyCaseCompanyUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_company_create_form" prot="public">case::forms::CaseCompanyCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_company_update_form" prot="public">case::forms::CaseCompanyUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_device_form" prot="public">case::forms::CaseDeviceForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_____case_device_form" prot="public">case::forms::__CaseDeviceForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_device_create_form" prot="public">case::forms::CrispyCaseDeviceCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_crispy_case_device_update_form" prot="public">case::forms::CrispyCaseDeviceUpdateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_device_create_form" prot="public">case::forms::CaseDeviceCreateForm</innerclass>
+    <innerclass refid="classcase_1_1forms_1_1_case_device_update_form" prot="public">case::forms::CaseDeviceUpdateForm</innerclass>
     <briefdescription>
     </briefdescription>
     <detaileddescription>
 <para><verbatim>Case Forms.
 </verbatim> </para>    </detaileddescription>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/case/forms.py" line="1" column="1"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/forms.py" line="1" column="1"/>
   </compounddef>
 </doxygen>

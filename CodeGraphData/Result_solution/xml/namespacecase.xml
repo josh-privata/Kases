@@ -4,6 +4,7 @@
     <compoundname>case</compoundname>
     <innernamespace refid="namespacecase_1_1admin">case::admin</innernamespace>
     <innernamespace refid="namespacecase_1_1apps">case::apps</innernamespace>
+    <innernamespace refid="namespacecase_1_1filters">case::filters</innernamespace>
     <innernamespace refid="namespacecase_1_1forms">case::forms</innernamespace>
     <innernamespace refid="namespacecase_1_1managers">case::managers</innernamespace>
     <innernamespace refid="namespacecase_1_1migrations">case::migrations</innernamespace>

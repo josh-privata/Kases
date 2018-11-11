@@ -51,119 +51,192 @@ Chip Analysis
 Cable
 '''
 
+
+# These constants define choices for a device's status
+CHECKED_IN_READY = 'RE'
+CHECKED_IN_NOT_READY = 'NR'
+CHECKED_OUT = 'CO'
+AWAITING_LOAN = 'AW'
+AWAITING_RETURN = 'RT'
+STORAGE = 'ST'
+DAMAGED = 'DM'
+REPLACE = 'RE'
+MISSING = 'MI'
+DECOMMISIONED = 'DE'
+OBSELETE = 'OB'
+RESTRICTED = 'RS'
+HOLD = 'HO'
+SERVICING = 'SE'
+
+# Define possible choices for status field
+STATUS_CHOICES = (
+    (CHECKED_IN_READY, 'Checked In - Ready'),
+    (CHECKED_IN_NOT_READY, 'Checked In - Not Ready'),
+    (CHECKED_OUT, 'Checked Out'),
+    (AWAITING_LOAN, 'Awaiting Loan Approval'),
+    (AWAITING_RETURN, 'Awaiting Return Approval'),
+    (STORAGE, 'In Storage'),
+    (DAMAGED, 'Damaged'),
+    (REPLACE, 'Replacement Required'),
+    (MISSING, 'Missing'),
+    (DECOMMISIONED, 'Decommisioned'),
+    (OBSELETE, 'Obselete'),
+    (RESTRICTED, 'Restricted Use'),
+    (HOLD, 'On Hold'),
+    (SERVICING, 'Servicing'),
+)
+
+# These constants define choices for a device's condition
+NEW = 'NW'
+EXCELLENT = 'EX'
+GOOD = 'GD'
+AVERAGE = 'AV'
+BELOW_AVERAGE = 'BA'
+POOR = 'PR'
+DAMAGED = 'DM'
+LOST = 'LO'
+
+# Define possible choices for condition field
+CONDITION_CHOICES = (
+    (NEW, 'New'),
+    (EXCELLENT, 'Excellent'),
+    (GOOD, 'Good'),
+    (AVERAGE, 'Average'),
+    (BELOW_AVERAGE, 'Below Average'),
+    (POOR, 'Poor'),
+    (DAMAGED, 'Damaged'),
+    (LOST, 'Lost'),
+)
+
+
 ## Admin Models
 class DeviceAuthorisation(Authorisation):
-    # General Fields
-    # Linked Fields
-    # Auto Fields
+    """
+    Inherited model to contain information about a device authorisation.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Device Classification')
         verbose_name_plural = _('Device Classifications')
-
-    #def get_absolute_url(self):
-    #    return reverse('device_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
     
 
 class DeviceClassification(Classification):
-    # General Fields
-    # Linked Fields
-    # Auto Fields
+    """
+    Inherited model to contain information about a device classification.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Device Classification')
         verbose_name_plural = _('Device Classifications')
 
-    #def get_absolute_url(self):
-    #    return reverse('device_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class DeviceType(Type):
-    # General Fields
-    # Linked Fields
-    # Auto Fields
+    """
+    Inherited model to contain information about a device type.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Device Type')
         verbose_name_plural = _('Device Types')
 
-    #def get_absolute_url(self):
-    #    return reverse('device_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class DeviceCategory(Category):
-    # General Fields
-    # Linked Fields
-    # Auto Fields
+    """
+    Inherited model to contain information about a device category.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Device Category')
         verbose_name_plural = _('Device Categories')
 
-    #def get_absolute_url(self):
-    #    return reverse('device_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class DeviceStatus(Status):
-    # General Fields
-    # Linked Fields
-    # Auto Fields
+    """
+    Inherited model to contain information about a device status.
+
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
     
+    """
+
     history = HistoricalRecords()
 
     class Meta:
         verbose_name = _('Device Status')
         verbose_name_plural = _('Device Status')
 
-    #def get_absolute_url(self):
-    #    return reverse('device_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
 
 class DeviceStatusGroup(StatusGroup):
+    """
+    Inherited model to contain information about a device status group.
 
-    ## Choices
-    # CREATED = 'Created'
-    # PENDING = 'Awaiting Authorisation'
-    # REJECTED = 'Rejected'
-    # OPEN = 'Open'
-    # Active = 'Active'
-    # CLOSED = 'Closed'
-    # ARCHIVED = 'Archived'
-    ## Choice Groups
-    # closedStatuses = [CLOSED, ARCHIVED]
-    # all_statuses = [CREATED, OPEN, CLOSED, ARCHIVED, PENDING, REJECTED]
-    # approved_statuses = [CREATED, OPEN, CLOSED, ARCHIVED]
-    # active_statuses = [CREATED, PENDING, REJECTED, OPEN]
-    # workable_statuses = [CREATED, OPEN]
-    # forensic_statuses = [OPEN]
+    :title (optional): Title
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :colour (optional): Colour representation
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model
+    :status (optional): Status in group linked by Status model
     
-    # General Fields
-    # Linked Fields
-    # Auto Fields
+    """
 
+    # Linked Fields
     status = models.ManyToManyField(DeviceStatus, blank=True, verbose_name="Device Status")
     
     history = HistoricalRecords()
@@ -172,14 +245,31 @@ class DeviceStatusGroup(StatusGroup):
         verbose_name = _('Device Status Group')
         verbose_name_plural = _('Device Status Groups')
 
-    #def get_absolute_url(self):
-    #    return reverse('device_detail', kwargs={'pk': self.pk})
 
-    def __str__(self):
-        return '%s' % self.title
+class ServiceContract(ObjectDescriptionMixin):
+    """
+    Model to contain information about a device service contract.
 
+    :title (optional): 
+    :duration (optional): 
+    :contract_id (optional): 
+    :service_id (optional): 
+    :terms (optional): 
+    :renewal_date (optional): 
+    :renewal_cost (optional): 
+    :vendor (optional): 
+    :contact (optional): 
+    :document (optional): 
+    :responsible (optional): 
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
 
-class ServiceContract(models.Model):
+    """
+
     # General Fields
     title = models.CharField(max_length=64, blank=True, null=True, verbose_name="Contract Title")
     duration = models.CharField(max_length=16, blank=True, null=True, verbose_name="Contract Duration")
@@ -209,66 +299,56 @@ class ServiceContract(models.Model):
 
 
 ## Main Models
+
 class Device(ObjectDescriptionMixin):
-    '''
-    Base Device Model.
-    '''
+    """
+    Abstract model to contain information about an event.
+ 
+    :title (optional): 
+    :make (optional): 
+    :model (optional): 
+    :purpose (optional): 
+    :variation (optional): 
+    :serial_number (optional): 
+    :status (optional): 
+    :condition (optional): 
+    :returnable (optional): 
+    :service_id (optional): 
+    :model_number (optional): 
+    :warranty_title (optional): 
+    :warranty_contact (optional): 
+    :warranty_duration (optional): 
+    :warranty_id (optional): 
+    :warranty_terms (optional): 
+    :warranty_start (optional): 
+    :warranty_end (optional): 
+    :warranty_extended (optional): 
+    :warranty_vendor (optional): 
+    :warranty_responsible (optional): 
+    :purchased (optional): 
+    :manufacturer (optional): 
+    :rep (optional): 
+    :vendor (optional): 
+    :service_contract (optional): 
+    :resposible_party (optional):
+    :device_dependency (optional):
+    :related_devices (optional):
+    :warranty_document (optional):
+    :instruction_document (optional):
+    :type (optional): 
+    :status (optional): 
+    :classification (optional): 
+    :priority (optional): 
+    :category (optional): 
+    :authorisation (optional): 
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
 
-    # These constants define choices for a device's status
-    CHECKED_IN_READY = 'RE'
-    CHECKED_IN_NOT_READY = 'NR'
-    CHECKED_OUT = 'CO'
-    AWAITING_LOAN = 'AW'
-    AWAITING_RETURN = 'RT'
-    STORAGE = 'ST'
-    DAMAGED = 'DM'
-    REPLACE = 'RE'
-    MISSING = 'MI'
-    DECOMMISIONED = 'DE'
-    OBSELETE = 'OB'
-    RESTRICTED = 'RS'
-    HOLD = 'HO'
-    SERVICING = 'SE'
-
-    # Define possible choices for status field
-    STATUS_CHOICES = (
-        (CHECKED_IN_READY, 'Checked In - Ready'),
-        (CHECKED_IN_NOT_READY, 'Checked In - Not Ready'),
-        (CHECKED_OUT, 'Checked Out'),
-        (AWAITING_LOAN, 'Awaiting Loan Approval'),
-        (AWAITING_RETURN, 'Awaiting Return Approval'),
-        (STORAGE, 'In Storage'),
-        (DAMAGED, 'Damaged'),
-        (REPLACE, 'Replacement Required'),
-        (MISSING, 'Missing'),
-        (DECOMMISIONED, 'Decommisioned'),
-        (OBSELETE, 'Obselete'),
-        (RESTRICTED, 'Restricted Use'),
-        (HOLD, 'On Hold'),
-        (SERVICING, 'Servicing'),
-    )
-
-    # These constants define choices for a device's condition
-    NEW = 'NW'
-    EXCELLENT = 'EX'
-    GOOD = 'GD'
-    AVERAGE = 'AV'
-    BELOW_AVERAGE = 'BA'
-    POOR = 'PR'
-    DAMAGED = 'DM'
-    LOST = 'LO'
-
-    # Define possible choices for condition field
-    CONDITION_CHOICES = (
-        (NEW, 'New'),
-        (EXCELLENT, 'Excellent'),
-        (GOOD, 'Good'),
-        (AVERAGE, 'Average'),
-        (BELOW_AVERAGE, 'Below Average'),
-        (POOR, 'Poor'),
-        (DAMAGED, 'Damaged'),
-        (LOST, 'Lost'),
-    )
+    """
 
     # General Fields
     title = models.CharField(max_length=200, null=True, blank=True, verbose_name="Device Title")
@@ -300,7 +380,6 @@ class Device(ObjectDescriptionMixin):
     vendor = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='vendor', blank=True, null=True, verbose_name="Device Vendor")
     service_contract = models.ForeignKey(ServiceContract, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Service Contract")
     type = models.ForeignKey(DeviceType, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Type")
-    status = models.ForeignKey(DeviceStatus, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Status")
     classification = models.ForeignKey(DeviceClassification, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Classification")
     category = models.ForeignKey(DeviceCategory, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Category")
     authorisation = models.ForeignKey(DeviceAuthorisation, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Authorisation")
@@ -378,12 +457,46 @@ class Device(ObjectDescriptionMixin):
 
     def save(self,force_insert=False, force_update=False):
         from django.template.defaultfilters import slugify
+        if not self.pk:
+           self.created = timezone_now()
+           #self.created_by = request.user
+        else:
+            if not self.created:
+                self.created = timezone_now()
+            self.modified = timezone_now()
         if not self.slug:
             self.slug = slugify(self.title)
         models.Model.save(self,force_insert,force_update)
 
 
 class Service(ObjectDescriptionMixin):
+    """
+    Model to contain information about a device service.
+
+    :issue (optional): 
+    :resolution (optional): 
+    :work_done (optional): 
+    :left_inventory (optional): 
+    :return_date (optional): 
+    :cost (optional): 
+    :technician (optional): 
+    :returned (optional): 
+    :under_warranty (optional): 
+    :parts_replaced (optional): 
+    :device_replaced (optional): 
+    :serviced_by (optional): 
+    :service_contract (optional): 
+    :service_document (optional): 
+    :responsible (optional): 
+    :description (optional): Description
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
+
     # General Fields
     issue = models.CharField(max_length=64, blank=True, null=True, verbose_name="Service Issue")
     resolution = models.CharField(max_length=64, blank=True, null=True, verbose_name="Service Resolution")
@@ -417,6 +530,20 @@ class Service(ObjectDescriptionMixin):
 
 
 class Comment(ObjectDescriptionMixin):
+    """
+    Model to contain information about a device comment.
+
+    :text (optional): 
+    :device (optional): 
+    :user (optional): 
+    :private (optional): Is it private Boolean
+    :created (auto): Date Created
+    :modified (auto): Date Modified
+    :created_by (auto): Created by linked User model  
+    :modified_by (auto): Modified by linked User model 
+
+    """
+
     # General Fields
     text = models.TextField(max_length=1000, null=False, blank=False, verbose_name='Comment')
 

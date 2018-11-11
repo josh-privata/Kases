@@ -3,9 +3,9 @@
   <compounddef id="namespace_kases_1_1urls" kind="namespace">
     <compoundname>Kases::urls</compoundname>
       <sectiondef kind="var">
-      <memberdef kind="variable" id="namespace_kases_1_1urls_1abe6b2ee4b86640f28f9d9d31b79181c4" prot="public" static="no" mutable="no">
+      <memberdef kind="variable" id="namespace_kases_1_1urls_1aae65f4112ece8265c12c8a341c2eb1ee" prot="public" static="no" mutable="no">
         <type>list</type>
-        <definition>list Kases::urls.urlpatterns</definition>
+        <definition>list Kases::urls::urlpatterns</definition>
         <argsstring></argsstring>
         <name>urlpatterns</name>
         <briefdescription>
@@ -14,7 +14,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/urls.py" line="25" column="1" bodyfile="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/urls.py" bodystart="25" bodyend="-1"/>
+        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/urls.py" line="57" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/urls.py" bodystart="57" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -22,6 +22,6 @@
     <detaileddescription>
 <para><verbatim>Definition of urls for Kases.
 </verbatim> </para>    </detaileddescription>
-    <location file="//ml350/users$/josh/Documents/My Code/Django/Projects/vs_kases/Kases/Kases/urls.py" line="1" column="1"/>
+    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/urls.py" line="1" column="1"/>
   </compounddef>
 </doxygen>
