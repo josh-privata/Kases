@@ -10,10 +10,10 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 #from inventory.forms import LoanCreateForm, LoanUpdateForm
-from loan.forms import CrispyLoanCreateForm, CrispyLoanUpdateForm
-from loan.forms import CrispyLoanWithBothCreateForm, CrispyLoanWithCaseCreateForm
-from loan.forms import CrispyLoanWithDeviceCreateForm
-from loan.forms import CrispyLoanWithBothUpdateForm, CrispyLoanWithCaseUpdateForm, CrispyLoanWithDeviceUpdateForm
+from loan.forms import LoanCreateForm, LoanUpdateForm
+from loan.forms import LoanWithBothCreateForm, LoanWithCaseCreateForm
+from loan.forms import LoanWithDeviceCreateForm
+from loan.forms import LoanWithBothUpdateForm, LoanWithCaseUpdateForm, LoanWithDeviceUpdateForm
 from loan.models import Loan
 from case.models import Case
 from inventory.models import Device
@@ -131,7 +131,7 @@ class LoanDetail(DetailView):
 class LoanCreate(CreateView):
     model = Loan
     template_name = 'loan/loan/loan_create.html'
-    form_class=CrispyLoanCreateForm
+    form_class=LoanCreateForm
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -146,7 +146,7 @@ class LoanCreate(CreateView):
 
 class LoanUpdate(UpdateView):
     model = Loan
-    form_class = CrispyLoanCreateForm
+    form_class = LoanUpdateForm
     template_name = 'loan/loan/loan_update.html'
 
     def dispatch(self, request, *args, **kwargs):
@@ -197,7 +197,7 @@ class LoanList(TemplateView):
 class LoanCreateWithCase(CreateView):
     model = Loan
     template_name = 'loan/loan/loan_create.html'
-    form_class=CrispyLoanWithCaseCreateForm
+    form_class=LoanWithCaseCreateForm
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -223,7 +223,7 @@ class LoanCreateWithCase(CreateView):
 class LoanUpdateWithCase(CreateView):
     model = Loan
     template_name = 'loan/loan/loan_create.html'
-    form_class=CrispyLoanWithCaseUpdateForm
+    form_class=LoanWithCaseUpdateForm
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -250,7 +250,7 @@ class LoanUpdateWithCase(CreateView):
 class LoanCreateWithDevice(CreateView):
     model = Loan
     template_name = 'loan/loan/loan_create.html'
-    form_class=CrispyLoanWithDeviceCreateForm
+    form_class=LoanWithDeviceCreateForm
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -276,7 +276,7 @@ class LoanCreateWithDevice(CreateView):
 class LoanUpdateWithDevice(CreateView):
     model = Loan
     template_name = 'loan/loan/loan_create.html'
-    form_class=CrispyLoanWithDeviceUpdateForm
+    form_class=LoanWithDeviceUpdateForm
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -303,7 +303,7 @@ class LoanUpdateWithDevice(CreateView):
 class LoanCreateWithBoth(CreateView):
     model = Loan
     template_name = 'loan/loan/loan_create.html'
-    form_class=CrispyLoanWithBothCreateForm
+    form_class=LoanWithBothCreateForm
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
@@ -332,7 +332,7 @@ class LoanCreateWithBoth(CreateView):
 class LoanUpdateWithBoth(CreateView):
     model = Loan
     template_name = 'loan/loan/loan_create.html'
-    form_class=CrispyLoanWithBothUpdateForm
+    form_class=LoanWithBothUpdateForm
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:

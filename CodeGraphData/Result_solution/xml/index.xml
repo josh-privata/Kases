@@ -34,6 +34,8 @@
     <member refid="classentity_1_1models_1_1entity_1_1_address_1adab65edff014ff567fbf042fb87c7562" kind="variable"><name>line2</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_address_1ab767346442c8bbcf80b105bd1381a489" kind="variable"><name>line3</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_address_1aafd8b449f4de95ca69f52539f39a0818" kind="variable"><name>city</name></member>
+    <member refid="classentity_1_1models_1_1entity_1_1_address_1ad299daab4c9c559f5266fcc49fa2d9c8" kind="variable"><name>state</name></member>
+    <member refid="classentity_1_1models_1_1entity_1_1_address_1afad7e6fbb904a6848f6509b52525a03a" kind="variable"><name>country</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_address_1af10d8658b8bec09a6e4077cec79623ec" kind="variable"><name>postcode</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_address_1ad9a03fd954bfa3b3fd48a5c37b53ae5b" kind="variable"><name>type</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_address_1a17277ce180f5397876d13c1fe4a83b71" kind="variable"><name>history</name></member>
@@ -53,20 +55,22 @@
     <member refid="classentity_1_1views_1_1person_1_1_addressbook_sitemap_1a1184068a36e220d91e1ad312fc278d7c" kind="function"><name>lastmod</name></member>
   </compound>
   <compound refid="classentity_1_1forms_1_1_address_form" kind="class"><name>entity::forms::AddressForm</name>
+    <member refid="classentity_1_1forms_1_1_address_form_1a72c51e3f9e94ba1d56c8d940f26255c1" kind="variable"><name>helper</name></member>
+    <member refid="classentity_1_1forms_1_1_address_form_1a618b63e69b6abad096ce06dc0351edf0" kind="function"><name>__init__</name></member>
   </compound>
   <compound refid="classentity_1_1forms_1_1_advanced_search_form" kind="class"><name>entity::forms::AdvancedSearchForm</name>
   </compound>
-  <compound refid="classcase_1_1views_1_1_ajaxable_response_mixin" kind="class"><name>case::views::AjaxableResponseMixin</name>
-    <member refid="classcase_1_1views_1_1_ajaxable_response_mixin_1abd53a26dac55ade0caaa9122c0f6891b" kind="function"><name>form_invalid</name></member>
-    <member refid="classcase_1_1views_1_1_ajaxable_response_mixin_1acbe086cd92c4f54c3b0fdfd98fe8a1cd" kind="function"><name>form_valid</name></member>
+  <compound refid="classevent_1_1views_1_1_ajaxable_response_mixin" kind="class"><name>event::views::AjaxableResponseMixin</name>
+    <member refid="classevent_1_1views_1_1_ajaxable_response_mixin_1a84c1ce68b2e4e3a514ca03f835be2156" kind="function"><name>form_invalid</name></member>
+    <member refid="classevent_1_1views_1_1_ajaxable_response_mixin_1a221cb7010a4727ddd5f909ae7dc277a1" kind="function"><name>form_valid</name></member>
   </compound>
   <compound refid="classnote_1_1views_1_1_ajaxable_response_mixin" kind="class"><name>note::views::AjaxableResponseMixin</name>
     <member refid="classnote_1_1views_1_1_ajaxable_response_mixin_1afae7c1adc4cfe365c0a57807a1ecb377" kind="function"><name>form_invalid</name></member>
     <member refid="classnote_1_1views_1_1_ajaxable_response_mixin_1ae7c0381cd567fbf6f601727775fe89a5" kind="function"><name>form_valid</name></member>
   </compound>
-  <compound refid="classevent_1_1views_1_1_ajaxable_response_mixin" kind="class"><name>event::views::AjaxableResponseMixin</name>
-    <member refid="classevent_1_1views_1_1_ajaxable_response_mixin_1a84c1ce68b2e4e3a514ca03f835be2156" kind="function"><name>form_invalid</name></member>
-    <member refid="classevent_1_1views_1_1_ajaxable_response_mixin_1a221cb7010a4727ddd5f909ae7dc277a1" kind="function"><name>form_valid</name></member>
+  <compound refid="classcase_1_1views_1_1_ajaxable_response_mixin" kind="class"><name>case::views::AjaxableResponseMixin</name>
+    <member refid="classcase_1_1views_1_1_ajaxable_response_mixin_1abd53a26dac55ade0caaa9122c0f6891b" kind="function"><name>form_invalid</name></member>
+    <member refid="classcase_1_1views_1_1_ajaxable_response_mixin_1acbe086cd92c4f54c3b0fdfd98fe8a1cd" kind="function"><name>form_valid</name></member>
   </compound>
   <compound refid="classinventory_1_1apps_1_1assets_config" kind="class"><name>inventory::apps::assetsConfig</name>
     <member refid="classinventory_1_1apps_1_1assets_config_1accd9f585fee793c191a3ac038ebe9dcd" kind="variable"><name>name</name></member>
@@ -735,10 +739,7 @@
   <compound refid="classentity_1_1models_1_1company_1_1_company" kind="class"><name>entity::models::company::Company</name>
     <member refid="classentity_1_1models_1_1company_1_1_company_1a89bb241ef70294f2194487111abb36c3" kind="variable"><name>title</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1ad51092b279102007b05a34fb0cb71d24" kind="variable"><name>code</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_1a5c3e3d774290a562cf2794a410b060d1" kind="variable"><name>notes</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_1ab87e3ce13bb173f4ba269a32bbf8e215" kind="variable"><name>primary_market</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1a7a501167cfa0ae5aee449876d5e25c30" kind="variable"><name>industry</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_1a7a39228713fe22d84b9ece5df2d44710" kind="variable"><name>prefix</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1aa98f5d45228d36629835394eeb44b6e3" kind="variable"><name>address</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1a6c64d791d3e33555c201cd5c589e9999" kind="variable"><name>telephone</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1a5df38a20426503bef6361f4345c27386" kind="variable"><name>email</name></member>
@@ -749,6 +750,7 @@
     <member refid="classentity_1_1models_1_1company_1_1_company_1a920ab7a593d948f2e9018306a1d70d96" kind="variable"><name>classification</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1adb6bbbd938e95fb884064d927f799e19" kind="variable"><name>authorisation</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1a82253dc61444a49d82b75b8c684541fb" kind="variable"><name>slug</name></member>
+    <member refid="classentity_1_1models_1_1company_1_1_company_1acddf8d2f2b36c8cb314daf4beb601ba6" kind="variable"><name>history</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1ad84b96af16239e2178e82697a7c46670" kind="variable"><name>slug</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1a200a6dce48b976962721902b349e32c8" kind="variable"><name>created</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_1a05964acb0a2d83190b167d45ce70b207" kind="variable"><name>modified</name></member>
@@ -779,6 +781,8 @@
     <member refid="classentity_1_1models_1_1company_1_1_company_classification_1a86fe851d3dd5b5351b447d10824aca6c" kind="variable"><name>history</name></member>
   </compound>
   <compound refid="classentity_1_1forms_1_1_company_form" kind="class"><name>entity::forms::CompanyForm</name>
+    <member refid="classentity_1_1forms_1_1_company_form_1af870f55a05546defcb80893793a9045e" kind="variable"><name>helper</name></member>
+    <member refid="classentity_1_1forms_1_1_company_form_1aeb4458610eb9caac7d570ae654723e87" kind="function"><name>__init__</name></member>
   </compound>
   <compound refid="classentity_1_1models_1_1company_1_1_company_status" kind="class"><name>entity::models::company::CompanyStatus</name>
     <member refid="classentity_1_1models_1_1company_1_1_company_status_1a5b650c778aec161ca34c463b98c73d66" kind="variable"><name>history</name></member>
@@ -790,18 +794,13 @@
   <compound refid="classentity_1_1models_1_1company_1_1_company_type" kind="class"><name>entity::models::company::CompanyType</name>
     <member refid="classentity_1_1models_1_1company_1_1_company_type_1ae8e67fac7b68b440d9f85c781f6911ee" kind="variable"><name>history</name></member>
   </compound>
+  <compound refid="classentity_1_1forms_1_1_company_update_form" kind="class"><name>entity::forms::CompanyUpdateForm</name>
+    <member refid="classentity_1_1forms_1_1_company_update_form_1a3c33fc47c69a2687bac48065290b6aa3" kind="variable"><name>change_reason</name></member>
+    <member refid="classentity_1_1forms_1_1_company_update_form_1a6f1d7ed87d37ed20de4178f8fc4365b7" kind="function"><name>save</name></member>
+  </compound>
   <compound refid="classentity_1_1models_1_1entity_1_1_contact_method" kind="class"><name>entity::models::entity::ContactMethod</name>
     <member refid="classentity_1_1models_1_1entity_1_1_contact_method_1a5e618f875d33fd67300a8aa0f7fd2cf1" kind="variable"><name>location</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_contact_method_1a1fd23e6900adf5bd4dd0a78d74b8e14a" kind="variable"><name>primary</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_contact_method_1aa136310423cb56a8f39d671e254b2304" kind="variable"><name>history</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_country" kind="class"><name>entity::models::entity::Country</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1a90b4b8fd8e13733723e09513672dbef4" kind="variable"><name>code</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1ae9f7282f0facdeef61d9b72a626e9c3c" kind="variable"><name>title</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1a52463eef0fd677d1248758fabc273271" kind="variable"><name>lat</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1a5d071a295dc8335cd68d97ffbbf7c8f2" kind="variable"><name>lng</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1ac54db1e5389567741b0a2ff1ac8f3740" kind="variable"><name>history</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1a62e834006e55b10c4af729b22bcdaf0f" kind="function"><name>__str__</name></member>
   </compound>
   <compound refid="classcase_1_1forms_1_1_crispy_case_company_create_form" kind="class"><name>case::forms::CrispyCaseCompanyCreateForm</name>
     <member refid="classcase_1_1forms_1_1_crispy_case_company_create_form_1acd38bccf17564210c550fa6575dc41f8" kind="function"><name>save</name></member>
@@ -1037,6 +1036,8 @@
     <member refid="classentity_1_1models_1_1entity_1_1_email_1aa19cdb490c377d1c05fefcd65c741e7f" kind="function"><name>url</name></member>
   </compound>
   <compound refid="classentity_1_1forms_1_1_email_form" kind="class"><name>entity::forms::EmailForm</name>
+    <member refid="classentity_1_1forms_1_1_email_form_1a18dc2b1c4e02c7123e4dca989f39c609" kind="variable"><name>helper</name></member>
+    <member refid="classentity_1_1forms_1_1_email_form_1a9814598bc8adc5fd43e98d36362d6e31" kind="function"><name>__init__</name></member>
   </compound>
   <compound refid="classentity_1_1apps_1_1entity_config" kind="class"><name>entity::apps::entityConfig</name>
     <member refid="classentity_1_1apps_1_1entity_config_1a780c972b3518e33f9c5b22a868193689" kind="variable"><name>name</name></member>
@@ -1126,12 +1127,12 @@
     <member refid="classevent_1_1models_1_1_event_status_group_1abeffacda849a43dea97d62f511c3e862" kind="variable"><name>status</name></member>
     <member refid="classevent_1_1models_1_1_event_status_group_1aafe313275aeb296ee4fb417606567ba2" kind="variable"><name>history</name></member>
   </compound>
+  <compound refid="classevent_1_1tables_1_1_event_table" kind="class"><name>event::tables::EventTable</name>
+  </compound>
   <compound refid="classevent_1_1views_1_1_event_table" kind="class"><name>event::views::EventTable</name>
     <member refid="classevent_1_1views_1_1_event_table_1a0449c67d7ea1d2ee1bf3da7d837fad64" kind="variable"><name>model</name></member>
     <member refid="classevent_1_1views_1_1_event_table_1af3071b17a7785c27a26ad06d545cd03e" kind="variable"><name>table_class</name></member>
     <member refid="classevent_1_1views_1_1_event_table_1a65b25cc1ed62207b56b77dbc1aa9f245" kind="function"><name>dispatch</name></member>
-  </compound>
-  <compound refid="classevent_1_1tables_1_1_event_table" kind="class"><name>event::tables::EventTable</name>
   </compound>
   <compound refid="classevent_1_1models_1_1_event_type" kind="class"><name>event::models::EventType</name>
     <member refid="classevent_1_1models_1_1_event_type_1a84c18e2c07392cbe14df0a0427dd8347" kind="variable"><name>history</name></member>
@@ -1385,17 +1386,44 @@
     <member refid="classinventory_1_1models_1_1_comment_1_1_meta_1a7b649dda960a3a9eb34298007a7a4581" kind="variable"><name>verbose_name</name></member>
     <member refid="classinventory_1_1models_1_1_comment_1_1_meta_1a0e3357ec03ada6af84d4c6986fb63a14" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
+  <compound refid="classnote_1_1tables_1_1_note_table_1_1_meta" kind="class"><name>note::tables::NoteTable::Meta</name>
+    <member refid="classnote_1_1tables_1_1_note_table_1_1_meta_1a109c9a92a2a360334e25dc41ae19833f" kind="variable"><name>model</name></member>
+    <member refid="classnote_1_1tables_1_1_note_table_1_1_meta_1a46da7448ba19ac5b4313cbe7647ad90d" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classinventory_1_1models_1_1_service_contract_1_1_meta" kind="class"><name>inventory::models::ServiceContract::Meta</name>
+    <member refid="classinventory_1_1models_1_1_service_contract_1_1_meta_1a9a7dcbe2d43f7f4de9fb9a6cb963fc69" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_service_contract_1_1_meta_1aa842cefcaebabe52c5fdfabb5c5440da" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classevent_1_1models_1_1_event_1_1_meta" kind="class"><name>event::models::Event::Meta</name>
+    <member refid="classevent_1_1models_1_1_event_1_1_meta_1a3c9568eb75cc60c8cccecce3f40fd02d" kind="variable"><name>abstract</name></member>
+  </compound>
   <compound refid="classcase_1_1forms_1_1_____case_device_form_1_1_meta" kind="class"><name>case::forms::__CaseDeviceForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_____case_device_form_1_1_meta_1a522edf38d322dac6cb04a57cba9a640c" kind="variable"><name>model</name></member>
     <member refid="classcase_1_1forms_1_1_____case_device_form_1_1_meta_1a6a00deebf9c58388bbc5930ef78ba5ba" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classloan_1_1models_1_1_loan_1_1_meta" kind="class"><name>loan::models::Loan::Meta</name>
-    <member refid="classloan_1_1models_1_1_loan_1_1_meta_1a642c38f9d7315585bb6c6ef1e2f32455" kind="variable"><name>verbose_name</name></member>
-    <member refid="classloan_1_1models_1_1_loan_1_1_meta_1a9e4b70b5fa20040c1e9b084b0b33ff6c" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classevent_1_1tables_1_1_event_table_1_1_meta" kind="class"><name>event::tables::EventTable::Meta</name>
+    <member refid="classevent_1_1tables_1_1_event_table_1_1_meta_1a5fff0d84586d75c1519a71fd607d0aae" kind="variable"><name>model</name></member>
+    <member refid="classevent_1_1tables_1_1_event_table_1_1_meta_1a4888e4bb5513d5a166bff23ab9f75210" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classcase_1_1forms_1_1_____case_task_form_1_1_meta" kind="class"><name>case::forms::__CaseTaskForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_____case_task_form_1_1_meta_1af37b673ab8d9135a5bb0f67de0b58c67" kind="variable"><name>model</name></member>
     <member refid="classcase_1_1forms_1_1_____case_task_form_1_1_meta_1a261ae5402ec3e93ae2746d1837246d28" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classevent_1_1tables_1_1_full_event_table_1_1_meta" kind="class"><name>event::tables::FullEventTable::Meta</name>
+    <member refid="classevent_1_1tables_1_1_full_event_table_1_1_meta_1aa02e7529a056b43885515e1e0e7c8b8b" kind="variable"><name>model</name></member>
+    <member refid="classevent_1_1tables_1_1_full_event_table_1_1_meta_1ac2f7f20b7031e57d4f732d39d0e59e83" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classuser_1_1models_1_1_user_status_1_1_meta" kind="class"><name>user::models::UserStatus::Meta</name>
+    <member refid="classuser_1_1models_1_1_user_status_1_1_meta_1a534c587307d40d92dc7096b5b788a6f3" kind="variable"><name>verbose_name</name></member>
+    <member refid="classuser_1_1models_1_1_user_status_1_1_meta_1aaea13aaa2433c83119e33c89657ccd02" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1forms_1_1_____case_note_form_1_1_meta" kind="class"><name>case::forms::__CaseNoteForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_____case_note_form_1_1_meta_1a7c674ee8f8ba3465caa4a9208111c441" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_____case_note_form_1_1_meta_1a75d47db0f5e044c6fbf17210da06b3c9" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classuser_1_1models_1_1_user_category_1_1_meta" kind="class"><name>user::models::UserCategory::Meta</name>
+    <member refid="classuser_1_1models_1_1_user_category_1_1_meta_1acca5ecce2a3a496023b5092305a87963" kind="variable"><name>verbose_name</name></member>
+    <member refid="classuser_1_1models_1_1_user_category_1_1_meta_1a0eeb2f9e8bb8d534ace1105facd28766" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classevidence_1_1models_1_1_evidence_authorisation_1_1_meta" kind="class"><name>evidence::models::EvidenceAuthorisation::Meta</name>
     <member refid="classevidence_1_1models_1_1_evidence_authorisation_1_1_meta_1a04427036ce87724b03b5e1486aaf9cbd" kind="variable"><name>verbose_name</name></member>
@@ -1405,126 +1433,106 @@
     <member refid="classevidence_1_1models_1_1_evidence_classification_1_1_meta_1ae94dcf44ff561ca2281ff3f0e79fab81" kind="variable"><name>verbose_name</name></member>
     <member refid="classevidence_1_1models_1_1_evidence_classification_1_1_meta_1a008f106fb727bccae1d0eab713bde6f5" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
+  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_both_update_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithBothUpdateForm::Meta</name>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_update_form_1_1_meta_1a101d70f58acf2d7a18da228248cb9591" kind="variable"><name>model</name></member>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_update_form_1_1_meta_1a509524df1a90a96d2239673464e39f7c" kind="variable"><name>fields</name></member>
+  </compound>
   <compound refid="classevidence_1_1models_1_1_evidence_type_1_1_meta" kind="class"><name>evidence::models::EvidenceType::Meta</name>
     <member refid="classevidence_1_1models_1_1_evidence_type_1_1_meta_1a9b7610c8c10726a771d65c2d8334be4f" kind="variable"><name>verbose_name</name></member>
     <member refid="classevidence_1_1models_1_1_evidence_type_1_1_meta_1a5d3509ea4ae273bc8fc8f67796673c04" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1forms_1_1_case_evidence_form_1_1_meta" kind="class"><name>case::forms::CaseEvidenceForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_case_evidence_form_1_1_meta_1a0f2cce5dcd90ddba46625644b59f16e5" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_case_evidence_form_1_1_meta_1a9cbfa57ec81491baa16abff2ac3ba189" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classevidence_1_1models_1_1_evidence_category_1_1_meta" kind="class"><name>evidence::models::EvidenceCategory::Meta</name>
     <member refid="classevidence_1_1models_1_1_evidence_category_1_1_meta_1a677e17c97ccd43121dcdd64b01b7b016" kind="variable"><name>verbose_name</name></member>
     <member refid="classevidence_1_1models_1_1_evidence_category_1_1_meta_1ac219c4f47a52a78fb690986dde58a6eb" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classcase_1_1forms_1_1_____case_note_form_1_1_meta" kind="class"><name>case::forms::__CaseNoteForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_____case_note_form_1_1_meta_1a7c674ee8f8ba3465caa4a9208111c441" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_____case_note_form_1_1_meta_1a75d47db0f5e044c6fbf17210da06b3c9" kind="variable"><name>fields</name></member>
+  <compound refid="classinventory_1_1models_1_1_device_category_1_1_meta" kind="class"><name>inventory::models::DeviceCategory::Meta</name>
+    <member refid="classinventory_1_1models_1_1_device_category_1_1_meta_1a3a88db73ff947df7acb3a0c77154ce2b" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_device_category_1_1_meta_1a594119649aa43c7f97529666c2914487" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classevidence_1_1models_1_1_evidence_priority_1_1_meta" kind="class"><name>evidence::models::EvidencePriority::Meta</name>
     <member refid="classevidence_1_1models_1_1_evidence_priority_1_1_meta_1a1f8df5d3dd54c5830ff0d084c2988d17" kind="variable"><name>verbose_name</name></member>
     <member refid="classevidence_1_1models_1_1_evidence_priority_1_1_meta_1a0aa39b1b830a019135660edcf1c3489d" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classevidence_1_1models_1_1_evidence_status_1_1_meta" kind="class"><name>evidence::models::EvidenceStatus::Meta</name>
-    <member refid="classevidence_1_1models_1_1_evidence_status_1_1_meta_1a9f353137c073dbaff1a99fb5f77f2621" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevidence_1_1models_1_1_evidence_status_1_1_meta_1a4864708f35a009f80c175da77db06d0f" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classuser_1_1forms_1_1_user_form_1_1_meta" kind="class"><name>user::forms::UserForm::Meta</name>
+    <member refid="classuser_1_1forms_1_1_user_form_1_1_meta_1a670efb046be7bf0222baf8778d632791" kind="variable"><name>model</name></member>
+    <member refid="classuser_1_1forms_1_1_user_form_1_1_meta_1a7e1df05ea2a3ca0fd53d3564ee227be9" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classevidence_1_1models_1_1_evidence_status_group_1_1_meta" kind="class"><name>evidence::models::EvidenceStatusGroup::Meta</name>
-    <member refid="classevidence_1_1models_1_1_evidence_status_group_1_1_meta_1a75ed500ae2bef3744dd10370f30fb249" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevidence_1_1models_1_1_evidence_status_group_1_1_meta_1acd545307cb1d69d8711c1f1087e07189" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_both_update_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithBothUpdateForm::Meta</name>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_update_form_1_1_meta_1a101d70f58acf2d7a18da228248cb9591" kind="variable"><name>model</name></member>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_update_form_1_1_meta_1a509524df1a90a96d2239673464e39f7c" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classtask_1_1tables_1_1_full_task_table_1_1_meta" kind="class"><name>task::tables::FullTaskTable::Meta</name>
-    <member refid="classtask_1_1tables_1_1_full_task_table_1_1_meta_1a3c866b4d99d438d0447d987c02ff62e2" kind="variable"><name>model</name></member>
-    <member refid="classtask_1_1tables_1_1_full_task_table_1_1_meta_1a2d8f92c3163a0ac9d1cd4bc121937df4" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classevent_1_1models_1_1_event_classification_1_1_meta" kind="class"><name>event::models::EventClassification::Meta</name>
-    <member refid="classevent_1_1models_1_1_event_classification_1_1_meta_1aaa9a4c5f5e039b091b6eda0fb2319d6e" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevent_1_1models_1_1_event_classification_1_1_meta_1a4950172e3af189ce3c27540774bc6016" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_person_1_1_meta" kind="class"><name>case::models::CasePerson::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_person_1_1_meta_1aa78f7353d7d0e8837001b9cfa689fa99" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_person_1_1_meta_1aee35d8e9cbd1838ceb18130930d1dffd" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classuser_1_1models_1_1_user_classification_1_1_meta" kind="class"><name>user::models::UserClassification::Meta</name>
-    <member refid="classuser_1_1models_1_1_user_classification_1_1_meta_1a1e276bf14f772794ff7b3f98b85a5137" kind="variable"><name>verbose_name</name></member>
-    <member refid="classuser_1_1models_1_1_user_classification_1_1_meta_1a2ae751bd8b7c4d4058a80a58ebd79b56" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classutils_1_1models_1_1_status_1_1_meta" kind="class"><name>utils::models::Status::Meta</name>
-    <member refid="classutils_1_1models_1_1_status_1_1_meta_1a45453f91efc4d867edf201b831763b42" kind="variable"><name>abstract</name></member>
-    <member refid="classutils_1_1models_1_1_status_1_1_meta_1ae1d7648801c4579d26834c37d426162d" kind="variable"><name>verbose_name</name></member>
-    <member refid="classutils_1_1models_1_1_status_1_1_meta_1a0432a199957ef79673b4f3425ab3a19e" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classevent_1_1models_1_1_event_1_1_meta" kind="class"><name>event::models::Event::Meta</name>
-    <member refid="classevent_1_1models_1_1_event_1_1_meta_1a3c9568eb75cc60c8cccecce3f40fd02d" kind="variable"><name>abstract</name></member>
-  </compound>
-  <compound refid="classevidence_1_1tables_1_1_full_evidence_table_1_1_meta" kind="class"><name>evidence::tables::FullEvidenceTable::Meta</name>
-    <member refid="classevidence_1_1tables_1_1_full_evidence_table_1_1_meta_1aba708267ffeea9283bb0312be7d57195" kind="variable"><name>model</name></member>
-    <member refid="classevidence_1_1tables_1_1_full_evidence_table_1_1_meta_1a6d2ffa1aa71a6080bcdb7d676295f8d9" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classevent_1_1models_1_1_event_status_group_1_1_meta" kind="class"><name>event::models::EventStatusGroup::Meta</name>
-    <member refid="classevent_1_1models_1_1_event_status_group_1_1_meta_1a86cce3e6e86687f4c687bed42b6cb5bc" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevent_1_1models_1_1_event_status_group_1_1_meta_1ae48bcd4cc0849900f839efc5200fdee1" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classtask_1_1models_1_1_task_1_1_meta" kind="class"><name>task::models::Task::Meta</name>
-    <member refid="classtask_1_1models_1_1_task_1_1_meta_1a2b988ab782d0aaa8538003e391979877" kind="variable"><name>abstract</name></member>
+  <compound refid="classinventory_1_1models_1_1_device_classification_1_1_meta" kind="class"><name>inventory::models::DeviceClassification::Meta</name>
+    <member refid="classinventory_1_1models_1_1_device_classification_1_1_meta_1a76e925d918e0f393ea8d0003430307cd" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_device_classification_1_1_meta_1ac73fd8481a065477a096cb9aaf33c9ed" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classcase_1_1models_1_1_case_authorisation_1_1_meta" kind="class"><name>case::models::CaseAuthorisation::Meta</name>
     <member refid="classcase_1_1models_1_1_case_authorisation_1_1_meta_1adbf88917950dcf7db47d859d4a6e5d28" kind="variable"><name>verbose_name</name></member>
     <member refid="classcase_1_1models_1_1_case_authorisation_1_1_meta_1a71cf7622d636c809bb3e7e35e45ed9e1" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classinventory_1_1forms_1_1_crispy_device_create_form_1_1_meta" kind="class"><name>inventory::forms::CrispyDeviceCreateForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_crispy_device_create_form_1_1_meta_1af30f7fda801ecddfee08f4349eac6810" kind="variable"><name>model</name></member>
-    <member refid="classinventory_1_1forms_1_1_crispy_device_create_form_1_1_meta_1ad8c509d8959fc760219495ea87829394" kind="variable"><name>fields</name></member>
+  <compound refid="classevidence_1_1models_1_1_evidence_status_group_1_1_meta" kind="class"><name>evidence::models::EvidenceStatusGroup::Meta</name>
+    <member refid="classevidence_1_1models_1_1_evidence_status_group_1_1_meta_1a75ed500ae2bef3744dd10370f30fb249" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevidence_1_1models_1_1_evidence_status_group_1_1_meta_1acd545307cb1d69d8711c1f1087e07189" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classtask_1_1models_1_1_task_authorisation_1_1_meta" kind="class"><name>task::models::TaskAuthorisation::Meta</name>
+    <member refid="classtask_1_1models_1_1_task_authorisation_1_1_meta_1a5e5b7f4fe3b21dc869e7201b785ec055" kind="variable"><name>verbose_name</name></member>
+    <member refid="classtask_1_1models_1_1_task_authorisation_1_1_meta_1a656f38f9cb5728237aeac0d686246d39" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classinventory_1_1models_1_1_device_status_group_1_1_meta" kind="class"><name>inventory::models::DeviceStatusGroup::Meta</name>
+    <member refid="classinventory_1_1models_1_1_device_status_group_1_1_meta_1a59492052c432b52b28a068319fd81809" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_device_status_group_1_1_meta_1abd2187dcaa0fd15be8fa968fb91689c3" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classevidence_1_1models_1_1_evidence_1_1_meta" kind="class"><name>evidence::models::Evidence::Meta</name>
+    <member refid="classevidence_1_1models_1_1_evidence_1_1_meta_1a418f35b2ad42a3d347f353fd3358ee08" kind="variable"><name>abstract</name></member>
+  </compound>
+  <compound refid="classevidence_1_1tables_1_1_evidence_table_1_1_meta" kind="class"><name>evidence::tables::EvidenceTable::Meta</name>
+    <member refid="classevidence_1_1tables_1_1_evidence_table_1_1_meta_1a604a2b16d2d16fbc9e9d16dca400ec17" kind="variable"><name>model</name></member>
+    <member refid="classevidence_1_1tables_1_1_evidence_table_1_1_meta_1aadc9cf2a1b00067c02e3660e0d343e9e" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classevent_1_1models_1_1_event_category_1_1_meta" kind="class"><name>event::models::EventCategory::Meta</name>
     <member refid="classevent_1_1models_1_1_event_category_1_1_meta_1a6b4c4b306e2deb8b171ce71fb2ac5fca" kind="variable"><name>verbose_name</name></member>
     <member refid="classevent_1_1models_1_1_event_category_1_1_meta_1a7530c2df4f92a413c4ade2444e7ddb11" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_device_update_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithDeviceUpdateForm::Meta</name>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_device_update_form_1_1_meta_1aeb6bad4fdd521022193d78c3594f19f6" kind="variable"><name>model</name></member>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_device_update_form_1_1_meta_1aeba7202df8654848aef408f913818b5f" kind="variable"><name>fields</name></member>
+  <compound refid="classloan_1_1models_1_1_loan_1_1_meta" kind="class"><name>loan::models::Loan::Meta</name>
+    <member refid="classloan_1_1models_1_1_loan_1_1_meta_1a642c38f9d7315585bb6c6ef1e2f32455" kind="variable"><name>verbose_name</name></member>
+    <member refid="classloan_1_1models_1_1_loan_1_1_meta_1a9e4b70b5fa20040c1e9b084b0b33ff6c" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classinventory_1_1forms_1_1_crispy_device_update_form_1_1_meta" kind="class"><name>inventory::forms::CrispyDeviceUpdateForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_crispy_device_update_form_1_1_meta_1ac2d5c7cfc17e9984855574c5e5b5ff6a" kind="variable"><name>model</name></member>
-    <member refid="classinventory_1_1forms_1_1_crispy_device_update_form_1_1_meta_1a409174275245fe98d5ffbb6f0d094039" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classinventory_1_1forms_1_1_device_create_form_1_1_meta" kind="class"><name>inventory::forms::DeviceCreateForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_device_create_form_1_1_meta_1a28acab49c2bbedcdb3f9c270c29ba12f" kind="variable"><name>model</name></member>
-    <member refid="classinventory_1_1forms_1_1_device_create_form_1_1_meta_1a9db303714c5139ff1c8e3dd9722ec8a0" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classnote_1_1models_1_1_note_priority_1_1_meta" kind="class"><name>note::models::NotePriority::Meta</name>
-    <member refid="classnote_1_1models_1_1_note_priority_1_1_meta_1af8210c7da28e2cc3721eedaa7da7248b" kind="variable"><name>verbose_name</name></member>
-    <member refid="classnote_1_1models_1_1_note_priority_1_1_meta_1ab4cb907c5afab4865d5e0e2c72125d78" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classinventory_1_1forms_1_1_device_update_form_1_1_meta" kind="class"><name>inventory::forms::DeviceUpdateForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_device_update_form_1_1_meta_1a42da671fe46d835f57d1157fc82d4368" kind="variable"><name>model</name></member>
-    <member refid="classinventory_1_1forms_1_1_device_update_form_1_1_meta_1a4edd28113613a03d79050c1668083665" kind="variable"><name>fields</name></member>
+  <compound refid="classutils_1_1models_1_1_object_description_mixin_1_1_meta" kind="class"><name>utils::models::ObjectDescriptionMixin::Meta</name>
+    <member refid="classutils_1_1models_1_1_object_description_mixin_1_1_meta_1a35acd19760e9ee810280c2c99cf8bee4" kind="variable"><name>abstract</name></member>
   </compound>
   <compound refid="classcase_1_1models_1_1_case_classification_1_1_meta" kind="class"><name>case::models::CaseClassification::Meta</name>
     <member refid="classcase_1_1models_1_1_case_classification_1_1_meta_1a93533ba1ca1e7211a5a2f1b313ff0f5c" kind="variable"><name>verbose_name</name></member>
     <member refid="classcase_1_1models_1_1_case_classification_1_1_meta_1af03c4f7cc55252798d698c9a18b055dc" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classinventory_1_1forms_1_1_comment_create_form_1_1_meta" kind="class"><name>inventory::forms::CommentCreateForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_comment_create_form_1_1_meta_1aeaa79cfdd5a7ff7499b1d34ecf968814" kind="variable"><name>fields</name></member>
+  <compound refid="classevent_1_1models_1_1_event_type_1_1_meta" kind="class"><name>event::models::EventType::Meta</name>
+    <member refid="classevent_1_1models_1_1_event_type_1_1_meta_1a5f5fa08e676a1ae90f7681cae5188520" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevent_1_1models_1_1_event_type_1_1_meta_1a47ba8140d8992986337a28ce4a21b5de" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classevent_1_1models_1_1_event_authorisation_1_1_meta" kind="class"><name>event::models::EventAuthorisation::Meta</name>
-    <member refid="classevent_1_1models_1_1_event_authorisation_1_1_meta_1a331cf4f8e13ed793ced218bbfa07d817" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevent_1_1models_1_1_event_authorisation_1_1_meta_1a60aceeafce8ded62abf5e143e7097db2" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classutils_1_1models_1_1_type_1_1_meta" kind="class"><name>utils::models::Type::Meta</name>
+    <member refid="classutils_1_1models_1_1_type_1_1_meta_1affb4a87a1449555841bd2892ef7bef85" kind="variable"><name>abstract</name></member>
+    <member refid="classutils_1_1models_1_1_type_1_1_meta_1aef8d1b4cb598f7886a6b42b9741f0a31" kind="variable"><name>verbose_name</name></member>
+    <member refid="classutils_1_1models_1_1_type_1_1_meta_1a23fc21621de5485062e9cec7694afa06" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classutils_1_1models_1_1_authorisation_1_1_meta" kind="class"><name>utils::models::Authorisation::Meta</name>
     <member refid="classutils_1_1models_1_1_authorisation_1_1_meta_1aeff03084ff269208e4536a852b36d2d4" kind="variable"><name>abstract</name></member>
   </compound>
-  <compound refid="classinventory_1_1forms_1_1_comment_update_form_1_1_meta" kind="class"><name>inventory::forms::CommentUpdateForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_comment_update_form_1_1_meta_1a6178fcf238747ddd92eb47d835fbd093" kind="variable"><name>fields</name></member>
+  <compound refid="classevent_1_1models_1_1_event_classification_1_1_meta" kind="class"><name>event::models::EventClassification::Meta</name>
+    <member refid="classevent_1_1models_1_1_event_classification_1_1_meta_1aaa9a4c5f5e039b091b6eda0fb2319d6e" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevent_1_1models_1_1_event_classification_1_1_meta_1a4950172e3af189ce3c27540774bc6016" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classutils_1_1models_1_1_classification_1_1_meta" kind="class"><name>utils::models::Classification::Meta</name>
-    <member refid="classutils_1_1models_1_1_classification_1_1_meta_1a5076ab4b5c6f7335883e49e97b9595fb" kind="variable"><name>abstract</name></member>
-    <member refid="classutils_1_1models_1_1_classification_1_1_meta_1ac9840168c4319a3b1613e689828358c4" kind="variable"><name>verbose_name</name></member>
-    <member refid="classutils_1_1models_1_1_classification_1_1_meta_1a77d02901b1ebb9194a79f4665baa8fe8" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classinventory_1_1forms_1_1_crispy_device_create_form_1_1_meta" kind="class"><name>inventory::forms::CrispyDeviceCreateForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_crispy_device_create_form_1_1_meta_1af30f7fda801ecddfee08f4349eac6810" kind="variable"><name>model</name></member>
+    <member refid="classinventory_1_1forms_1_1_crispy_device_create_form_1_1_meta_1ad8c509d8959fc760219495ea87829394" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classutils_1_1models_1_1_url_mixin_1_1_meta" kind="class"><name>utils::models::UrlMixin::Meta</name>
+    <member refid="classutils_1_1models_1_1_url_mixin_1_1_meta_1aa7ee33086c36c438fed931ff32a29d9a" kind="variable"><name>abstract</name></member>
+  </compound>
+  <compound refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta" kind="class"><name>event::forms::EventEditForm::Meta</name>
+    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a8c5230dd3001177edb269ba1ee02e97b" kind="variable"><name>model</name></member>
+    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a2e92af3068fe5bb3fe829812ec4d3b44" kind="variable"><name>fields</name></member>
+    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a6820cc8250b2d3af62118d557cc11a13" kind="variable"><name>labels</name></member>
+    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a93027c4762d6db56ee461cf88b1930f8" kind="variable"><name>error_messages</name></member>
+    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a95d56cc009c7daffdb40b24db4c5265d" kind="variable"><name>help_texts</name></member>
+    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a79ef8fee6aa99a23538cccc121bd2cf8" kind="variable"><name>widgets</name></member>
+  </compound>
+  <compound refid="classuser_1_1models_1_1_user_type_1_1_meta" kind="class"><name>user::models::UserType::Meta</name>
+    <member refid="classuser_1_1models_1_1_user_type_1_1_meta_1ae71dfe0f4698576ddec35ca97c0c4598" kind="variable"><name>verbose_name</name></member>
+    <member refid="classuser_1_1models_1_1_user_type_1_1_meta_1a9ebe8795511a4e241a61508d9f0b1e7e" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classevent_1_1forms_1_1_event_create_form_1_1_meta" kind="class"><name>event::forms::EventCreateForm::Meta</name>
     <member refid="classevent_1_1forms_1_1_event_create_form_1_1_meta_1aaa7c4385727eb91a64447e7fa8b28d23" kind="variable"><name>model</name></member>
@@ -1534,136 +1542,162 @@
     <member refid="classevent_1_1forms_1_1_event_create_form_1_1_meta_1ade2f0894bb434af4c073541e3a7a1ff6" kind="variable"><name>help_texts</name></member>
     <member refid="classevent_1_1forms_1_1_event_create_form_1_1_meta_1abcd532c60847be8e88ab4ef26572b2ac" kind="variable"><name>widgets</name></member>
   </compound>
-  <compound refid="classevent_1_1models_1_1_event_status_1_1_meta" kind="class"><name>event::models::EventStatus::Meta</name>
-    <member refid="classevent_1_1models_1_1_event_status_1_1_meta_1aca13e0d85a08fcd37755ae6820e31fda" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevent_1_1models_1_1_event_status_1_1_meta_1af4b9822528c2b639c01bd06a0800e4c0" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classevent_1_1forms_1_1_crispy_event_form_1_1_meta" kind="class"><name>event::forms::CrispyEventForm::Meta</name>
-    <member refid="classevent_1_1forms_1_1_crispy_event_form_1_1_meta_1a813ad3c50a90d5bb3a2bf1c968acf3f5" kind="variable"><name>model</name></member>
-    <member refid="classevent_1_1forms_1_1_crispy_event_form_1_1_meta_1a9834f527c50b8bae8710f4647fd15901" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classinventory_1_1forms_1_1_service_form_1_1_meta" kind="class"><name>inventory::forms::ServiceForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_service_form_1_1_meta_1a92b94f18be9569e1cb5520fd0ab1a034" kind="variable"><name>model</name></member>
-    <member refid="classinventory_1_1forms_1_1_service_form_1_1_meta_1a90a7289ab409375c96cb6706010095a5" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classuser_1_1forms_1_1_profile_form_1_1_meta" kind="class"><name>user::forms::ProfileForm::Meta</name>
-    <member refid="classuser_1_1forms_1_1_profile_form_1_1_meta_1a809baa0955d3cf79bf4a3a4fd0accf7b" kind="variable"><name>model</name></member>
-    <member refid="classuser_1_1forms_1_1_profile_form_1_1_meta_1a01ae0f884801da4eb5ae15d25536eade" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_type_1_1_meta" kind="class"><name>case::models::CaseType::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_type_1_1_meta_1ab20f1857acd56b13c9f82b14db800039" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_type_1_1_meta_1ac6fd2dfcbbec9b5ac4e18712c243789c" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classinventory_1_1models_1_1_device_authorisation_1_1_meta" kind="class"><name>inventory::models::DeviceAuthorisation::Meta</name>
-    <member refid="classinventory_1_1models_1_1_device_authorisation_1_1_meta_1a01721123b1c6609362f162806ec43887" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_device_authorisation_1_1_meta_1a524919ec8097fb33045f0ea818d9d9b7" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classutils_1_1models_1_1_classification_1_1_meta" kind="class"><name>utils::models::Classification::Meta</name>
+    <member refid="classutils_1_1models_1_1_classification_1_1_meta_1a5076ab4b5c6f7335883e49e97b9595fb" kind="variable"><name>abstract</name></member>
+    <member refid="classutils_1_1models_1_1_classification_1_1_meta_1ac9840168c4319a3b1613e689828358c4" kind="variable"><name>verbose_name</name></member>
+    <member refid="classutils_1_1models_1_1_classification_1_1_meta_1a77d02901b1ebb9194a79f4665baa8fe8" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classloan_1_1forms_1_1_crispy_loan_with_device_create_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithDeviceCreateForm::Meta</name>
     <member refid="classloan_1_1forms_1_1_crispy_loan_with_device_create_form_1_1_meta_1a33acadb299ea829c513c3cb931007400" kind="variable"><name>model</name></member>
     <member refid="classloan_1_1forms_1_1_crispy_loan_with_device_create_form_1_1_meta_1ac4e4b5895e71873625bd4f15650424ba" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classinventory_1_1models_1_1_device_classification_1_1_meta" kind="class"><name>inventory::models::DeviceClassification::Meta</name>
-    <member refid="classinventory_1_1models_1_1_device_classification_1_1_meta_1a76e925d918e0f393ea8d0003430307cd" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_device_classification_1_1_meta_1ac73fd8481a065477a096cb9aaf33c9ed" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classcase_1_1models_1_1_case_type_1_1_meta" kind="class"><name>case::models::CaseType::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_type_1_1_meta_1ab20f1857acd56b13c9f82b14db800039" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_type_1_1_meta_1ac6fd2dfcbbec9b5ac4e18712c243789c" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classinventory_1_1models_1_1_device_type_1_1_meta" kind="class"><name>inventory::models::DeviceType::Meta</name>
-    <member refid="classinventory_1_1models_1_1_device_type_1_1_meta_1acd81daa57f807547fbf4a9f32c4ac0ab" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_device_type_1_1_meta_1ad07a9da0c7bbe56cb2b2554472c86ab6" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classinventory_1_1forms_1_1_device_create_form_1_1_meta" kind="class"><name>inventory::forms::DeviceCreateForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_device_create_form_1_1_meta_1a28acab49c2bbedcdb3f9c270c29ba12f" kind="variable"><name>model</name></member>
+    <member refid="classinventory_1_1forms_1_1_device_create_form_1_1_meta_1a9db303714c5139ff1c8e3dd9722ec8a0" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classtask_1_1tables_1_1_task_table_1_1_meta" kind="class"><name>task::tables::TaskTable::Meta</name>
-    <member refid="classtask_1_1tables_1_1_task_table_1_1_meta_1a5e85f7d51e0a6bd9280c54e27bd1c3b5" kind="variable"><name>model</name></member>
-    <member refid="classtask_1_1tables_1_1_task_table_1_1_meta_1aaa2d352f94f0eff27e39ab07118c9d8f" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classuser_1_1models_1_1_profile_1_1_meta" kind="class"><name>user::models::Profile::Meta</name>
-    <member refid="classuser_1_1models_1_1_profile_1_1_meta_1adcff283925d2710220da157fc529e14c" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classtask_1_1models_1_1_task_status_group_1_1_meta" kind="class"><name>task::models::TaskStatusGroup::Meta</name>
-    <member refid="classtask_1_1models_1_1_task_status_group_1_1_meta_1a85fce49298f6e69ec86d07ed6e1a6ba0" kind="variable"><name>verbose_name</name></member>
-    <member refid="classtask_1_1models_1_1_task_status_group_1_1_meta_1a2950e2e6c995c07adcff2d92772e765b" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1forms_1_1_website_form_1_1_meta" kind="class"><name>entity::forms::WebsiteForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_website_form_1_1_meta_1aced25d4bad8cbe296e91d4f367ad3fad" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_website_form_1_1_meta_1a7c027fbaf1aca598fd9f38cea83dd530" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classtask_1_1models_1_1_task_category_1_1_meta" kind="class"><name>task::models::TaskCategory::Meta</name>
-    <member refid="classtask_1_1models_1_1_task_category_1_1_meta_1a3d366d5798ac4c5caaa4db489007d9dd" kind="variable"><name>verbose_name</name></member>
-    <member refid="classtask_1_1models_1_1_task_category_1_1_meta_1a428f663a8304c290d6dd53a02c03f8ed" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classinventory_1_1models_1_1_device_category_1_1_meta" kind="class"><name>inventory::models::DeviceCategory::Meta</name>
-    <member refid="classinventory_1_1models_1_1_device_category_1_1_meta_1a3a88db73ff947df7acb3a0c77154ce2b" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_device_category_1_1_meta_1a594119649aa43c7f97529666c2914487" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classtask_1_1models_1_1_task_type_1_1_meta" kind="class"><name>task::models::TaskType::Meta</name>
-    <member refid="classtask_1_1models_1_1_task_type_1_1_meta_1a7b75c3be477eab577b9c31f10e06c1cf" kind="variable"><name>verbose_name</name></member>
-    <member refid="classtask_1_1models_1_1_task_type_1_1_meta_1ab4264e34e38d0ae06df71e159ec8890d" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1forms_1_1_email_form_1_1_meta" kind="class"><name>entity::forms::EmailForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_email_form_1_1_meta_1a5c8e8f428b66c2e07dbefc0e709d66ac" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_email_form_1_1_meta_1a2f51dc6ba4fa5de5256e67f09426126c" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_priority_1_1_meta" kind="class"><name>case::models::CasePriority::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_priority_1_1_meta_1a1adb6882e0e8ece5e69ef69fa866e3e6" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_priority_1_1_meta_1a3bbe193ee2ebac7287c586d29693e369" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classinventory_1_1models_1_1_device_status_1_1_meta" kind="class"><name>inventory::models::DeviceStatus::Meta</name>
-    <member refid="classinventory_1_1models_1_1_device_status_1_1_meta_1ae946ea7681d991beef0b5502f5803a32" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_device_status_1_1_meta_1a4880eb007b3d3cfd603d35ffc06bb886" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classinventory_1_1models_1_1_device_status_group_1_1_meta" kind="class"><name>inventory::models::DeviceStatusGroup::Meta</name>
-    <member refid="classinventory_1_1models_1_1_device_status_group_1_1_meta_1a59492052c432b52b28a068319fd81809" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_device_status_group_1_1_meta_1abd2187dcaa0fd15be8fa968fb91689c3" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classnote_1_1models_1_1_note_authorisation_1_1_meta" kind="class"><name>note::models::NoteAuthorisation::Meta</name>
-    <member refid="classnote_1_1models_1_1_note_authorisation_1_1_meta_1a7f95089c0d0c218328bd2d889119bbe8" kind="variable"><name>verbose_name</name></member>
-    <member refid="classnote_1_1models_1_1_note_authorisation_1_1_meta_1a1109423d204cd62b37fc0e7a7cb132ad" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classuser_1_1models_1_1_user_category_1_1_meta" kind="class"><name>user::models::UserCategory::Meta</name>
-    <member refid="classuser_1_1models_1_1_user_category_1_1_meta_1acca5ecce2a3a496023b5092305a87963" kind="variable"><name>verbose_name</name></member>
-    <member refid="classuser_1_1models_1_1_user_category_1_1_meta_1a0eeb2f9e8bb8d534ace1105facd28766" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_category_1_1_meta" kind="class"><name>case::models::CaseCategory::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_category_1_1_meta_1ad5eca67fe48bbc40eb42882e03827e12" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_category_1_1_meta_1a54f2680fa55dc14be2ab97965644bb77" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classevent_1_1tables_1_1_full_event_table_1_1_meta" kind="class"><name>event::tables::FullEventTable::Meta</name>
-    <member refid="classevent_1_1tables_1_1_full_event_table_1_1_meta_1aa02e7529a056b43885515e1e0e7c8b8b" kind="variable"><name>model</name></member>
-    <member refid="classevent_1_1tables_1_1_full_event_table_1_1_meta_1ac2f7f20b7031e57d4f732d39d0e59e83" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classnote_1_1tables_1_1_full_note_table_1_1_meta" kind="class"><name>note::tables::FullNoteTable::Meta</name>
-    <member refid="classnote_1_1tables_1_1_full_note_table_1_1_meta_1a501643023bc0f423e7751f3d4694bcd5" kind="variable"><name>model</name></member>
-    <member refid="classnote_1_1tables_1_1_full_note_table_1_1_meta_1afa9801606fbe9c83dcc74a7356b55f4a" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classinventory_1_1models_1_1_service_1_1_meta" kind="class"><name>inventory::models::Service::Meta</name>
-    <member refid="classinventory_1_1models_1_1_service_1_1_meta_1a3da7063788225e7f6d707f878ca1c88f" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_service_1_1_meta_1a8748ef44fb64bb330ede5a5f4afbc68a" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1company_1_1_company_type_1_1_meta" kind="class"><name>entity::models::company::CompanyType::Meta</name>
-    <member refid="classentity_1_1models_1_1company_1_1_company_type_1_1_meta_1a8559b01d20a1431b88b24de822667115" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_type_1_1_meta_1ab7fafae57b28e6790a5fded4d6d30fc8" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classnote_1_1models_1_1_note_status_1_1_meta" kind="class"><name>note::models::NoteStatus::Meta</name>
-    <member refid="classnote_1_1models_1_1_note_status_1_1_meta_1a17925d331922199f8f209bad3cc9d899" kind="variable"><name>verbose_name</name></member>
-    <member refid="classnote_1_1models_1_1_note_status_1_1_meta_1a9c57b47f7aa984fb9bdeb39de71589ad" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classuser_1_1models_1_1_user_priority_1_1_meta" kind="class"><name>user::models::UserPriority::Meta</name>
+    <member refid="classuser_1_1models_1_1_user_priority_1_1_meta_1abc4f1340eaf698c0e01888b787bf5cbe" kind="variable"><name>verbose_name</name></member>
+    <member refid="classuser_1_1models_1_1_user_priority_1_1_meta_1a677d2a0c92cebe4020b80a1375e27a8c" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classnote_1_1models_1_1_note_category_1_1_meta" kind="class"><name>note::models::NoteCategory::Meta</name>
     <member refid="classnote_1_1models_1_1_note_category_1_1_meta_1ad4e87250f0674dfca380591ce55da364" kind="variable"><name>verbose_name</name></member>
     <member refid="classnote_1_1models_1_1_note_category_1_1_meta_1af06c9ca1f6132be2a65368f4529e3cfa" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classcase_1_1forms_1_1_case_form_1_1_meta" kind="class"><name>case::forms::CaseForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_case_form_1_1_meta_1aafe8b63e69052fa6f5bb30bf0bc7b875" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_case_form_1_1_meta_1a1bfd171ddb81e40b5ffc6035a36f6ce6" kind="variable"><name>fields</name></member>
+  <compound refid="classevent_1_1models_1_1_event_status_group_1_1_meta" kind="class"><name>event::models::EventStatusGroup::Meta</name>
+    <member refid="classevent_1_1models_1_1_event_status_group_1_1_meta_1a86cce3e6e86687f4c687bed42b6cb5bc" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevent_1_1models_1_1_event_status_group_1_1_meta_1ae48bcd4cc0849900f839efc5200fdee1" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1forms_1_1_case_evidence_form_1_1_meta" kind="class"><name>case::forms::CaseEvidenceForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_case_evidence_form_1_1_meta_1a0f2cce5dcd90ddba46625644b59f16e5" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_case_evidence_form_1_1_meta_1a9cbfa57ec81491baa16abff2ac3ba189" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classinventory_1_1forms_1_1_comment_create_form_1_1_meta" kind="class"><name>inventory::forms::CommentCreateForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_comment_create_form_1_1_meta_1aeaa79cfdd5a7ff7499b1d34ecf968814" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classinventory_1_1forms_1_1_comment_update_form_1_1_meta" kind="class"><name>inventory::forms::CommentUpdateForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_comment_update_form_1_1_meta_1a6178fcf238747ddd92eb47d835fbd093" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1person_1_1_person_type_1_1_meta" kind="class"><name>entity::models::person::PersonType::Meta</name>
+    <member refid="classentity_1_1models_1_1person_1_1_person_type_1_1_meta_1aa3850e481194076152693bef16eec616" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1person_1_1_person_type_1_1_meta_1a363f2f5f506ca1091b5e725013f37433" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_priority_1_1_meta" kind="class"><name>case::models::CasePriority::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_priority_1_1_meta_1a1adb6882e0e8ece5e69ef69fa866e3e6" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_priority_1_1_meta_1a3bbe193ee2ebac7287c586d29693e369" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_person_form_1_1_meta" kind="class"><name>entity::forms::PersonForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_person_form_1_1_meta_1a7f4be4c84536752f6ecd6b292b1e5df1" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_person_form_1_1_meta_1afaaa7f5e5ba7310e1fc280cf0b665343" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classinventory_1_1forms_1_1_service_contract_form_1_1_meta" kind="class"><name>inventory::forms::ServiceContractForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_service_contract_form_1_1_meta_1af0de4682daa22f1c2c88af1b60ececaf" kind="variable"><name>model</name></member>
+    <member refid="classinventory_1_1forms_1_1_service_contract_form_1_1_meta_1a57b13440e3ed7d4cb1cfcc2e2e886762" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classinventory_1_1forms_1_1_service_form_1_1_meta" kind="class"><name>inventory::forms::ServiceForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_service_form_1_1_meta_1a92b94f18be9569e1cb5520fd0ab1a034" kind="variable"><name>model</name></member>
+    <member refid="classinventory_1_1forms_1_1_service_form_1_1_meta_1a90a7289ab409375c96cb6706010095a5" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classinventory_1_1models_1_1_device_authorisation_1_1_meta" kind="class"><name>inventory::models::DeviceAuthorisation::Meta</name>
+    <member refid="classinventory_1_1models_1_1_device_authorisation_1_1_meta_1a01721123b1c6609362f162806ec43887" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_device_authorisation_1_1_meta_1a524919ec8097fb33045f0ea818d9d9b7" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classuser_1_1models_1_1_profile_1_1_meta" kind="class"><name>user::models::Profile::Meta</name>
+    <member refid="classuser_1_1models_1_1_profile_1_1_meta_1adcff283925d2710220da157fc529e14c" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1company_1_1_company_authorisation_1_1_meta" kind="class"><name>entity::models::company::CompanyAuthorisation::Meta</name>
+    <member refid="classentity_1_1models_1_1company_1_1_company_authorisation_1_1_meta_1ac3c56d62c1dc9c8f85bc14c2974c5ea7" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1company_1_1_company_authorisation_1_1_meta_1a01c7500278b90881ca9be3c22a19315a" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_telephone_form_1_1_meta" kind="class"><name>entity::forms::TelephoneForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_telephone_form_1_1_meta_1a65a9efcf3d0c91740d2f909bc99ebe44" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_telephone_form_1_1_meta_1a12a5aa9a8f81e8b18c86eac8e5181697" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classtask_1_1models_1_1_task_priority_1_1_meta" kind="class"><name>task::models::TaskPriority::Meta</name>
+    <member refid="classtask_1_1models_1_1_task_priority_1_1_meta_1a1049ef3bf2d449556ecd7872f4fdafdc" kind="variable"><name>verbose_name</name></member>
+    <member refid="classtask_1_1models_1_1_task_priority_1_1_meta_1a860d22944638f1a8aef612be0501fc54" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classinventory_1_1models_1_1_device_type_1_1_meta" kind="class"><name>inventory::models::DeviceType::Meta</name>
+    <member refid="classinventory_1_1models_1_1_device_type_1_1_meta_1acd81daa57f807547fbf4a9f32c4ac0ab" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_device_type_1_1_meta_1ad07a9da0c7bbe56cb2b2554472c86ab6" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classnote_1_1forms_1_1_crispy_note_form_1_1_meta" kind="class"><name>note::forms::CrispyNoteForm::Meta</name>
+    <member refid="classnote_1_1forms_1_1_crispy_note_form_1_1_meta_1a8ccbd0b589a796935addf382777f2c43" kind="variable"><name>model</name></member>
+    <member refid="classnote_1_1forms_1_1_crispy_note_form_1_1_meta_1a0e066736425eeb6de6cec0d9a0b168b9" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_address_form_1_1_meta" kind="class"><name>entity::forms::AddressForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_address_form_1_1_meta_1ab7a449715da35f60e0fb2ecd90675441" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_address_form_1_1_meta_1acaeddd561726dbf906ad57d34cbe5ff3" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_category_1_1_meta" kind="class"><name>case::models::CaseCategory::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_category_1_1_meta_1ad5eca67fe48bbc40eb42882e03827e12" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_category_1_1_meta_1a54f2680fa55dc14be2ab97965644bb77" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1company_1_1_company_classification_1_1_meta" kind="class"><name>entity::models::company::CompanyClassification::Meta</name>
+    <member refid="classentity_1_1models_1_1company_1_1_company_classification_1_1_meta_1a8caf31935883341988bc76fca509c0a6" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1company_1_1_company_classification_1_1_meta_1a48a6f809631ef858ed6d8254266060ae" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classinventory_1_1models_1_1_device_status_1_1_meta" kind="class"><name>inventory::models::DeviceStatus::Meta</name>
+    <member refid="classinventory_1_1models_1_1_device_status_1_1_meta_1ae946ea7681d991beef0b5502f5803a32" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_device_status_1_1_meta_1a4880eb007b3d3cfd603d35ffc06bb886" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___person_form_1_1_meta" kind="class"><name>entity::forms::Old_PersonForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_old___person_form_1_1_meta_1a2657e5911d41eea2473e521d476bc58d" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_old___person_form_1_1_meta_1af265df063dc20df07f3f1624a3993876" kind="variable"><name>exclude</name></member>
   </compound>
   <compound refid="classcase_1_1forms_1_1_____case_evidence_form_1_1_meta" kind="class"><name>case::forms::__CaseEvidenceForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_____case_evidence_form_1_1_meta_1a241c2736ac25bbe80fde86ddc0a41962" kind="variable"><name>model</name></member>
     <member refid="classcase_1_1forms_1_1_____case_evidence_form_1_1_meta_1a9c4e1ba3464cbef66890dc77bc6110ec" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classnote_1_1models_1_1_note_classification_1_1_meta" kind="class"><name>note::models::NoteClassification::Meta</name>
-    <member refid="classnote_1_1models_1_1_note_classification_1_1_meta_1ad9b3de4da8506a881835d42e1df41f99" kind="variable"><name>verbose_name</name></member>
-    <member refid="classnote_1_1models_1_1_note_classification_1_1_meta_1abfb304f938febac3d80963f45f397566" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classcase_1_1models_1_1_case_inventory_1_1_meta" kind="class"><name>case::models::CaseInventory::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_inventory_1_1_meta_1a5a79e879deb1abf49009022efcd3ff1e" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_inventory_1_1_meta_1a939fcd0f5dbeab7be14acd91c7a1c35a" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1person_1_1_person_status_group_1_1_meta" kind="class"><name>entity::models::person::PersonStatusGroup::Meta</name>
-    <member refid="classentity_1_1models_1_1person_1_1_person_status_group_1_1_meta_1a5b8d32afcbeb02e3946d4ab221e9ad2e" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1person_1_1_person_status_group_1_1_meta_1a9239cc9e587d6377a55abd361658d73f" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classnote_1_1forms_1_1_note_create_form_1_1_meta" kind="class"><name>note::forms::NoteCreateForm::Meta</name>
+    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a7b86cbc53b9b2b8da436014ee2fa3c01" kind="variable"><name>model</name></member>
+    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1aa3f449b99d54184d118beb261dec444a" kind="variable"><name>fields</name></member>
+    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a7ff13f44b565c1f2ce12ff262e34fc10" kind="variable"><name>labels</name></member>
+    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a68a679b5668a23d79c11bc821187c5a8" kind="variable"><name>error_messages</name></member>
+    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a5e6b72f6c73a7b9f79388cf6e7345a81" kind="variable"><name>help_texts</name></member>
+    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a4142415d3b993587a22ada4482cbcd75" kind="variable"><name>widgets</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___social_form_1_1_meta" kind="class"><name>entity::forms::Old_SocialForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_old___social_form_1_1_meta_1a7dacaec62a4af3d26fb629e68d13c518" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_old___social_form_1_1_meta_1a087e2f5d01f4dcb578307f4f1bfe6b70" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classnote_1_1models_1_1_note_1_1_meta" kind="class"><name>note::models::Note::Meta</name>
+    <member refid="classnote_1_1models_1_1_note_1_1_meta_1a423d396e25f1585b29b3187f414e655f" kind="variable"><name>abstract</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1company_1_1_company_type_1_1_meta" kind="class"><name>entity::models::company::CompanyType::Meta</name>
+    <member refid="classentity_1_1models_1_1company_1_1_company_type_1_1_meta_1a8559b01d20a1431b88b24de822667115" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1company_1_1_company_type_1_1_meta_1ab7fafae57b28e6790a5fded4d6d30fc8" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_status_1_1_meta" kind="class"><name>case::models::CaseStatus::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_status_1_1_meta_1a2f4c93123bd645afe2b2e05ab48f4acf" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_status_1_1_meta_1a73c1f5cd8e4530e133bc9b5b472f8de3" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___telephone_form_1_1_meta" kind="class"><name>entity::forms::Old_TelephoneForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_old___telephone_form_1_1_meta_1a2817f68181d748c4f57196b112ffa212" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_old___telephone_form_1_1_meta_1a45803e6d3c1bda9ab0530286184d6767" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classnote_1_1models_1_1_note_priority_1_1_meta" kind="class"><name>note::models::NotePriority::Meta</name>
+    <member refid="classnote_1_1models_1_1_note_priority_1_1_meta_1af8210c7da28e2cc3721eedaa7da7248b" kind="variable"><name>verbose_name</name></member>
+    <member refid="classnote_1_1models_1_1_note_priority_1_1_meta_1ab4cb907c5afab4865d5e0e2c72125d78" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___address_form_1_1_meta" kind="class"><name>entity::forms::Old_AddressForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_old___address_form_1_1_meta_1ad26228ae8475052ebec2ac839c987087" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_old___address_form_1_1_meta_1a5253a1b2fe747301d21781c1cbefcd3a" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classinventory_1_1models_1_1_service_1_1_meta" kind="class"><name>inventory::models::Service::Meta</name>
+    <member refid="classinventory_1_1models_1_1_service_1_1_meta_1a3da7063788225e7f6d707f878ca1c88f" kind="variable"><name>verbose_name</name></member>
+    <member refid="classinventory_1_1models_1_1_service_1_1_meta_1a8748ef44fb64bb330ede5a5f4afbc68a" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_event_1_1_meta" kind="class"><name>case::models::CaseEvent::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_event_1_1_meta_1a3edddd8c26348dded0d7d10fe6d54054" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_event_1_1_meta_1a3e73990c77ed1106387679873ce7c53b" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classnote_1_1forms_1_1_note_edit_form_1_1_meta" kind="class"><name>note::forms::NoteEditForm::Meta</name>
     <member refid="classnote_1_1forms_1_1_note_edit_form_1_1_meta_1a9e80d20d3a22056852aa981f4ae69300" kind="variable"><name>model</name></member>
@@ -1677,13 +1711,28 @@
     <member refid="classentity_1_1models_1_1company_1_1_company_category_1_1_meta_1aa50fb3c3331a36dfbcce33f54223ab1a" kind="variable"><name>verbose_name</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_category_1_1_meta_1a2cabfbf0f8d5b01df9bda16a1209c752" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classcase_1_1models_1_1_case_status_1_1_meta" kind="class"><name>case::models::CaseStatus::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_status_1_1_meta_1a2f4c93123bd645afe2b2e05ab48f4acf" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_status_1_1_meta_1a73c1f5cd8e4530e133bc9b5b472f8de3" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classcase_1_1filters_1_1_case_filter_1_1_meta" kind="class"><name>case::filters::CaseFilter::Meta</name>
+    <member refid="classcase_1_1filters_1_1_case_filter_1_1_meta_1a69d85a15088c77cf52b6538a82cffce8" kind="variable"><name>model</name></member>
   </compound>
   <compound refid="classentity_1_1models_1_1company_1_1_company_status_1_1_meta" kind="class"><name>entity::models::company::CompanyStatus::Meta</name>
     <member refid="classentity_1_1models_1_1company_1_1_company_status_1_1_meta_1a4aee142546dfae2ce7023a7cedb78f22" kind="variable"><name>verbose_name</name></member>
     <member refid="classentity_1_1models_1_1company_1_1_company_status_1_1_meta_1a2d2c3f59ce7000df7ef1bd3b64cd179d" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_status_group_1_1_meta" kind="class"><name>case::models::CaseStatusGroup::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_status_group_1_1_meta_1ad8d35e8026abc29faf9a195df71ef895" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_status_group_1_1_meta_1aec6c536d68c4454815822b2022fafd9b" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classnote_1_1models_1_1_note_authorisation_1_1_meta" kind="class"><name>note::models::NoteAuthorisation::Meta</name>
+    <member refid="classnote_1_1models_1_1_note_authorisation_1_1_meta_1a7f95089c0d0c218328bd2d889119bbe8" kind="variable"><name>verbose_name</name></member>
+    <member refid="classnote_1_1models_1_1_note_authorisation_1_1_meta_1a1109423d204cd62b37fc0e7a7cb132ad" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1company_1_1_company_status_group_1_1_meta" kind="class"><name>entity::models::company::CompanyStatusGroup::Meta</name>
+    <member refid="classentity_1_1models_1_1company_1_1_company_status_group_1_1_meta_1a6fca1ec7b035ed722735aa0feb793fa4" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1company_1_1_company_status_group_1_1_meta_1a6f72fbce16ccd78c87fae39fb55ce0cc" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_company_1_1_meta" kind="class"><name>case::models::CaseCompany::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_company_1_1_meta_1a9cc76afd5fcbf96581cb654470b1015f" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_company_1_1_meta_1a7910068ca21261d7a43b32cc3973cb96" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classcase_1_1forms_1_1_____case_create_form_1_1_meta" kind="class"><name>case::forms::__CaseCreateForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_____case_create_form_1_1_meta_1a7d7b76c10e4558aff5931ea1796ef083" kind="variable"><name>model</name></member>
@@ -1693,187 +1742,159 @@
     <member refid="classcase_1_1forms_1_1_____case_create_form_1_1_meta_1a7ef1ee88bca9cb0050e21496dedc4651" kind="variable"><name>help_texts</name></member>
     <member refid="classcase_1_1forms_1_1_____case_create_form_1_1_meta_1a08cf9aca7567a2c01829bae2c477a362" kind="variable"><name>widgets</name></member>
   </compound>
-  <compound refid="classcase_1_1filters_1_1_case_filter_1_1_meta" kind="class"><name>case::filters::CaseFilter::Meta</name>
-    <member refid="classcase_1_1filters_1_1_case_filter_1_1_meta_1a69d85a15088c77cf52b6538a82cffce8" kind="variable"><name>model</name></member>
+  <compound refid="classcase_1_1models_1_1_case_1_1_meta" kind="class"><name>case::models::Case::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_1_1_meta_1a26e585517e6e04f7f1c6fb9e441146f3" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_1_1_meta_1adf3a17c0a76bf833f68501ba4e87bd46" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classnote_1_1forms_1_1_note_create_form_1_1_meta" kind="class"><name>note::forms::NoteCreateForm::Meta</name>
-    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a7b86cbc53b9b2b8da436014ee2fa3c01" kind="variable"><name>model</name></member>
-    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1aa3f449b99d54184d118beb261dec444a" kind="variable"><name>fields</name></member>
-    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a7ff13f44b565c1f2ce12ff262e34fc10" kind="variable"><name>labels</name></member>
-    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a68a679b5668a23d79c11bc821187c5a8" kind="variable"><name>error_messages</name></member>
-    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a5e6b72f6c73a7b9f79388cf6e7345a81" kind="variable"><name>help_texts</name></member>
-    <member refid="classnote_1_1forms_1_1_note_create_form_1_1_meta_1a4142415d3b993587a22ada4482cbcd75" kind="variable"><name>widgets</name></member>
+  <compound refid="classentity_1_1models_1_1company_1_1_company_1_1_meta" kind="class"><name>entity::models::company::Company::Meta</name>
+    <member refid="classentity_1_1models_1_1company_1_1_company_1_1_meta_1a8495725ead4ae330c5bbc1565d865670" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classentity_1_1forms_1_1_company_form_1_1_meta" kind="class"><name>entity::forms::CompanyForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_company_form_1_1_meta_1ae4b79f48a714979a218d7e0cd7947acc" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_company_form_1_1_meta_1a56ef4d55d3b31a507fab6655aad2f5e2" kind="variable"><name>exclude</name></member>
+  <compound refid="classentity_1_1models_1_1entity_1_1_contact_method_1_1_meta" kind="class"><name>entity::models::entity::ContactMethod::Meta</name>
+    <member refid="classentity_1_1models_1_1entity_1_1_contact_method_1_1_meta_1a3463f32f97d6b4d07604d5663f583713" kind="variable"><name>abstract</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1company_1_1_company_address_1_1_meta" kind="class"><name>entity::models::company::CompanyAddress::Meta</name>
-    <member refid="classentity_1_1models_1_1company_1_1_company_address_1_1_meta_1a16829c274ba981e0c7c9502ea72108d2" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_address_1_1_meta_1a6da9a2f1f60fa817c95f740b286ca714" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classcase_1_1forms_1_1_case_event_form_1_1_meta" kind="class"><name>case::forms::CaseEventForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_case_event_form_1_1_meta_1ab8d1108ce8eafddd9e59ee03f493ac31" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_case_event_form_1_1_meta_1afb49a6867c8699d1a056fec6daff37a2" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classcase_1_1forms_1_1_____case_person_form_1_1_meta" kind="class"><name>case::forms::__CasePersonForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_____case_person_form_1_1_meta_1add6c9862e1226f5181f673d9dc9b9d8d" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_____case_person_form_1_1_meta_1a5cc8f73968a154002e04ebecf0553bca" kind="variable"><name>fields</name></member>
+  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_device_update_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithDeviceUpdateForm::Meta</name>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_device_update_form_1_1_meta_1aeb6bad4fdd521022193d78c3594f19f6" kind="variable"><name>model</name></member>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_device_update_form_1_1_meta_1aeba7202df8654848aef408f913818b5f" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_case_update_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithCaseUpdateForm::Meta</name>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_update_form_1_1_meta_1a852d9cc0ab463e477afcc5f6edf5c17e" kind="variable"><name>model</name></member>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_update_form_1_1_meta_1a9dfab5ef0f3190f638a5caf926f6e83b" kind="variable"><name>fields</name></member>
+  <compound refid="classentity_1_1forms_1_1_website_form_1_1_meta" kind="class"><name>entity::forms::WebsiteForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_website_form_1_1_meta_1aced25d4bad8cbe296e91d4f367ad3fad" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_website_form_1_1_meta_1a58d237bd1fda029fe0227146bc13a70c" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1person_1_1_person_classification_1_1_meta" kind="class"><name>entity::models::person::PersonClassification::Meta</name>
+    <member refid="classentity_1_1models_1_1person_1_1_person_classification_1_1_meta_1a2ea223abfe37e1ed892e64e973c51a1d" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1person_1_1_person_classification_1_1_meta_1ab9b42dcdc1082629a56c43139b5c5f61" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classcase_1_1models_1_1_case_entity_1_1_meta" kind="class"><name>case::models::CaseEntity::Meta</name>
     <member refid="classcase_1_1models_1_1_case_entity_1_1_meta_1a02f62644f80c3c06fdfd8594ee210965" kind="variable"><name>abstract</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1entity_1_1_address_1_1_meta" kind="class"><name>entity::models::entity::Address::Meta</name>
+    <member refid="classentity_1_1models_1_1entity_1_1_address_1_1_meta_1a59060afa4a30a38e8eece2ce517ea9ef" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1entity_1_1_address_1_1_meta_1a307de0f86d5f49a8fc0be178b734df55" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_note_1_1_meta" kind="class"><name>case::models::CaseNote::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_note_1_1_meta_1a505303ca5a71c75ac56e55ba16f631c0" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_note_1_1_meta_1a18a52761d66e6f5f1429af006ff6b800" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classtask_1_1models_1_1_task_category_1_1_meta" kind="class"><name>task::models::TaskCategory::Meta</name>
+    <member refid="classtask_1_1models_1_1_task_category_1_1_meta_1a3d366d5798ac4c5caaa4db489007d9dd" kind="variable"><name>verbose_name</name></member>
+    <member refid="classtask_1_1models_1_1_task_category_1_1_meta_1a428f663a8304c290d6dd53a02c03f8ed" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_evidence_1_1_meta" kind="class"><name>case::models::CaseEvidence::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_evidence_1_1_meta_1ab99f112915f02b7b999afac0fdc7e285" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_evidence_1_1_meta_1a7ed425924049e8410d98a4ce1a31d3e1" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classloan_1_1forms_1_1_loan_form_1_1_meta" kind="class"><name>loan::forms::LoanForm::Meta</name>
+    <member refid="classloan_1_1forms_1_1_loan_form_1_1_meta_1a4bcdf45985b656614bff3ec1fdbd4db9" kind="variable"><name>model</name></member>
+    <member refid="classloan_1_1forms_1_1_loan_form_1_1_meta_1ada96c24a4fd65b400faf7e7c59c74062" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classloan_1_1forms_1_1_____loan_form_1_1_meta" kind="class"><name>loan::forms::__LoanForm::Meta</name>
+    <member refid="classloan_1_1forms_1_1_____loan_form_1_1_meta_1a69b57024d4bc04fb8f6e63193e70d317" kind="variable"><name>model</name></member>
+    <member refid="classloan_1_1forms_1_1_____loan_form_1_1_meta_1a99fdad2d8abf67c08d9a9a58c732157b" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1person_1_1_person_authorisation_1_1_meta" kind="class"><name>entity::models::person::PersonAuthorisation::Meta</name>
+    <member refid="classentity_1_1models_1_1person_1_1_person_authorisation_1_1_meta_1ad088b872d8cc1986fe0b31b3f2a6ec7e" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1person_1_1_person_authorisation_1_1_meta_1a9a116ab6c9d8414dc802f248467672d0" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classutils_1_1models_1_1_category_1_1_meta" kind="class"><name>utils::models::Category::Meta</name>
     <member refid="classutils_1_1models_1_1_category_1_1_meta_1a02b5f38a66d3cf7e388ad8b53b7bbc5b" kind="variable"><name>abstract</name></member>
     <member refid="classutils_1_1models_1_1_category_1_1_meta_1a7562ffeb46f813513dea39890d2ba3ba" kind="variable"><name>verbose_name</name></member>
     <member refid="classutils_1_1models_1_1_category_1_1_meta_1af9db67cbb307e11a7133d93b6c92d4c2" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1company_1_1_company_1_1_meta" kind="class"><name>entity::models::company::Company::Meta</name>
-    <member refid="classentity_1_1models_1_1company_1_1_company_1_1_meta_1a8495725ead4ae330c5bbc1565d865670" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_status_group_1_1_meta" kind="class"><name>case::models::CaseStatusGroup::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_status_group_1_1_meta_1ad8d35e8026abc29faf9a195df71ef895" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_status_group_1_1_meta_1aec6c536d68c4454815822b2022fafd9b" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_1_1_meta" kind="class"><name>case::models::Case::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_1_1_meta_1a26e585517e6e04f7f1c6fb9e441146f3" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_1_1_meta_1adf3a17c0a76bf833f68501ba4e87bd46" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_address_1_1_meta" kind="class"><name>entity::models::entity::Address::Meta</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_address_1_1_meta_1a59060afa4a30a38e8eece2ce517ea9ef" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_address_1_1_meta_1a307de0f86d5f49a8fc0be178b734df55" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_country_1_1_meta" kind="class"><name>entity::models::entity::Country::Meta</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1_1_meta_1aecd3d8db49b2ad38497e5a648746d7d9" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_country_1_1_meta_1aa7714bfb6352c860d87e28d24be5100d" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_contact_method_1_1_meta" kind="class"><name>entity::models::entity::ContactMethod::Meta</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_contact_method_1_1_meta_1a3463f32f97d6b4d07604d5663f583713" kind="variable"><name>abstract</name></member>
-  </compound>
-  <compound refid="classloan_1_1forms_1_1_____loan_form_1_1_meta" kind="class"><name>loan::forms::__LoanForm::Meta</name>
-    <member refid="classloan_1_1forms_1_1_____loan_form_1_1_meta_1a69b57024d4bc04fb8f6e63193e70d317" kind="variable"><name>model</name></member>
-    <member refid="classloan_1_1forms_1_1_____loan_form_1_1_meta_1a99fdad2d8abf67c08d9a9a58c732157b" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_state_1_1_meta" kind="class"><name>entity::models::entity::State::Meta</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1_1_meta_1af734917bd657002b269eb80a4ec52cb0" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1_1_meta_1ad2a3d0845afb0eb79e949664c4c7ea73" kind="variable"><name>verbose_name_plural</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1_1_meta_1a81bda4736513a9a56cf1e9a3364c384e" kind="variable"><name>unique_together</name></member>
-  </compound>
-  <compound refid="classuser_1_1models_1_1_user_status_1_1_meta" kind="class"><name>user::models::UserStatus::Meta</name>
-    <member refid="classuser_1_1models_1_1_user_status_1_1_meta_1a534c587307d40d92dc7096b5b788a6f3" kind="variable"><name>verbose_name</name></member>
-    <member refid="classuser_1_1models_1_1_user_status_1_1_meta_1aaea13aaa2433c83119e33c89657ccd02" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1forms_1_1_case_event_form_1_1_meta" kind="class"><name>case::forms::CaseEventForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_case_event_form_1_1_meta_1ab8d1108ce8eafddd9e59ee03f493ac31" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_case_event_form_1_1_meta_1afb49a6867c8699d1a056fec6daff37a2" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_note_1_1_meta" kind="class"><name>entity::models::entity::Note::Meta</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_note_1_1_meta_1adef3d17ec17c6e9a0a508195e2ab8fcc" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_note_1_1_meta_1a0ed38b5b1127993e6d38337698d8695a" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_note_1_1_meta" kind="class"><name>case::models::CaseNote::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_note_1_1_meta_1a505303ca5a71c75ac56e55ba16f631c0" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_note_1_1_meta_1a18a52761d66e6f5f1429af006ff6b800" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1models_1_1_case_evidence_1_1_meta" kind="class"><name>case::models::CaseEvidence::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_evidence_1_1_meta_1ab99f112915f02b7b999afac0fdc7e285" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_evidence_1_1_meta_1a7ed425924049e8410d98a4ce1a31d3e1" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classevent_1_1tables_1_1_event_table_1_1_meta" kind="class"><name>event::tables::EventTable::Meta</name>
-    <member refid="classevent_1_1tables_1_1_event_table_1_1_meta_1a5fff0d84586d75c1519a71fd607d0aae" kind="variable"><name>model</name></member>
-    <member refid="classevent_1_1tables_1_1_event_table_1_1_meta_1a4888e4bb5513d5a166bff23ab9f75210" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classevidence_1_1models_1_1_evidence_1_1_meta" kind="class"><name>evidence::models::Evidence::Meta</name>
-    <member refid="classevidence_1_1models_1_1_evidence_1_1_meta_1a418f35b2ad42a3d347f353fd3358ee08" kind="variable"><name>abstract</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1person_1_1_person_type_1_1_meta" kind="class"><name>entity::models::person::PersonType::Meta</name>
-    <member refid="classentity_1_1models_1_1person_1_1_person_type_1_1_meta_1aa3850e481194076152693bef16eec616" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1person_1_1_person_type_1_1_meta_1a363f2f5f506ca1091b5e725013f37433" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_case_create_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithCaseCreateForm::Meta</name>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_create_form_1_1_meta_1ae49c2b04cd7087ab862cca44ae6af3d9" kind="variable"><name>model</name></member>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_create_form_1_1_meta_1ae953a7a86ec7f3a99271ff458d757c14" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classcase_1_1forms_1_1_case_person_form_1_1_meta" kind="class"><name>case::forms::CasePersonForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_case_person_form_1_1_meta_1afd906afd8eecf8e1f86e6da2c7ed1641" kind="variable"><name>model</name></member>
     <member refid="classcase_1_1forms_1_1_case_person_form_1_1_meta_1ad80676ea19bf4f1e364ce9bfa1649d97" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_case_create_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithCaseCreateForm::Meta</name>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_create_form_1_1_meta_1ae49c2b04cd7087ab862cca44ae6af3d9" kind="variable"><name>model</name></member>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_create_form_1_1_meta_1ae953a7a86ec7f3a99271ff458d757c14" kind="variable"><name>fields</name></member>
+  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_case_update_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithCaseUpdateForm::Meta</name>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_update_form_1_1_meta_1a852d9cc0ab463e477afcc5f6edf5c17e" kind="variable"><name>model</name></member>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_case_update_form_1_1_meta_1a9dfab5ef0f3190f638a5caf926f6e83b" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classevidence_1_1tables_1_1_evidence_table_1_1_meta" kind="class"><name>evidence::tables::EvidenceTable::Meta</name>
-    <member refid="classevidence_1_1tables_1_1_evidence_table_1_1_meta_1a604a2b16d2d16fbc9e9d16dca400ec17" kind="variable"><name>model</name></member>
-    <member refid="classevidence_1_1tables_1_1_evidence_table_1_1_meta_1aadc9cf2a1b00067c02e3660e0d343e9e" kind="variable"><name>fields</name></member>
+  <compound refid="classcase_1_1models_1_1_case_person_1_1_meta" kind="class"><name>case::models::CasePerson::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_person_1_1_meta_1aa78f7353d7d0e8837001b9cfa689fa99" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_person_1_1_meta_1aee35d8e9cbd1838ceb18130930d1dffd" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classcase_1_1models_1_1_case_company_1_1_meta" kind="class"><name>case::models::CaseCompany::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_company_1_1_meta_1a9cc76afd5fcbf96581cb654470b1015f" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_company_1_1_meta_1a7910068ca21261d7a43b32cc3973cb96" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1person_1_1_person_category_1_1_meta" kind="class"><name>entity::models::person::PersonCategory::Meta</name>
-    <member refid="classentity_1_1models_1_1person_1_1_person_category_1_1_meta_1adf353bb919e4e62a1745a8e7f74df148" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1person_1_1_person_category_1_1_meta_1abb79edc10010659c10198bd1218718d2" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classnote_1_1forms_1_1_crispy_note_form_1_1_meta" kind="class"><name>note::forms::CrispyNoteForm::Meta</name>
-    <member refid="classnote_1_1forms_1_1_crispy_note_form_1_1_meta_1a8ccbd0b589a796935addf382777f2c43" kind="variable"><name>model</name></member>
-    <member refid="classnote_1_1forms_1_1_crispy_note_form_1_1_meta_1a0e066736425eeb6de6cec0d9a0b168b9" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classevent_1_1models_1_1_event_priority_1_1_meta" kind="class"><name>event::models::EventPriority::Meta</name>
-    <member refid="classevent_1_1models_1_1_event_priority_1_1_meta_1a68718aa3ac84010ccd461de34eb4eb3b" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevent_1_1models_1_1_event_priority_1_1_meta_1a00870588848305a96fee96a51894950a" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1forms_1_1_____case_event_form_1_1_meta" kind="class"><name>case::forms::__CaseEventForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_____case_event_form_1_1_meta_1a4b0d3f361e659378ceefbe632bb904f7" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_____case_event_form_1_1_meta_1a6a19747ddd8a277eb59965d0ed5082c5" kind="variable"><name>fields</name></member>
+  <compound refid="classevidence_1_1models_1_1_evidence_status_1_1_meta" kind="class"><name>evidence::models::EvidenceStatus::Meta</name>
+    <member refid="classevidence_1_1models_1_1_evidence_status_1_1_meta_1a9f353137c073dbaff1a99fb5f77f2621" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevidence_1_1models_1_1_evidence_status_1_1_meta_1a4864708f35a009f80c175da77db06d0f" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
   <compound refid="classentity_1_1models_1_1person_1_1_person_status_1_1_meta" kind="class"><name>entity::models::person::PersonStatus::Meta</name>
     <member refid="classentity_1_1models_1_1person_1_1_person_status_1_1_meta_1aa8aa8b2dfadc72baf2bce358da885219" kind="variable"><name>verbose_name</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_status_1_1_meta_1ac4fef58ad9087e1cd6ff6c245b79ce82" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classcase_1_1models_1_1_case_inventory_1_1_meta" kind="class"><name>case::models::CaseInventory::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_inventory_1_1_meta_1a5a79e879deb1abf49009022efcd3ff1e" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_inventory_1_1_meta_1a939fcd0f5dbeab7be14acd91c7a1c35a" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classevidence_1_1tables_1_1_full_evidence_table_1_1_meta" kind="class"><name>evidence::tables::FullEvidenceTable::Meta</name>
+    <member refid="classevidence_1_1tables_1_1_full_evidence_table_1_1_meta_1aba708267ffeea9283bb0312be7d57195" kind="variable"><name>model</name></member>
+    <member refid="classevidence_1_1tables_1_1_full_evidence_table_1_1_meta_1a6d2ffa1aa71a6080bcdb7d676295f8d9" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1company_1_1_company_status_group_1_1_meta" kind="class"><name>entity::models::company::CompanyStatusGroup::Meta</name>
-    <member refid="classentity_1_1models_1_1company_1_1_company_status_group_1_1_meta_1a6fca1ec7b035ed722735aa0feb793fa4" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_status_group_1_1_meta_1a6f72fbce16ccd78c87fae39fb55ce0cc" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classinventory_1_1forms_1_1_device_update_form_1_1_meta" kind="class"><name>inventory::forms::DeviceUpdateForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_device_update_form_1_1_meta_1a42da671fe46d835f57d1157fc82d4368" kind="variable"><name>model</name></member>
+    <member refid="classinventory_1_1forms_1_1_device_update_form_1_1_meta_1a4edd28113613a03d79050c1668083665" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_both_create_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithBothCreateForm::Meta</name>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_create_form_1_1_meta_1ad58464ec10f5878e79fcb508e5b4e736" kind="variable"><name>model</name></member>
-    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_create_form_1_1_meta_1aff811c579b999cb51107a2582bc58cf1" kind="variable"><name>fields</name></member>
+  <compound refid="classinventory_1_1forms_1_1_crispy_device_update_form_1_1_meta" kind="class"><name>inventory::forms::CrispyDeviceUpdateForm::Meta</name>
+    <member refid="classinventory_1_1forms_1_1_crispy_device_update_form_1_1_meta_1ac2d5c7cfc17e9984855574c5e5b5ff6a" kind="variable"><name>model</name></member>
+    <member refid="classinventory_1_1forms_1_1_crispy_device_update_form_1_1_meta_1a409174275245fe98d5ffbb6f0d094039" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1person_1_1_person_1_1_meta" kind="class"><name>entity::models::person::Person::Meta</name>
-    <member refid="classentity_1_1models_1_1person_1_1_person_1_1_meta_1aa1bf18650a2d1b09b4e99812e35a672d" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classevent_1_1models_1_1_event_status_1_1_meta" kind="class"><name>event::models::EventStatus::Meta</name>
+    <member refid="classevent_1_1models_1_1_event_status_1_1_meta_1aca13e0d85a08fcd37755ae6820e31fda" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevent_1_1models_1_1_event_status_1_1_meta_1af4b9822528c2b639c01bd06a0800e4c0" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classcase_1_1models_1_1_case_event_1_1_meta" kind="class"><name>case::models::CaseEvent::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_event_1_1_meta_1a3edddd8c26348dded0d7d10fe6d54054" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_event_1_1_meta_1a3e73990c77ed1106387679873ce7c53b" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classentity_1_1models_1_1person_1_1_person_category_1_1_meta" kind="class"><name>entity::models::person::PersonCategory::Meta</name>
+    <member refid="classentity_1_1models_1_1person_1_1_person_category_1_1_meta_1adf353bb919e4e62a1745a8e7f74df148" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1person_1_1_person_category_1_1_meta_1abb79edc10010659c10198bd1218718d2" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classnote_1_1models_1_1_note_status_group_1_1_meta" kind="class"><name>note::models::NoteStatusGroup::Meta</name>
-    <member refid="classnote_1_1models_1_1_note_status_group_1_1_meta_1ac9aefb19b4c410b98e4dbfb36911d56a" kind="variable"><name>verbose_name</name></member>
-    <member refid="classnote_1_1models_1_1_note_status_group_1_1_meta_1a2065c9f5896abc8c7b25e6e2f74bbfa9" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classcase_1_1forms_1_1_case_form_1_1_meta" kind="class"><name>case::forms::CaseForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_case_form_1_1_meta_1aafe8b63e69052fa6f5bb30bf0bc7b875" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_case_form_1_1_meta_1a1bfd171ddb81e40b5ffc6035a36f6ce6" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classnote_1_1models_1_1_note_1_1_meta" kind="class"><name>note::models::Note::Meta</name>
-    <member refid="classnote_1_1models_1_1_note_1_1_meta_1a423d396e25f1585b29b3187f414e655f" kind="variable"><name>abstract</name></member>
+  <compound refid="classcase_1_1forms_1_1_____case_person_form_1_1_meta" kind="class"><name>case::forms::__CasePersonForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_____case_person_form_1_1_meta_1add6c9862e1226f5181f673d9dc9b9d8d" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_____case_person_form_1_1_meta_1a5cc8f73968a154002e04ebecf0553bca" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1person_1_1_person_authorisation_1_1_meta" kind="class"><name>entity::models::person::PersonAuthorisation::Meta</name>
-    <member refid="classentity_1_1models_1_1person_1_1_person_authorisation_1_1_meta_1ad088b872d8cc1986fe0b31b3f2a6ec7e" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1person_1_1_person_authorisation_1_1_meta_1a9a116ab6c9d8414dc802f248467672d0" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classentity_1_1models_1_1person_1_1_person_status_group_1_1_meta" kind="class"><name>entity::models::person::PersonStatusGroup::Meta</name>
+    <member refid="classentity_1_1models_1_1person_1_1_person_status_group_1_1_meta_1a5b8d32afcbeb02e3946d4ab221e9ad2e" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1person_1_1_person_status_group_1_1_meta_1a9239cc9e587d6377a55abd361658d73f" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classentity_1_1forms_1_1_address_form_1_1_meta" kind="class"><name>entity::forms::AddressForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_address_form_1_1_meta_1ab7a449715da35f60e0fb2ecd90675441" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_address_form_1_1_meta_1aac046933af806b418dfff12618ba9f4c" kind="variable"><name>fields</name></member>
+  <compound refid="classutils_1_1models_1_1_status_1_1_meta" kind="class"><name>utils::models::Status::Meta</name>
+    <member refid="classutils_1_1models_1_1_status_1_1_meta_1a45453f91efc4d867edf201b831763b42" kind="variable"><name>abstract</name></member>
+    <member refid="classutils_1_1models_1_1_status_1_1_meta_1ae1d7648801c4579d26834c37d426162d" kind="variable"><name>verbose_name</name></member>
+    <member refid="classutils_1_1models_1_1_status_1_1_meta_1a0432a199957ef79673b4f3425ab3a19e" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classnote_1_1models_1_1_note_classification_1_1_meta" kind="class"><name>note::models::NoteClassification::Meta</name>
+    <member refid="classnote_1_1models_1_1_note_classification_1_1_meta_1ad9b3de4da8506a881835d42e1df41f99" kind="variable"><name>verbose_name</name></member>
+    <member refid="classnote_1_1models_1_1_note_classification_1_1_meta_1abfb304f938febac3d80963f45f397566" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1models_1_1_case_task_1_1_meta" kind="class"><name>case::models::CaseTask::Meta</name>
+    <member refid="classcase_1_1models_1_1_case_task_1_1_meta_1abeabc74bb5b6e8bace48b54f8b5c4fb0" kind="variable"><name>verbose_name</name></member>
+    <member refid="classcase_1_1models_1_1_case_task_1_1_meta_1a5b218eb855a8c7d6e5478de8de81a627" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classtask_1_1models_1_1_task_classification_1_1_meta" kind="class"><name>task::models::TaskClassification::Meta</name>
+    <member refid="classtask_1_1models_1_1_task_classification_1_1_meta_1a35c65231a8d00c6e3b46b73f66dae4cf" kind="variable"><name>verbose_name</name></member>
+    <member refid="classtask_1_1models_1_1_task_classification_1_1_meta_1aeac1e25b9a344640eff309ed25bb3b53" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classnote_1_1models_1_1_note_status_1_1_meta" kind="class"><name>note::models::NoteStatus::Meta</name>
+    <member refid="classnote_1_1models_1_1_note_status_1_1_meta_1a17925d331922199f8f209bad3cc9d899" kind="variable"><name>verbose_name</name></member>
+    <member refid="classnote_1_1models_1_1_note_status_1_1_meta_1a9c57b47f7aa984fb9bdeb39de71589ad" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___email_form_1_1_meta" kind="class"><name>entity::forms::Old_EmailForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_old___email_form_1_1_meta_1a20fe3d26fca5db1815c0fd86f7a5e1b7" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_old___email_form_1_1_meta_1a001055e1dffd011bb4356f49b4d7f61e" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classcase_1_1tables_1_1_case_table_1_1_meta" kind="class"><name>case::tables::CaseTable::Meta</name>
     <member refid="classcase_1_1tables_1_1_case_table_1_1_meta_1acebcdbd261e22c71f44d24d13af6226d" kind="variable"><name>model</name></member>
   </compound>
-  <compound refid="classentity_1_1forms_1_1_note_form_1_1_meta" kind="class"><name>entity::forms::NoteForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_note_form_1_1_meta_1ac10ad5d469882dc65b915399ba1e360e" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_note_form_1_1_meta_1a63e886bd19f3834ed6131b32063b5fcc" kind="variable"><name>fields</name></member>
+  <compound refid="classnote_1_1tables_1_1_full_note_table_1_1_meta" kind="class"><name>note::tables::FullNoteTable::Meta</name>
+    <member refid="classnote_1_1tables_1_1_full_note_table_1_1_meta_1a501643023bc0f423e7751f3d4694bcd5" kind="variable"><name>model</name></member>
+    <member refid="classnote_1_1tables_1_1_full_note_table_1_1_meta_1afa9801606fbe9c83dcc74a7356b55f4a" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classentity_1_1forms_1_1_telephone_form_1_1_meta" kind="class"><name>entity::forms::TelephoneForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_telephone_form_1_1_meta_1a65a9efcf3d0c91740d2f909bc99ebe44" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_telephone_form_1_1_meta_1aa299599cba874608f422c7d31989febb" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classtask_1_1models_1_1_task_authorisation_1_1_meta" kind="class"><name>task::models::TaskAuthorisation::Meta</name>
-    <member refid="classtask_1_1models_1_1_task_authorisation_1_1_meta_1a5e5b7f4fe3b21dc869e7201b785ec055" kind="variable"><name>verbose_name</name></member>
-    <member refid="classtask_1_1models_1_1_task_authorisation_1_1_meta_1a656f38f9cb5728237aeac0d686246d39" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classentity_1_1forms_1_1_old___website_form_1_1_meta" kind="class"><name>entity::forms::Old_WebsiteForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_old___website_form_1_1_meta_1ac6cdfaafe4e899b90a57e3864fc01acf" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_old___website_form_1_1_meta_1a1c316c94db29864a7f55bf4e98613e92" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classcase_1_1tables_1_1_full_case_table_1_1_meta" kind="class"><name>case::tables::FullCaseTable::Meta</name>
     <member refid="classcase_1_1tables_1_1_full_case_table_1_1_meta_1aaf3c382e2e255a9da80fbba0fdc3bfe8" kind="variable"><name>model</name></member>
@@ -1884,188 +1905,164 @@
     <member refid="classutils_1_1models_1_1_status_group_1_1_meta_1a7e73e94998d6c30f0c1228b9c384e1b4" kind="variable"><name>verbose_name</name></member>
     <member refid="classutils_1_1models_1_1_status_group_1_1_meta_1a7d67db6a9b7108a4db8a818811e32b44" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classentity_1_1forms_1_1_social_form_1_1_meta" kind="class"><name>entity::forms::SocialForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_social_form_1_1_meta_1ad9dd4d16a1e8f8ea6dc45cc30cda5bb8" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_social_form_1_1_meta_1af1dc2b236a210823906221827bbe5bd8" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classtask_1_1models_1_1_task_priority_1_1_meta" kind="class"><name>task::models::TaskPriority::Meta</name>
-    <member refid="classtask_1_1models_1_1_task_priority_1_1_meta_1a1049ef3bf2d449556ecd7872f4fdafdc" kind="variable"><name>verbose_name</name></member>
-    <member refid="classtask_1_1models_1_1_task_priority_1_1_meta_1a860d22944638f1a8aef612be0501fc54" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classentity_1_1forms_1_1_old___company_form_1_1_meta" kind="class"><name>entity::forms::Old_CompanyForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_old___company_form_1_1_meta_1aacebe92d77e3e47339125ffa4fec26b7" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_old___company_form_1_1_meta_1a478a088901d502a8fd3709405d6f39fc" kind="variable"><name>exclude</name></member>
   </compound>
   <compound refid="classcase_1_1forms_1_1_case_company_form_1_1_meta" kind="class"><name>case::forms::CaseCompanyForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_case_company_form_1_1_meta_1a7c25aae28414bc8be79facf3138f513d" kind="variable"><name>model</name></member>
     <member refid="classcase_1_1forms_1_1_case_company_form_1_1_meta_1a221147849a21ebacddec48e0ea127320" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classcase_1_1models_1_1_case_task_1_1_meta" kind="class"><name>case::models::CaseTask::Meta</name>
-    <member refid="classcase_1_1models_1_1_case_task_1_1_meta_1abeabc74bb5b6e8bace48b54f8b5c4fb0" kind="variable"><name>verbose_name</name></member>
-    <member refid="classcase_1_1models_1_1_case_task_1_1_meta_1a5b218eb855a8c7d6e5478de8de81a627" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classuser_1_1models_1_1_user_status_group_1_1_meta" kind="class"><name>user::models::UserStatusGroup::Meta</name>
+    <member refid="classuser_1_1models_1_1_user_status_group_1_1_meta_1a0feb3a4458cb647ac8c0e0aec13b11b1" kind="variable"><name>verbose_name</name></member>
+    <member refid="classuser_1_1models_1_1_user_status_group_1_1_meta_1ab710b20fd52298f7541900720105a7bf" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classentity_1_1forms_1_1_person_form_1_1_meta" kind="class"><name>entity::forms::PersonForm::Meta</name>
-    <member refid="classentity_1_1forms_1_1_person_form_1_1_meta_1a7f4be4c84536752f6ecd6b292b1e5df1" kind="variable"><name>model</name></member>
-    <member refid="classentity_1_1forms_1_1_person_form_1_1_meta_1afaf7a3ae7ba82752905e194ea59b5860" kind="variable"><name>exclude</name></member>
+  <compound refid="classentity_1_1forms_1_1_email_form_1_1_meta" kind="class"><name>entity::forms::EmailForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_email_form_1_1_meta_1a5c8e8f428b66c2e07dbefc0e709d66ac" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_email_form_1_1_meta_1ae013ef28b38191c5dad0b9fa25fcfaf4" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classutils_1_1models_1_1_priority_1_1_meta" kind="class"><name>utils::models::Priority::Meta</name>
     <member refid="classutils_1_1models_1_1_priority_1_1_meta_1a7efbac119d2657b7b5cafdf77f989582" kind="variable"><name>abstract</name></member>
     <member refid="classutils_1_1models_1_1_priority_1_1_meta_1ad9e89e76e41f499dfb210d08a94e6a92" kind="variable"><name>verbose_name</name></member>
     <member refid="classutils_1_1models_1_1_priority_1_1_meta_1a0e2615074e9020018edc2c56d120093d" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classutils_1_1models_1_1_type_1_1_meta" kind="class"><name>utils::models::Type::Meta</name>
-    <member refid="classutils_1_1models_1_1_type_1_1_meta_1affb4a87a1449555841bd2892ef7bef85" kind="variable"><name>abstract</name></member>
-    <member refid="classutils_1_1models_1_1_type_1_1_meta_1aef8d1b4cb598f7886a6b42b9741f0a31" kind="variable"><name>verbose_name</name></member>
-    <member refid="classutils_1_1models_1_1_type_1_1_meta_1a23fc21621de5485062e9cec7694afa06" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1company_1_1_company_authorisation_1_1_meta" kind="class"><name>entity::models::company::CompanyAuthorisation::Meta</name>
-    <member refid="classentity_1_1models_1_1company_1_1_company_authorisation_1_1_meta_1ac3c56d62c1dc9c8f85bc14c2974c5ea7" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_authorisation_1_1_meta_1a01c7500278b90881ca9be3c22a19315a" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
   <compound refid="classcase_1_1forms_1_1_____case_company_form_1_1_meta" kind="class"><name>case::forms::__CaseCompanyForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_____case_company_form_1_1_meta_1a3b618560bdd8f53a2268e8690e2bda0b" kind="variable"><name>model</name></member>
     <member refid="classcase_1_1forms_1_1_____case_company_form_1_1_meta_1a0ee8232e018042826f61626ba7e9d797" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classtask_1_1models_1_1_task_classification_1_1_meta" kind="class"><name>task::models::TaskClassification::Meta</name>
-    <member refid="classtask_1_1models_1_1_task_classification_1_1_meta_1a35c65231a8d00c6e3b46b73f66dae4cf" kind="variable"><name>verbose_name</name></member>
-    <member refid="classtask_1_1models_1_1_task_classification_1_1_meta_1aeac1e25b9a344640eff309ed25bb3b53" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classuser_1_1forms_1_1_user_form_1_1_meta" kind="class"><name>user::forms::UserForm::Meta</name>
-    <member refid="classuser_1_1forms_1_1_user_form_1_1_meta_1a670efb046be7bf0222baf8778d632791" kind="variable"><name>model</name></member>
-    <member refid="classuser_1_1forms_1_1_user_form_1_1_meta_1a7e1df05ea2a3ca0fd53d3564ee227be9" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classcase_1_1forms_1_1_case_note_form_1_1_meta" kind="class"><name>case::forms::CaseNoteForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_case_note_form_1_1_meta_1a72821bf33a92bbd63507344b6490d195" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_case_note_form_1_1_meta_1a8f95d01c6455a6f93a6b392787565058" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classuser_1_1models_1_1_user_authorisation_1_1_meta" kind="class"><name>user::models::UserAuthorisation::Meta</name>
-    <member refid="classuser_1_1models_1_1_user_authorisation_1_1_meta_1a4cbca8e476b4b0d80a4515afe2354120" kind="variable"><name>verbose_name</name></member>
-    <member refid="classuser_1_1models_1_1_user_authorisation_1_1_meta_1ac90acd0da9ae3307ee807085db23522e" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classnote_1_1tables_1_1_note_table_1_1_meta" kind="class"><name>note::tables::NoteTable::Meta</name>
-    <member refid="classnote_1_1tables_1_1_note_table_1_1_meta_1a109c9a92a2a360334e25dc41ae19833f" kind="variable"><name>model</name></member>
-    <member refid="classnote_1_1tables_1_1_note_table_1_1_meta_1a46da7448ba19ac5b4313cbe7647ad90d" kind="variable"><name>fields</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1person_1_1_person_classification_1_1_meta" kind="class"><name>entity::models::person::PersonClassification::Meta</name>
-    <member refid="classentity_1_1models_1_1person_1_1_person_classification_1_1_meta_1a2ea223abfe37e1ed892e64e973c51a1d" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1person_1_1_person_classification_1_1_meta_1ab9b42dcdc1082629a56c43139b5c5f61" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta" kind="class"><name>event::forms::EventEditForm::Meta</name>
-    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a8c5230dd3001177edb269ba1ee02e97b" kind="variable"><name>model</name></member>
-    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a2e92af3068fe5bb3fe829812ec4d3b44" kind="variable"><name>fields</name></member>
-    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a6820cc8250b2d3af62118d557cc11a13" kind="variable"><name>labels</name></member>
-    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a93027c4762d6db56ee461cf88b1930f8" kind="variable"><name>error_messages</name></member>
-    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a95d56cc009c7daffdb40b24db4c5265d" kind="variable"><name>help_texts</name></member>
-    <member refid="classevent_1_1forms_1_1_event_edit_form_1_1_meta_1a79ef8fee6aa99a23538cccc121bd2cf8" kind="variable"><name>widgets</name></member>
-  </compound>
-  <compound refid="classuser_1_1models_1_1_user_status_group_1_1_meta" kind="class"><name>user::models::UserStatusGroup::Meta</name>
-    <member refid="classuser_1_1models_1_1_user_status_group_1_1_meta_1a0feb3a4458cb647ac8c0e0aec13b11b1" kind="variable"><name>verbose_name</name></member>
-    <member refid="classuser_1_1models_1_1_user_status_group_1_1_meta_1ab710b20fd52298f7541900720105a7bf" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classevent_1_1models_1_1_event_type_1_1_meta" kind="class"><name>event::models::EventType::Meta</name>
-    <member refid="classevent_1_1models_1_1_event_type_1_1_meta_1a5f5fa08e676a1ae90f7681cae5188520" kind="variable"><name>verbose_name</name></member>
-    <member refid="classevent_1_1models_1_1_event_type_1_1_meta_1a47ba8140d8992986337a28ce4a21b5de" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classuser_1_1models_1_1_user_priority_1_1_meta" kind="class"><name>user::models::UserPriority::Meta</name>
-    <member refid="classuser_1_1models_1_1_user_priority_1_1_meta_1abc4f1340eaf698c0e01888b787bf5cbe" kind="variable"><name>verbose_name</name></member>
-    <member refid="classuser_1_1models_1_1_user_priority_1_1_meta_1a677d2a0c92cebe4020b80a1375e27a8c" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classnote_1_1models_1_1_note_type_1_1_meta" kind="class"><name>note::models::NoteType::Meta</name>
-    <member refid="classnote_1_1models_1_1_note_type_1_1_meta_1a28f53b7c5223fc42c39a22a318b8c52b" kind="variable"><name>verbose_name</name></member>
-    <member refid="classnote_1_1models_1_1_note_type_1_1_meta_1abd932a8db38735b15b57decba27a70ea" kind="variable"><name>verbose_name_plural</name></member>
-  </compound>
-  <compound refid="classcase_1_1forms_1_1_case_device_form_1_1_meta" kind="class"><name>case::forms::CaseDeviceForm::Meta</name>
-    <member refid="classcase_1_1forms_1_1_case_device_form_1_1_meta_1a61980382d76755c003246a1986c8d752" kind="variable"><name>model</name></member>
-    <member refid="classcase_1_1forms_1_1_case_device_form_1_1_meta_1a6e755061c43ee0eadc759eb2b01701dd" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classtask_1_1models_1_1_task_status_1_1_meta" kind="class"><name>task::models::TaskStatus::Meta</name>
     <member refid="classtask_1_1models_1_1_task_status_1_1_meta_1a11cdcbe2afe41b52ee0aa96bb03574eb" kind="variable"><name>verbose_name</name></member>
     <member refid="classtask_1_1models_1_1_task_status_1_1_meta_1a2adbcd82ee034ae750a136c7d92702ac" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classloan_1_1forms_1_1_loan_form_1_1_meta" kind="class"><name>loan::forms::LoanForm::Meta</name>
-    <member refid="classloan_1_1forms_1_1_loan_form_1_1_meta_1a4bcdf45985b656614bff3ec1fdbd4db9" kind="variable"><name>model</name></member>
-    <member refid="classloan_1_1forms_1_1_loan_form_1_1_meta_1ada96c24a4fd65b400faf7e7c59c74062" kind="variable"><name>fields</name></member>
+  <compound refid="classentity_1_1forms_1_1_social_form_1_1_meta" kind="class"><name>entity::forms::SocialForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_social_form_1_1_meta_1ad9dd4d16a1e8f8ea6dc45cc30cda5bb8" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_social_form_1_1_meta_1aa6b4cd199775cba9ccb3b097cac318db" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classtask_1_1models_1_1_task_1_1_meta" kind="class"><name>task::models::Task::Meta</name>
+    <member refid="classtask_1_1models_1_1_task_1_1_meta_1a2b988ab782d0aaa8538003e391979877" kind="variable"><name>abstract</name></member>
+  </compound>
+  <compound refid="classtask_1_1tables_1_1_task_table_1_1_meta" kind="class"><name>task::tables::TaskTable::Meta</name>
+    <member refid="classtask_1_1tables_1_1_task_table_1_1_meta_1a5e85f7d51e0a6bd9280c54e27bd1c3b5" kind="variable"><name>model</name></member>
+    <member refid="classtask_1_1tables_1_1_task_table_1_1_meta_1aaa2d352f94f0eff27e39ab07118c9d8f" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classcase_1_1forms_1_1_case_note_form_1_1_meta" kind="class"><name>case::forms::CaseNoteForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_case_note_form_1_1_meta_1a72821bf33a92bbd63507344b6490d195" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_case_note_form_1_1_meta_1a8f95d01c6455a6f93a6b392787565058" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classtask_1_1tables_1_1_full_task_table_1_1_meta" kind="class"><name>task::tables::FullTaskTable::Meta</name>
+    <member refid="classtask_1_1tables_1_1_full_task_table_1_1_meta_1a3c866b4d99d438d0447d987c02ff62e2" kind="variable"><name>model</name></member>
+    <member refid="classtask_1_1tables_1_1_full_task_table_1_1_meta_1a2d8f92c3163a0ac9d1cd4bc121937df4" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classnote_1_1models_1_1_note_type_1_1_meta" kind="class"><name>note::models::NoteType::Meta</name>
+    <member refid="classnote_1_1models_1_1_note_type_1_1_meta_1a28f53b7c5223fc42c39a22a318b8c52b" kind="variable"><name>verbose_name</name></member>
+    <member refid="classnote_1_1models_1_1_note_type_1_1_meta_1abd932a8db38735b15b57decba27a70ea" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_company_form_1_1_meta" kind="class"><name>entity::forms::CompanyForm::Meta</name>
+    <member refid="classentity_1_1forms_1_1_company_form_1_1_meta_1ae4b79f48a714979a218d7e0cd7947acc" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1forms_1_1_company_form_1_1_meta_1a4f1926bed0926a1eda72e189f939a196" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classuser_1_1models_1_1_user_authorisation_1_1_meta" kind="class"><name>user::models::UserAuthorisation::Meta</name>
+    <member refid="classuser_1_1models_1_1_user_authorisation_1_1_meta_1a4cbca8e476b4b0d80a4515afe2354120" kind="variable"><name>verbose_name</name></member>
+    <member refid="classuser_1_1models_1_1_user_authorisation_1_1_meta_1ac90acd0da9ae3307ee807085db23522e" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1person_1_1_person_1_1_meta" kind="class"><name>entity::models::person::Person::Meta</name>
+    <member refid="classentity_1_1models_1_1person_1_1_person_1_1_meta_1aa1bf18650a2d1b09b4e99812e35a672d" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classcase_1_1forms_1_1_____case_event_form_1_1_meta" kind="class"><name>case::forms::__CaseEventForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_____case_event_form_1_1_meta_1a4b0d3f361e659378ceefbe632bb904f7" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_____case_event_form_1_1_meta_1a6a19747ddd8a277eb59965d0ed5082c5" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classentity_1_1models_1_1company_1_1_company_address_1_1_meta" kind="class"><name>entity::models::company::CompanyAddress::Meta</name>
+    <member refid="classentity_1_1models_1_1company_1_1_company_address_1_1_meta_1a16829c274ba981e0c7c9502ea72108d2" kind="variable"><name>verbose_name</name></member>
+    <member refid="classentity_1_1models_1_1company_1_1_company_address_1_1_meta_1a6da9a2f1f60fa817c95f740b286ca714" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classevent_1_1forms_1_1_crispy_event_form_1_1_meta" kind="class"><name>event::forms::CrispyEventForm::Meta</name>
+    <member refid="classevent_1_1forms_1_1_crispy_event_form_1_1_meta_1a813ad3c50a90d5bb3a2bf1c968acf3f5" kind="variable"><name>model</name></member>
+    <member refid="classevent_1_1forms_1_1_crispy_event_form_1_1_meta_1a9834f527c50b8bae8710f4647fd15901" kind="variable"><name>fields</name></member>
   </compound>
   <compound refid="classcase_1_1forms_1_1_case_task_form_1_1_meta" kind="class"><name>case::forms::CaseTaskForm::Meta</name>
     <member refid="classcase_1_1forms_1_1_case_task_form_1_1_meta_1a5053c444eb03aefac63d1d3681f5ea81" kind="variable"><name>model</name></member>
     <member refid="classcase_1_1forms_1_1_case_task_form_1_1_meta_1aa35cc90d58d56ba614b2b331478dac84" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classutils_1_1models_1_1_object_description_mixin_1_1_meta" kind="class"><name>utils::models::ObjectDescriptionMixin::Meta</name>
-    <member refid="classutils_1_1models_1_1_object_description_mixin_1_1_meta_1a35acd19760e9ee810280c2c99cf8bee4" kind="variable"><name>abstract</name></member>
+  <compound refid="classtask_1_1models_1_1_task_status_group_1_1_meta" kind="class"><name>task::models::TaskStatusGroup::Meta</name>
+    <member refid="classtask_1_1models_1_1_task_status_group_1_1_meta_1a85fce49298f6e69ec86d07ed6e1a6ba0" kind="variable"><name>verbose_name</name></member>
+    <member refid="classtask_1_1models_1_1_task_status_group_1_1_meta_1a2950e2e6c995c07adcff2d92772e765b" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classuser_1_1models_1_1_user_type_1_1_meta" kind="class"><name>user::models::UserType::Meta</name>
-    <member refid="classuser_1_1models_1_1_user_type_1_1_meta_1ae71dfe0f4698576ddec35ca97c0c4598" kind="variable"><name>verbose_name</name></member>
-    <member refid="classuser_1_1models_1_1_user_type_1_1_meta_1a9ebe8795511a4e241a61508d9f0b1e7e" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classloan_1_1forms_1_1_crispy_loan_with_both_create_form_1_1_meta" kind="class"><name>loan::forms::CrispyLoanWithBothCreateForm::Meta</name>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_create_form_1_1_meta_1ad58464ec10f5878e79fcb508e5b4e736" kind="variable"><name>model</name></member>
+    <member refid="classloan_1_1forms_1_1_crispy_loan_with_both_create_form_1_1_meta_1aff811c579b999cb51107a2582bc58cf1" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classutils_1_1models_1_1_url_mixin_1_1_meta" kind="class"><name>utils::models::UrlMixin::Meta</name>
-    <member refid="classutils_1_1models_1_1_url_mixin_1_1_meta_1aa7ee33086c36c438fed931ff32a29d9a" kind="variable"><name>abstract</name></member>
+  <compound refid="classuser_1_1forms_1_1_profile_form_1_1_meta" kind="class"><name>user::forms::ProfileForm::Meta</name>
+    <member refid="classuser_1_1forms_1_1_profile_form_1_1_meta_1a809baa0955d3cf79bf4a3a4fd0accf7b" kind="variable"><name>model</name></member>
+    <member refid="classuser_1_1forms_1_1_profile_form_1_1_meta_1a01ae0f884801da4eb5ae15d25536eade" kind="variable"><name>fields</name></member>
   </compound>
-  <compound refid="classinventory_1_1forms_1_1_service_contract_form_1_1_meta" kind="class"><name>inventory::forms::ServiceContractForm::Meta</name>
-    <member refid="classinventory_1_1forms_1_1_service_contract_form_1_1_meta_1af0de4682daa22f1c2c88af1b60ececaf" kind="variable"><name>model</name></member>
-    <member refid="classinventory_1_1forms_1_1_service_contract_form_1_1_meta_1a57b13440e3ed7d4cb1cfcc2e2e886762" kind="variable"><name>fields</name></member>
+  <compound refid="classevent_1_1models_1_1_event_authorisation_1_1_meta" kind="class"><name>event::models::EventAuthorisation::Meta</name>
+    <member refid="classevent_1_1models_1_1_event_authorisation_1_1_meta_1a331cf4f8e13ed793ced218bbfa07d817" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevent_1_1models_1_1_event_authorisation_1_1_meta_1a60aceeafce8ded62abf5e143e7097db2" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classinventory_1_1models_1_1_service_contract_1_1_meta" kind="class"><name>inventory::models::ServiceContract::Meta</name>
-    <member refid="classinventory_1_1models_1_1_service_contract_1_1_meta_1a9a7dcbe2d43f7f4de9fb9a6cb963fc69" kind="variable"><name>verbose_name</name></member>
-    <member refid="classinventory_1_1models_1_1_service_contract_1_1_meta_1aa842cefcaebabe52c5fdfabb5c5440da" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classuser_1_1models_1_1_user_classification_1_1_meta" kind="class"><name>user::models::UserClassification::Meta</name>
+    <member refid="classuser_1_1models_1_1_user_classification_1_1_meta_1a1e276bf14f772794ff7b3f98b85a5137" kind="variable"><name>verbose_name</name></member>
+    <member refid="classuser_1_1models_1_1_user_classification_1_1_meta_1a2ae751bd8b7c4d4058a80a58ebd79b56" kind="variable"><name>verbose_name_plural</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1company_1_1_company_classification_1_1_meta" kind="class"><name>entity::models::company::CompanyClassification::Meta</name>
-    <member refid="classentity_1_1models_1_1company_1_1_company_classification_1_1_meta_1a8caf31935883341988bc76fca509c0a6" kind="variable"><name>verbose_name</name></member>
-    <member refid="classentity_1_1models_1_1company_1_1_company_classification_1_1_meta_1a48a6f809631ef858ed6d8254266060ae" kind="variable"><name>verbose_name_plural</name></member>
+  <compound refid="classcase_1_1forms_1_1_case_device_form_1_1_meta" kind="class"><name>case::forms::CaseDeviceForm::Meta</name>
+    <member refid="classcase_1_1forms_1_1_case_device_form_1_1_meta_1a61980382d76755c003246a1986c8d752" kind="variable"><name>model</name></member>
+    <member refid="classcase_1_1forms_1_1_case_device_form_1_1_meta_1a6e755061c43ee0eadc759eb2b01701dd" kind="variable"><name>fields</name></member>
+  </compound>
+  <compound refid="classtask_1_1models_1_1_task_type_1_1_meta" kind="class"><name>task::models::TaskType::Meta</name>
+    <member refid="classtask_1_1models_1_1_task_type_1_1_meta_1a7b75c3be477eab577b9c31f10e06c1cf" kind="variable"><name>verbose_name</name></member>
+    <member refid="classtask_1_1models_1_1_task_type_1_1_meta_1ab4264e34e38d0ae06df71e159ec8890d" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classevent_1_1models_1_1_event_priority_1_1_meta" kind="class"><name>event::models::EventPriority::Meta</name>
+    <member refid="classevent_1_1models_1_1_event_priority_1_1_meta_1a68718aa3ac84010ccd461de34eb4eb3b" kind="variable"><name>verbose_name</name></member>
+    <member refid="classevent_1_1models_1_1_event_priority_1_1_meta_1a00870588848305a96fee96a51894950a" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classnote_1_1models_1_1_note_status_group_1_1_meta" kind="class"><name>note::models::NoteStatusGroup::Meta</name>
+    <member refid="classnote_1_1models_1_1_note_status_group_1_1_meta_1ac9aefb19b4c410b98e4dbfb36911d56a" kind="variable"><name>verbose_name</name></member>
+    <member refid="classnote_1_1models_1_1_note_status_group_1_1_meta_1a2065c9f5896abc8c7b25e6e2f74bbfa9" kind="variable"><name>verbose_name_plural</name></member>
+  </compound>
+  <compound refid="classentity_1_1migrations_1_10003__auto__20181118__1038_1_1_migration" kind="class"><name>entity::migrations::0003_auto_20181118_1038::Migration</name>
+    <member refid="classentity_1_1migrations_1_10003__auto__20181118__1038_1_1_migration_1ab920fe99b1e35664ff45829a0365d987" kind="variable"><name>dependencies</name></member>
+    <member refid="classentity_1_1migrations_1_10003__auto__20181118__1038_1_1_migration_1aaf67fd8a4b388877349491586642bf5d" kind="variable"><name>operations</name></member>
   </compound>
   <compound refid="classcase_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>case::migrations::0001_initial::Migration</name>
     <member refid="classcase_1_1migrations_1_10001__initial_1_1_migration_1a5618c27e0fcda395c2dd6f35181ea800" kind="variable"><name>initial</name></member>
     <member refid="classcase_1_1migrations_1_10001__initial_1_1_migration_1aff756474825acf791366dea11971dd83" kind="variable"><name>dependencies</name></member>
     <member refid="classcase_1_1migrations_1_10001__initial_1_1_migration_1acca611bbf86b8476bbd9ca9ba86b1749" kind="variable"><name>operations</name></member>
   </compound>
-  <compound refid="classutils_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>utils::migrations::0001_initial::Migration</name>
-    <member refid="classutils_1_1migrations_1_10001__initial_1_1_migration_1a5f5626c8c12947f0a813e2d7cb0c7249" kind="variable"><name>initial</name></member>
-    <member refid="classutils_1_1migrations_1_10001__initial_1_1_migration_1a2a47cb031f1ff0664d2240384b800197" kind="variable"><name>dependencies</name></member>
-    <member refid="classutils_1_1migrations_1_10001__initial_1_1_migration_1a0b4aead8eaa5f7c66570f3172164d364" kind="variable"><name>operations</name></member>
+  <compound refid="classentity_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>entity::migrations::0001_initial::Migration</name>
+    <member refid="classentity_1_1migrations_1_10001__initial_1_1_migration_1a7bd4ddbc21fb50de95a728a8c4c036a1" kind="variable"><name>initial</name></member>
+    <member refid="classentity_1_1migrations_1_10001__initial_1_1_migration_1aa30f0b61debf529d4277c84c9085f2bb" kind="variable"><name>dependencies</name></member>
+    <member refid="classentity_1_1migrations_1_10001__initial_1_1_migration_1a89e550d7362dbf0dcb38801e92cde76c" kind="variable"><name>operations</name></member>
   </compound>
   <compound refid="classevidence_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>evidence::migrations::0001_initial::Migration</name>
     <member refid="classevidence_1_1migrations_1_10001__initial_1_1_migration_1a34ec6da434b445735b15252e601e8165" kind="variable"><name>initial</name></member>
     <member refid="classevidence_1_1migrations_1_10001__initial_1_1_migration_1addb513c92257000e54b1acc3e5f67166" kind="variable"><name>dependencies</name></member>
     <member refid="classevidence_1_1migrations_1_10001__initial_1_1_migration_1a87cd791c29e26d11aaa472166d48a63c" kind="variable"><name>operations</name></member>
   </compound>
-  <compound refid="classloan_1_1migrations_1_10004__auto__20180909__1206_1_1_migration" kind="class"><name>loan::migrations::0004_auto_20180909_1206::Migration</name>
-    <member refid="classloan_1_1migrations_1_10004__auto__20180909__1206_1_1_migration_1aa71f1a6feb27f4bc72c2af938e53f6ea" kind="variable"><name>dependencies</name></member>
-    <member refid="classloan_1_1migrations_1_10004__auto__20180909__1206_1_1_migration_1a9924e06f1bd08d182a6cbf2b05b6d181" kind="variable"><name>operations</name></member>
+  <compound refid="classloan_1_1migrations_1_10005__auto__20180909__1211_1_1_migration" kind="class"><name>loan::migrations::0005_auto_20180909_1211::Migration</name>
+    <member refid="classloan_1_1migrations_1_10005__auto__20180909__1211_1_1_migration_1affdc7c6a2ec029336181af3e094a83b3" kind="variable"><name>dependencies</name></member>
+    <member refid="classloan_1_1migrations_1_10005__auto__20180909__1211_1_1_migration_1ab0ee8346dc198dac94ab754e3420f2d1" kind="variable"><name>operations</name></member>
   </compound>
-  <compound refid="classloan_1_1migrations_1_10006__auto__20180909__1310_1_1_migration" kind="class"><name>loan::migrations::0006_auto_20180909_1310::Migration</name>
-    <member refid="classloan_1_1migrations_1_10006__auto__20180909__1310_1_1_migration_1a3d513cebf4d7e08eaf4ec7beb0d53c43" kind="variable"><name>dependencies</name></member>
-    <member refid="classloan_1_1migrations_1_10006__auto__20180909__1310_1_1_migration_1a7af0f613a2dda874d5841cab0f626e41" kind="variable"><name>operations</name></member>
+  <compound refid="classuser_1_1migrations_1_10004__auto__20181118__1016_1_1_migration" kind="class"><name>user::migrations::0004_auto_20181118_1016::Migration</name>
+    <member refid="classuser_1_1migrations_1_10004__auto__20181118__1016_1_1_migration_1a7fd9cab6208e6ed8a2c4dcb430dd9eb2" kind="variable"><name>dependencies</name></member>
+    <member refid="classuser_1_1migrations_1_10004__auto__20181118__1016_1_1_migration_1ab8fa8d4c739caca7751d6570904e29cb" kind="variable"><name>operations</name></member>
+  </compound>
+  <compound refid="classentity_1_1migrations_1_10004__auto__20181118__1608_1_1_migration" kind="class"><name>entity::migrations::0004_auto_20181118_1608::Migration</name>
+    <member refid="classentity_1_1migrations_1_10004__auto__20181118__1608_1_1_migration_1a7ddb26d3acf1ed73ff9f25a56bc93ae7" kind="variable"><name>dependencies</name></member>
+    <member refid="classentity_1_1migrations_1_10004__auto__20181118__1608_1_1_migration_1ab7fb66dc6e30df2df7d20a6e3c404c94" kind="variable"><name>operations</name></member>
   </compound>
   <compound refid="classuser_1_1migrations_1_10002__auto__20181028__1234_1_1_migration" kind="class"><name>user::migrations::0002_auto_20181028_1234::Migration</name>
     <member refid="classuser_1_1migrations_1_10002__auto__20181028__1234_1_1_migration_1a9a799b6f143006cb97c9b35202a2f84e" kind="variable"><name>dependencies</name></member>
     <member refid="classuser_1_1migrations_1_10002__auto__20181028__1234_1_1_migration_1a0727e08eb2dce426c752eca707783b1e" kind="variable"><name>operations</name></member>
   </compound>
-  <compound refid="classentity_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>entity::migrations::0001_initial::Migration</name>
-    <member refid="classentity_1_1migrations_1_10001__initial_1_1_migration_1a7bd4ddbc21fb50de95a728a8c4c036a1" kind="variable"><name>initial</name></member>
-    <member refid="classentity_1_1migrations_1_10001__initial_1_1_migration_1aa30f0b61debf529d4277c84c9085f2bb" kind="variable"><name>dependencies</name></member>
-    <member refid="classentity_1_1migrations_1_10001__initial_1_1_migration_1a89e550d7362dbf0dcb38801e92cde76c" kind="variable"><name>operations</name></member>
-  </compound>
-  <compound refid="classloan_1_1migrations_1_10007__auto__20180909__1311_1_1_migration" kind="class"><name>loan::migrations::0007_auto_20180909_1311::Migration</name>
-    <member refid="classloan_1_1migrations_1_10007__auto__20180909__1311_1_1_migration_1a1cf58bcfa08f95dd0c3d74620f092653" kind="variable"><name>dependencies</name></member>
-    <member refid="classloan_1_1migrations_1_10007__auto__20180909__1311_1_1_migration_1ac72889cd40ccea1028a0c5d17815b9f0" kind="variable"><name>operations</name></member>
-  </compound>
-  <compound refid="classevent_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>event::migrations::0001_initial::Migration</name>
-    <member refid="classevent_1_1migrations_1_10001__initial_1_1_migration_1a6aa72754dc8fc2ecd8121b5068110ad2" kind="variable"><name>initial</name></member>
-    <member refid="classevent_1_1migrations_1_10001__initial_1_1_migration_1ab1ffe1b5847900d459f8a3aac8c9d5d9" kind="variable"><name>dependencies</name></member>
-    <member refid="classevent_1_1migrations_1_10001__initial_1_1_migration_1aab1935efe1355c90a5eb2455e5034808" kind="variable"><name>operations</name></member>
-  </compound>
-  <compound refid="classloan_1_1migrations_1_10002__auto__20180909__1006_1_1_migration" kind="class"><name>loan::migrations::0002_auto_20180909_1006::Migration</name>
-    <member refid="classloan_1_1migrations_1_10002__auto__20180909__1006_1_1_migration_1aa581c10554089d9f9dc61eadda6d030a" kind="variable"><name>dependencies</name></member>
-    <member refid="classloan_1_1migrations_1_10002__auto__20180909__1006_1_1_migration_1af550536c624df16f35fcc1ab883cca0f" kind="variable"><name>operations</name></member>
-  </compound>
-  <compound refid="classuser_1_1migrations_1_10003__auto__20181028__1605_1_1_migration" kind="class"><name>user::migrations::0003_auto_20181028_1605::Migration</name>
-    <member refid="classuser_1_1migrations_1_10003__auto__20181028__1605_1_1_migration_1ae7b94d59dea4394d355f00ed5cdad40b" kind="variable"><name>dependencies</name></member>
-    <member refid="classuser_1_1migrations_1_10003__auto__20181028__1605_1_1_migration_1afbdd4d7681637a7986345f51043c7c1e" kind="variable"><name>operations</name></member>
+  <compound refid="classloan_1_1migrations_1_10004__auto__20180909__1206_1_1_migration" kind="class"><name>loan::migrations::0004_auto_20180909_1206::Migration</name>
+    <member refid="classloan_1_1migrations_1_10004__auto__20180909__1206_1_1_migration_1aa71f1a6feb27f4bc72c2af938e53f6ea" kind="variable"><name>dependencies</name></member>
+    <member refid="classloan_1_1migrations_1_10004__auto__20180909__1206_1_1_migration_1a9924e06f1bd08d182a6cbf2b05b6d181" kind="variable"><name>operations</name></member>
   </compound>
   <compound refid="classuser_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>user::migrations::0001_initial::Migration</name>
     <member refid="classuser_1_1migrations_1_10001__initial_1_1_migration_1a1b548ccc53b6541bf8929dba5ada4782" kind="variable"><name>initial</name></member>
     <member refid="classuser_1_1migrations_1_10001__initial_1_1_migration_1a91cbe0533e9bc83354113293696732ee" kind="variable"><name>dependencies</name></member>
     <member refid="classuser_1_1migrations_1_10001__initial_1_1_migration_1a558a440b0f887d1afd139de308fa18ac" kind="variable"><name>operations</name></member>
-  </compound>
-  <compound refid="classtask_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>task::migrations::0001_initial::Migration</name>
-    <member refid="classtask_1_1migrations_1_10001__initial_1_1_migration_1a2d8903756d0b61974e29e45a4782e735" kind="variable"><name>initial</name></member>
-    <member refid="classtask_1_1migrations_1_10001__initial_1_1_migration_1ae4068843e903b42c721ce5db032132fc" kind="variable"><name>dependencies</name></member>
-    <member refid="classtask_1_1migrations_1_10001__initial_1_1_migration_1a03616b965edcdc51caac5d67e09faf17" kind="variable"><name>operations</name></member>
   </compound>
   <compound refid="classloan_1_1migrations_1_10003__auto__20180909__1134_1_1_migration" kind="class"><name>loan::migrations::0003_auto_20180909_1134::Migration</name>
     <member refid="classloan_1_1migrations_1_10003__auto__20180909__1134_1_1_migration_1ab821f66ba131a671c5c4e04c2f9335ed" kind="variable"><name>dependencies</name></member>
@@ -2076,19 +2073,50 @@
     <member refid="classloan_1_1migrations_1_10001__initial_1_1_migration_1a4f5267d6637d53cfec6f828157a40aff" kind="variable"><name>dependencies</name></member>
     <member refid="classloan_1_1migrations_1_10001__initial_1_1_migration_1aa601caedf41aa851667801c6e0163dd3" kind="variable"><name>operations</name></member>
   </compound>
-  <compound refid="classloan_1_1migrations_1_10005__auto__20180909__1211_1_1_migration" kind="class"><name>loan::migrations::0005_auto_20180909_1211::Migration</name>
-    <member refid="classloan_1_1migrations_1_10005__auto__20180909__1211_1_1_migration_1affdc7c6a2ec029336181af3e094a83b3" kind="variable"><name>dependencies</name></member>
-    <member refid="classloan_1_1migrations_1_10005__auto__20180909__1211_1_1_migration_1ab0ee8346dc198dac94ab754e3420f2d1" kind="variable"><name>operations</name></member>
+  <compound refid="classloan_1_1migrations_1_10002__auto__20180909__1006_1_1_migration" kind="class"><name>loan::migrations::0002_auto_20180909_1006::Migration</name>
+    <member refid="classloan_1_1migrations_1_10002__auto__20180909__1006_1_1_migration_1aa581c10554089d9f9dc61eadda6d030a" kind="variable"><name>dependencies</name></member>
+    <member refid="classloan_1_1migrations_1_10002__auto__20180909__1006_1_1_migration_1af550536c624df16f35fcc1ab883cca0f" kind="variable"><name>operations</name></member>
+  </compound>
+  <compound refid="classloan_1_1migrations_1_10006__auto__20180909__1310_1_1_migration" kind="class"><name>loan::migrations::0006_auto_20180909_1310::Migration</name>
+    <member refid="classloan_1_1migrations_1_10006__auto__20180909__1310_1_1_migration_1a3d513cebf4d7e08eaf4ec7beb0d53c43" kind="variable"><name>dependencies</name></member>
+    <member refid="classloan_1_1migrations_1_10006__auto__20180909__1310_1_1_migration_1a7af0f613a2dda874d5841cab0f626e41" kind="variable"><name>operations</name></member>
+  </compound>
+  <compound refid="classloan_1_1migrations_1_10007__auto__20180909__1311_1_1_migration" kind="class"><name>loan::migrations::0007_auto_20180909_1311::Migration</name>
+    <member refid="classloan_1_1migrations_1_10007__auto__20180909__1311_1_1_migration_1a1cf58bcfa08f95dd0c3d74620f092653" kind="variable"><name>dependencies</name></member>
+    <member refid="classloan_1_1migrations_1_10007__auto__20180909__1311_1_1_migration_1ac72889cd40ccea1028a0c5d17815b9f0" kind="variable"><name>operations</name></member>
   </compound>
   <compound refid="classinventory_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>inventory::migrations::0001_initial::Migration</name>
     <member refid="classinventory_1_1migrations_1_10001__initial_1_1_migration_1a377916ecca88eb226e3d1d72ad73ef12" kind="variable"><name>initial</name></member>
     <member refid="classinventory_1_1migrations_1_10001__initial_1_1_migration_1ad4fd0cc97138a0076cf26becc85e12b0" kind="variable"><name>dependencies</name></member>
     <member refid="classinventory_1_1migrations_1_10001__initial_1_1_migration_1aa8aaf31a6c0cb0108718b9ffb990fa5a" kind="variable"><name>operations</name></member>
   </compound>
+  <compound refid="classutils_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>utils::migrations::0001_initial::Migration</name>
+    <member refid="classutils_1_1migrations_1_10001__initial_1_1_migration_1a5f5626c8c12947f0a813e2d7cb0c7249" kind="variable"><name>initial</name></member>
+    <member refid="classutils_1_1migrations_1_10001__initial_1_1_migration_1a2a47cb031f1ff0664d2240384b800197" kind="variable"><name>dependencies</name></member>
+    <member refid="classutils_1_1migrations_1_10001__initial_1_1_migration_1a0b4aead8eaa5f7c66570f3172164d364" kind="variable"><name>operations</name></member>
+  </compound>
+  <compound refid="classentity_1_1migrations_1_10002__auto__20181118__1016_1_1_migration" kind="class"><name>entity::migrations::0002_auto_20181118_1016::Migration</name>
+    <member refid="classentity_1_1migrations_1_10002__auto__20181118__1016_1_1_migration_1af35ab7b04e6738f68f60b18fd8b79baf" kind="variable"><name>dependencies</name></member>
+    <member refid="classentity_1_1migrations_1_10002__auto__20181118__1016_1_1_migration_1a3b5f9f68f74d13c3d6eeb2c1f3f43b69" kind="variable"><name>operations</name></member>
+  </compound>
+  <compound refid="classtask_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>task::migrations::0001_initial::Migration</name>
+    <member refid="classtask_1_1migrations_1_10001__initial_1_1_migration_1a2d8903756d0b61974e29e45a4782e735" kind="variable"><name>initial</name></member>
+    <member refid="classtask_1_1migrations_1_10001__initial_1_1_migration_1ae4068843e903b42c721ce5db032132fc" kind="variable"><name>dependencies</name></member>
+    <member refid="classtask_1_1migrations_1_10001__initial_1_1_migration_1a03616b965edcdc51caac5d67e09faf17" kind="variable"><name>operations</name></member>
+  </compound>
+  <compound refid="classuser_1_1migrations_1_10003__auto__20181028__1605_1_1_migration" kind="class"><name>user::migrations::0003_auto_20181028_1605::Migration</name>
+    <member refid="classuser_1_1migrations_1_10003__auto__20181028__1605_1_1_migration_1ae7b94d59dea4394d355f00ed5cdad40b" kind="variable"><name>dependencies</name></member>
+    <member refid="classuser_1_1migrations_1_10003__auto__20181028__1605_1_1_migration_1afbdd4d7681637a7986345f51043c7c1e" kind="variable"><name>operations</name></member>
+  </compound>
   <compound refid="classnote_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>note::migrations::0001_initial::Migration</name>
     <member refid="classnote_1_1migrations_1_10001__initial_1_1_migration_1a4b906fb05b4bd8e758b56ff9e3c2bff1" kind="variable"><name>initial</name></member>
     <member refid="classnote_1_1migrations_1_10001__initial_1_1_migration_1ad99f8a5364df57025bfa7252dbb33696" kind="variable"><name>dependencies</name></member>
     <member refid="classnote_1_1migrations_1_10001__initial_1_1_migration_1aa33ce6802ae4b2dd28fdee2ad148d792" kind="variable"><name>operations</name></member>
+  </compound>
+  <compound refid="classevent_1_1migrations_1_10001__initial_1_1_migration" kind="class"><name>event::migrations::0001_initial::Migration</name>
+    <member refid="classevent_1_1migrations_1_10001__initial_1_1_migration_1a6aa72754dc8fc2ecd8121b5068110ad2" kind="variable"><name>initial</name></member>
+    <member refid="classevent_1_1migrations_1_10001__initial_1_1_migration_1ab1ffe1b5847900d459f8a3aac8c9d5d9" kind="variable"><name>dependencies</name></member>
+    <member refid="classevent_1_1migrations_1_10001__initial_1_1_migration_1aab1935efe1355c90a5eb2455e5034808" kind="variable"><name>operations</name></member>
   </compound>
   <compound refid="classutils_1_1models_1_1_multiple_forms_mixin" kind="class"><name>utils::models::MultipleFormsMixin</name>
     <member refid="classutils_1_1models_1_1_multiple_forms_mixin_1aa386b7d04578a5205c0ca4ea381cb64d" kind="variable"><name>initial</name></member>
@@ -2123,13 +2151,6 @@
     <member refid="classnote_1_1models_1_1_note_1a2cf811b2192e7df7bcbff44bb7685ab4" kind="variable"><name>manager</name></member>
     <member refid="classnote_1_1models_1_1_note_1a4a738f07701768e52d775a67c1d2d272" kind="variable"><name>assigned_by</name></member>
     <member refid="classnote_1_1models_1_1_note_1a3d83b7a9ea56a1944bf5738176c6b672" kind="function"><name>__str__</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_note" kind="class"><name>entity::models::entity::Note</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_note_1a5852e81574f67278410e2d0d42719843" kind="variable"><name>text</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_note_1a264a17c559d48633218b818452c84090" kind="variable"><name>author</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_note_1a494a70a44e93f1d1cdeb59c847109655" kind="variable"><name>added</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_note_1a8c6fd40f2d0caf083668410710291fc6" kind="variable"><name>history</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_note_1a60c9afe352c562aee4e19dc83f82719b" kind="function"><name>__str__</name></member>
   </compound>
   <compound refid="classnote_1_1models_1_1_note_authorisation" kind="class"><name>note::models::NoteAuthorisation</name>
     <member refid="classnote_1_1models_1_1_note_authorisation_1ab99e087f711812daed1926952e27a649" kind="variable"><name>history</name></member>
@@ -2174,8 +2195,6 @@
     <member refid="classnote_1_1forms_1_1_note_edit_form_1accfb1fd1e0d3d42073235906ca02ebc9" kind="variable"><name>title</name></member>
     <member refid="classnote_1_1forms_1_1_note_edit_form_1a24923a11f529fceb0af121c09d399b60" kind="variable"><name>description</name></member>
     <member refid="classnote_1_1forms_1_1_note_edit_form_1a5b8c993a74f6ebc99d5f670cc2ddcbe1" kind="function"><name>save</name></member>
-  </compound>
-  <compound refid="classentity_1_1forms_1_1_note_form" kind="class"><name>entity::forms::NoteForm</name>
   </compound>
   <compound refid="classnote_1_1views_1_1_note_home" kind="class"><name>note::views::NoteHome</name>
     <member refid="classnote_1_1views_1_1_note_home_1a4658458a012d1522721aba5424c0c134" kind="variable"><name>template_name</name></member>
@@ -2231,7 +2250,22 @@
     <member refid="classutils_1_1templatetags_1_1custom__tags_1_1_objects_node_1a29a8f5137929158e02c4ed7011965b55" kind="function"><name>__init__</name></member>
     <member refid="classutils_1_1templatetags_1_1custom__tags_1_1_objects_node_1aff54481f014a240b7a82f3b36ba5038f" kind="function"><name>render</name></member>
   </compound>
+  <compound refid="classentity_1_1forms_1_1_old___address_form" kind="class"><name>entity::forms::Old_AddressForm</name>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___company_form" kind="class"><name>entity::forms::Old_CompanyForm</name>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___email_form" kind="class"><name>entity::forms::Old_EmailForm</name>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___person_form" kind="class"><name>entity::forms::Old_PersonForm</name>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___social_form" kind="class"><name>entity::forms::Old_SocialForm</name>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___telephone_form" kind="class"><name>entity::forms::Old_TelephoneForm</name>
+  </compound>
+  <compound refid="classentity_1_1forms_1_1_old___website_form" kind="class"><name>entity::forms::Old_WebsiteForm</name>
+  </compound>
   <compound refid="classentity_1_1models_1_1person_1_1_person" kind="class"><name>entity::models::person::Person</name>
+    <member refid="classentity_1_1models_1_1person_1_1_person_1a153eafd6d1aee79a86ed886bda0db72a" kind="variable"><name>prefix</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1a872030f3645979b62102bdc4ecb604d9" kind="variable"><name>first_name</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1a990d2f575c168a711197164e6631afed" kind="variable"><name>last_name</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1a5ab197531ca9ca65196958ee1b02571a" kind="variable"><name>middle_names</name></member>
@@ -2254,7 +2288,6 @@
     <member refid="classentity_1_1models_1_1person_1_1_person_1adb385be19b597533022d99301ca8df0e" kind="variable"><name>telephone</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1a037099f47e981e8e8a72028d93c8d83c" kind="variable"><name>email</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1abaae6df10ab21182693e96981d71ff94" kind="variable"><name>website</name></member>
-    <member refid="classentity_1_1models_1_1person_1_1_person_1a153eafd6d1aee79a86ed886bda0db72a" kind="variable"><name>prefix</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1affcfd70ebb1a592a0524727406d7ef90" kind="variable"><name>type</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1aabcf1bce9ed693a029bd4db181b2f688" kind="variable"><name>status</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1abb4dda954672c910ad08c60ae1021838" kind="variable"><name>classification</name></member>
@@ -2263,6 +2296,7 @@
     <member refid="classentity_1_1models_1_1person_1_1_person_1adfb816fd4257ae0f2da0ee240dd3e6e9" kind="variable"><name>slug_first</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1ad9eb98b00377cc0dff86386c1177da7e" kind="variable"><name>slug_last</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1a75b82240adfd14933b1ea0968b9672b3" kind="variable"><name>slug_middle</name></member>
+    <member refid="classentity_1_1models_1_1person_1_1_person_1abcb3927c854eb992528060d9823fb067" kind="variable"><name>history</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1aa52af0ec4aeb3d47fda8a28d4538a7c1" kind="variable"><name>slug_last</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1a58f1fdbf104ba627d7730abdb4f6e312" kind="variable"><name>slug_first</name></member>
     <member refid="classentity_1_1models_1_1person_1_1_person_1a5d960ffaf9a7b47b64eb7ab8d6e0973c" kind="variable"><name>slug_middle</name></member>
@@ -2284,7 +2318,15 @@
   <compound refid="classentity_1_1models_1_1person_1_1_person_classification" kind="class"><name>entity::models::person::PersonClassification</name>
     <member refid="classentity_1_1models_1_1person_1_1_person_classification_1a48bb26feca5ef58f0fade6aee1f8029c" kind="variable"><name>history</name></member>
   </compound>
+  <compound refid="classentity_1_1views_1_1person_1_1_person_detail" kind="class"><name>entity::views::person::PersonDetail</name>
+    <member refid="classentity_1_1views_1_1person_1_1_person_detail_1aa3bffd9eb46b00d29a1a116d38f27748" kind="variable"><name>model</name></member>
+    <member refid="classentity_1_1views_1_1person_1_1_person_detail_1a2ea970215c66e296b48a41a5486baf4e" kind="variable"><name>template_name</name></member>
+    <member refid="classentity_1_1views_1_1person_1_1_person_detail_1abbe685c926ddd38e4db4d571586a47f7" kind="function"><name>dispatch</name></member>
+    <member refid="classentity_1_1views_1_1person_1_1_person_detail_1a34a06ca74a671a95c0d9a2bb4f031dd8" kind="function"><name>get_context_data</name></member>
+  </compound>
   <compound refid="classentity_1_1forms_1_1_person_form" kind="class"><name>entity::forms::PersonForm</name>
+    <member refid="classentity_1_1forms_1_1_person_form_1ab27fd290ad29005c62475a5a508e106a" kind="variable"><name>helper</name></member>
+    <member refid="classentity_1_1forms_1_1_person_form_1ad94d33fc8de1126e2982343613469995" kind="function"><name>__init__</name></member>
   </compound>
   <compound refid="classentity_1_1models_1_1person_1_1_person_status" kind="class"><name>entity::models::person::PersonStatus</name>
     <member refid="classentity_1_1models_1_1person_1_1_person_status_1aec568c8697fa2a86ec68f2051fb1d11d" kind="variable"><name>history</name></member>
@@ -2296,10 +2338,9 @@
   <compound refid="classentity_1_1models_1_1person_1_1_person_type" kind="class"><name>entity::models::person::PersonType</name>
     <member refid="classentity_1_1models_1_1person_1_1_person_type_1a4e78b00e4278c1a82f774825b5d13775" kind="variable"><name>history</name></member>
   </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_prefix" kind="class"><name>entity::models::entity::Prefix</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_prefix_1a546df063e4f0bc40a3d74f322cbc0dad" kind="variable"><name>title</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_prefix_1aff4b0ecfebb51a6c644064f16253a8d3" kind="variable"><name>history</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_prefix_1a405fa571856259d3e62547f0459cd2ce" kind="function"><name>__str__</name></member>
+  <compound refid="classentity_1_1forms_1_1_person_update_form" kind="class"><name>entity::forms::PersonUpdateForm</name>
+    <member refid="classentity_1_1forms_1_1_person_update_form_1ae47ef8dca06963e530c51b99b1f7baf7" kind="variable"><name>change_reason</name></member>
+    <member refid="classentity_1_1forms_1_1_person_update_form_1a7b50331af82242c4383b104225aae111" kind="function"><name>save</name></member>
   </compound>
   <compound refid="classutils_1_1models_1_1_priority" kind="class"><name>utils::models::Priority</name>
     <member refid="classutils_1_1models_1_1_priority_1a1590c1e4e5788ec1542e55542b710ba6" kind="variable"><name>title</name></member>
@@ -2312,6 +2353,7 @@
     <member refid="class_kases_1_1settings_1_1_production_1aaed7d7102f0454fb614c3f12ac948f31" kind="variable"><name>ALLOWED_HOSTS</name></member>
   </compound>
   <compound refid="classuser_1_1models_1_1_profile" kind="class"><name>user::models::Profile</name>
+    <member refid="classuser_1_1models_1_1_profile_1a76921456159524d6350fc5e480da3bd2" kind="variable"><name>prefix</name></member>
     <member refid="classuser_1_1models_1_1_profile_1aadf61597c9b68acb2b5ba902d3eb65b2" kind="variable"><name>user</name></member>
     <member refid="classuser_1_1models_1_1_profile_1a04c2fff96c413e8a865fcb6e81e10361" kind="variable"><name>bio</name></member>
     <member refid="classuser_1_1models_1_1_profile_1acadc78278a8e1f110a629fd2d9599fdf" kind="variable"><name>location</name></member>
@@ -2336,7 +2378,6 @@
     <member refid="classuser_1_1models_1_1_profile_1a329fc675acb7d270dd60f430b128d873" kind="variable"><name>telephone</name></member>
     <member refid="classuser_1_1models_1_1_profile_1a30fecb586e22e4b24f2ef54a0a4e2b6a" kind="variable"><name>email</name></member>
     <member refid="classuser_1_1models_1_1_profile_1a01667301769d6a500447071b749ee9dd" kind="variable"><name>website</name></member>
-    <member refid="classuser_1_1models_1_1_profile_1a76921456159524d6350fc5e480da3bd2" kind="variable"><name>prefix</name></member>
     <member refid="classuser_1_1models_1_1_profile_1aa0165af3aaf3a4915f8d289d3b514434" kind="variable"><name>type</name></member>
     <member refid="classuser_1_1models_1_1_profile_1a61cc1ae607547408998aed8a8dbf9a4f" kind="variable"><name>status</name></member>
     <member refid="classuser_1_1models_1_1_profile_1a9fc2a9e5baac7d1f775dcc4479e43773" kind="variable"><name>classification</name></member>
@@ -2416,17 +2457,13 @@
   </compound>
   <compound refid="classinventory_1_1forms_1_1_service_form" kind="class"><name>inventory::forms::ServiceForm</name>
   </compound>
-  <compound refid="classutils_1_1tests_1_1_simple_test" kind="class"><name>utils::tests::SimpleTest</name>
-    <member refid="classutils_1_1tests_1_1_simple_test_1a0539b03d3ce86323c15df78f7e3d889c" kind="function"><name>setUpClass</name></member>
-    <member refid="classutils_1_1tests_1_1_simple_test_1ada0202e593b8598940fceb8c4f07a501" kind="function"><name>test_basic_addition</name></member>
+  <compound refid="classevent_1_1tests_1_1_simple_test" kind="class"><name>event::tests::SimpleTest</name>
+    <member refid="classevent_1_1tests_1_1_simple_test_1a4925b16a0d64ab48042a5bd605fa7249" kind="function"><name>setUpClass</name></member>
+    <member refid="classevent_1_1tests_1_1_simple_test_1ac3c3225bf2c101c5adc529d6bfa0f677" kind="function"><name>test_basic_addition</name></member>
   </compound>
   <compound refid="classuser_1_1tests_1_1_simple_test" kind="class"><name>user::tests::SimpleTest</name>
     <member refid="classuser_1_1tests_1_1_simple_test_1a6f2dd5aa63bd9c26c062ed5e48a00cab" kind="function"><name>setUpClass</name></member>
     <member refid="classuser_1_1tests_1_1_simple_test_1a215fa05a1fea47b51316886a5f67ee7c" kind="function"><name>test_basic_addition</name></member>
-  </compound>
-  <compound refid="classloan_1_1tests_1_1_simple_test" kind="class"><name>loan::tests::SimpleTest</name>
-    <member refid="classloan_1_1tests_1_1_simple_test_1a4af0b5550e9082b68cf10e7afff0ef32" kind="function"><name>setUpClass</name></member>
-    <member refid="classloan_1_1tests_1_1_simple_test_1a854842f2d106b03029f988cdb396171f" kind="function"><name>test_basic_addition</name></member>
   </compound>
   <compound refid="classinventory_1_1tests_1_1_simple_test" kind="class"><name>inventory::tests::SimpleTest</name>
     <member refid="classinventory_1_1tests_1_1_simple_test_1ab9652485c16347025bd6c16cc950c27f" kind="function"><name>setUpClass</name></member>
@@ -2436,28 +2473,28 @@
     <member refid="classnote_1_1tests_1_1_simple_test_1afa56037b9cd8af8ee33b36c27c6e2aa7" kind="function"><name>setUpClass</name></member>
     <member refid="classnote_1_1tests_1_1_simple_test_1ac29262b87f6479ec1cd3c40d7f8dc526" kind="function"><name>test_basic_addition</name></member>
   </compound>
-  <compound refid="classevent_1_1tests_1_1_simple_test" kind="class"><name>event::tests::SimpleTest</name>
-    <member refid="classevent_1_1tests_1_1_simple_test_1a4925b16a0d64ab48042a5bd605fa7249" kind="function"><name>setUpClass</name></member>
-    <member refid="classevent_1_1tests_1_1_simple_test_1ac3c3225bf2c101c5adc529d6bfa0f677" kind="function"><name>test_basic_addition</name></member>
+  <compound refid="classloan_1_1tests_1_1_simple_test" kind="class"><name>loan::tests::SimpleTest</name>
+    <member refid="classloan_1_1tests_1_1_simple_test_1a4af0b5550e9082b68cf10e7afff0ef32" kind="function"><name>setUpClass</name></member>
+    <member refid="classloan_1_1tests_1_1_simple_test_1a854842f2d106b03029f988cdb396171f" kind="function"><name>test_basic_addition</name></member>
+  </compound>
+  <compound refid="classutils_1_1tests_1_1_simple_test" kind="class"><name>utils::tests::SimpleTest</name>
+    <member refid="classutils_1_1tests_1_1_simple_test_1a0539b03d3ce86323c15df78f7e3d889c" kind="function"><name>setUpClass</name></member>
+    <member refid="classutils_1_1tests_1_1_simple_test_1ada0202e593b8598940fceb8c4f07a501" kind="function"><name>test_basic_addition</name></member>
   </compound>
   <compound refid="classentity_1_1models_1_1entity_1_1_social" kind="class"><name>entity::models::entity::Social</name>
     <member refid="classentity_1_1models_1_1entity_1_1_social_1a78414c990527faff60ff16bd855c9645" kind="variable"><name>service</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_social_1a6c236e6b33236a118e57b9c6e0a03e55" kind="variable"><name>alias</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_social_1a653136ef902060484e5637ff34fe76cf" kind="variable"><name>url</name></member>
+    <member refid="classentity_1_1models_1_1entity_1_1_social_1a194c6b7131cfddac03d23c8635ff0be2" kind="variable"><name>primary</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_social_1ade847a61d175dc8e6139f46a5b3a17ad" kind="variable"><name>history</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_social_1a4a87870043bf5b3aff058e8e484c6103" kind="function"><name>__str__</name></member>
   </compound>
   <compound refid="classentity_1_1forms_1_1_social_form" kind="class"><name>entity::forms::SocialForm</name>
+    <member refid="classentity_1_1forms_1_1_social_form_1aa8446aa906d66abbd08c83dac3ff99f2" kind="variable"><name>helper</name></member>
+    <member refid="classentity_1_1forms_1_1_social_form_1a1a0e45ada09c3ba0078435fae53b2170" kind="function"><name>__init__</name></member>
   </compound>
   <compound refid="class_kases_1_1settings_1_1_staging" kind="class"><name>Kases::settings::Staging</name>
     <member refid="class_kases_1_1settings_1_1_staging_1a647c5833c27299adb4f8074fed81de27" kind="variable"><name>DATABASES</name></member>
-  </compound>
-  <compound refid="classentity_1_1models_1_1entity_1_1_state" kind="class"><name>entity::models::entity::State</name>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1a18b995e0c485a23c0f61745553a64844" kind="variable"><name>short_name</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1aef1e31705dca6c4c0c4e89617b969f82" kind="variable"><name>title</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1ac30f5a6c1006ab5c37d15b24ca3933f4" kind="variable"><name>country</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1a13b3ee81425062cb6cb4aa2caa9021d2" kind="variable"><name>history</name></member>
-    <member refid="classentity_1_1models_1_1entity_1_1_state_1a2faebcef0ce682e56875f237caf45d95" kind="function"><name>__str__</name></member>
   </compound>
   <compound refid="classutils_1_1models_1_1_status" kind="class"><name>utils::models::Status</name>
     <member refid="classutils_1_1models_1_1_status_1a51fb6c031845886ad8908546f936bae2" kind="variable"><name>title</name></member>
@@ -2516,10 +2553,13 @@
   <compound refid="classentity_1_1models_1_1entity_1_1_telephone" kind="class"><name>entity::models::entity::Telephone</name>
     <member refid="classentity_1_1models_1_1entity_1_1_telephone_1a975a0b8082a9095f9dbfa52ebe3643c8" kind="variable"><name>number</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_telephone_1aee731c13f2861041dfecc0aa695f134a" kind="variable"><name>type</name></member>
+    <member refid="classentity_1_1models_1_1entity_1_1_telephone_1a0924127a9131cea1a9e077e5499d3d33" kind="variable"><name>primary</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_telephone_1adbeff68b3f667f7a73269f971009b4f4" kind="variable"><name>history</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_telephone_1a512bbd26a30800484a71ae3c05cb7316" kind="function"><name>__str__</name></member>
   </compound>
   <compound refid="classentity_1_1forms_1_1_telephone_form" kind="class"><name>entity::forms::TelephoneForm</name>
+    <member refid="classentity_1_1forms_1_1_telephone_form_1a8fef6473e7262e42eac2952bd9f5c299" kind="variable"><name>helper</name></member>
+    <member refid="classentity_1_1forms_1_1_telephone_form_1a2dc67af920de82b1fb0e6608c45170f9" kind="function"><name>__init__</name></member>
   </compound>
   <compound refid="classutils_1_1models_1_1_type" kind="class"><name>utils::models::Type</name>
     <member refid="classutils_1_1models_1_1_type_1a8ec2adc38a85db3e22ca761239f2fbd6" kind="variable"><name>title</name></member>
@@ -2585,10 +2625,13 @@
   </compound>
   <compound refid="classentity_1_1models_1_1entity_1_1_website" kind="class"><name>entity::models::entity::Website</name>
     <member refid="classentity_1_1models_1_1entity_1_1_website_1ab98eb90c8ec7f8ddfa8cff07053eca37" kind="variable"><name>url</name></member>
+    <member refid="classentity_1_1models_1_1entity_1_1_website_1a951cc76038d3752b35df7e861cefd6e8" kind="variable"><name>primary</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_website_1ad7ce34fb55468b5a44204983306a45aa" kind="variable"><name>history</name></member>
     <member refid="classentity_1_1models_1_1entity_1_1_website_1aa3ec38e1965c7885dcd16690c91de147" kind="function"><name>__str__</name></member>
   </compound>
   <compound refid="classentity_1_1forms_1_1_website_form" kind="class"><name>entity::forms::WebsiteForm</name>
+    <member refid="classentity_1_1forms_1_1_website_form_1a82ad37f638393f3c712347b085cfab0a" kind="variable"><name>helper</name></member>
+    <member refid="classentity_1_1forms_1_1_website_form_1a09e485833632ea481181b8bd5c35d345" kind="function"><name>__init__</name></member>
   </compound>
   <compound refid="namespacecase" kind="namespace"><name>case</name>
   </compound>
@@ -2615,8 +2658,6 @@
   <compound refid="namespacecase_1_1views" kind="namespace"><name>case::views</name>
     <member refid="namespacecase_1_1views_1ae5cae9ffd4180184ccc94c1e2f98908c" kind="function"><name>case_table</name></member>
   </compound>
-  <compound refid="namespacecrispy__forms_1_1layout" kind="namespace"><name>crispy_forms::layout</name>
-  </compound>
   <compound refid="namespaceentity" kind="namespace"><name>entity</name>
   </compound>
   <compound refid="namespaceentity_1_1apps" kind="namespace"><name>entity::apps</name>
@@ -2627,11 +2668,19 @@
   </compound>
   <compound refid="namespaceentity_1_1migrations_1_10001__initial" kind="namespace"><name>entity::migrations::0001_initial</name>
   </compound>
+  <compound refid="namespaceentity_1_1migrations_1_10002__auto__20181118__1016" kind="namespace"><name>entity::migrations::0002_auto_20181118_1016</name>
+  </compound>
+  <compound refid="namespaceentity_1_1migrations_1_10003__auto__20181118__1038" kind="namespace"><name>entity::migrations::0003_auto_20181118_1038</name>
+  </compound>
+  <compound refid="namespaceentity_1_1migrations_1_10004__auto__20181118__1608" kind="namespace"><name>entity::migrations::0004_auto_20181118_1608</name>
+  </compound>
   <compound refid="namespaceentity_1_1models" kind="namespace"><name>entity::models</name>
   </compound>
   <compound refid="namespaceentity_1_1models_1_1company" kind="namespace"><name>entity::models::company</name>
   </compound>
   <compound refid="namespaceentity_1_1models_1_1entity" kind="namespace"><name>entity::models::entity</name>
+  </compound>
+  <compound refid="namespaceentity_1_1models_1_1group" kind="namespace"><name>entity::models::group</name>
   </compound>
   <compound refid="namespaceentity_1_1models_1_1person" kind="namespace"><name>entity::models::person</name>
   </compound>
@@ -2653,14 +2702,14 @@
   <compound refid="namespaceentity_1_1views_1_1entity" kind="namespace"><name>entity::views::entity</name>
   </compound>
   <compound refid="namespaceentity_1_1views_1_1person" kind="namespace"><name>entity::views::person</name>
-    <member refid="namespaceentity_1_1views_1_1person_1a8281d63319cef135373d2d32cb2d4cec" kind="function"><name>find_person</name></member>
     <member refid="namespaceentity_1_1views_1_1person_1a3352593bccea9eb51e893ee8134de59e" kind="function"><name>index</name></member>
     <member refid="namespaceentity_1_1views_1_1person_1a59765ac90d4847fff0ce34827c0de1e6" kind="function"><name>person_search</name></member>
     <member refid="namespaceentity_1_1views_1_1person_1a6bf729d534b708e4ba2fbcda72406279" kind="function"><name>person_by_name</name></member>
-    <member refid="namespaceentity_1_1views_1_1person_1a505faaea2772b1265ab553362760a28e" kind="function"><name>person_detail</name></member>
     <member refid="namespaceentity_1_1views_1_1person_1a625ae7da8c2bae259f587c853f308154" kind="function"><name>person_add</name></member>
     <member refid="namespaceentity_1_1views_1_1person_1a2d09816259171bcbd2b651e908603dcb" kind="function"><name>person_update</name></member>
     <member refid="namespaceentity_1_1views_1_1person_1a658c9f2105a654c0e8175385f098ab88" kind="function"><name>person_delete</name></member>
+    <member refid="namespaceentity_1_1views_1_1person_1a505faaea2772b1265ab553362760a28e" kind="function"><name>person_detail</name></member>
+    <member refid="namespaceentity_1_1views_1_1person_1a8281d63319cef135373d2d32cb2d4cec" kind="function"><name>find_person</name></member>
   </compound>
   <compound refid="namespaceevent" kind="namespace"><name>event</name>
   </compound>
@@ -2868,6 +2917,8 @@
   </compound>
   <compound refid="namespaceuser_1_1migrations_1_10003__auto__20181028__1605" kind="namespace"><name>user::migrations::0003_auto_20181028_1605</name>
   </compound>
+  <compound refid="namespaceuser_1_1migrations_1_10004__auto__20181118__1016" kind="namespace"><name>user::migrations::0004_auto_20181118_1016</name>
+  </compound>
   <compound refid="namespaceuser_1_1models" kind="namespace"><name>user::models</name>
   </compound>
   <compound refid="namespaceuser_1_1tests" kind="namespace"><name>user::tests</name>
@@ -2880,6 +2931,24 @@
   <compound refid="namespaceutils_1_1admin" kind="namespace"><name>utils::admin</name>
   </compound>
   <compound refid="namespaceutils_1_1apps" kind="namespace"><name>utils::apps</name>
+  </compound>
+  <compound refid="namespaceutils_1_1choices" kind="namespace"><name>utils::choices</name>
+    <member refid="namespaceutils_1_1choices_1aeb4458b1077a80914f6a73970ff779dd" kind="variable"><name>INDUSTRY</name></member>
+    <member refid="namespaceutils_1_1choices_1ae06f2c37e77034b7d191ccff6560d56c" kind="variable"><name>PREFIX</name></member>
+    <member refid="namespaceutils_1_1choices_1a8e082edcea33ef33f9ca51541b0e829b" kind="variable"><name>PHONENUMBERTYPE</name></member>
+    <member refid="namespaceutils_1_1choices_1a9997adc336b25cde3b07da782c87e107" kind="variable"><name>ADDRESSTYPE</name></member>
+    <member refid="namespaceutils_1_1choices_1a59f6d4ad8ae46e7b34b41cc386ac2bf0" kind="variable"><name>TYPECHOICES</name></member>
+    <member refid="namespaceutils_1_1choices_1adfa58eb8752f60430c221c594157c9c6" kind="variable"><name>ROLES</name></member>
+    <member refid="namespaceutils_1_1choices_1a0a5f4e8428a006a002c20c481630a5a2" kind="variable"><name>LEAD_STATUS</name></member>
+    <member refid="namespaceutils_1_1choices_1ac73624d5ed32be52e49a69513412871b" kind="variable"><name>LEAD_SOURCE</name></member>
+    <member refid="namespaceutils_1_1choices_1ae5536bbcd32737e8100125bbece082a1" kind="variable"><name>STATUS_CHOICE</name></member>
+    <member refid="namespaceutils_1_1choices_1ac622df874a6060b4e783a98cfdb3417e" kind="variable"><name>PRIORITY_CHOICE</name></member>
+    <member refid="namespaceutils_1_1choices_1ac94cf0afd74e3a917f1402a8d19a51e8" kind="variable"><name>CASE_TYPE</name></member>
+    <member refid="namespaceutils_1_1choices_1a60794e1de6c2f55349285387aaa5f9b6" kind="variable"><name>STAGES</name></member>
+    <member refid="namespaceutils_1_1choices_1af91d0a76fde509bb56113861692b9288" kind="variable"><name>SOURCES</name></member>
+    <member refid="namespaceutils_1_1choices_1a281b4eeb5499e2c4312d7e8dfa82d477" kind="variable"><name>EVENT_PARENT_TYPE</name></member>
+    <member refid="namespaceutils_1_1choices_1a670249e5496051c84bbe11b39dcdaab0" kind="variable"><name>EVENT_STATUS</name></member>
+    <member refid="namespaceutils_1_1choices_1ab8b5ecefd04341582b684c6f1c84534a" kind="variable"><name>COUNTRIES</name></member>
   </compound>
   <compound refid="namespaceutils_1_1forms" kind="namespace"><name>utils::forms</name>
   </compound>
@@ -3109,6 +3178,12 @@
   </compound>
   <compound refid="utils_2views_8py" kind="file"><name>views.py</name>
   </compound>
+  <compound refid="0002__auto__20181118__1016_8py" kind="file"><name>0002_auto_20181118_1016.py</name>
+  </compound>
+  <compound refid="0003__auto__20181118__1038_8py" kind="file"><name>0003_auto_20181118_1038.py</name>
+  </compound>
+  <compound refid="0004__auto__20181118__1608_8py" kind="file"><name>0004_auto_20181118_1608.py</name>
+  </compound>
   <compound refid="models_2company_8py" kind="file"><name>company.py</name>
   </compound>
   <compound refid="views_2company_8py" kind="file"><name>company.py</name>
@@ -3116,6 +3191,8 @@
   <compound refid="models_2entity_8py" kind="file"><name>entity.py</name>
   </compound>
   <compound refid="views_2entity_8py" kind="file"><name>entity.py</name>
+  </compound>
+  <compound refid="group_8py" kind="file"><name>group.py</name>
   </compound>
   <compound refid="models_2person_8py" kind="file"><name>person.py</name>
   </compound>
@@ -3145,74 +3222,78 @@
   </compound>
   <compound refid="0003__auto__20181028__1605_8py" kind="file"><name>0003_auto_20181028_1605.py</name>
   </compound>
+  <compound refid="0004__auto__20181118__1016_8py" kind="file"><name>0004_auto_20181118_1016.py</name>
+  </compound>
+  <compound refid="choices_8py" kind="file"><name>choices.py</name>
+  </compound>
   <compound refid="hash_8py" kind="file"><name>hash.py</name>
   </compound>
   <compound refid="custom__tags_8py" kind="file"><name>custom_tags.py</name>
   </compound>
-  <compound refid="dir_a8503cfef60c7ab3db57c7470ab606a1" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case</name>
+  <compound refid="dir_76bb9ea0f7886dbf7adb6612b1b3a286" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/case</name>
   </compound>
-  <compound refid="dir_60f33a207eab4b9adfd584c149eb16d4" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django</name>
+  <compound refid="dir_81a2e64b77b468675cb720476a2c7d80" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django</name>
   </compound>
-  <compound refid="dir_e011037cce0b733a263d9302d4bf8230" kind="dir"><name>//freenas/UserFiles/josh/Documents</name>
+  <compound refid="dir_dc7fddb972531d5771c9ee4e696bbec2" kind="dir"><name>Y:/Folder Redirection/josh/Documents</name>
   </compound>
-  <compound refid="dir_03485cc31d4d38413b233c1cb3764625" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity</name>
+  <compound refid="dir_252e153d394df6121c6c08faee54e603" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity</name>
   </compound>
-  <compound refid="dir_120a33f2a659825ee913ab50c54aa2a9" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/event</name>
+  <compound refid="dir_009f26da91472e0a9228898b9935bf13" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/event</name>
   </compound>
-  <compound refid="dir_75a618205060b49e4a090f401e30ad34" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence</name>
+  <compound refid="dir_5277c6242bd0b8e25fe743c1d7147865" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence</name>
   </compound>
-  <compound refid="dir_f93938482bc349f4ee218ab8860d5e0c" kind="dir"><name>//freenas</name>
+  <compound refid="dir_03a694c93b5d361a55d514da7dcbba56" kind="dir"><name>Y:/Folder Redirection</name>
   </compound>
-  <compound refid="dir_c8e661cd2bd0bf7d3a282f3c9c0bcd42" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory</name>
+  <compound refid="dir_c4bdb0d89c9be2c74619b6b5bc640066" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory</name>
   </compound>
-  <compound refid="dir_1304343dd3d7c6ba19da1fc0d6cb664b" kind="dir"><name>//freenas/UserFiles/josh</name>
+  <compound refid="dir_8fe3d8e6895f41aa1138a0e2596a1b42" kind="dir"><name>Y:/Folder Redirection/josh</name>
   </compound>
-  <compound refid="dir_9514a70a625f8f6bc00fca44bae1b649" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases</name>
+  <compound refid="dir_87c81e77e449fd8dca65a70f222f746e" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases</name>
   </compound>
-  <compound refid="dir_ad33af767e174d533880d7bf5fc52781" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases</name>
+  <compound refid="dir_900225316219b0dd6ad08fe2e3ca9529" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases</name>
   </compound>
-  <compound refid="dir_c360ddbf4b760fbd04c178d30121a55f" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases</name>
+  <compound refid="dir_488bf8d652f6b22f79d4360bf427b9af" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases</name>
   </compound>
-  <compound refid="dir_a4709580fbdb10d8ad70b25b69eb866d" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/loan</name>
+  <compound refid="dir_b96ecbc6bdc17fb5cef6346afef1eea3" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/loan</name>
   </compound>
-  <compound refid="dir_dce4d8468a9c6a8117bfcf0d4f1c9876" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/migrations</name>
+  <compound refid="dir_b8624ccc826791217b0119262e2d66d3" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/migrations</name>
   </compound>
-  <compound refid="dir_fb2da5e04af24002dd1651a19a106490" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/user/migrations</name>
+  <compound refid="dir_d1b040791b9be8bc6654da3b889a2a01" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/user/migrations</name>
   </compound>
-  <compound refid="dir_e430d75e7d3a6adb99ecfcb916a100c2" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/task/migrations</name>
+  <compound refid="dir_8484a6012617d7a43014105e09e036f6" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/task/migrations</name>
   </compound>
-  <compound refid="dir_34afd6a76ce99c5afd59d379322cbd42" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/note/migrations</name>
+  <compound refid="dir_f42cf888e4c8bfe1afa860b47880533f" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/note/migrations</name>
   </compound>
-  <compound refid="dir_a542c885bacd7713614d5ef71d2fd806" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/loan/migrations</name>
+  <compound refid="dir_e41082d759719c24dc1081f4ceca793b" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/loan/migrations</name>
   </compound>
-  <compound refid="dir_11c0e9a9e36bf5d958bdb22ea4089f9f" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory/migrations</name>
+  <compound refid="dir_c97f0dde549634cedbbeb472eb77fd48" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory/migrations</name>
   </compound>
-  <compound refid="dir_245e9d7b85668b8f54985a5a76aa145d" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/migrations</name>
+  <compound refid="dir_e89faf34b537cce4b2c1787bc1b04169" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/migrations</name>
   </compound>
-  <compound refid="dir_e0297f2e63ef0acf3ed2d51eac165058" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/event/migrations</name>
+  <compound refid="dir_31133d80e0c902fcd5ee49d7b6c5c132" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/event/migrations</name>
   </compound>
-  <compound refid="dir_dbe33478d9b06f682d7f042e8fc3b576" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/migrations</name>
+  <compound refid="dir_7b88d93dd8fe937990bef19bf1cbf395" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/migrations</name>
   </compound>
-  <compound refid="dir_daabff8f07bec6658fc079f1ff9d367a" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/migrations</name>
+  <compound refid="dir_732d3c8ca63d784acac4514e1f1cb1a8" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/case/migrations</name>
   </compound>
-  <compound refid="dir_28268a576038f563c11775d7b88c1e73" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/models</name>
+  <compound refid="dir_cc578158b5175c4bd4fc675fead801a0" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/models</name>
   </compound>
-  <compound refid="dir_b04f3c104696cc3a8223815754414fb5" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code</name>
+  <compound refid="dir_d9f65fd8934587b3309e6bf66f776e8f" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code</name>
   </compound>
-  <compound refid="dir_9181a9d66e7969b8664eb81fd64c195f" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/note</name>
+  <compound refid="dir_ad689bcd5feb6c98559a6621e66c9dc0" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/note</name>
   </compound>
-  <compound refid="dir_c25900a9e72196c885ef041c1706ed4f" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects</name>
+  <compound refid="dir_e72c7fdf1a1278088dcc397e138291f4" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects</name>
   </compound>
-  <compound refid="dir_b8c8b481d3bdebd762ff84c97c436e4c" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/task</name>
+  <compound refid="dir_e430cb12092cf33aac4fc808ceefac44" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/task</name>
   </compound>
-  <compound refid="dir_53ff450fbe56dc17836927b20c5269b7" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/templatetags</name>
+  <compound refid="dir_d329a1a43a7b64047c4ecf74733c9030" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/templatetags</name>
   </compound>
-  <compound refid="dir_778e2e1cb4c8fb0ae2f42473b0f91fa4" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/user</name>
+  <compound refid="dir_2f3f4231ee31c54e678c118ea312aa64" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/user</name>
   </compound>
-  <compound refid="dir_d0507bc61af4e35d87d4be9c92d9f022" kind="dir"><name>//freenas/UserFiles</name>
+  <compound refid="dir_4676fbdc54a9fe3290064de495fb8ca8" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/utils</name>
   </compound>
-  <compound refid="dir_33c2855e8740ae07f0f3b48be39f15cf" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/utils</name>
+  <compound refid="dir_0b4ee21015842d2fbf8715a13fc1a4f6" kind="dir"><name>Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/views</name>
   </compound>
-  <compound refid="dir_44cb161a3ae6b69598cff74f5d94f65c" kind="dir"><name>//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/views</name>
+  <compound refid="dir_b93ca4f67e5c4f3d8967bcc66a8efe61" kind="dir"><name>Y:</name>
   </compound>
 </doxygenindex>

@@ -11,6 +11,7 @@
 
 <!-- Left Panel -->
 
+
 <!-- Right Panel -->
 
 {% block summary_buttonurl %}{% url 'person_update' object.pk %}{% endblock %}
@@ -19,38 +20,52 @@
 <!-- Tabs -->
 <!-- Panel 3 - -->
 {% block tab3_header %}Personal Details{% endblock %}
+{% block tab14_header %}Change History{% endblock %}
+{% block tab15_header %}Billing History{% endblock %}
 
 <!-- Tab panels -->
 <!-- Panel 1 - Details -->
 {% block panel1_content %}
-<div class="row">
-
-        <!-- Details -->
+    <div class="row">
+        <!-- Main Details -->
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
                     <p class="card-text">
-                        <h3>Details</h3>
-                        <h5>Company Type: {{ object.type }}</h5>
-                        <h5>Company Status: {{ object.status }}</h5>
-                        <h5>Company Classification:{{ object.classification}}</h5>
-                        <h5>Company Authorisation: {{ object.authorisation }}</h5>
-                        <h5>Company Deadline: {{ object.deadline }}</h5>
-                        <h5>Company Creation Date: {{ object.creation_date }}</h5>
+                        <h3>
+                            {% if object.prefix %}{{ object.prefix }}{% endif %}
+                            {% if object.first_name %}{{ object.first_name }}{% endif %}
+                            {% if object.middle_name %}{{ object.middle_name }}{% endif %}
+                            {% if object.last_name %}{{ object.last_name }}{% endif %}
+                            {% if object.suffix %}{{ object.suffix }}{% endif %}
+                        </h3>
+                        <h5>Nickname: {{ object.nickname }}</h5>
+                        <h5>Aliases: {{ object.aliases }}</h5>
+                        <h5>Notes: {{ object.notes }}</h5>
+                        <br><br>
+                        <h3>Work</h3>
+                        <h5>Taxfile: {{ object.taxfile }}</h5>
+                        <h5>Date Started: {{ object.date_started }}</h5>
+                        <h5>Salary: {{ object.salary }}</h5>
+                        <h5>Job Title: {{ object.job_title }}</h5>
+                        <h5>Role: {{ object.role }}</h5>
                     </p>
                 </div>
             </div>
         </div>
             
-        <!-- Details -->
+        <!-- Access  -->
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
                     <p class="card-text">
                         <h3>Details</h3>
-                        <h5>Company Brief: {{ object.brief }}</h5>
-                        <h5>Company Reference: {{ object.reference }}</h5>
-                        <h5>Company Location: {{ object.location }}</h5>
+                        <h5>Type: {{ object.type }}</h5>
+                        <h5>Status: {{ object.status }}</h5>
+                        <h5>Classification:{{ object.classification}}</h5>
+                        <h5>Authorisation: {{ object.authorisation }}</h5>
+                        <h5>Deadline: {{ object.deadline }}</h5>
+                        <h5>Creation Date: {{ object.creation_date }}</h5>
                     </p>
                 </div>
             </div>
@@ -214,10 +229,149 @@
 {% endblock %}
 
 <!-- Panel 3 - Personal -->
-{% block panel3_content %}Personal{% endblock %}
+{% block panel3_content %}
+    <div class="row">
 
-<!-- Panel 4 - Case -->
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h3>Details</h3>
+                        <h5>Gender: {{ object.gender }}</h5>
+                        <h5>Birthday: {{ object.birthday }}</h5>
+                        <h5>Anniversary: {{ object.anniversary }}</h5>
+                        <h5>Height: {{ object.height }}</h5>
+                        <h5>Weight: {{ object.weight }}</h5>
+                        <h5>Age: {{ object.age }}</h5>
+                    </p>
+                </div>
+            </div>
+        </div>
+            
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h3>Details</h3>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
 
-<!-- Panel 14 - History -->
+<!-- Panel 4 - Related Cases -->
+{% block panel4_content %}
+    <div class="row">
+    <!-- Case Section -->
+    <!-- Table Section -->
+        {% if casepersons %}
+            <table class="table">
+                <!-- Table Head -->
+                <thead>
+                <tr>
+                    <th>Case Title</th>
+                    <th>Case Description</th>
+                    <th>Case Status</th>
+                    <th>Association</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+        
+                <!-- Table Body -->
+                <tbody>
+                    {% for table_object in casepersons %}
+                        <tr>                                   
+                            <!-- ID -->
+                            <td>
+                                <a href="{% url 'case_detail' table_object.case.id %}" role="button">
+                                    {{ table_object.case.title }}
+                                </a>
+                            </td>
+                                
+                            <!-- Case Description -->
+                            <td>{{ table_object.case.description }}</td>
+
+                            <!-- Case Background -->
+                            <td>{{ table_object.case.status }}</td>
+
+                            <!-- Case Status -->
+                            <td>{{ table_object.type }}</td>
+
+                            <!-- Case Type -->
+                            <td>{{ table_object.role }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <!-- Table Else -->
+        {% else %}
+            <p>There is no Case History for this Person</p>
+        {% endif %}
+    </div>
+{% endblock %}
+
+<!-- Panel 14 - Edit History -->
+{% block panel14_content %}
+    <div class="row">
+        <p>{{ history_count }}</p><br />
+        <p>{{ history }}</p><br />
+    <!-- Case Section -->
+    <!-- Table Section -->
+        {% if history %}
+            <table class="table">
+                <!-- Table Head -->
+                <thead>
+                <tr>
+
+                    <th>Case Title</th>
+                    <th>Case Description</th>
+                    <th>Case Status</th>
+                    <th>Association</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+        
+                <!-- Table Body -->
+                <tbody>
+                    
+                    {% for table_object in history %}
+                        <tr>                                   
+                            <!-- ID -->
+                            <td>
+                                {#<a href="{% url 'case_detail' table_object.case.id %}" role="button">#}
+                                    
+                                    {{ table_object.change_reason }}
+                                </a>
+                            </td>
+                                
+                            <!-- Case Description -->
+                            <td>{{ table_object.description }}</td>
+
+                            <!-- Case Background -->
+                            <td>{{ table_object.status }}</td>
+
+                            <!-- Case Status -->
+                            <td>{{ table_object.type }}</td>
+
+                            <!-- Case Type -->
+                            <td>{{ table_object.role }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <!-- Table Else -->
+        {% else %}
+            <p>There is no Edit History for this Person</p>
+        <p>{{ history_count }}</p><br />
+        <p>{{ changes }}</p><br />
+        <p>{{ history }}</p><br />
+
+        {% endif %}
+    </div>
+{% endblock %}
 
 <!-- Panel 15 - Billing -->

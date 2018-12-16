@@ -2,48 +2,35 @@
 
 from django.db import models
 from django.urls import reverse
-from simple_history.models import HistoricalRecords
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
-from entity.models.entity import Address, Telephone, Email, Website, Social, Prefix, ContactMethod
-from django.utils.timezone import now as timezone_now
+from simple_history.models import HistoricalRecords
+from utils.choices import INDUSTRY
+from utils.models import ObjectDescription
+from utils.models import Authorisation
+from utils.models import BaseObject
+from entity.models.entity import Address
+from entity.models.entity import Telephone
+from entity.models.entity import Email
+from entity.models.entity import Website
+from entity.models.entity import Social
+from entity.models.entity import ContactMethod
+
 
 ## Admin Models
-class CompanyAuthorisation(Authorisation):
-    """
-    Inherited model to contain information about a company authorisation.
+class CompanyClassification(BaseObject):
+    """ Model to contain information about company classification.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
 
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Company Authorisation')
-        verbose_name_plural = _('Company Authorisations')
-    
-
-class CompanyClassification(Classification):
-    """
-    Inherited model to contain information about a company classification.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
     """
 
     history = HistoricalRecords()
@@ -53,19 +40,19 @@ class CompanyClassification(Classification):
         verbose_name_plural = _('Company Classifications')
 
 
-class CompanyType(Type):
-    """
-    Inherited model to contain information about a company type.
+class CompanyType(BaseObject):
+    """ Model to contain information about company type.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+
     """
 
     history = HistoricalRecords()
@@ -75,19 +62,19 @@ class CompanyType(Type):
         verbose_name_plural = _('Company Types')
 
 
-class CompanyCategory(Category):
-    """
-    Inherited model to contain information about a company category.
+class CompanyCategory(BaseObject):
+    """ Model to contain information about company category.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+
     """
     
     history = HistoricalRecords()
@@ -97,19 +84,19 @@ class CompanyCategory(Category):
         verbose_name_plural = _('Company Categories')
 
 
-class CompanyStatus(Status):
-    """
-    Inherited model to contain information about a company status.
+class CompanyStatus(BaseObject):
+    """ Model to contain information about company status.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+
     """
     
     history = HistoricalRecords()
@@ -119,24 +106,28 @@ class CompanyStatus(Status):
         verbose_name_plural = _('Company Status')
 
 
-class CompanyStatusGroup(StatusGroup):
-    """
-    Inherited model to contain information about a comapny status group.
+class CompanyStatusGroup(BaseObject):
+    """ Model to contain information about company status groups.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
-    
+    Args:
+        status (CompanyStatus): Status in group
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+
     """
 
     # Linked Fields
-    status = models.ManyToManyField(CompanyStatus, blank=True, verbose_name="Company Status")
+    status = models.ManyToManyField(
+        CompanyStatus, 
+        blank=True, 
+        verbose_name=_("Company Status"),
+        help_text=_("Select Company Status"))
     
     history = HistoricalRecords()
 
@@ -144,114 +135,168 @@ class CompanyStatusGroup(StatusGroup):
         verbose_name = _('Company Status Group')
         verbose_name_plural = _('Company Status Groups')
 
+
+## Main Models
+class Company(ObjectDescription):
+    """ Model to contain information about company.
+
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str, optional) [125]: Company Title
+        code (str, optional) [5]: Stock Market Code
+        logo_upload (FileField, optional) : Company logo upload
+        industry (int, optional) : Industry
+        address (Address, optional) : Address
+        telephone (Telephone, optional) : Telephone
+        email (Email, optional) : Email
+        website (website, optional) : Website
+        social (Social, optional) : Social media
+        type (CompanyType, optional) : Company Type
+        status (CompanyStatus, optional) : Company  Status
+        classification (CompanyClassification, optional) : Company Calssification
+        category (CompanyCategory, optional) : Company Category
+        authorisation (Authorisation, optional) : Company Authorisation
+        affiliations (Groups, optional): Affiliations
+        private (bool, optional): Is private
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+        slug (slug, optional) : Title Slug
     
-class CompanyAddress(ContactMethod):
+    Methods:
+        primary_address (Address) : Gets Primary Address
+        primary_telephone (Telephone) : Gets Primary Telephone
+        primary_email (Email) : Gets Primary Email
+        primary_website (Email) : Gets Primary Website
+        primary_social (Email) : Gets Primary Social Account
     """
-    Inherited model to contain information about a company address.
 
-    :line1 (optional):
-    :line2 (optional):
-    :line3 (optional):
-    :city (optional):
-    :private (optional):
-    :state (optional):
-    :postcode (optional):
+    ## General Fields ##
+    title = models.CharField(
+        max_length=125, 
+        null=True, 
+        blank=True, 
+        verbose_name=_("Title"),
+        help_text=_("Enter a title for the company"))
+
+    code = models.CharField(
+        max_length=5, 
+        null=True, 
+        blank=True, 
+        verbose_name=_("Issuer Code"),
+        help_text=_("Enter the issuer code for the company"))
     
-    """
+    logo_upload = models.FileField(
+        upload_to='',
+        blank=True, 
+        null=True, 
+        verbose_name=_("Logo"),
+        help_text=_("Upload an logo for the company"))
 
-    # General Fields
-    line1 = models.CharField(max_length=255, null=True, blank=True)
-    line2 = models.CharField(max_length=255, null=True, blank=True)
-    line3 = models.CharField(max_length=255, null=True, blank=True)
-    city = models.CharField(max_length=255, null=True, blank=True)
-    postcode = models.CharField(max_length=31, blank=True)
-
-    # Linked Fields
-    #state = models.ForeignKey(State, on_delete=models.DO_NOTHING)
-
-    # Auto Fields
+    industry = models.PositiveIntegerField(
+        choices=INDUSTRY, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Industry"),
+        help_text=_("Select an industry for the company"))
     
+    ## Contact Fields ##
+    address = models.ManyToManyField(
+        Address,
+        related_name=_('company_address'),
+        verbose_name=_("Address"),
+        help_text=_("Enter the address"))
+
+    telephone = models.ManyToManyField(
+        Telephone,
+        related_name=_('company_telephone'),
+        verbose_name=_("Telephone"),
+        help_text=_("Enter the telephone number"))
+
+    email = models.ManyToManyField(
+        Email,
+        related_name=_('company_email'),
+        verbose_name=_("Email"),
+        help_text=_("Enter the email address"))
+
+    website = models.ManyToManyField(
+        Website,
+        related_name=_('company_website'),
+        verbose_name=_("Website"),
+        help_text=_("Enter the website"))
+
+    social = models.ManyToManyField(
+        Social,
+        related_name=_('company_social'),
+        verbose_name=_("Social"),
+        help_text=_("Enter the social media service"))
+
+    ## Linked Fields ##
+    type = models.ForeignKey(
+        CompanyType, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        related_name=_('company_type'),
+        verbose_name=_("Company Type"),
+        help_text=_("Select the type"))
+
+    status = models.ForeignKey(
+        CompanyStatus, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        related_name=_('company_status'),
+        verbose_name=_("Company Status"),
+        help_text=_("Select the status"))
+
+    classification = models.ForeignKey(
+        CompanyClassification, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        related_name=_('company_classification'),
+        verbose_name=_("Company Classification"),
+        help_text=_("Select the classification"))
+
+    category = models.ForeignKey(
+        CompanyCategory, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        related_name=_('company_category'),
+        verbose_name=_("Company Category"),
+        help_text=_("Select the category"))
+
+    authorisation = models.ForeignKey(
+        Authorisation, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        related_name=_('company_authorisation'),
+        verbose_name=_("Company Authorisation"),
+        help_text=_("Select the authorisation level"))
+
+    #affiliation = models.ManyToManyField(
+    #    Group,
+    #    related_name=_('company_affiliation'),
+    #    verbose_name="Affiliation"),
+    #    help_text=_("Select any affiliations")
+    
+    ## Auto Fields ##
+    slug = models.SlugField(
+        editable=False, 
+        null=True, 
+        blank=True, 
+        verbose_name=_("Title Slug"),
+        help_text=_("Enter the slug"))
+
     history = HistoricalRecords()
 
     class Meta:
-        verbose_name="Address"
-        verbose_name_plural="Addresses"
-        
-    def __unicode__(self):
-        rv = self.line1
-        if self.line2:
-            rv += ', '+self.line2
-        if self.line3:
-            rv += ', '+self.line3
-        rv += ', '+self.city
-        rv += ', '+self.state.short_name
-        if self.zip:
-            rv += ', '+self.zip
-        rv += ', '+self.state.country.code
-        return rv
-
-    def __str__(self):
-        return self.__unicode__()
-
-
-## Main Models
-class Company(ObjectDescriptionMixin):
-    """
-    Model to contain information about a company.
-
-    :title (optional):
-    :code (optional):
-    :image (optional):
-    :notes (optional):
-    :primary_market (optional):
-    :industry (optional):
-    :prefix (optional):
-    :social (optional):
-    :address (optional):
-    :telephone (optional):
-    :email (optional):
-    :website (optional):
-    :type (optional):
-    :category (optional):
-    :status (optional):
-    :classification (optional):
-    :authorisation (optional):
-    :slug (optional):
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-
-    """
-
-    # General Fields
-    title = models.CharField(max_length=255, db_index=True, null=True, blank=True, verbose_name="Company Title")
-    code = models.CharField(max_length=255, db_index=True, null=True, blank=True, verbose_name="Issuer Code")
-    #image = models.ImageField(upload_to='mugshots',null=True, blank=True)
-    notes = models.TextField(max_length=255, null=True, blank=True, verbose_name="Company Notes")
-    primary_market = models.TextField(max_length=255, null=True, blank=True, verbose_name="Primary Market")
-    industry = models.TextField(max_length=255, null=True, blank=True, verbose_name="Industry")
-    
-    # Linked Fields
-    prefix = models.ForeignKey(Prefix, on_delete=models.DO_NOTHING, null=True, blank=True)
-    #social = models.ManyToManyField(Social, verbose_name="Social")
-    address = models.ManyToManyField(CompanyAddress, verbose_name="Address")
-    telephone = models.ManyToManyField(Telephone, verbose_name="Telephone")
-    email = models.ManyToManyField(Email, verbose_name="Email")
-    website = models.ManyToManyField(Website, verbose_name="Website")
-    type = models.ForeignKey(CompanyType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Company Type")
-    category = models.ForeignKey(CompanyCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Company Category")
-    status = models.ForeignKey(CompanyStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Company Status")
-    classification = models.ForeignKey(CompanyClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Company Classification")
-    authorisation = models.ForeignKey(CompanyAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Company Authorisation")
-    
-    # Auto Fields
-    slug = models.SlugField(editable=False, null=True, blank=True)
-
-    class Meta:
-        verbose_name_plural = _("People")
+        verbose_name_plural = _("Companies")
         
     def __str__(self):
         return "%s" % (self.title)
@@ -260,7 +305,9 @@ class Company(ObjectDescriptionMixin):
         try:
             return self.addresses.filter(primary=True)[0]
         except IndexError:
-            return None
+            if self.telephones.exists():
+                return self.telephones.all()[0]
+        return None
 
     def primary_telephone(self):
         try:
@@ -268,13 +315,31 @@ class Company(ObjectDescriptionMixin):
         except IndexError:
             if self.telephones.exists():
                 return self.telephones.all()[0]
-            return None
+        return None
         
     def primary_email(self):
         try:
             return self.emails.filter(primary=True)[0]
         except IndexError:
-            return None
+            if self.telephones.exists():
+                return self.telephones.all()[0]
+        return None
+
+    def primary_website(self):
+        try:
+            return self.website.filter(primary=True)[0]
+        except IndexError:
+            if self.website.exists():
+                return self.website.all()[0]
+        return None
+
+    def primary_social(self):
+        try:
+            return self.social.filter(primary=True)[0]
+        except IndexError:
+            if self.social.exists():
+                return self.social.all()[0]
+        return None
         
     def get_absolute_url(self):
         if not (self.pk):
@@ -283,12 +348,11 @@ class Company(ObjectDescriptionMixin):
 
     def save(self,force_insert=False, force_update=False):
         from django.template.defaultfilters import slugify
-        if not self.slug:
-            self.slug = slugify(self.title)
         if not self.pk:
-           self.created = timezone_now()
+           self.created = timezone.now()
         else:
             if not self.created:
-                self.created = timezone_now()
-            self.modified = timezone_now()
+                self.created = timezone.now()
+            self.modified = timezone.now()
+        self.slug = slugify(self.title)
         models.Model.save(self,force_insert,force_update)   

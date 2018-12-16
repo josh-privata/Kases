@@ -3,15 +3,24 @@
 #import vobject
 import re
 from django import http
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response
+from django.shortcuts import render
 #from django.core.urlresolvers import reverse
 #from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
 from django.contrib.sitemaps import Sitemap
-from entity.forms import AddressForm, TelephoneForm, EmailForm, WebsiteForm
-from entity.forms import CompanyForm, SearchForm, AdvancedSearchForm
+from entity.forms import AddressForm
+from entity.forms import  TelephoneForm
+from entity.forms import EmailForm
+from entity.forms import  WebsiteForm
+from entity.forms import CompanyForm
+from entity.forms import SocialForm
 from entity.models.company import Company
-from entity.models.entity import Address, Telephone, Email, Website
+from entity.models.entity import Address
+from entity.models.entity import Telephone
+from entity.models.entity import Email
+from entity.models.entity import Website
+from entity.models.entity import Social
 
 
 # Helper Classes
@@ -22,7 +31,7 @@ class ListWrapper:
 		return len(self._list)
 	def __getitem__(self,i):
 		return self._list[i]
-	  
+
 
 class AddressbookSitemap(Sitemap):
 	changefreq = "never"
@@ -45,8 +54,8 @@ def find_company(request,lastname,firstname):
 			return qs
 		qs = Company.objects.filter(last_name__istartswith=lastname)
 	return qs	
-    
-    
+
+
 def index(request):
 
 
@@ -125,24 +134,12 @@ def company_search(request,query):
 	return do_company_search(request, qs)
 
 
-def company_detail(request, object_id=None):
-	if object_id:
-		try:
-			company = Company.objects.get(pk=object_id)
-			context = { 'object':company,
-			'title':'%s'%(company.title),
-			'is_popup':request.GET.get('print',False) }
-			return render(request, 'entity/company/company_detail.html', context)
-		except Company.DoesNotExist:
-			raise http.Http404
-
-
 def company_add(request):
 	AddressFormSet = modelformset_factory(Address, form=AddressForm, can_delete=True)
 	TelephoneFormSet = modelformset_factory(Telephone, form=TelephoneForm, can_delete=True)
 	EmailFormSet = modelformset_factory(Email, form=EmailForm, can_delete=True)
 	WebsiteFormSet = modelformset_factory(Website, form=WebsiteForm, can_delete=True)
-	#SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
+	SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
 	company = None   
 	if request.method == 'POST':
 		#if request.POST.has_key('cancel'):
@@ -157,8 +154,8 @@ def company_add(request):
 		tel = TelephoneFormSet(request.POST,request.FILES,queryset=Telephone.objects.none(),prefix="tel")
 		email = EmailFormSet(request.POST,request.FILES,queryset=Email.objects.none(),prefix="email")
 		web = WebsiteFormSet(request.POST,request.FILES,queryset=Website.objects.none(),prefix="web")
-		#social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
-		if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid():
+		social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
+		if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid() and social.is_valid():
 			company = form.save()
 			for a in addr.save():
 				company.address.add(a)
@@ -168,6 +165,8 @@ def company_add(request):
 				company.email.add(e)
 			for w in web.save():
 				company.website.add(w) 
+			for s in social.save():
+				company.social.add(s)
 			company.save()
 			return http.HttpResponseRedirect(company.get_absolute_url())      
 	form = CompanyForm(prefix="company")
@@ -175,9 +174,9 @@ def company_add(request):
 	tel = TelephoneFormSet(queryset=Telephone.objects.none(),prefix="tel")
 	email = EmailFormSet(queryset=Email.objects.none(),prefix="email")
 	web = WebsiteFormSet(queryset=Website.objects.none(),prefix="web")
-	#social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
+	social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
 	context = { 'object':company, 'company':form, 'telephones':tel, 'emails':email,
-			   'websites':web, 'addresses':addr, }
+			   'websites':web, 'socials':social, 'addresses':addr, }
 	context['title']='New Addressbook Entry'
 	return render(request, 'entity/company/company_create.html', context)
 
@@ -187,7 +186,7 @@ def company_edit(request, object_id=None):
 	TelephoneFormSet = modelformset_factory(Telephone, form=TelephoneForm, can_delete=True)
 	EmailFormSet = modelformset_factory(Email, form=EmailForm, can_delete=True)
 	WebsiteFormSet = modelformset_factory(Website, form=WebsiteForm, can_delete=True)
-	#SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
+	SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
 	if object_id:
 		try:
 			company = Company.objects.get(pk=object_id)
@@ -214,15 +213,15 @@ def company_edit(request, object_id=None):
 			tel = TelephoneFormSet(request.POST,request.FILES,queryset=company.telephone.all(),prefix="tel")
 			email = EmailFormSet(request.POST,request.FILES,queryset=company.email.all(),prefix="email")
 			web = WebsiteFormSet(request.POST,request.FILES,queryset=company.website.all(),prefix="web")
-			#social = SocialFormSet(request.POST,request.FILES,queryset=company.social.all(),prefix="social")
+			social = SocialFormSet(request.POST,request.FILES,queryset=company.social.all(),prefix="social")
 		else:
 			form = CompanyForm(request.POST,request.FILES,prefix="company")
 			addr = AddressFormSet(request.POST,request.FILES,queryset=Address.objects.none(),prefix="addr")
 			tel = TelephoneFormSet(request.POST,request.FILES,queryset=Telephone.objects.none(),prefix="tel")
 			email = EmailFormSet(request.POST,request.FILES,queryset=Email.objects.none(),prefix="email")
 			web = WebsiteFormSet(request.POST,request.FILES,queryset=Website.objects.none(),prefix="web")
-			#social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
-		if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid():
+			social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
+		if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid() and social.is_valid():
 			if company:
 				company = form.save(commit=False)
 			else:
@@ -235,8 +234,8 @@ def company_edit(request, object_id=None):
 				company.email.add(e)
 			for w in web.save():
 				company.website.add(w) 
-			#for s in social.save():
-			#    company.social.add(w) 
+			for s in social.save():
+			    company.social.add(s) 
 			company.save()
 			return http.HttpResponseRedirect(company.get_absolute_url())       
 	elif company:
@@ -245,16 +244,16 @@ def company_edit(request, object_id=None):
 		tel = TelephoneFormSet(queryset=company.telephone.all(),prefix="tel")
 		email = EmailFormSet(queryset=company.email.all(),prefix="email")
 		web = WebsiteFormSet(queryset=company.website.all(),prefix="web")
-		#social = WebsiteFormSet(queryset=company.websites.all(),prefix="social")
+		social = WebsiteFormSet(queryset=company.websites.all(),prefix="social")
 	else:
 		form = CompanyForm(prefix="company")
 		addr = AddressFormSet(queryset=Address.objects.none(),prefix="addr")
 		tel = TelephoneFormSet(queryset=Telephone.objects.none(),prefix="tel")
 		email = EmailFormSet(queryset=Email.objects.none(),prefix="email")
 		web = WebsiteFormSet(queryset=Website.objects.none(),prefix="web")
-		#social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
+		social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
 	context = { 'object':company, 'company':form, 'telephones':tel, 'emails':email,
-			   'websites':web, 'addresses':addr, }
+			   'websites':web, 'socials':social, 'addresses':addr, }
 	if company:
 		context['title']='Edit %s' % (company.title)
 		context['can_delete']=True
@@ -275,6 +274,17 @@ def company_delete(request, object_id=None):
 		return http.HttpResponseRedirect(reverse('entity.views.index'))
 	return render_to_response('entity/company/company_delete.html',locals())
 
+
+def company_detail(request, object_id=None):
+	if object_id:
+		try:
+			company = Company.objects.get(pk=object_id)
+			context = { 'object':company,
+			'title':'%s'%(company.title),
+			'is_popup':request.GET.get('print',False) }
+			return render(request, 'entity/company/company_detail.html', context)
+		except Company.DoesNotExist:
+			raise http.Http404
 
 #def vcard_export(request):
 #    filename = 'addresses'
@@ -326,7 +336,7 @@ def company_delete(request, object_id=None):
 #            resp['Content-Disposition'] = 'attachment; filename="'+filename+'.vcf"'
 #            return resp
 #    raise http.Http404
- 
+
 
 
 #def do_company_search(request,queryset):
@@ -349,5 +359,3 @@ def company_delete(request, object_id=None):
 #    table.paginate(request,queryset)
 #    table.context['export_form'] = ExportForm({ 'ids':','.join([str(qs.pk) for qs in queryset]) })
 #    return render_to_response('entity/company/company_list.html',table.context,context_instance=RequestContext(request))
-   
-

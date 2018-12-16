@@ -15,6 +15,6 @@
 <codeline lineno="4" refid="classevidence_1_1apps_1_1evidence_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classevidence_1_1apps_1_1evidence_config" kindref="compound">evidenceConfig</ref>(AppConfig):</highlight></codeline>
 <codeline lineno="5" refid="classevidence_1_1apps_1_1evidence_config_1adaaf5181ee837260dcd6062483cdc26c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>name<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;evidence&apos;</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/apps.py"/>
+    <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/apps.py"/>
   </compounddef>
 </doxygen>

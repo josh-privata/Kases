@@ -10,22 +10,22 @@ from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
 from django_tables2 import SingleTableView
-from django.utils.translation import ugettext_lazy as _
+from utils.forms import BootstrapAuthenticationForm
 from django.forms.models import modelformset_factory
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import DetailView
 from django.views.generic import ListView, TemplateView
 from django.contrib.contenttypes.models import ContentType
-#from inventory.forms import DeviceCreateForm, DeviceUpdateForm
-from inventory.forms import CrispyDeviceCreateForm, CrispyDeviceUpdateForm, CommentUpdateForm
-from inventory.forms import CrispyDeviceUpdateForm
+from inventory.forms import DeviceCreateForm
+from inventory.forms import DeviceUpdateForm
 from inventory.models import Device
-from utils.forms import BootstrapAuthenticationForm
+
 
 
 EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
 
-## Main View 
+
 class InventoryHome(TemplateView):
     template_name = 'inventory/inventory_index.html'
 
@@ -76,7 +76,6 @@ class InventoryHome(TemplateView):
         return context
 
 
-### Abstract Views ###
 class DeviceDetail(DetailView):
     model = Device
     template_name = 'inventory/device/device_detail.html'
@@ -100,7 +99,7 @@ class DeviceDetail(DetailView):
 class DeviceCreate(CreateView):
     model = Device
     template_name = 'inventory/device/device_create.html'
-    form_class=CrispyDeviceCreateForm
+    form_class=DeviceCreateForm
 
     def get_context_data(self, **kwargs):
         context = super(DeviceCreate, self).get_context_data(**kwargs)
@@ -120,7 +119,7 @@ class DeviceCreate(CreateView):
 
 class DeviceUpdate(UpdateView):
     model = Device
-    form_class = CrispyDeviceCreateForm
+    form_class = DeviceCreateForm
     template_name = 'inventory/device/device_update.html'
 
     def get_context_data(self, **kwargs):
@@ -157,45 +156,6 @@ class DeviceDelete(DeleteView):
         data['success'] = True
         json_data = json.dumps(data)
         return HttpResponse(json_data, mimetype="application/json")
-
-
-class CommentUpdate(UpdateView):
-    '''An abstract CommentEdit View.'''
-    template_name = 'inventory/edit_comment.html'
-    # Must define the comment model to update, like so:
-    # model = IpadComment
-    form_class = CommentUpdateForm
-    pk_url_kwarg = 'comment_id'
-
-    def get_success_url(self):
-        """On success, redirect to the device's detail page."""
-        comment = self.get_object()
-        return comment.device_url
-
-
-#class CommentDelete(DeleteView):
-#    '''An abstract CommentDelete View.'''
-
-#    def get_comment_class(self):
-#        """Returns the comment class corresponding to a 
-#        specific device type. Must be implemented by descendant classes.
-        
-#        Example:
-#            return IpadComment
-#        """
-#        raise NotImplementedError
-
-#    def post(self, request, device_id, comment_id):
-#        response_data = {}
-#        # Delete the comment
-#        comment_class = self.get_comment_class()
-#        comment_class.objects.filter(pk=comment_id).delete()
-#        # Display a message
-#        messages.success(request, 'Successfully deleted comment.')
-#        response_data['success'] = True
-#        response_data['pk'] = comment_id
-#        json_data = json.dumps(response_data)
-#        return HttpResponse(json_data, mimetype='application/json')
 
 
 class DevicesList(TemplateView):

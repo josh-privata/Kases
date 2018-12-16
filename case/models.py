@@ -5,759 +5,1130 @@ from django.db import models
 from django.urls import reverse
 from django.conf import settings
 from django.utils import timezone
-from django.utils.timezone import now as timezone_now
 from django.utils.translation import ugettext_lazy as _
 from simple_history.models import HistoricalRecords
-from utils.models import ObjectDescriptionMixin, Authorisation, Category
-from utils.models import Classification, Priority, Type, Status, StatusGroup
-#import case.managers as managers
-from note.models import Note
+from utils.models import ObjectDescription
+from utils.models import Authorisation
+from utils.models import Priority
+from utils.models import BaseObject
+from utils.models import Note
+from utils.choices import ENTITY_TYPE_CHOICES
+from inventory.models import Device
 from event.models import Event
 from task.models import Task
 from evidence.models import Evidence
 from entity.models.person import Person
 from entity.models.company import Company
-from inventory.models import Device
-
+#import case.managers as managers
 
 ## Admin Models
-class CaseAuthorisation(Authorisation):
-    """
-    Inherited model to contain information about a case authorisation.
+class CaseClassification(BaseObject):
+	""" Model to contain information about a case classification.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by  
+	
+	"""
 
-    history = HistoricalRecords()
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Case Authorisation')
-        verbose_name_plural = _('Case Authorisations')
-    
-
-class CaseClassification(Classification):
-    """
-    Inherited model to contain information about a case classification.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Case Classification')
-        verbose_name_plural = _('Case Classifications')
+	class Meta:
+		verbose_name = _('Case Classification')
+		verbose_name_plural = _('Case Classifications')
 
 
-class CaseType(Type):
-    """
-    Inherited model to contain information about a case type.
+class CaseType(BaseObject):
+	""" Model to contain information about a case type.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-    
-    history = HistoricalRecords()
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by  
+	
+	"""
+	
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Case Type')
-        verbose_name_plural = _('Case Types')
+	class Meta:
+		verbose_name = _('Case Type')
+		verbose_name_plural = _('Case Types')
 
 
 class CasePriority(Priority):
-    """
-    Inherited model to contain information about a case priority.
+	"""  Model to contain information about a case priority.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by  
+	
+	"""
 
-    history = HistoricalRecords()
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Case Priority')
-        verbose_name_plural = _('Case Priorities')
-
-
-class CaseCategory(Category):
-    """
-    Inherited model to contain information about a case category.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Case Category')
-        verbose_name_plural = _('Case Categories')
+	class Meta:
+		verbose_name = _('Case Priority')
+		verbose_name_plural = _('Case Priorities')
 
 
-class CaseStatus(Status):
-    """
-    Inherited model to contain information about a case status.
+class CaseCategory(BaseObject):
+	""" Model to contain information about a case category.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		delta (int, optional): Time delta
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by 
+	
+	"""
 
-    history = HistoricalRecords()
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Case Status')
-        verbose_name_plural = _('Case Status')
+	class Meta:
+		verbose_name = _('Case Category')
+		verbose_name_plural = _('Case Categories')
 
 
-class CaseStatusGroup(StatusGroup):
-    """
-    Inherited model to contain information about a case status group.
+class CaseStatus(BaseObject):
+	""" Model to contain information about a case status.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
 
-    # Linked Fields
-    status = models.ManyToManyField(CaseStatus, blank=True, verbose_name="Case Status")
+	history = HistoricalRecords()
 
-    history = HistoricalRecords()
+	class Meta:
+		verbose_name = _('Case Status')
+		verbose_name_plural = _('Case Status')
 
-    class Meta:
-        verbose_name = _('Case Status Group')
-        verbose_name_plural = _('Case Status Groups')
+
+class CaseStatusGroup(BaseObject):
+	""" Model to contain information about a case status group.
+
+	Args:
+		status (EventStatus): Status in group
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
+
+	# Linked Fields
+	status = models.ManyToManyField(
+		CaseStatus, 
+		blank=True, 
+		verbose_name=_("Case Status"),
+		help_text=_("Select Case Status"))
+
+	history = HistoricalRecords()
+
+	class Meta:
+		verbose_name = _('Case Status Group')
+		verbose_name_plural = _('Case Status Groups')
 
 
 ## Main Models
-class Case(ObjectDescriptionMixin):
-    """
-    Model to contain information about a case.
+class Case(ObjectDescription):
+	""" Model to contain information about a case.
 
+	Args:
+        history (HistoricalRecord, auto): Historical records of object
+		title (str) [250] : Title
+		reference (str, optional) [45] : Reference
+		description (str, optional) [None] : Description
+		background (str, optional) [None] : Background
+		purpose (str, optional) [2500] : Purpose
+		deadline (Date, optional) : Deadline
+		image_upload (FileField, optional) : Image Upload 
+		note (Note, optional) : Note
+		type (Type, optional) : Type
+		status (Status, optional) : Status
+		classification (Classification, optional) : Classification
+		priority (Priority, optional) : Priority
+		category (Category, optional) : Category
+		authorisation (Authorisation, optional) : Authorisation
+		assigned_to (User, optional) : Assigned To
+		assigned_by (User, optional) : Assigned By
+		manager (User, optional) : Case Manager
+		judge (Person, optional) : Representing Judge
+		private (bool, optional): Is private
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+		slug (slug, auto): Slug of title    
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
+	Methods:
+		get_url (URL) : Gets Case edit url
+		_get_assigned_to (User) : Check for 'unassigned' or assigned to
+		_get_case (URL) : a combination of Case ID and queue slug.
+		_get_case_for_url (URL) : A URL-friendly Case ID, used in links.
 
-    :id (optional): 
-    :reference (optional):
-    :background (optional):
-    :purpose (optional):
-    :location (optional):
-    :brief (optional):
-    :slug (optional):
-    :image_upload (optional):
-    :deadline (optional):
-    :type (optional):
-    :status (optional):
-    :classification (optional):
-    :priority (optional):
-    :category (optional):
-    :authorisation (optional):
-    :assigned_to (optional):
-    :managed_by (optional):
-    :legal (optional):
-    :client (optional):
-    :assigned_by (optional):
+	"""
 
-    """
+	# General Fields
+	title = models.CharField(
+		max_length=350,
+		blank=False,
+		null=False,
+		verbose_name=_("Title"),
+		help_text=_("Enter a title for the Case"))
 
-    # General Fields
-    id = models.AutoField(primary_key=True)
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Title")
-    reference = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Reference")
-    background = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Background")
-    purpose = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Purpose")
-    location = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Location")
-    brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
-    slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Case Slug")
-    image_upload = models.FileField(blank=True, null=True, verbose_name="Case Image")
-    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
+	reference = models.CharField(
+		max_length=45, 
+		blank=True, 
+		null=True, 
+		verbose_name=_("Reference"),
+		help_text=_("Enter a reference code for the Case"))
 
-    # Linked Fields
-    type = models.ForeignKey(CaseType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Type")
-    status = models.ForeignKey(CaseStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Status")
-    classification = models.ForeignKey(CaseClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Classification")
-    priority = models.ForeignKey(CasePriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Priority")
-    category = models.ForeignKey(CaseCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Category")
-    authorisation = models.ForeignKey(CaseAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case Authorisation")
-    assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='case_assigned_to', blank=True, verbose_name="Assigned To")
-    managed_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Case Manager")
-    #legal = models.ManyToManyField(Personality, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Legal Advisor")
-    #client = models.ManyToManyField(Personality, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Client")
-    assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
-    
-    # Auto Fields
-    
-    history = HistoricalRecords()
+	description = models.TextField(
+		blank=True, 
+		null=True, 
+		verbose_name=_("Case Description"),
+		help_text=_("Enter a description for the Case"))
 
-    #manager = CaseManager()
+	background = models.TextField(
+		blank=True, 
+		null=True, 
+		verbose_name=_("Case Background"),
+		help_text=_("Enter a background for the Case"))
+	
+	purpose = models.CharField(
+		max_length=2500, 
+		blank=True, 
+		null=True, 
+		verbose_name=_("Case Purpose")    ,
+		help_text=_("Enter a purpose for the Case"))
+	
+	#deadline = models.DateField(
+	#    auto_now=False, 
+	#    null=True, 
+	#    verbose_name=_("Deadline"),
+	#    help_text=_("Enter a deadline for the Case"))
 
-    class Meta:
-        verbose_name = _('Case')
-        verbose_name_plural = _('Cases')
+	image_upload = models.FileField(
+		upload_to='uploads/',
+		blank=True, 
+		null=True, 
+		verbose_name=_("Image"),
+		help_text=_("Upload an image for the Case"))
 
-    def get_absolute_url(self):
-        return reverse('case_detail', kwargs={'pk': self.pk})
+	# Linked Fields
+	#note = models.ManyToManyField(
+	#    Notes, 
+	#    on_delete=models.DO_NOTHING, 
+	#    blank=True, 
+	#    null=True,
+	#    related_name=_('case_note'),
+	#    verbose_name=_("Case Note")
+	#    help_text=_("Select a judge"))
 
-    def __str__(self):
-        return '%s' % self.title
-    
-    
-    # Property Methods
-    def _get_case(self):
-        """ A user-friendly Case ID, which is a combination of Case ID and queue slug. This is generally used in e-mail subjects. """
-        return u"[%s]" % self.case_for_url
-    case = property(_get_case)
+	type = models.ForeignKey(
+		CaseType, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		related_name=_('case_type'),
+		verbose_name=_("Case Type"),
+		help_text=_("Select a case type"))
 
-    def _get_case_for_url(self):
-        """ A URL-friendly Case ID, used in links. """
-        return u"%s-%s" % (self.queue.slug, self.id)
-    case_for_url = property(_get_case_for_url)  
-    
-    def _get_assigned_to(self):
-        """
-        Custom property to allow us to easily print 'Unassigned' if a Case has no owner, or the users name if it's assigned.
-        If the user has a full name configured, we use that, otherwise their username.
-        """
-        if not self.assigned_to:
-            return _('Unassigned')
-        else:
-            if self.assigned_to.get_full_name():
-                return self.assigned_to.get_full_name()
-            else:
-                return self.assigned_to.get_username()
-    get_assigned_to = property(_get_assigned_to)
+	status = models.ForeignKey(
+		CaseStatus, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		related_name=_('case_status'),
+		verbose_name=_("Case Status"),
+		help_text=_("Select a case status"))
+
+	classification = models.ForeignKey(
+		CaseClassification, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		related_name=_('case_classification'),
+		verbose_name=_("Case Classification"),
+		help_text=_("Select a case classification"))
+
+	priority = models.ForeignKey(
+		CasePriority, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True, 
+		related_name=_('case_priority'),
+		verbose_name=_("Case Priority"),
+		help_text=_("Select a case priority"))
+
+	category = models.ForeignKey(
+		CaseCategory, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		related_name=_('case_category'),
+		verbose_name=_("Case Category"),
+		help_text=_("Select a case category"))
+
+	authorisation = models.ForeignKey(
+		Authorisation, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		related_name=_('case_authorisation'),
+		verbose_name=_("Case Authorisation"),
+		help_text=_("Select a case authorisation"))
+
+	assigned_to = models.ManyToManyField(
+		settings.AUTH_USER_MODEL, 
+		related_name=_('case_assigned_to'),
+		verbose_name=_("Assigned To"),
+		help_text=_("Select assigned to"))
+
+	assigned_by = models.ForeignKey(
+		settings.AUTH_USER_MODEL, 
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True, 
+		related_name=_('case_assigned_by'),
+		verbose_name=_("Assigned By"),
+		help_text=_("Select assigned by"))
+
+	manager = models.ForeignKey(
+		settings.AUTH_USER_MODEL,  
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True,
+		related_name=_('case_manager'),
+		verbose_name=_("Case Manager"),
+		help_text=_("Select a case manager"))
+
+	#judge = models.ForeignKey(
+	#    Person, 
+	#    on_delete=models.CASCADE, 
+	#    blank=True, 
+	#    null=True,
+	#    related_name=_('case_judge'),
+	#    verbose_name=_("Judge"),
+	#    help_text=_("Select a judge"))
+	
+	# Auto Fields
+	slug = models.SlugField(
+		blank=True, 
+		null=True, 
+		unique=True, 
+		verbose_name=_("Slug"),
+		help_text=_("A slug value representing title"))
+
+	history = HistoricalRecords()
+
+	#manager = CaseManager()
+
+	class Meta:
+		verbose_name = _('Case')
+		verbose_name_plural = _('Cases')
+
+	def get_absolute_url(self):
+		return reverse('case_detail', kwargs={'pk': self.pk})
+
+	def __str__(self):
+		return '%s' % self.title
+	
+	def _get_case(self):
+		""" A user-friendly Case ID, which is a combination of Case ID and queue slug. This is generally used in e-mail subjects. """
+		return u"[%s]" % self.case_for_url
+	case = property(_get_case)
+
+	def _get_case_for_url(self):
+		""" A URL-friendly Case ID, used in links. """
+		return u"%s-%s" % (self.queue.slug, self.id)
+	case_for_url = property(_get_case_for_url)  
+	
+	def _get_assigned_to(self):
+		"""
+		Custom property to allow us to easily print 'Unassigned' if a Case has no owner, or the users name if it's assigned.
+		If the user has a full name configured, we use that, otherwise their username.
+		"""
+		if not self.assigned_to:
+			return _('Unassigned')
+		else:
+			if self.assigned_to.get_full_name():
+				return self.assigned_to.get_full_name()
+			else:
+				return self.assigned_to.get_username()
+	get_assigned_to = property(_get_assigned_to)
+
+	def save(self,force_insert=False, force_update=False):
+		from django.template.defaultfilters import slugify
+		if not self.pk:
+		   self.created = timezone.now()
+		else:
+			if not self.created:
+				self.created = timezone.now()
+			self.modified = timezone.now()
+		self.slug = orig = slugify(self.__str__())
+		for x in itertools.count(1):
+			if not Case.objects.filter(slug=self.slug).exists():
+				break
+			self.slug = '%s-%d' % (orig, x)
+		models.Model.save(self,force_insert,force_update)
 
 
 ## Linked Models
-class LinkedCase(ObjectDescriptionMixin):
-    """
-    Model to contain information about a case link.
+class CaseEntity(ObjectDescription):
+	""" Abstract model to contain information about a case entity.
 
-    :reason (optional):
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :date_time (optional):
-    :linked_by (optional):
-    :case (optional):
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		role (str, optional) [500] : Role in Case
+		type (ENTITY_TYPE_CHOICES) [2]: Entity Type
+		description (str, optional) [1000] : Description
+		created (date, auto) : Date Created
+		modified (date,auto) : Date Modified
+		created_by (User, auto) : Created by
+		modified_by (User, auto) : Modified by     
 
-    # General Fields
-    reason = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Reason For Link")
-    date_time = models.DateTimeField(auto_now=True, null=True, verbose_name="Date")
-    
-    # Linked Fields
-    linked_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='case_linked_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Linked By")
-    case = models.ManyToManyField(Case, blank=True, related_name='case_linked_case', verbose_name="Case")
+	"""
 
-    history = HistoricalRecords()
+	# General Fields
+	role = models.CharField(
+		max_length=500, 
+		blank=True, 
+		null=True,  
+		verbose_name=_("Role"),
+		help_text=_("(Optional) Role of Entity"))
 
+	type = models.CharField(
+		max_length=3, 
+		choices=ENTITY_TYPE_CHOICES, 
+		verbose_name=_("Type"),
+		help_text=_("(Optional) Type of Entity"))
 
-class CaseNote(Note):
-    """
-    Model to contain information about a case note.
+	# Linked Fields
 
-    :title (optional):
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :case (optional):
-    
-    """
+	# Auto Fields
 
-    # General Fields
-    # Linked Fields
-    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
-    # Auto Fields
-
-    history = HistoricalRecords()
-    
-    class Meta:
-        verbose_name = _('Case Note')
-        verbose_name_plural = _('Case Notes')
-        #abstract = True
-
-    @property
-    def edit_url(self):
-        """Returns the url for the edit page for this case."""
-        return reverse('casenote_edit', args=(self.case.pk, self.pk))
-
-    @property
-    def case_url(self):
-        '''Returns the url for the detail page of this case'''
-        return reverse('case_detail', args=(self.case.pk,))
-
-    def get_absolute_url(self):
-        '''Returns the absolute url'''
-        return reverse('casenote_detail', kwargs={'pk': self.pk})
-
-
-class CaseEvidence(Evidence):
-    """
-    Model to contain information about case evidence.
-
-    :title (optional):
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :case (optional):
-    
-    """
-
-    # General Fields
-    # Linked Fields
-    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
-    # Auto Fields
-
-    history = HistoricalRecords()
-    
-    class Meta:
-        verbose_name = _('Case Evidence')
-        verbose_name_plural = _('Case Evidence')
-
-    @property
-    def edit_url(self):
-        """Returns the url for the edit page for this comment."""
-        return reverse('caseevidence_edit', args=(self.case.pk, self.pk))
-
-    @property
-    def case_url(self):
-        '''Returns the url for the detail page of this comment's device.'''
-        return reverse('case_detail', args=(self.case.pk,))
-
-    def get_absolute_url(self):
-        '''Returns the absolute url'''
-        return reverse('caseevidence_detail', kwargs={'pk': self.pk})
-
-
-class CaseEntity(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about a case entity.
-
-    :role (optional):
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :notes (optional):
-    :type (optional):
-
-    """
-
-    # These constants define choices for a device's status
-    RELATED = 'RL'
-    UNRELATED = 'UR'
-    UNKNOWN = 'UN'
-    SUSPECT = 'SU'
-    ASSISTING = 'AS'
-    INFORMANT = 'IN'
-    ACQUAINTANCE = 'AQ'
-    VICTIM = 'VI'
-    WORKING = 'WK'
-
-
-    # Define possible choices for condition field
-    TYPE_CHOICES = (
-        (RELATED, 'Related'),
-        (UNRELATED, 'Unrelated'),
-        (UNKNOWN, 'Unknown'),
-        (SUSPECT, 'Suspect'),
-        (INFORMANT, 'Informant'),
-        (ACQUAINTANCE, 'Acquaintance'),
-        (VICTIM, 'Victim'),
-        (WORKING, 'Working'),
-        (ASSISTING, 'Assisting'),
-    )
-
-    # General Fields
-    role = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Role")
-    notes = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Notes")
-    type = models.CharField(max_length=2, choices=TYPE_CHOICES, default=UNKNOWN, verbose_name="Type")
-
-    # Linked Fields
-    # Auto Fields
-
-    class Meta:
-        abstract = True
-
-    @property
-    def case_url(self):
-        '''Returns the url for the detail page of this comment's device.'''
-        return reverse('case_detail', args=(self.case.pk,))
+	class Meta:
+		abstract = True
 
 
 class CasePerson(CaseEntity):
-    """
-    Model to contain information about a case person.
+	""" Model to contain information about a case person.
 
-    :role (optional):
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :notes (optional):
-    :type (optional):
-    :person (optional):
-    :case (optional):
-    :linked_by (optional):
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		person (Person) : Case Person
+		case (Case) : Case
+		role (str, optional) [500] : Role in Case
+		type (ENTITY_TYPE_CHOICES) [2]: Entity Type
+		description (str, optional) [1000] : Description
+		created (date, auto) : Date Created
+		modified (date,auto) : Date Modified
+		created_by (User, auto) : Created by
+		modified_by (User, auto) : Modified by
 
-    """
+	Methods:
+		edit_url (URL) : Gets Case Person edit url
+		case_url (URL) : Gets Case detail url
 
-    # These constants define choices for a device's status
-    RELATED = 'RL'
-    UNRELATED = 'UR'
-    UNKNOWN = 'UN'
-    SUSPECT = 'SU'
-    ASSISTING = 'AS'
-    INFORMANT = 'IN'
-    ACQUAINTANCE = 'AQ'
-    VICTIM = 'VI'
-    WORKING = 'WK'
+	"""
+
+	# General Fields
+
+	# Linked Fields
+	person = models.ForeignKey(
+		Person, 
+		on_delete=models.DO_NOTHING, 
+		blank=False,
+		null=False,
+		related_name=_('case_person_person'),
+		verbose_name=_("Person"),
+		help_text=_("Select Person"))
+
+	case = models.ForeignKey(
+		Case, 
+		on_delete=models.DO_NOTHING, 
+		blank=False,
+		null=False, 
+		related_name=_('case_person_case'),
+		verbose_name=_("Case"),
+		help_text=_("Select Case"))
 
 
-    # Define possible choices for condition field
-    TYPE_CHOICES = (
-        (RELATED, 'Related'),
-        (UNRELATED, 'Unrelated'),
-        (UNKNOWN, 'Unknown'),
-        (SUSPECT, 'Suspect'),
-        (INFORMANT, 'Informant'),
-        (ACQUAINTANCE, 'Acquaintance'),
-        (VICTIM, 'Victim'),
-        (WORKING, 'Working'),
-        (ASSISTING, 'Assisting'),
-    )
+	# Auto Fields
 
-    # General Fields
+	history = HistoricalRecords()
 
-    # Linked Fields
-    person = models.ForeignKey(Person, on_delete=models.DO_NOTHING, blank=True, verbose_name="Person")
-    case = models.ForeignKey(Case, on_delete=models.DO_NOTHING, related_name='person_linked_case', blank=True, verbose_name="Case")
-    linked_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='person_linked_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Linked By")
-    # Auto Fields
+	class Meta:
+		verbose_name = _('Case Person')
+		verbose_name_plural = _('Case Persons')
 
-    history = HistoricalRecords()
+	def edit_url(self):
+		""" Returns a url to edit the evidence
+		
+		Returns:
+			caseevidence_edit
 
-    class Meta:
-        verbose_name = _('Case Person')
-        verbose_name_plural = _('Case Persons')
+		"""
+		return reverse('caseperson_edit', args=(self.case.pk, self.pk))
 
-    @property
-    def edit_url(self):
-        """Returns the url for the edit page for this comment."""
-        return reverse('caseperson_edit', args=(self.case.pk, self.pk))
+	def case_url(self):
+		""" Returns a url for the case
+		
+		Returns:
+			case_detail
 
-    def get_absolute_url(self):
-        '''Returns the absolute url'''
-        return reverse('caseperson_detail', kwargs={'pk': self.pk})
+		"""
+		return reverse('case_detail', args=(self.case.pk,))
+
+	def get_absolute_url(self):
+		""" Returns a url for the person
+		
+		Returns:
+			caseperson_detail
+			
+		"""
+		return reverse('caseperson_detail', kwargs={'pk': self.pk})
+
+	def __str__(self):
+		""" Returns a human friendly string
+		
+		Returns:
+			<Person First Name> <Person Middle Names> <Person Last Name>
+
+		"""
+		return '%s %s %s' % (
+			_(self.person.first_name),
+			_(self.person.middle_name), 
+			_(self.person.last_name))
 
 
 class CaseCompany(CaseEntity):
-    """
-    Model to contain information about a case company.
+	"""  Model to contain information about a case company.
 
-    :role (optional):
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :notes (optional):
-    :type (optional):
-    :company (optional):
-    :case (optional):
-    :linked_by (optional):
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		company (Company) : Case Company
+		case (Case) : Case
+		role (str, optional) [500] : Role in Case
+		type (ENTITY_TYPE_CHOICES) [2]: Entity Type
+		description (str, optional) [1000] : Description
+		created (date, auto) : Date Created
+		modified (date,auto) : Date Modified
+		created_by (User, auto) : Created by
+		modified_by (User, auto) : Modified by
 
-    """
+	Methods:
+		edit_url (URL) : Gets Case Company edit url
+		case_url (URL) : Gets Case detail url
 
-     # These constants define choices for a device's status
-    RELATED = 'RL'
-    UNRELATED = 'UR'
-    UNKNOWN = 'UN'
-    SUSPECT = 'SU'
-    ASSISTING = 'AS'
-    INFORMANT = 'IN'
-    ACQUAINTANCE = 'AQ'
-    VICTIM = 'VI'
-    WORKING = 'WK'
+	"""
+
+	# General Fields
+
+	# Linked Fields
+	company = models.ForeignKey(
+		Company, 
+		on_delete=models.DO_NOTHING, 
+		blank=False,
+		null=False,
+		related_name=_('case_company_company'),
+		verbose_name=_("Company"),
+		help_text=_("Select Company"))
+
+	case = models.ForeignKey(
+		Case, 
+		on_delete=models.DO_NOTHING, 
+		blank=False, 
+		null=False, 
+		related_name=_('case_company_case'),
+		verbose_name=_("Case"),
+		help_text=_("(Optional) Select Case"))
+	
+	# Auto Fields
+
+	history = HistoricalRecords()
+	
+	class Meta:
+		verbose_name = _('Case Company')
+		verbose_name_plural = _('Case Companies')
+
+	def edit_url(self):
+		""" Returns a url to edit the evidence
+		
+		Returns:
+			caseevidence_edit
+
+		"""
+		return reverse('casecompany_edit', args=(self.case.pk, self.pk))
+
+	def case_url(self):
+		""" Returns a url for the case
+		
+		Returns:
+			case_detail
+
+		"""
+		return reverse('case_detail', args=(self.case.pk,))
+
+	def get_absolute_url(self):
+		""" Returns a url for the company
+		
+		Returns:
+			casecompany_detail
+			
+		"""
+		return reverse('casecompany_detail', kwargs={'pk': self.pk})
+
+	def __str__(self):
+		""" Returns a human friendly string
+		
+		Returns:
+			Company Title
+
+		"""
+		return '%s' % _(self.company.title)
 
 
-    # Define possible choices for condition field
-    TYPE_CHOICES = (
-        (RELATED, 'Related'),
-        (UNRELATED, 'Unrelated'),
-        (UNKNOWN, 'Unknown'),
-        (SUSPECT, 'Suspect'),
-        (INFORMANT, 'Informant'),
-        (ACQUAINTANCE, 'Acquaintance'),
-        (VICTIM, 'Victim'),
-        (WORKING, 'Working'),
-        (ASSISTING, 'Assisting'),
-    )
+class CaseInventory(ObjectDescription):
+	"""  Model to contain information about a case inventory item.
 
-    # General Fields
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		active (Boolean, optional) : Case Device Active 
+		device (Device) : Device
+		case (Case) : Case
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
 
-    # Linked Fields
-    company = models.ForeignKey(Company, on_delete=models.DO_NOTHING, blank=True, verbose_name="Company")
-    case = models.ForeignKey(Case, on_delete=models.DO_NOTHING, related_name='company_linked_case', blank=True, verbose_name="Case")
-    linked_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='company_linked_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Linked By")
-    # Auto Fields
+	Methods:
+		edit_url (URL) : Gets Case Device edit url
+		case_url (URL) : Gets Case detail url
+		device_url (URL) : Gets Device detail url
 
-    history = HistoricalRecords()
-    
-    class Meta:
-        verbose_name = _('Case Company')
-        verbose_name_plural = _('Case Companies')
+	"""
 
-    @property
-    def edit_url(self):
-        """Returns the url for the edit page for this comment."""
-        return reverse('casecompany_edit', args=(self.case.pk, self.pk))
+	# General Fields
+	active = models.BooleanField(
+		default=True, 
+		verbose_name=_("Active"),
+		help_text=_("Is the case device Active"))
 
-    def get_absolute_url(self):
-        '''Returns the absolute url'''
-        return reverse('casecompany_detail', kwargs={'pk': self.pk})
+	# Linked Fields
+	device = models.ForeignKey(
+		Device, 
+		on_delete=models.DO_NOTHING, 
+		blank=False,
+		null=False,
+		related_name=_('case_inventory_device'),
+		verbose_name=_("Device"),
+		help_text=_("Select a Device"))
+
+	case = models.ForeignKey(
+		Case, 
+		on_delete=models.CASCADE, 
+		blank=False, 
+		null=False,
+		related_name=_('case_inventory_case'),
+		verbose_name=_("Case"),
+		help_text=_("Select a Case"))
+
+	note = models.ManyToManyField(
+		Note, 
+		related_name=_('case_inventory_note'),
+		verbose_name=_("Case Inventory Note"),
+		help_text=_("Enter a case inventory Note"))
+
+	# Auto Fields
+
+	history = HistoricalRecords()
+	
+	class Meta:
+		verbose_name = _('Case Device')
+		verbose_name_plural = _('Case Devices')
+
+	def edit_url(self):
+		""" Returns a url to edit the evidence
+		
+		Returns:
+			caseevidence_edit
+
+		"""
+		return reverse('casedevice_edit', args=(self.case.pk, self.pk))
+
+	def case_url(self):
+		""" Returns a url for the case
+		
+		Returns:
+			case_detail
+
+		"""
+		return reverse('case_detail', args=(self.case.pk,))
+
+	def device_url(self):
+		""" Returns a url for the device
+		
+		Returns:
+			device_detail
+
+		"""
+		return reverse('device_detail', args=(self.device.pk,))
+
+	def get_absolute_url(self):
+		""" Returns a url for the device
+		
+		Returns:
+			casedevice_detail
+			
+		"""
+		return reverse('casedevice_detail', kwargs={'pk': self.pk})
+
+	def save(self,force_insert=False, force_update=False):
+		models.Model.save(self,force_insert,force_update)
 
 
-class CaseInventory(ObjectDescriptionMixin):
-    """
-    Model to contain information about a case inventory item.
+class CaseEvidence(Evidence):
+	""" Model to contain information about case evidence.
 
-    :reason (optional):
-    :returned:
-    :status:
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :expected_use (optional):
-    :device (optional):
-    :case (optional):
-    :linked_by (optional):
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		case (Case) : Case
+		title (str) [128]: Evidence title
+		reference (str, optional) [50]: Reference code
+		bag_number (str, optional) [50]: Bag number
+		location (str, optional) [250]: Location of the evidence
+		File_location (file, optional): Location for evidence file
+		image_upload (file, optional): Location for the evidence image
+		qr_code (str, optional) [128]: QR Code 
+		retention_reminder_sent (boolean, optional): Retention reminder sent
+		retention_start_date (date, optional): Retention start date
+		retention_end_date (date, optional): Retention end date
+		chain_of_custody (ChainOfCustody, optional): Chain of custody
+		type (EvidenceType, optional): Type of Evidence
+		status (EvidenceStatus, optional): Status of the Evidence
+		priority (EvidencePriority, optional): Priority of the Evidence
+		authorisation (Authorisation, optional): Authorisation of the Evidence
+		custodian (AUTH_USER_MODEL, optional): Evidence custodian
+		assigned_by (AUTH_USER_MODEL, optional): Assigned To
+		assigned_to (AUTH_USER_MODEL, optional): Assigned By
+		note (Note, optional): Notes relating to the Evidence
+		description (str, optional) [1000]: Description
+		private (bool, optional): Is private
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+		slug (slug, auto): Slug of title
 
-    """
+	Methods:
+		edit_url (URL) : Gets Evidence edit url
+		case_url (URL) : Gets Case detail url
+	
+	"""
 
-    # Define choices for status
-    PENDING = 'PE'
-    APPROVED = 'AP'
-    REJECTED = 'RE'
-    HOLD = 'HO'
-    WITHDRAWN = 'WI'
-    TAKEN = 'TK'
-    RETURNED = 'RT'
+	## General Fields ##
 
-    STATUS_CHOICES = (
-        (PENDING, 'Pending'),
-        (APPROVED, 'Approved'),
-        (REJECTED, 'Rejected'),
-        (HOLD, 'On Hold'),
-        (WITHDRAWN, 'Withdrawn'),
-        (TAKEN, 'Taken'),
-        (RETURNED, 'Returned'),
-    )
+	## Linked Fields ##
+	case = models.ForeignKey(
+		Case, 
+		on_delete=models.DO_NOTHING, 
+		verbose_name=_("Case"),
+		help_text=_("Select Case"))
 
-    # General Fields
-    reason = models.TextField(max_length=1000, null=False, blank=False, verbose_name='Reason')
-    returned = models.BooleanField(default=False, verbose_name="Returned")
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=PENDING, verbose_name="Status")
+	# Auto Fields
 
-    # Linked Fields
-    device = models.ForeignKey(Device, on_delete=models.DO_NOTHING, related_name='device', blank=True, verbose_name="Device")
-    case = models.ForeignKey(Case, on_delete=models.CASCADE, related_name='case', blank=True, null=True, verbose_name="Case")
-    linked_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='casedevice_linked_by', on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Linked By")
-    # Auto Fields
+	history = HistoricalRecords()
+	
+	class Meta:
+		verbose_name = _('Case Evidence')
+		verbose_name_plural = _('Case Evidence')
 
-    history = HistoricalRecords()
-    
-    class Meta:
-        verbose_name = _('Case Device')
-        verbose_name_plural = _('Case Devices')
+	def edit_url(self):
+		""" Returns a url to edit the evidence
+		
+		Returns:
+			caseevidence_edit
 
-    @property
-    def edit_url(self):
-        """Returns the url for the edit page for this comment."""
-        return reverse('casedevice_edit', args=(self.case.pk, self.pk))
+		"""
+		return reverse('caseevidence_edit', args=(self.case.pk, self.pk))
 
-    @property
-    def case_url(self):
-        '''Returns the url for the detail page of this comment's device.'''
-        return reverse('case_detail', args=(self.case.pk,))
+	def case_url(self):
+		""" Returns a url for the case
+		
+		Returns:
+			case_detail
 
-    def get_absolute_url(self):
-        '''Returns the absolute url'''
-        return reverse('casedevice_detail', kwargs={'pk': self.pk})
+		"""
+		return reverse('case_detail', args=(self.case.pk,))
 
-    def save(self,force_insert=False, force_update=False):
-        models.Model.save(self,force_insert,force_update)
+	def get_absolute_url(self):
+		""" Returns a url for the evidence
+		
+		Returns:
+			caseevidence_detail
+			
+		"""
+		return reverse('caseevidence_detail', kwargs={'pk': self.pk})
+
+	def save(self,force_insert=False, force_update=False):
+		from django.template.defaultfilters import slugify
+		if not self.pk:
+		   self.created = timezone.now()
+		else:
+			if not self.created:
+				self.created = timezone.now()
+			self.modified = timezone.now()
+		self.slug = orig = slugify(self.__str__())
+		for x in itertools.count(1):
+			if not CaseEvidence.objects.filter(slug=self.slug).exists():
+				break
+			self.slug = '%s-%d' % (orig, x)
+		models.Model.save(self,force_insert,force_update)
 
 
 class CaseEvent(Event):
-    """
-    Model to contain information about a case event.
+	"""  Model to contain information about a case event.
 
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :company (optional):
-    :person (optional):
-    :evidence (optional):
-    :case (optional):
+	Args:
+		history (HistoricalRecord, auto) : Historical records of object
+		case (Case) : Case
+		company (Company, optional) : Company
+		person (Person, optional) : Person
+		evidence (Evidence, optional) : Evidence
+		title (str) [128]: Title for the Task 
+		image_upload (file, optional): Location for a task image
+		description (str, optional) [1000]: Description
+		date (date, optional): Date for the Task
+		status (TaskStatus, optional): Status of the Task
+		priority (TaskPriority, optional): Priority of the Task
+		authorisation (Authorisation, optional): Authorisation of the Task
+		manager (AUTH_USER_MODEL, optional): Task manager
+		assigned_by (AUTH_USER_MODEL, optional): Assigned To
+		assigned_to (AUTH_USER_MODEL, optional): Assigned By
+		note (Note, optional): Notes relating to the Task
+		private (bool, optional): Is private
+		created (date, auto) : Date Created
+		modified (date,auto) : Date Modified
+		created_by (User, auto) : Created by
+		modified_by (User, auto) : Modified by
+		 
+	Methods:
+		edit_url (URL) : Gets Event edit url
+		case_url (URL) : Gets Case detail url
+		company_url (URL) : Gets Company detail url
+		person_url (URL) : Gets Person detail url
 
-    """
+	"""
 
-    # General Fields
-    # Linked Fields
-    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
-    person = models.ManyToManyField(CasePerson, related_name='event_linked_person', blank=True, verbose_name="People Involved")
-    company = models.ManyToManyField(CaseCompany,related_name='event_linked_company', blank=True, verbose_name="Companies Involved")
-    evidence = models.ManyToManyField(CaseEvidence,related_name='event_linked_evidence', blank=True, verbose_name="Evidence Involved")
-    # Auto Fields
-    
-    history = HistoricalRecords()
+	# General Fields
 
-    class Meta:
-        verbose_name = _('Case Event')
-        verbose_name_plural = _('Case Event')
+	# Linked Fields 
+	case = models.ForeignKey(
+		Case, 
+		on_delete=models.CASCADE, 
+		blank=False, 
+		null=False,
+		related_name=_('case_event_case'),
+		verbose_name=_("Case"),
+		help_text=_("Select a Case"))
+	
+	person = models.ManyToManyField(
+		Person, 
+		related_name=_('case_event_person'),
+		verbose_name=_("Persons"),
+		help_text=_("Select Persons"))
 
-    @property
-    def edit_url(self):
-        """Returns the url for the edit page for this comment."""
-        return reverse('caseevent_edit', args=(self.case.pk, self.pk))
+	company = models.ManyToManyField(
+		Company, 
+		related_name=_('case_event_company'),
+		verbose_name=_("Companies Involved"),
+		help_text=_("Select Companies"))
 
-    @property
-    def case_url(self):
-        '''Returns the url for the detail page of this comment's device.'''
-        return reverse('case_detail', args=(self.case.pk,))
+	evidence = models.ManyToManyField(
+		CaseEvidence, 
+		related_name=_('case_event_evidence'),
+		verbose_name=_("Evidence Involved"),
+		help_text=_("Select Evidence"))
 
-    def get_absolute_url(self):
-        '''Returns the absolute url'''
-        return reverse('caseevent_detail', kwargs={'pk': self.pk})
+	# Auto Fields
+	
+	history = HistoricalRecords()
+
+	class Meta:
+		verbose_name = _('Case Event')
+		verbose_name_plural = _('Case Event')
+
+	def edit_url(self):
+		""" Returns a url to edit the evidence
+		
+		Returns:
+			caseevidence_edit
+
+		"""
+		return reverse('caseevent_edit', args=(self.case.pk, self.pk))
+
+	def case_url(self):
+		""" Returns a url for the case
+		
+		Returns:
+			case_detail
+
+		"""
+		return reverse('case_detail', args=(self.case.pk,))
+
+	def company_url(self):
+		""" Returns a url for the company
+		
+		Returns:
+			company_detail
+
+		"""
+		return reverse('company_detail', args=(self.company.pk,))
+	
+	def person_url(self):
+		""" Returns a url for the person
+		
+		Returns:
+			person_detail
+
+		"""
+		return reverse('person_detail', args=(self.person.pk,))
+
+	def get_absolute_url(self):
+		""" Returns a url for the event
+		
+		Returns:
+			caseevent_detail
+			
+		"""
+		return reverse('caseevent_detail', kwargs={'pk': self.pk})
+	
+	def save(self,force_insert=False, force_update=False):
+		from django.template.defaultfilters import slugify
+		if not self.pk:
+		   self.created = timezone.now()
+		else:
+			if not self.created:
+				self.created = timezone.now()
+			self.modified = timezone.now()
+		self.slug = orig = slugify(self.__str__())
+		for x in itertools.count(1):
+			if not CaseEvent.objects.filter(slug=self.slug).exists():
+				break
+			self.slug = '%s-%d' % (orig, x)
+		models.Model.save(self,force_insert,force_update)
 
 
 class CaseTask(Task):
-    """
-    Linked model to contain information about a case task.
+	""" Linked model to contain information about a case task.
 
-    :description (optional):
-    :created (optional):
-    :modified (optional):
-    :private (optional):
-    :created_by (optional):
-    :modified_by (optional):
-    :case (optional):
-    :note (optional):
-    :person (optional):
-    :event (optional):
-    :company (optional):
-    :inventory (optional):
-    :evidence (optional):
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		case (Case) : Case
+		event (Event, optional) : Case Events
+		device (Devices, optional) : Case Devices
+		evidence (Evidence, optional) : Case Evidence
+		note (Note, optional) : Task Notes
+		person (Person, optional) : Case Persons
+		company (Company, optional) : Case Companies
+		title (str) [128]: Title for the Task 
+		location (str, optional) [250]: Location for the task
+		description (str, optional) [1000]: Description
+		deadline (date, optional): Deadline for the Task
+		category (TaskCategory, optional): Category of Task
+		status (TaskStatus, optional): Status of the Task
+		priority (TaskPriority, optional): Priority of the Task
+		authorisation (Authorisation, optional): Authorisation of the Task
+		manager (AUTH_USER_MODEL, optional): Task manager
+		assigned_by (AUTH_USER_MODEL, optional): Assigned To
+		assigned_to (AUTH_USER_MODEL, optional): Assigned By
+		private (bool, optional): Is private
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
 
-    """
+	Methods:
+		edit_url (URL) : Gets Task edit url
+		case_url (URL) : Gets Case detail url
+		event_url (URL) : Gets CaseEvent detail url
+		device_url (URL) : Gets Device detail url
+		evidence_url (URL) : Gets CaseEvidence detail url
+		person_url (URL) : Gets Case detail url
+		company_url (URL) : Gets Case detail url
 
-    # General Fields
-    # Linked Fields
-    case = models.ForeignKey(Case, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Case")
-    note = models.ManyToManyField(CaseNote, related_name='task_linked_note', blank=True, verbose_name="Notes")
-    event = models.ManyToManyField(CaseEvent, related_name='task_linked_event', blank=True, verbose_name="Events")
-    person = models.ManyToManyField(CasePerson, related_name='task_linked_person', blank=True, verbose_name="People Involved")
-    company = models.ManyToManyField(CaseCompany,related_name='task_linked_company', blank=True, verbose_name="Companies Involved")
-    inventory = models.ManyToManyField(CaseInventory,related_name='task_linked_inventory', blank=True, verbose_name="Inventory Involved")
-    evidence = models.ManyToManyField(CaseEvidence,related_name='task_linked_evidence', blank=True, verbose_name="Evidence Involved")
-    # Auto Fields
+	"""
 
-    history = HistoricalRecords()
-    
-    class Meta:
-        verbose_name = _('Case Task')
-        verbose_name_plural = _('Case Task')
+	# General Fields
+	
+	# Linked Fields
+	case = models.ForeignKey(
+		Case, 
+		on_delete=models.CASCADE, 
+		blank=False, 
+		null=False,
+		related_name=_('case_task_case'),
+		verbose_name=_("Case"),
+		help_text=_("Select a Case"))
+	  
+	event = models.ManyToManyField(
+		CaseEvent, 
+		related_name=_('case_task_event'),
+		verbose_name=_("Events Involved"),
+		help_text=_("Select Events"))
+	
+	device = models.ManyToManyField(
+		CaseInventory, 
+		related_name=_('case_task_device'), 
+		verbose_name=_("Devices Involved"),
+		help_text=_("Select Evidence"))
+	
+	evidence = models.ManyToManyField(
+		CaseEvidence, 
+		related_name=_('case_task_evidence'),
+		verbose_name=_("Evidence Involved"),
+		help_text=_("Select Evidence"))
 
-    @property
-    def edit_url(self):
-        """Returns the url for the edit page for this comment."""
-        return reverse('casetask_edit', args=(self.case.pk, self.pk))
+	person = models.ManyToManyField(
+		Person, 
+		related_name=_('case_task_person'),
+		verbose_name=_("Persons Involved"),
+		help_text=_("Select Persons"))
 
-    @property
-    def case_url(self):
-        '''Returns the url for the detail page of this comment's device.'''
-        return reverse('case_detail', args=(self.case.pk,))
+	company = models.ManyToManyField(
+		Company, 
+		related_name=_('case_task_company'),
+		verbose_name=_("Companies Involved"),
+		help_text=_("Select Companies"))
 
-    def get_absolute_url(self):
-        '''Returns the absolute url'''
-        return reverse('casetask_detail', kwargs={'pk': self.pk})
+	# Auto Fields
+
+	history = HistoricalRecords()
+	
+	class Meta:
+		verbose_name = _('Case Task')
+		verbose_name_plural = _('Case Task')
+
+	def edit_url(self):
+		""" Returns a url to edit the evidence
+		
+		Returns:
+			caseevidence_edit
+
+		"""
+		return reverse('casetask_edit', args=(self.case.pk, self.pk))
+
+	def case_url(self):
+		""" Returns a url for the case
+		
+		Returns:
+			case_detail
+
+		"""
+		return reverse('case_detail', args=(self.case.pk,))
+	
+	def save(self,force_insert=False, force_update=False):
+		from django.template.defaultfilters import slugify
+		if not self.pk:
+		   self.created = timezone.now()
+		else:
+			if not self.created:
+				self.created = timezone.now()
+			self.modified = timezone.now()
+		self.slug = orig = slugify(self.__str__())
+		for x in itertools.count(1):
+			if not CaseTask.objects.filter(slug=self.slug).exists():
+				break
+			self.slug = '%s-%d' % (orig, x)
+		models.Model.save(self,force_insert,force_update)
+
+	#def event_url(self):
+	#    """ Returns a url for the events
+		
+	#    Returns:
+	#        event_detail
+
+	#    """
+	#    return reverse('caseevent_detail', args=(self.event.pk,))
+
+	#def device_url(self):
+	#    """ Returns a url for the device
+		
+	#    Returns:
+	#        device_detail
+
+	#    """
+	#    return reverse('casedevice_detail', args=(self.device.pk,))
+
+	#def evidence_url(self):
+	#    """ Returns a url for the evidence
+		
+	#    Returns:
+	#        evidence_detail
+
+	#    """
+	#    return reverse('caseevidence_detail', args=(self.evidence.pk,))
+
+	#def person_url(self):
+	#    """ Returns a url for the person
+		
+	#    Returns:
+	#        person_detail
+
+	#    """
+	#    return reverse('person_detail', args=(self.person.pk,))
+
+	#def company_url(self):
+	#    """ Returns a url for the company
+		
+	#    Returns:
+	#        company_detail
+
+	#    """
+	#    return reverse('company_detail', args=(self.company.pk,))
+
+	def get_absolute_url(self):
+		""" Returns a url for the task
+		
+		Returns:
+			casetask_detail
+			
+		"""
+		return reverse('casetask_detail', kwargs={'pk': self.pk})

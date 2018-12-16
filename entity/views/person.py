@@ -3,15 +3,31 @@
 #import vobject
 import re
 from django import http
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render_to_response
+from django.shortcuts import render
 #from django.core.urlresolvers import reverse
 #from django.forms.formsets import formset_factory
 from django.forms.models import modelformset_factory
 from django.contrib.sitemaps import Sitemap
-from entity.forms import AddressForm, TelephoneForm, EmailForm, WebsiteForm
-from entity.forms import PersonForm, SearchForm, AdvancedSearchForm
+from django.urls import reverse
+from django.shortcuts import render
+from django.views.generic.detail import DetailView
+from entity.forms import AddressForm
+from entity.forms import TelephoneForm
+from entity.forms import EmailForm
+from entity.forms import WebsiteForm
+from entity.forms import PersonForm
+from entity.forms import SocialForm
+from entity.forms import PersonUpdateForm
 from entity.models.person import Person
-from entity.models.entity import Address, Telephone, Email, Website
+from entity.models.entity import Address
+from entity.models.entity import Telephone
+from entity.models.entity import Email
+from entity.models.entity import Website
+from entity.models.entity import Social
+from case.models import CasePerson
+from case.models import CaseCompany
+from case.models import Case
 
 
 # Helper Classes
@@ -35,20 +51,7 @@ class AddressbookSitemap(Sitemap):
         return obj.modified
 
 
-def find_person(request,lastname,firstname):
-    try:
-        person = Person.objects.get(slug_last__iexact=lastname,slug_first__iexact=firstname)
-        return ListWrapper([person])
-    except Person.DoesNotExist:
-        qs = Person.objects.filter(last_name__istartswith=lastname, first_name__istartswith=firstname)
-        if qs.count()>0:
-            return qs
-        qs = Person.objects.filter(last_name__istartswith=lastname)
-        return qs
-
-
 def index(request):
-
     """
     <form action="" method="post">
     <table>
@@ -66,6 +69,7 @@ def index(request):
     </table>
     </form>
     """
+
     if request.GET.get('new', False):
         return person_edit(request)
     #return person_search(request,None)
@@ -135,24 +139,12 @@ def person_by_name(request,lastname,firstname):
     return render(request, 'entity/person/person_detail.html', context)
 
 
-def person_detail(request, object_id=None):
-    if object_id:
-        try:
-            person = Person.objects.get(pk=object_id)
-            context = { 'object':person,
-            'title':'%s %s'%(person.first_name,person.last_name),
-            'is_popup':request.GET.get('print',False) }
-            return render(request, 'entity/person/person_detail.html', context)
-        except Person.DoesNotExist:
-            raise http.Http404
-
-
 def person_add(request):
     AddressFormSet = modelformset_factory(Address, form=AddressForm, can_delete=True)
     TelephoneFormSet = modelformset_factory(Telephone, form=TelephoneForm, can_delete=True)
     EmailFormSet = modelformset_factory(Email, form=EmailForm, can_delete=True)
     WebsiteFormSet = modelformset_factory(Website, form=WebsiteForm, can_delete=True)
-    #SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
+    SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
     person = None   
     if request.method == 'POST':
         #if request.POST.has_key('cancel'):
@@ -167,8 +159,8 @@ def person_add(request):
         tel = TelephoneFormSet(request.POST,request.FILES,queryset=Telephone.objects.none(),prefix="tel")
         email = EmailFormSet(request.POST,request.FILES,queryset=Email.objects.none(),prefix="email")
         web = WebsiteFormSet(request.POST,request.FILES,queryset=Website.objects.none(),prefix="web")
-        #social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
-        if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid():
+        social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
+        if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid() and social.is_valid():
             person = form.save()
             for a in addr.save():
                 person.address.add(a)
@@ -177,7 +169,9 @@ def person_add(request):
             for e in email.save():
                 person.email.add(e)
             for w in web.save():
-                person.website.add(w) 
+                person.website.add(w)
+            for s in social.save():
+                person.social.add(s)
             person.save()
             return http.HttpResponseRedirect(person.get_absolute_url())      
     form = PersonForm(prefix="person")
@@ -185,9 +179,9 @@ def person_add(request):
     tel = TelephoneFormSet(queryset=Telephone.objects.none(),prefix="tel")
     email = EmailFormSet(queryset=Email.objects.none(),prefix="email")
     web = WebsiteFormSet(queryset=Website.objects.none(),prefix="web")
-    #social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
+    social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
     context = { 'object':person, 'person':form, 'telephones':tel, 'emails':email,
-               'websites':web, 'addresses':addr, }
+               'websites':web, 'socials':social, 'addresses':addr, }
     context['title']='New Addressbook Entry'
     return render(request, 'entity/person/person_create.html', context)
 
@@ -197,7 +191,7 @@ def person_update(request, object_id=None):
     TelephoneFormSet = modelformset_factory(Telephone, form=TelephoneForm, can_delete=True)
     EmailFormSet = modelformset_factory(Email, form=EmailForm, can_delete=True)
     WebsiteFormSet = modelformset_factory(Website, form=WebsiteForm, can_delete=True)
-    #SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
+    SocialFormSet = modelformset_factory(Social, form=SocialForm, can_delete=True)
 
     if object_id:
         try:
@@ -221,20 +215,20 @@ def person_update(request, object_id=None):
         #    else:
         #        return http.HttpResponseRedirect(reverse('entity.views.person_delete',args=[lastname,firstname]))
         if person:        
-            form = PersonForm(request.POST,request.FILES,instance=person,prefix="person")
+            form = PersonUpdateForm(request.POST,request.FILES,instance=person,prefix="person")
             addr = AddressFormSet(request.POST,request.FILES,queryset=person.address.all(),prefix="addr")
             tel = TelephoneFormSet(request.POST,request.FILES,queryset=person.telephone.all(),prefix="tel")
             email = EmailFormSet(request.POST,request.FILES,queryset=person.email.all(),prefix="email")
             web = WebsiteFormSet(request.POST,request.FILES,queryset=person.website.all(),prefix="web")
-            #social = SocialFormSet(request.POST,request.FILES,queryset=person.social.all(),prefix="social")
+            social = SocialFormSet(request.POST,request.FILES,queryset=person.social.all(),prefix="social")
         else:
-            form = PersonForm(request.POST,request.FILES,prefix="person")
+            form = PersonUpdateForm(request.POST,request.FILES,prefix="person")
             addr = AddressFormSet(request.POST,request.FILES,queryset=Address.objects.none(),prefix="addr")
             tel = TelephoneFormSet(request.POST,request.FILES,queryset=Telephone.objects.none(),prefix="tel")
             email = EmailFormSet(request.POST,request.FILES,queryset=Email.objects.none(),prefix="email")
             web = WebsiteFormSet(request.POST,request.FILES,queryset=Website.objects.none(),prefix="web")
-            #social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
-        if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid():
+            social = SocialFormSet(request.POST,request.FILES,queryset=Social.objects.none(),prefix="social")
+        if form.is_valid() and addr.is_valid() and tel.is_valid() and email.is_valid() and web.is_valid() and social.is_valid():
             if person:
                 person = form.save(commit=False)
             else:
@@ -247,26 +241,26 @@ def person_update(request, object_id=None):
                 person.email.add(e)
             for w in web.save():
                 person.website.add(w) 
-            #for s in social.save():
-            #    person.social.add(w) 
+            for s in social.save():
+                person.social.add(s) 
             person.save()
             return http.HttpResponseRedirect(person.get_absolute_url())   
     elif person:
-        form = PersonForm(instance=person,prefix="person")
+        form = PersonUpdateForm(instance=person,prefix="person")
         addr = AddressFormSet(queryset=person.address.all(),prefix="addr")
         tel = TelephoneFormSet(queryset=person.telephone.all(),prefix="tel")
         email = EmailFormSet(queryset=person.email.all(),prefix="email")
         web = WebsiteFormSet(queryset=person.website.all(),prefix="web")
-        #social = WebsiteFormSet(queryset=person.websites.all(),prefix="social")
+        social = WebsiteFormSet(queryset=person.websites.all(),prefix="social")
     else:
-        form = PersonForm(prefix="person")
+        form = PersonUpdateForm(prefix="person")
         addr = AddressFormSet(queryset=Address.objects.none(),prefix="addr")
         tel = TelephoneFormSet(queryset=Telephone.objects.none(),prefix="tel")
         email = EmailFormSet(queryset=Email.objects.none(),prefix="email")
         web = WebsiteFormSet(queryset=Website.objects.none(),prefix="web")
-        #social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
+        social = WebsiteFormSet(queryset=Social.objects.none(),prefix="social")
     context = { 'object':person, 'person':form, 'telephones':tel, 'emails':email,
-               'websites':web, 'addresses':addr, }
+               'websites':web, 'addresses':addr, 'socials':social,}
 
     if person:
         context['title']='Edit %s %s'%(person.first_name,person.last_name)
@@ -287,6 +281,69 @@ def person_delete(request, object_id=None):
         object.delete()
         return http.HttpResponseRedirect(reverse('entity.views.index'))
     return render_to_response('entity/person/person_delete.html',locals())
+
+
+class PersonDetail(DetailView):
+    model = Person
+    template_name = 'entity/person/person_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(PersonDetail, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(PersonDetail, self).get_context_data(**kwargs)
+        try:
+            history = self.object.history.all()
+            history_count = history.count()
+        except:
+            history = None
+        #if history:
+        #    for h in history: 
+        #        delta = h.diff_against(temp)
+        #        for change in delta.changes:
+        #            changes.append(string("{} changed from {} to {}".format(change.field, change.old, change.new)))
+        #        temp = h
+        context['history'] = history
+        context['history_count'] = history_count
+        context['casepersons'] = CasePerson.objects.filter(person=self.object)
+        #context['evidence'] = CaseEvidence.objects.filter(case=self.object.pk)
+        #context['tasks'] = CaseTask.objects.filter(case=self.object.pk)
+        #context['persons'] = CasePerson.objects.filter(case=self.object.pk)
+        #context['companies'] = CaseCompany.objects.filter(case=self.object.pk)
+        #context['devices'] = CaseInventory.objects.filter(case=self.object.pk)
+        context['title'] = '%s %s' %(self.object.first_name,self.object.last_name)
+        #context['is_popup'] = request.GET.get('print',False)
+        return context
+
+
+def person_detail(request, object_id=None):
+    if object_id:
+        try:
+            person = Person.objects.get(pk=object_id)
+            context = { 'object':person,
+            'title':'%s %s'%(person.first_name,person.last_name),
+            'is_popup':request.GET.get('print',False) }
+            return render(request, 'entity/person/person_detail.html', context)
+        except Person.DoesNotExist:
+            raise http.Http404
+    else:
+        raise http.Http404
+
+
+def find_person(request, lastname, firstname):
+    try:
+        person = Person.objects.get(slug_last__iexact=lastname,slug_first__iexact=firstname)
+        return ListWrapper([person])
+    except Person.DoesNotExist:
+        qs = Person.objects.filter(last_name__istartswith=lastname, first_name__istartswith=firstname)
+        if qs.count()>0:
+            return qs
+        qs = Person.objects.filter(last_name__istartswith=lastname)
+        return qs
 
 
 #def vcard_export(request):

@@ -3,7 +3,7 @@ PROJECT_NAME = Kases_solution
 PROJECT_NUMBER = 
 PROJECT_BRIEF = 
 PROJECT_LOGO = 
-OUTPUT_DIRECTORY = "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/CodeGraphData/Result_solution"
+OUTPUT_DIRECTORY = "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/CodeGraphData/Result_solution"
 CREATE_SUBDIRS = NO
 OUTPUT_LANGUAGE = English
 BRIEF_MEMBER_DESC = YES
@@ -83,32 +83,32 @@ WARN_IF_DOC_ERROR = YES
 WARN_NO_PARAMDOC = NO
 WARN_FORMAT = "$file:$line: $text"
 WARN_LOGFILE = 
-INPUT = "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/models" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/views" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/entity" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/event/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/event" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/loan/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/loan" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/note/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/note" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/static/base/scripts" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/task/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/task" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/user/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/user" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/migrations" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/templatetags" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/utils" \
-     "//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases"
+INPUT = "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/case/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/case" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/models" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity/views" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/entity" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/event/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/event" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/evidence" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/inventory" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/loan/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/loan" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/note/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/note" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/static/base/scripts" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/task/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/task" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/user/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/user" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/migrations" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/utils/templatetags" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/utils" \
+     "Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases"
 INPUT_ENCODING = UTF-8
 FILE_PATTERNS = *.c \
      *.cc \

@@ -2,222 +2,276 @@
 
 ## python imports
 from django.db import models
-from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
 from django.conf import settings
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-#import event.managers as managers
 from simple_history.models import HistoricalRecords
+from utils.models import ObjectDescription
+from utils.models import Authorisation
+from utils.models import Priority
+from utils.models import BaseObject
+from utils.models import Note
+#import event.managers as managers
 
 
 ## Admin Models
-class EventAuthorisation(Authorisation):
-    """
-    Inherited model to contain information about an event authorisation.
+class EventClassification(BaseObject):
+	""" Model to contain information about an event classification.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified byl 
+	
+	"""
+	
+	history = HistoricalRecords()
 
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Event Authorisation')
-        verbose_name_plural = _('Event Authorisations')
-    
-
-class EventClassification(Classification):
-    """
-    Inherited model to contain information about an event classification.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Event Classification')
-        verbose_name_plural = _('Event Classifications')
-
-
-class EventType(Type):
-    """
-    Inherited model to contain information about an event type.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Event Type')
-        verbose_name_plural = _('Event Types')
+	class Meta:
+		verbose_name = _('Event Classification')
+		verbose_name_plural = _('Event Classifications')
 
 
 class EventPriority(Priority):
-    """
-    Inherited model to contain information about an event priority.
+	"""  Model to contain information about an event priority.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		delta (int, optional): Time delta
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by 
+	
+	"""
    
-    history = HistoricalRecords()
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Event Priority')
-        verbose_name_plural = _('Event Priorities')
-
-
-class EventCategory(Category):
-    """
-    Inherited model to contain information about an event category.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Event Category')
-        verbose_name_plural = _('Event Categories')
+	class Meta:
+		verbose_name = _('Event Priority')
+		verbose_name_plural = _('Event Priorities')
 
 
-class EventStatus(Status):
-    """
-    Inherited model to contain information about an event status.
+class EventCategory(BaseObject):
+	""" Model to contain information about an event category.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-    
-    history = HistoricalRecords()
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
+	
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Event Status')
-        verbose_name_plural = _('Event Status')
+	class Meta:
+		verbose_name = _('Event Category')
+		verbose_name_plural = _('Event Categories')
 
 
-class EventStatusGroup(StatusGroup):
-    """
-    Inherited model to contain information about a person status group.
+class EventStatus(BaseObject):
+	"""  Model to contain information about an event status.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
+	
+	history = HistoricalRecords()
 
-    # Linked Fields
-    status = models.ManyToManyField(EventStatus, blank=True, verbose_name="Event Status")
-    
-    history = HistoricalRecords()
+	class Meta:
+		verbose_name = _('Event Status')
+		verbose_name_plural = _('Event Status')
 
-    class Meta:
-        verbose_name = _('Event Status Group')
-        verbose_name_plural = _('Event Status Groups')
+
+class EventStatusGroup(BaseObject):
+	""" Model to contain information about a person status group.
+
+	Args:
+		status (EventStatus): Status in group
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
+
+	# Linked Fields
+	status = models.ManyToManyField(
+		EventStatus, 
+		blank=True, 
+		verbose_name=_("Event Status"),
+		help_text=_("Select Event Status"))
+	
+	history = HistoricalRecords()
+
+	class Meta:
+		verbose_name = _('Event Status Group')
+		verbose_name_plural = _('Event Status Groups')
 
 
 ## Main Models
-class Event(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an event.
+class Event(ObjectDescription):
+	""" Abstract model to contain information about an event.
 
-    :title (optional): 
-    :slug (optional): 
-    :image_upload (optional): 
-    :deadline (optional): 
-    :brief (optional): 
-    :assigned_to (optional): 
-    :manager (optional): 
-    :assigned_by (optional): 
-    :type (optional): 
-    :status (optional): 
-    :classification (optional): 
-    :priority (optional): 
-    :category (optional): 
-    :authorisation (optional): 
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+	Args:
+		title (str) [128]: Title for the Task 
+		image_upload (file, optional): Location for a task image
+		description (str, optional) [1000]: Description
+		date (date, optional): Date for the Task
+		status (TaskStatus, optional): Status of the Task
+		priority (TaskPriority, optional): Priority of the Task
+		authorisation (Authorisation, optional): Authorisation of the Task
+		manager (AUTH_USER_MODEL, optional): Task manager
+		assigned_by (AUTH_USER_MODEL, optional): Assigned To
+		assigned_to (AUTH_USER_MODEL, optional): Assigned By
+		note (Note, optional): Notes relating to the Task
+		private (bool, optional): Is private
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by 
+		slug (slug, Auto): Slug of title
 
-    """
+	"""
 
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Event Title")
-    slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Event Slug")
-    image_upload = models.FileField(blank=True, null=True, verbose_name="Event Image")
-    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
-    brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
+	## General Fields ##
+	title = models.CharField(
+		max_length=128,
+		blank=False,
+		null=False,
+		default=None,
+		verbose_name=_("Title"),
+		help_text=_("Enter a title for the Task"))
 
-    # Linked Fields
-    type = models.ForeignKey(EventType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Event Type")
-    status = models.ForeignKey(EventStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Event Status")
-    classification = models.ForeignKey(EventClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Event Classification")
-    priority = models.ForeignKey(EventPriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Event Priority")
-    category = models.ForeignKey(EventCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Event Category")
-    authorisation = models.ForeignKey(EventAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Event Authorisation")
-    assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='event_assigned_to', blank=True, verbose_name="Assigned To")
-    manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='event_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Event Manager")
-    assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='event_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
-    
-    # Auto Fields
+	image_upload = models.FileField(
+		upload_to='',
+		blank=True, 
+		null=True, 
+		verbose_name=_("Event Image"),
+		help_text=_("Upload an image for the Task"))
+	
+	date = models.DateTimeField(
+	   auto_now=False, 
+	   null=False,
+	   default=timezone.now(), 
+	   verbose_name=_("Date"),
+	   help_text=_("Select a date for the Task"))
 
-    class Meta:
-        abstract = True
+	## Linked Fields ##
+	classification = models.ForeignKey(
+		EventClassification, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True, 
+		verbose_name=_("Event Classification"),
+		help_text=_("(Optional) Select the classification of Event"))
 
-    def __str__(self):
-        return '%s' % self.title
+	category = models.ForeignKey(
+		EventCategory, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True, 
+		verbose_name=_("Event Category"),
+		help_text=_("(Optional) Select the category of Event"))
+
+	status = models.ForeignKey(
+		EventStatus, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		verbose_name=_("Status"),
+		help_text=_("(Optional) Select the status of the Event"))
+
+	priority = models.ForeignKey(
+		EventPriority, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		verbose_name=_("Priority"),
+		help_text=_("(Optional) Select the priority of the Event"))
+
+	authorisation = models.ForeignKey(
+		Authorisation, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		verbose_name=_("Authorisation"),
+		help_text=_("(Optional) Select the authorisation of the Event"))
+
+	manager = models.ForeignKey(
+		settings.AUTH_USER_MODEL, 
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True,
+		related_name='Event_manager', 
+		verbose_name=_("Event Manager"),
+		help_text=_("(Optional) Select the Event Manager"))
+
+	assigned_by = models.ForeignKey(
+		settings.AUTH_USER_MODEL, 
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True,
+		related_name='Event_assigned_by', 
+		verbose_name=_("Assigned By"),
+		help_text=_("(Optional) Select Event assigned by"))
+
+	assigned_to = models.ManyToManyField(
+		settings.AUTH_USER_MODEL, 
+		blank=True,
+		related_name='Event_assigned_to', 
+		verbose_name=_("Assigned To"),
+		help_text=_("(Optional) Select Event assigned to"))
+
+	note = models.ManyToManyField(
+		Note, 
+		blank=True, 
+		related_name='event_note', 
+		verbose_name=_("Note"),
+		help_text=_("(Optional) Enter a note relating to the Event"))
+
+	## Auto Fields ##
+	slug = models.SlugField(
+		blank=True, 
+		null=True, 
+		unique=True,
+		verbose_name=_("Slug"),
+		help_text=_("A slug value representing title"))
+
+	class Meta:
+		abstract = True
+
+	def __str__(self):
+		""" Returns a human friendly string
+		
+		Returns:
+			Title
+
+		"""
+		return '%s' % _(self.title)
+

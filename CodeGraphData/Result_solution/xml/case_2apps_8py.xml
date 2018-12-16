@@ -15,6 +15,6 @@
 <codeline lineno="4" refid="classcase_1_1apps_1_1case_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classcase_1_1apps_1_1case_config" kindref="compound">caseConfig</ref>(AppConfig):</highlight></codeline>
 <codeline lineno="5" refid="classcase_1_1apps_1_1case_config_1adbf27e001b5ba09e7c1b9443b3da4a4d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>name<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;case&apos;</highlight><highlight class="normal"></highlight></codeline>
     </programlisting>
-    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/apps.py"/>
+    <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/case/apps.py"/>
   </compounddef>
 </doxygen>

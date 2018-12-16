@@ -805,6 +805,6 @@
 <codeline lineno="762"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;&apos;&apos;Returns<sp/>the<sp/>absolute<sp/>url&apos;&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="763"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>reverse(</highlight><highlight class="stringliteral">&apos;casetask_detail&apos;</highlight><highlight class="normal">,<sp/>kwargs={</highlight><highlight class="stringliteral">&apos;pk&apos;</highlight><highlight class="normal">:<sp/>self.pk})</highlight></codeline>
     </programlisting>
-    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py"/>
+    <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/case/models.py"/>
   </compounddef>
 </doxygen>

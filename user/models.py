@@ -11,35 +11,13 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from simple_history.models import HistoricalRecords
-from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
-from entity.models.entity import Address, Telephone, Email, Website, Social, Prefix, ContactMethod
-
+from utils.models import Authorisation, Priority, BaseObject
+from entity.models.entity import Address, Telephone, Email, Website, Social, ContactMethod
+from utils.choices import PREFIX
 
 
 ## Admin Models
-class UserAuthorisation(Authorisation):
-    """
-    Inherited model to contain information about a User authorisation.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('User Authorisation')
-        verbose_name_plural = _('User Authorisations')
-
-
-class UserClassification(Classification):
+class UserClassification(BaseObject):
     """
     Inherited model to contain information about a User classification.
 
@@ -61,7 +39,7 @@ class UserClassification(Classification):
         verbose_name_plural = _('User Classifications')
 
 
-class UserType(Type):
+class UserType(BaseObject):
     """
     Inherited model to contain information about a User type.
 
@@ -105,7 +83,7 @@ class UserPriority(Priority):
         verbose_name_plural = _('User Priorities')
 
 
-class UserCategory(Category):
+class UserCategory(BaseObject):
     """
     Inherited model to contain information about a User category.
 
@@ -127,7 +105,7 @@ class UserCategory(Category):
         verbose_name_plural = _('User Categories')
 
 
-class UserStatus(Status):
+class UserStatus(BaseObject):
     """
     Inherited model to contain information about a User status.
 
@@ -149,7 +127,7 @@ class UserStatus(Status):
         verbose_name_plural = _('User Status')
 
 
-class UserStatusGroup(StatusGroup):
+class UserStatusGroup(BaseObject):
     """
     Inherited model to contain information about a User status group.
 
@@ -227,6 +205,7 @@ class Profile(models.Model):
     """
 
     # General Fields
+    prefix = models.CharField(max_length=10, choices=PREFIX, null=True, blank=True, verbose_name="Prefix")
     user = models.OneToOneField(User, on_delete=models.CASCADE, verbose_name="User")
     bio = models.TextField(max_length=500, blank=True, null=True, default=None, verbose_name="User Biography")
     location = models.CharField(max_length=30, blank=True, null=True, default=None, verbose_name="Current Location")
@@ -264,12 +243,11 @@ class Profile(models.Model):
     #social = models.ManyToManyField(Social, verbose_name="Social")
 
     # Other Fields
-    prefix = models.ForeignKey(Prefix, on_delete=models.DO_NOTHING, null=True, blank=True)
     type = models.ForeignKey(UserType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Type")
     status = models.ForeignKey(UserStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Status")
     classification = models.ForeignKey(UserClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Classification")
     category = models.ForeignKey(UserCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Category")
-    authorisation = models.ForeignKey(UserAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Authorisation")
+    authorisation = models.ForeignKey(Authorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Authorisation")
     
     # Auto Fields
     slug_first = models.SlugField(editable=False, null=True, blank=True, verbose_name="First Name Slug")
@@ -307,7 +285,7 @@ class Profile(models.Model):
             self.save(force_update=True)
         return reverse('user')
     
-    def save(self,force_insert=False, force_update=False):
+    def save(self,force_insert=False, force_update=False, *args, **kwargs):
         from django.template.defaultfilters import slugify
         if not self.slug_last:
             self.slug_last = slugify(self.user.last_name)
@@ -319,7 +297,7 @@ class Profile(models.Model):
             if not self.created:
                 self.created = timezone_now()
             self.modified = timezone_now()
-        models.Model.save(self,force_insert,force_update)
+        models.Model.save(self,force_insert,force_update, *args, **kwargs)
 
     @receiver(post_save, sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

@@ -2,288 +2,459 @@
 
 ## python imports
 from django.db import models
-from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
 from django.urls import reverse
 from django.conf import settings
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-#import evidence.managers as managers
 from simple_history.models import HistoricalRecords
+from utils.models import ObjectDescription
+from utils.models import Authorisation
+from utils.models import Priority
+from utils.models import BaseObject
+from utils.models import Note
+#import evidence.managers as managers
 
 
 ## Admin Models
-class EvidenceAuthorisation(Authorisation):
-    """
-    Inherited model to contain information about an evidence authorisation.
+class EvidenceClassification(BaseObject):
+	""" Model to contain information about evidence classification.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified byl 
+	
+	"""
 
-    history = HistoricalRecords()
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Evidence Authorisation')
-        verbose_name_plural = _('Evidence Authorisations')
-    
-
-class EvidenceClassification(Classification):
-    """
-    Inherited model to contain information about evidence classification.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Evidence Classification')
-        verbose_name_plural = _('Evidence Classifications')
+	class Meta:
+		verbose_name = _('Evidence Classification')
+		verbose_name_plural = _('Evidence Classifications')
 
 
-class EvidenceType(Type):
-    """
-    Inherited model to contain information about evidence type.
+class EvidenceType(BaseObject):
+	""" Model to contain information about evidence type.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-    
-    history = HistoricalRecords()
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by 
+	
+	"""
+	
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Evidence Type')
-        verbose_name_plural = _('Evidence Types')
+	class Meta:
+		verbose_name = _('Evidence Type')
+		verbose_name_plural = _('Evidence Types')
 
 
-class EvidenceCategory(Category):
-    """
-    Inherited model to contain information about evidence category.
+class EvidenceCategory(BaseObject):
+	""" Model to contain information about evidence category.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-    
-    history = HistoricalRecords()
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
+	
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Evidence Category')
-        verbose_name_plural = _('Evidence Categories')
+	class Meta:
+		verbose_name = _('Evidence Category')
+		verbose_name_plural = _('Evidence Categories')
 
 
 class EvidencePriority(Priority):
-    """
-    Inherited model to contain information about evidence priority.
+	"""  Model to contain information about evidence priority.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		delta (int, optional): Time delta
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by 
+	
+	"""
    
-    history = HistoricalRecords()
+	history = HistoricalRecords()
 
-    class Meta:
-        verbose_name = _('Evidence Priority')
-        verbose_name_plural = _('Evidence Priorities')
-
-
-class EvidenceStatus(Status):
-    """
-    Inherited model to contain information about evidence status.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Evidence Status')
-        verbose_name_plural = _('Evidence Status')
+	class Meta:
+		verbose_name = _('Evidence Priority')
+		verbose_name_plural = _('Evidence Priorities')
 
 
-class EvidenceStatusGroup(StatusGroup):
-    """
-    Inherited model to contain information about evidence status group.
+class EvidenceStatus(BaseObject):
+	""" Model to contain information about evidence status.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
-    
-    """
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by 
+	
+	"""
+	
+	history = HistoricalRecords()
 
-    # Linked Fields
-    status = models.ManyToManyField(EvidenceStatus, blank=True, verbose_name="Evidence Status")
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Evidence Status Group')
-        verbose_name_plural = _('Evidence Status Groups')
+	class Meta:
+		verbose_name = _('Evidence Status')
+		verbose_name_plural = _('Evidence Status')
 
 
-class ChainOfCustody(ObjectDescriptionMixin):
-    """
-    Model to contain information about evidence chain of custody.
+class EvidenceStatusGroup(BaseObject):
+	""" Model to contain information about evidence status group.
 
-    :date_recorded (optional):
-    :date_of_custody (optional):
-    :check_in (optional):
-    :comment (optional):
-    :custody_receipt (optional):
-    :custody_receipt_label (optional):
-    :assigned_to (optional):
-    :assigned_by (optional):
-    :custodian (optional):
-    :private (optional): Is it private Boolean
-    :description (optional): Description
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
+	Args:
+		status (EvidenceStatus): Status in group
+		history (HistoricalRecord, auto): Historical records of object
+		title (str) [50]: Title
+		colour (str, optional) [7]: Hexidecimal colour representation
+		description (str, optional) [1000]: Description
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
 
-    # General Fields
-    date_recorded = models.DateTimeField(auto_now=True, null=True, verbose_name="Date Recorded")
-    date_of_custody = models.DateTimeField(auto_now=True, null=True, verbose_name="Date of Custody")
-    check_in = models.BooleanField(default=False, blank=True, verbose_name="Checked-In")
-    comment = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Comment")
-    custody_receipt = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Custody Receipt Number")
-    custody_receipt_label = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Custody Receipt Label")
-    # Linked Fields
-    assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='chainofcustody_assigned_to', blank=True, verbose_name="Assigned To")
-    assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='chainofcustody_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
-    custodian = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='chainofcustody_custodian', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Custodian")
-    
-    history = HistoricalRecords()
+	# Linked Fields
+	status = models.ManyToManyField(
+		EvidenceStatus, 
+		blank=True, 
+		verbose_name=_("Evidence Status"),
+		help_text=_("Select Evidence Status"))
+	
+	history = HistoricalRecords()
+
+	class Meta:
+		verbose_name = _('Evidence Status Group')
+		verbose_name_plural = _('Evidence Status Groups')
 
 
 ## Main Models
-class Evidence(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about evidence.
+class ChainOfCustody(ObjectDescription):
+	""" Model to contain information about evidence chain of custody.
 
-    :title (optional): 
-    :reference (optional): 
-    :comment (optional): 
-    :bag_number (optional): 
-    :location (optional): 
-    :uri (optional): 
-    :current_status (optional): 
-    :qr_code_text (optional): 
-    :qr_code (optional): 
-    :retention_reminder_sent (optional): 
-    :retention_start_date (optional): 
-    :retention_date (optional): 
-    :deadline (optional): 
-    :brief (optional): 
-    :chain_of_custody (optional): 
-    :custodian (optional): 
-    :assigned_to (optional): 
-    :assigned_by (optional): 
-    :type (optional): 
-    :status (optional): 
-    :classification (optional): 
-    :priority (optional): 
-    :category (optional): 
-    :authorisation (optional): 
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+	Args:
+		history (HistoricalRecord, auto): Historical records of object
+		description (str, optional) [1000]: Description
+		receipt (str, optional) [50]: Receipt number
+		date_of_receipt (date, optional): Date of custody
+		check_in (boolean, optional): Is checked-in
+		custodian (AUTH_USER_MODEL, optional): Custodian
+		assigned_by (AUTH_USER_MODEL, optional): Assigned To
+		assigned_to (AUTH_USER_MODEL, optional): Assigned By
+		private (bool, optional): Is private
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+	
+	"""
 
-    """
+	## General Fields ##
+	receipt = models.CharField(
+		max_length=50, 
+		blank=True, 
+		null=True, 
+		default=None, 
+		verbose_name=_("Custody Receipt Number"),
+		help_text=_("(Optional) Enter reciept number"))
 
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Title")
-    reference = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Evidence Reference")
-    comment = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Comment")
-    bag_number = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Bag Number")
-    location = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Physical Location")
-    uri = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="File Location")
-    current_status = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Current Status")
-    qr_code_text = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="QR Code Text")
-    qr_code = models.BooleanField(default=False, blank=True, verbose_name="QR Code")
-    retention_reminder_sent = models.BooleanField(default=False, blank=True, verbose_name="Retention Reminder")
-    slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Evidence Slug")
-    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
-    retention_date = models.DateTimeField(auto_now=False, blank=True, null=True, verbose_name="Retention Date")
-    brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
+	date_of_receipt = models.DateTimeField(
+		auto_now=False, 
+		null=True, 
+		default=timezone.now,
+		verbose_name=_("Date of Custody"),
+		help_text=_("(Optional) Enter date of reciept"))
 
-    # Linked Fields
-    chain_of_custody = models.ForeignKey(ChainOfCustody, on_delete=models.SET_NULL, related_name='evidence_chain_of_custody', blank=True, null=True, verbose_name="Chain Of Custody")
-    custodian = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='evidence_custodian', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Custodian")
-    type = models.ForeignKey(EvidenceType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Type")
-    status = models.ForeignKey(EvidenceStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Status")
-    classification = models.ForeignKey(EvidenceClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Classification")
-    priority = models.ForeignKey(EvidencePriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Priority")
-    authorisation = models.ForeignKey(EvidenceAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Authorisation")
-    category = models.ForeignKey(EvidenceCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Evidence Category")
-    assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='evidence_assigned_to', blank=True, verbose_name="Assigned To")
-    assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='evidence_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
+	check_in = models.BooleanField(
+		default=False,
+		blank=True, 
+		verbose_name=_("Checked-In"),
+		help_text=_("(Optional) Is the item recieved"))
 
-    # Auto Fields
-    retention_start_date = models.DateTimeField(auto_now=True, null=True, verbose_name="Retention Start Date")
-    
-    # Data Models
+	## Linked Fields ##
+	custodian = models.ForeignKey(
+		settings.AUTH_USER_MODEL, 
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True,
+		related_name='chain_of_custody_custodian', 
+		verbose_name=_("Evidence Custodian"),
+		help_text=_("(Optional) Select the Chain Of Custody Custodian"))
 
-    history = HistoricalRecords()
+	assigned_by = models.ForeignKey(
+		settings.AUTH_USER_MODEL, 
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True,
+		related_name='chain_of_custody_assigned_by', 
+		verbose_name=_("Assigned By"),
+		help_text=_("(Optional) Select Chain Of Custody assigned by"))
 
-    class Meta:
-        abstract = True
+	assigned_to = models.ManyToManyField(
+		settings.AUTH_USER_MODEL, 
+		blank=True,
+		related_name='chain_of_custody_assigned_to', 
+		verbose_name=_("Assigned To"),
+		help_text=_("(Optional) Select Chain Of Custody assigned to"))
+	
+	history = HistoricalRecords()
 
-    def get_absolute_url(self):
-        return reverse('evidence_detail', kwargs={'pk': self.pk})
+	class Meta:
+		verbose_name = _('Chain Of Custody')
+		verbose_name_plural = _('Chain Of Custody')
 
-    def __str__(self):
-        return '%s' % self.title
+	def __str__(self):
+		""" Returns a human friendly string
+		
+		Returns:
+			Title
+
+		"""
+		return '%s' % _(self.description)
+
+
+class Evidence(ObjectDescription):
+	""" Abstract model to contain information about evidence.
+
+	Args:
+		title (str) [128]: Evidence title
+		reference (str, optional) [45]: Reference code
+		bag_number (str, optional) [45]: Bag number
+		location (str, optional) [250]: Location of the evidence
+		file_location (file, optional): Location for evidence file
+		image_upload (file, optional): Location for the evidence image
+		qr_code (str, optional) [128]: QR Code 
+		retention_reminder_sent (boolean, optional): Retention reminder sent
+		retention_start_date (date, optional): Retention start date
+		retention_end_date (date, optional): Retention end date
+		chain_of_custody (ChainOfCustody, optional): Chain of custody
+		type (EvidenceType, optional): Type of Evidence
+		status (EvidenceStatus, optional): Status of the Evidence
+		priority (EvidencePriority, optional): Priority of the Evidence
+		authorisation (Authorisation, optional): Authorisation of the Evidence
+		custodian (AUTH_USER_MODEL, optional): Evidence custodian
+		assigned_by (AUTH_USER_MODEL, optional): Assigned To
+		assigned_to (AUTH_USER_MODEL, optional): Assigned By
+		note (Note, optional): Notes relating to the Evidence
+		description (str, optional) [1000]: Description
+		private (bool, optional): Is private
+		created (date, auto): Date Created
+		modified (date,auto): Date Modified
+		created_by (User, auto): Created by
+		modified_by (User, auto): Modified by
+		slug (slug, auto): Slug of title
+	
+	"""
+
+	## General Fields ##
+	title = models.CharField(
+		max_length=128,
+		blank=False,
+		null=False,
+		default=None,
+		verbose_name=_("Title"),
+		help_text=_("Enter a title for the Evidence"))
+
+	reference = models.CharField(
+		max_length=45, 
+		blank=True, 
+		null=True, 
+		default=None, 
+		verbose_name=_("Reference"),
+		help_text=_("Enter a reference code for the Evidence"))
+
+	bag_number = models.CharField(
+		max_length=50, 
+		blank=True,
+		null=True, 
+		default=None, 
+		verbose_name=_("Bag Number"),
+		help_text=_("Enter a bag number for the Evidence"))
+
+	location = models.CharField(
+		max_length=250, 
+		blank=True, 
+		null=True, 
+		default=None, 
+		verbose_name=_("Location"),
+		help_text=_("Enter a current location for the Evidence"))
+
+	file_location = models.FileField(
+		upload_to='',
+		blank=True, 
+		null=True, 
+		verbose_name=_("File Location"),
+		help_text=_("Upload a file location for the Evidence"))
+
+	image_upload = models.FileField(
+		upload_to='',
+		blank=True, 
+		null=True, 
+		verbose_name=_("Image"),
+		help_text=_("Upload an image for the Evidence"))
+
+	qr_code = models.CharField(
+		max_length=128, 
+		blank=True, 
+		null=True, 
+		default=None, 
+		verbose_name=_("QR Code"),
+		help_text=_("Enter a QR code for the evidence"))
+
+	retention_reminder_sent = models.BooleanField(
+		default=False, 
+		blank=True, 
+		verbose_name=_("Retention Reminder"),
+		help_text=_("Has a rentention reminder been sent"))
+
+	retention_start_date = models.DateTimeField(
+		auto_now=False, 
+		blank=True,
+		null=True, 
+		default=timezone.now,
+		verbose_name=_("Retention Start Date"),
+		help_text=_("Enter the retention start date"))
+	
+	retention_end_date = models.DateTimeField(
+		auto_now=False, 
+		blank=True, 
+		null=True, 
+		verbose_name=_("Retention End Date"),
+		help_text=_("Enter the retention end date"))
+
+
+	## Linked Fields ##  
+	classification = models.ForeignKey(
+		EvidenceClassification, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True, 
+		verbose_name=_("Evidence Classification"),
+		help_text=_("(Optional) Select the classification of Evidence"))
+
+	category = models.ForeignKey(
+		EvidenceCategory, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True, 
+		verbose_name=_("Evidence Category"),
+		help_text=_("(Optional) Select the category of Evidence"))
+	
+	type = models.ForeignKey(
+		EvidenceType, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		verbose_name=_("Type"),
+		help_text=_("(Optional) Select the type of Evidence"))
+
+	status = models.ForeignKey(
+		EvidenceStatus, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		verbose_name=_("Status"),
+		help_text=_("(Optional) Select the status of the Evidence"))
+
+	priority = models.ForeignKey(
+		EvidencePriority, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		verbose_name=_("Priority"),
+		help_text=_("(Optional) Select the priority of the Evidence"))
+
+	authorisation = models.ForeignKey(
+		Authorisation, 
+		on_delete=models.SET_NULL, 
+		blank=True, 
+		null=True,
+		verbose_name=_("Authorisation"),
+		help_text=_("(Optional) Select the authorisation of the Evidence"))
+
+	custodian = models.ForeignKey(
+		settings.AUTH_USER_MODEL, 
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True,
+		related_name='evidence_custodian', 
+		verbose_name=_("Evidence Custodian"),
+		help_text=_("(Optional) Select the Evidence Custodian"))
+
+	assigned_by = models.ForeignKey(
+		settings.AUTH_USER_MODEL, 
+		on_delete=models.CASCADE, 
+		blank=True, 
+		null=True,
+		related_name='evidence_assigned_by', 
+		verbose_name=_("Assigned By"),
+		help_text=_("(Optional) Select Evidence assigned by"))
+
+	assigned_to = models.ManyToManyField(
+		settings.AUTH_USER_MODEL, 
+		blank=True,
+		related_name='evidence_assigned_to', 
+		verbose_name=_("Assigned To"),
+		help_text=_("(Optional) Select Evidence assigned to"))
+
+	note = models.ManyToManyField(
+		Note, 
+		blank=True, 
+		related_name='evidence_note', 
+		verbose_name=_("Note"),
+		help_text=_("(Optional) Enter a note relating to the Evidence"))
+	
+	chain_of_custody = models.ManyToManyField(
+		ChainOfCustody, 
+		blank=True, 
+		verbose_name=_("Chain Of Custody"),
+		help_text=_("(Optional) Enter the chain of custody"))
+
+	## Auto Fields ##
+	slug = models.SlugField(
+		blank=True, 
+		null=True, 
+		unique=True, 
+		verbose_name=_("Slug"),
+		help_text=_("A slug value representing title"))
+
+	class Meta:
+		abstract = True
+
+	def __str__(self):
+		""" Returns a human friendly string
+		
+		Returns:
+			Title
+
+		"""
+		return '%s' % _(self.title)

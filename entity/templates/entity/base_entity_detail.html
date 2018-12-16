@@ -47,7 +47,9 @@
         <!-- Image -->
         <div>
             {% if object.image %}
-            <img src={{object.image}} alt="{{object.first_name}}" title="{{object.first_name}}" style="float:right;" />
+                <img src={{object.image}} alt="{{object.first_name}}" title="{{object.first_name}}" style="float:right;" />
+            {% else %}
+                <img src="" alt="Placeholder" title="Placeholder" style="float:right;" />
             {% endif %}
         </div>
         <br />

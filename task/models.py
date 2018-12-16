@@ -2,115 +2,31 @@
 
 ## python imports
 from django.db import models
-from utils.models import ObjectDescriptionMixin, Authorisation, Category, Classification, Priority, Type, Status, StatusGroup
 from django.urls import reverse
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-#import task.managers as managers
 from simple_history.models import HistoricalRecords
+from utils.models import ObjectDescription
+from utils.models import Authorisation
+from utils.models import BaseObject
+from utils.models import Priority
+from utils.models import Note
+#import task.managers as managers
 
 
 ## Admin Models
-class TaskAuthorisation(Authorisation):
-    """
-    Inherited model to contain information about a task authorisation.
+class TaskCategory(BaseObject):
+    """ Model to contain information about a task type.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Task Authorisation')
-        verbose_name_plural = _('Task Authorisations')
-    
-
-class TaskClassification(Classification):
-    """
-    Inherited model to contain information about a task classification.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Task Classification')
-        verbose_name_plural = _('Task Classifications')
-
-
-class TaskType(Type):
-    """
-    Inherited model to contain information about a task type.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Task Type')
-        verbose_name_plural = _('Task Types')
-
-
-class TaskPriority(Priority):
-    """
-    Inherited model to contain information about a task priority.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Task Priority')
-        verbose_name_plural = _('Task Priorities')
-
-
-class TaskCategory(Category):
-    """
-    Inherited model to contain information about a task category.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
     
     """
 
@@ -121,18 +37,41 @@ class TaskCategory(Category):
         verbose_name_plural = _('Task Categories')
 
 
-class TaskStatus(Status):
-    """
-    Inherited model to contain information about a task status.
+class TaskPriority(Priority):
+    """ Model to contain information about a task priority.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        delta (int, optional): Time delta
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+    
+    """
+
+    history = HistoricalRecords()
+
+    class Meta:
+        verbose_name = _('Task Priority')
+        verbose_name_plural = _('Task Priorities')
+
+
+class TaskStatus(BaseObject):
+    """ Model to contain information about a task status.
+
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
     
     """
     
@@ -143,24 +82,28 @@ class TaskStatus(Status):
         verbose_name_plural = _('Task Status')
 
 
-class TaskStatusGroup(StatusGroup):
-    """
-    Inherited model to contain information about a task status group.
+class TaskStatusGroup(BaseObject):
+    """ Model to contain information about a task status group.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
+    Args:
+        status (TaskStatus): Status in group
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
     
     """
 
     # Linked Fields
-    status = models.ManyToManyField(TaskStatus, blank=True, verbose_name="Task Status")
+    status = models.ManyToManyField(
+        TaskStatus, 
+        blank=True, 
+        verbose_name=_("Task Status"),
+        help_text=_("Select Task Status"))
     
     history = HistoricalRecords()
 
@@ -170,61 +113,137 @@ class TaskStatusGroup(StatusGroup):
 
 
 ## Main Models
-class Task(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about a task.
+class Task(ObjectDescription):
+    """ Abstract model to contain information about a task.
 
-    :title (optional): 
-    :slug (optional): 
-    :background (optional): 
-    :deadline (optional): 
-    :brief (optional): 
-    :location (optional): 
-    :assigned_to (optional): 
-    :assigned_by (optional): 
-    :type (optional): 
-    :status (optional): 
-    :classification (optional): 
-    :priority (optional): 
-    :category (optional): 
-    :authorisation (optional): 
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    Args:
+        title (str) [128]: Title for the Task 
+        location (str, optional) [250]: Location for the task
+        description (str, optional) [1000]: Description
+        deadline (date, optional): Deadline for the Task
+        category (TaskCategory, optional): Category of Task
+        status (TaskStatus, optional): Status of the Task
+        priority (TaskPriority, optional): Priority of the Task
+        authorisation (Authorisation, optional): Authorisation of the Task
+        manager (AUTH_USER_MODEL, optional): Task manager
+        assigned_by (AUTH_USER_MODEL, optional): Assigned To
+        assigned_to (AUTH_USER_MODEL, optional): Assigned By
+        note (Note, optional): Notes relating to the Task
+        private (bool, optional): Is private
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
+        slug (slug, Auto): Slug of title
 
     """
 
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Title")
-    background = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Background")
-    location = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Task Location")
-    #deadline = models.DateTimeField(auto_now=False, null=True, verbose_name="Deadline")
-    slug = models.SlugField(blank=True, null=True, unique=True, verbose_name="Evidence Slug")
-    brief = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Case Brief")
+    ## General Fields ##
+    title = models.CharField(
+        max_length=128,
+        blank=False,
+        null=False,
+        verbose_name=_("Title"),
+        help_text=_("Enter a title for the Task"))
 
-    # Linked Fields
-    type = models.ForeignKey(TaskType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Type")
-    status = models.ForeignKey(TaskStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Status")
-    classification = models.ForeignKey(TaskClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Classification")
-    priority = models.ForeignKey(TaskPriority, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Priority")
-    category = models.ForeignKey(TaskCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Category")
-    authorisation = models.ForeignKey(TaskAuthorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Task Authorisation")
-    assigned_to = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='task_assigned_to', blank=True, verbose_name="Assigned To")
-    manager = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='task_manager', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Task Manager")
-    assigned_by = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='task_assigned_by', on_delete=models.CASCADE, blank=True, null=True, verbose_name="Assigned By")
+    location = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        default=None,
+        verbose_name=_("Location"),
+        help_text=_("(Optional) Enter a location for the task"))
 
-    # Auto Fields
+    #deadline = models.DateTimeField(
+    #   auto_now=False, 
+    #   null=False,
+    #   default=timezone.now(), 
+    #   verbose_name=_("Deadline"),
+    #   help_text=_("Select a deadline for the Task"))
 
-    history = HistoricalRecords()
+    ## Linked Fields ##
+
+    category = models.ForeignKey(
+        TaskCategory, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        verbose_name=_("Category"),
+        help_text=_("(Optional) Select the category of Task"))
+
+    status = models.ForeignKey(
+        TaskStatus, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        verbose_name=_("Status"),
+        help_text=_("(Optional) Select the status of the Task"))
+
+    priority = models.ForeignKey(
+        TaskPriority, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        verbose_name=_("Priority"),
+        help_text=_("(Optional) Select the priority of the Task"))
+
+    authorisation = models.ForeignKey(
+        Authorisation, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True,
+        verbose_name=_("Authorisation"),
+        help_text=_("(Optional) Select the authorisation of the Task"))
+
+    manager = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name='task_manager', 
+        verbose_name=_("Task Manager"),
+        help_text=_("(Optional) Select the Task Manager"))
+
+    assigned_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name='task_assigned_by', 
+        verbose_name=_("Assigned By"),
+        help_text=_("(Optional) Select Task assigned by"))
+
+    assigned_to = models.ManyToManyField(
+        settings.AUTH_USER_MODEL, 
+        blank=True,
+        related_name='task_assigned_to', 
+        verbose_name=_("Assigned To"),
+        help_text=_("(Optional) Select Task assigned to"))
+
+    note = models.ManyToManyField(
+        Note, 
+        blank=True, 
+        related_name='task_note', 
+        verbose_name=_("Note"),
+        help_text=_("(Optional) Enter a note relating to the Task"))
+
+    ## Auto Fields ##
+    slug = models.SlugField(
+        blank=True, 
+        null=True, 
+        unique=True,
+        verbose_name=_("Slug"),
+        help_text=_("A slug value representing title"))
+
 
     class Meta:
         abstract = True
 
-    def get_absolute_url(self):
-        return reverse('task_detail', kwargs={'pk': self.pk})
-
     def __str__(self):
-        return '%s' % self.title
+        """ Returns a human friendly string
+        
+        Returns:
+            Title
+
+        """
+        return '%s' % _(self.title)

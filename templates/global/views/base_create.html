@@ -35,3 +35,8 @@
 
 {% endblock %}
 
+{% block scripts %}
+        $(document).ready(function() {
+            $('.has-popover').popover({'trigger':'hover'});
+        });
+{% endblock %}

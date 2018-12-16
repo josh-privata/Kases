@@ -6,7 +6,7 @@ from django.shortcuts import redirect
 from django.forms.models import modelformset_factory
 from user.forms import UserForm, ProfileForm
 from entity.forms import AddressForm, TelephoneForm, EmailForm, WebsiteForm
-from entity.forms import PersonForm, SearchForm, AdvancedSearchForm
+from entity.forms import PersonForm
 from entity.models.person import Person
 from entity.models.entity import Address, Telephone, Email, Website
 

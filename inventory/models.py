@@ -7,19 +7,19 @@ from django.conf import settings
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now as timezone_now
-from django.contrib.auth.models import User, Permission
-from django.contrib.contenttypes.models import ContentType
-from django.contrib.contenttypes import fields
 from simple_history.models import HistoricalRecords
-from model_utils.managers import InheritanceManager
-from utils.models import ObjectDescriptionMixin, Authorisation, Category
-from utils.models import Classification, Priority, Type, Status, StatusGroup
-#import case.managers as managers
-from note.models import Note
-from task.models import Task
-from evidence.models import Evidence
+from utils.choices import DEVICE_STATUS_CHOICES
+from utils.choices import DEVICE_CONDITION_CHOICES
+from utils.choices import DEVICE_SERVICE_STATUS_CHOICES
+from utils.models import ObjectDescription
+from utils.models import Authorisation
+from utils.models import BaseObject
+from utils.models import Note
 from entity.models.company import Company
 from entity.models.person import Person
+#import case.managers as managers
+#from note.models import Note
+
 
 '''
 Data Storage
@@ -52,98 +52,19 @@ Cable
 '''
 
 
-# These constants define choices for a device's status
-CHECKED_IN_READY = 'RE'
-CHECKED_IN_NOT_READY = 'NR'
-CHECKED_OUT = 'CO'
-AWAITING_LOAN = 'AW'
-AWAITING_RETURN = 'RT'
-STORAGE = 'ST'
-DAMAGED = 'DM'
-REPLACE = 'RE'
-MISSING = 'MI'
-DECOMMISIONED = 'DE'
-OBSELETE = 'OB'
-RESTRICTED = 'RS'
-HOLD = 'HO'
-SERVICING = 'SE'
-
-# Define possible choices for status field
-STATUS_CHOICES = (
-    (CHECKED_IN_READY, 'Checked In - Ready'),
-    (CHECKED_IN_NOT_READY, 'Checked In - Not Ready'),
-    (CHECKED_OUT, 'Checked Out'),
-    (AWAITING_LOAN, 'Awaiting Loan Approval'),
-    (AWAITING_RETURN, 'Awaiting Return Approval'),
-    (STORAGE, 'In Storage'),
-    (DAMAGED, 'Damaged'),
-    (REPLACE, 'Replacement Required'),
-    (MISSING, 'Missing'),
-    (DECOMMISIONED, 'Decommisioned'),
-    (OBSELETE, 'Obselete'),
-    (RESTRICTED, 'Restricted Use'),
-    (HOLD, 'On Hold'),
-    (SERVICING, 'Servicing'),
-)
-
-# These constants define choices for a device's condition
-NEW = 'NW'
-EXCELLENT = 'EX'
-GOOD = 'GD'
-AVERAGE = 'AV'
-BELOW_AVERAGE = 'BA'
-POOR = 'PR'
-DAMAGED = 'DM'
-LOST = 'LO'
-
-# Define possible choices for condition field
-CONDITION_CHOICES = (
-    (NEW, 'New'),
-    (EXCELLENT, 'Excellent'),
-    (GOOD, 'Good'),
-    (AVERAGE, 'Average'),
-    (BELOW_AVERAGE, 'Below Average'),
-    (POOR, 'Poor'),
-    (DAMAGED, 'Damaged'),
-    (LOST, 'Lost'),
-)
-
-
 ## Admin Models
-class DeviceAuthorisation(Authorisation):
-    """
-    Inherited model to contain information about a device authorisation.
+class DeviceClassification(BaseObject):
+    """  Model to contain information about a device classification.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Device Classification')
-        verbose_name_plural = _('Device Classifications')
-    
-
-class DeviceClassification(Classification):
-    """
-    Inherited model to contain information about a device classification.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
     
     """
 
@@ -154,40 +75,18 @@ class DeviceClassification(Classification):
         verbose_name_plural = _('Device Classifications')
 
 
-class DeviceType(Type):
-    """
-    Inherited model to contain information about a device type.
+class DeviceCategory(BaseObject):
+    """  Model to contain information about a device category.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Device Type')
-        verbose_name_plural = _('Device Types')
-
-
-class DeviceCategory(Category):
-    """
-    Inherited model to contain information about a device category.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
     
     """
 
@@ -198,240 +97,469 @@ class DeviceCategory(Category):
         verbose_name_plural = _('Device Categories')
 
 
-class DeviceStatus(Status):
-    """
-    Inherited model to contain information about a device status.
+class ServiceContract(ObjectDescription):
+    """  Model to contain information about a device service contract.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Device Status')
-        verbose_name_plural = _('Device Status')
-
-
-class DeviceStatusGroup(StatusGroup):
-    """
-    Inherited model to contain information about a device status group.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
-    
-    """
-
-    # Linked Fields
-    status = models.ManyToManyField(DeviceStatus, blank=True, verbose_name="Device Status")
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Device Status Group')
-        verbose_name_plural = _('Device Status Groups')
-
-
-class ServiceContract(ObjectDescriptionMixin):
-    """
-    Model to contain information about a device service contract.
-
-    :title (optional): 
-    :duration (optional): 
-    :contract_id (optional): 
-    :service_id (optional): 
-    :terms (optional): 
-    :renewal_date (optional): 
-    :renewal_cost (optional): 
-    :vendor (optional): 
-    :contact (optional): 
-    :document (optional): 
-    :responsible (optional): 
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [128] : Title
+        internal_id (str, optional) [45]: Internal ID
+        service_id (str, optional) [45]: Service Contract Reference
+        terms (str, optional) [None]: Terms of Contract
+        contract_start (Date, optional): Duration of Contract
+        contract_end (Date, optional): Renewal Date
+        renewal_cost (float, optional) [12.2] : Renewal Cost
+        active (bool, optional): Is active
+        vendor (Company, optional): Vendor
+        contact (Person, optional): Vendor Contact
+        document (File, optional): Document Upload
+        responsible (User, optional): Staff Responsible
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
 
     """
 
     # General Fields
-    title = models.CharField(max_length=64, blank=True, null=True, verbose_name="Contract Title")
-    duration = models.CharField(max_length=16, blank=True, null=True, verbose_name="Contract Duration")
-    contract_id = models.CharField(max_length=45, blank=True, null=True, verbose_name="Service Contract ID")
-    service_id = models.CharField(max_length=45, blank=True, null=True, verbose_name="Service ID")
-    terms = models.CharField(max_length=64, blank=True, null=True, verbose_name="Terms and Conditions")
-    renewal_date = models.CharField(max_length=64, blank=True, null=True, verbose_name="Renewal Date")
-    renewal_cost = models.CharField(max_length=64, blank=True, null=True, verbose_name="Renewal Cost")
+    title = models.CharField(
+        max_length=128,
+        blank=False,
+        null=False,
+        default=None,
+        verbose_name=_("Title"),
+        help_text=_("Enter a title for the Service Contract"))
+
+    internal_id = models.CharField(
+        max_length=45, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Internal ID"),
+        help_text=_("Enter the internal id for the Service Contract"))
+
+    service_id = models.CharField(
+        max_length=45, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Service ID"),
+        help_text=_("Enter a contract id for the Service Contract"))
+
+    terms = models.TextField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Terms and Conditions"),
+        help_text=_("Enter the terms for the Service Contract"))
+    
+    contract_start = models.DateField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Contract Duration"),
+        help_text=_("Enter a duration for the Service Contract"))
+
+    contract_end = models.DateField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Renewal Date"),
+        help_text=_("Enter a renewal date for the Service Contract"))
+
+    renewal_cost = models.DecimalField(
+        max_digits=12, 
+        decimal_places=2, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Renewal Cost"),
+        help_text=_("Enter the renewal cost for the Service Contract"))
+
+    active = models.BooleanField(
+        default=False, 
+        blank=True, 
+        verbose_name=_("Active"),
+        help_text=_("(Optional) Is Contract Active"))
 
     # Linked Fields
-    vendor = models.CharField(max_length=64, blank=True, null=True, verbose_name="Contract Vendor")
-    contact = models.CharField(max_length=128, blank=True, null=True, verbose_name="Contract Contact")
-    #document = models.CharField(max_length=64, blank=True, null=True, verbose_name="Service Contract")
-    responsible = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='responsible_for_contract',
-                                    on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Resposnsible Party")
+    vendor = models.ForeignKey(
+        Company,
+        on_delete=models.DO_NOTHING,
+        blank=True, 
+        related_name=_('service_contract_vendor'),
+        verbose_name=_("Contract Vendor"),
+        help_text=_("Enter the vendor for the Service Contract"))
+
+    contact = models.ForeignKey(
+        Person,
+        on_delete=models.DO_NOTHING,
+        blank=True, 
+        related_name=_('service_contract_contact'),
+        verbose_name=_("Contract Contact"),
+        help_text=_("Enter the contact for the Service Contract"))
+
+    #document = models.FileField(
+    #    upload_to='uploads/' ,
+    #    blank=True, 
+    #    null=True,
+    #    verbose_name=_("File Upload"),
+    #    help_text=_("Upload the Service Contract"))
+
+    responsible = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.DO_NOTHING, 
+        blank=True, 
+        related_name=_('service_sontract_responsible'), 
+        verbose_name=_("Resposnsible Party"),
+        help_text=_("Enter the resposnsible party for the Service Contract"))
 
     # Auto Fields
     
     history = HistoricalRecords()
-
-    def __str__(self):
-        return self.name
 
     class Meta:
         verbose_name = _('Service Contract')
         verbose_name_plural = _('Service Contracts')
 
+    def __str__(self):
+        """ Returns a human friendly string
+        
+        Returns:
+            Title
+
+        """
+        return '%s' % _(self.title)
+
 
 ## Main Models
-
-class Device(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an event.
+class Device(ObjectDescription):
+    """  Model to contain information about a device
  
-    :title (optional): 
-    :make (optional): 
-    :model (optional): 
-    :purpose (optional): 
-    :variation (optional): 
-    :serial_number (optional): 
-    :status (optional): 
-    :condition (optional): 
-    :returnable (optional): 
-    :service_id (optional): 
-    :model_number (optional): 
-    :warranty_title (optional): 
-    :warranty_contact (optional): 
-    :warranty_duration (optional): 
-    :warranty_id (optional): 
-    :warranty_terms (optional): 
-    :warranty_start (optional): 
-    :warranty_end (optional): 
-    :warranty_extended (optional): 
-    :warranty_vendor (optional): 
-    :warranty_responsible (optional): 
-    :purchased (optional): 
-    :manufacturer (optional): 
-    :rep (optional): 
-    :vendor (optional): 
-    :service_contract (optional): 
-    :resposible_party (optional):
-    :device_dependency (optional):
-    :related_devices (optional):
-    :warranty_document (optional):
-    :instruction_document (optional):
-    :type (optional): 
-    :status (optional): 
-    :classification (optional): 
-    :priority (optional): 
-    :category (optional): 
-    :authorisation (optional): 
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        title (str) [128] : Title 
+        model (str, optional) [128] : Model 
+        manufacturer (str, optional) [128] : Manufacturer 
+        variation (str, optional) [128] : Variation 
+        serial_number (str, optional) [128] : Serial Number  
+        status (DEVICE_STATUS_CHOICES, optional) [2] : Device Status 
+        condition (DEVICE_CONDITION_CHOICES, optional) [2] : Device Condition 
+        returnable (Boolean, optional) : Item is Returnable 
+        internal_id (str, optional) [45] : Internal ID
+        model_number (str, optional) [45] : Model Number 
+        purchased (Date, optional) : Date Purchased
+        manual (FileUpload, optional) : Device Manual Upload
+        warranty_title (str, optional) [128]: Warranty Title
+        warranty_id (str, optional) [45] : Reference ID
+        warranty_terms (str, optional) [None] : Warranty Terms
+        warranty_duration (Date, optional) : Warranty Duration
+        warranty_start (Date, optional) : Warranty Start Date 
+        warranty_end (Date, optional) : Warranty End Date
+        warranty_extended (Boolean, optional) : Extended Warranty 
+        warranty_document (FileUpload, optional) : Warranty Document 
+        warranty_contact (Person, optional) : Warranty Contact
+        warranty_vendor (Company, optional) : Warranty Vendor
+        warranty_responsible (User, optional) : Staff Responsible for Warranty
+        sales_rep (Person, optional) : Sales Rep
+        vendor (Company, optional) : Vendor
+        service_contract (Service Contract, optional) : Service Contract
+        classification (DeviceClassification, optional): Device Classification
+        category (DeviceCategory, optional) : Device Category
+        authorisation (Authorisation, optional) : Device Authorisation
+        manager (User, optional) : Device Manager
+        device_dependency (Device, optional) : Device Dependacies
+        related_devices (Device, optional) : Related Devices
+        description (str, optional) [1000] : Description
+        created (date, auto) : Date Created
+        modified (date,auto) : Date Modified
+        created_by (User, auto) : Created by
+        modified_by (User, auto) : Modified by 
+        slug (slug, Auto): Slug of title
+
+    Methods:
+        check_in (Object) : Changes status and saves object
+        check_out (Object) :  Changes status to 'CHECKED_OUT' and saves object
 
     """
 
-    # General Fields
-    title = models.CharField(max_length=200, null=True, blank=True, verbose_name="Device Title")
-    make = models.CharField(max_length=200, null=True, blank=True, verbose_name="Device Make")
-    model = models.CharField(max_length=200, null=True, blank=True, verbose_name="Device Model")
-    purpose = models.CharField(max_length=200, null=True, blank=True, verbose_name="Device Purpose")
-    variation = models.CharField(max_length=200, null=True, blank=True, verbose_name="Device Variation")
-    serial_number = models.CharField(max_length=200, null=True, blank=True, verbose_name="Serial Number")
-    status = models.CharField(max_length=2, choices=STATUS_CHOICES, default=CHECKED_IN_READY, verbose_name="Device Status")
-    condition = models.CharField(max_length=2, choices=CONDITION_CHOICES, default=EXCELLENT, verbose_name="Device Condition")
-    returnable = models.BooleanField(default=True, verbose_name="Returnable To Stock")
-    service_id = models.CharField(max_length=45, blank=True, null=True, verbose_name="Device Service ID")
-    model_number = models.CharField(max_length=16, blank=True, null=True, verbose_name="Device Model Number")
-    warranty_title = models.CharField(max_length=64, blank=True, null=True, verbose_name="Warranty Title")
-    warranty_contact = models.CharField(max_length=128, blank=True, null=True, verbose_name="Warranty Contract")
-    warranty_duration = models.CharField(max_length=16, blank=True, null=True, verbose_name="Warranty Duration")
-    warranty_id = models.CharField(max_length=45, blank=True, null=True, verbose_name="Warranty ID")
-    warranty_terms = models.CharField(max_length=64, blank=True, null=True, verbose_name="Warranty Terms and Conditions")
-    warranty_start = models.DateTimeField('Warranty Start Date', blank=True, null=True)
-    warranty_end = models.DateTimeField('Warranty End Date', blank=True, null=True)
-    warranty_extended = models.BooleanField(default=False, verbose_name="Extended Warranty")
-    purchased = models.DateTimeField('Purchase Date', blank=True, null=True)
+    ## General Fields ##
+    title = models.CharField(
+        max_length=128, 
+        null=True, 
+        blank=True,
+        verbose_name=_("Title"),
+        help_text=_("Enter a title for the Device"))
 
-    # Linked Fields
-    #device_dependency = models.ForeignKey(Device, on_delete=models.CASCADE, blank=True, verbose_name="Device Dependency")
-    #related_devices = models.ForeignKey(Device, on_delete=models.CASCADE, blank=True, verbose_name="Related Devices")
-    manufacturer = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='manufacturer', blank=True, null=True, verbose_name="Device Manufacturer")
-    rep = models.ForeignKey(Person, on_delete=models.CASCADE, related_name='sales_rep', blank=True, null=True, verbose_name="Vendor Sales Rep")
-    vendor = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='vendor', blank=True, null=True, verbose_name="Device Vendor")
-    service_contract = models.ForeignKey(ServiceContract, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Service Contract")
-    type = models.ForeignKey(DeviceType, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Type")
-    classification = models.ForeignKey(DeviceClassification, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Classification")
-    category = models.ForeignKey(DeviceCategory, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Category")
-    authorisation = models.ForeignKey(DeviceAuthorisation, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Device Authorisation")
-    resposible_party = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='resposible_party', on_delete=models.CASCADE,
-                                         blank=True, null=True, verbose_name="Device Manager")
-    warranty_vendor = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='warranty_vendor', blank=True, null=True, verbose_name="Warranty Vendor")
-    #warranty_document = models.CharField(max_length=64, blank=True, null=True, verbose_name="Warranty Document")
-    #instruction_document = models.CharField(max_length=64, blank=True, null=True, verbose_name="Instruction Document")
-    warranty_responsible = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='responsible_for_warranty',
-                                    on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Resposnsible For Warranty")
+    model = models.CharField(
+        max_length=128, 
+        null=True, 
+        blank=True,
+        verbose_name=_("Device Model"),
+        help_text=_("Enter a model for the Device"))
+        
+    manufacturer = models.CharField(
+        max_length=128, 
+        blank=True, 
+        null=True,
+        verbose_name=_("Device Manufacturer"),
+        help_text=_("Enter the Manufacturer"))
 
+    variation = models.CharField(
+        max_length=128, 
+        null=True, 
+        blank=True, 
+        verbose_name=_("Device Variation"),
+        help_text=_("Enter a varitaion of the Device"))
+
+    serial_number = models.CharField(
+        max_length=128, 
+        null=True, 
+        blank=True, 
+        verbose_name=_("Serial Number"),
+        help_text=_("Enter the serial number of the Device"))
+
+    status = models.CharField(
+        max_length=2, 
+        choices=DEVICE_STATUS_CHOICES, 
+        verbose_name=_("Device Status"),
+        help_text=_("Select the status of the Device"))
+
+    condition = models.CharField(
+        max_length=2, 
+        choices=DEVICE_CONDITION_CHOICES, 
+        verbose_name=_("Device Condition"),
+        help_text=_("Select the condition of the Device"))
+
+    returnable = models.BooleanField(
+        default=True, 
+        verbose_name=_("Returnable To Stock"), 
+        help_text=_("Is the Device returnable To stock"))
+
+    internal_id = models.CharField(
+        max_length=45, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Internal ID"),
+        help_text=_("Enter the internal id of the Device"))
+
+    model_number = models.CharField(
+        max_length=45, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Model Number"),
+        help_text=_("Enter the model number of the Device"))
+
+    purchased = models.DateField(
+        blank=True, 
+        null=True,
+        default=timezone.now,
+        verbose_name=_('Purchase Date'),
+        help_text=_("Enter the date the Device was purchased"))
+
+    #manual = models.FileField(
+    #    upload_to='uploads/', 
+    #    blank=True, 
+    #    null=True,
+    #    verbose_name=_("Manual Upload"),
+    #    help_text=_("Upload the Manual for the Device"))
+
+    warranty_title = models.CharField(
+        max_length=128, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Warranty Title"),
+        help_text=_("Enter the internal id of the Warranty"))
+
+    warranty_duration = models.CharField(
+        max_length=16, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Warranty Duration"),
+        help_text=_("Enter the duration of the Warranty"))
+
+    warranty_id = models.CharField(
+        max_length=45, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Warranty Reference ID"),
+        help_text=_("Enter the reference id of the Warranty"))
+
+    warranty_terms = models.TextField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Warranty Terms and Conditions"),
+        help_text=_("Enter the terms and conditions of the Warranty"))
+
+    warranty_start = models.DateField(
+        blank=True, 
+        null=True,
+        default=timezone.now,
+        verbose_name=_('Warranty Start Date'), 
+        help_text=_("Enter the start date of the Warranty"))
+
+    warranty_end = models.DateField(
+        blank=True, 
+        null=True,
+        default=timezone.now,
+        verbose_name=_('Warranty End Date'), 
+        help_text=_("Enter the end date of the Warranty"))
+
+    warranty_extended = models.BooleanField(
+        default=False, 
+        verbose_name=_("Extended Warranty"),
+        help_text=_("Has the Warranty been extended"))
+
+    #warranty_document = models.FileField(
+    #    upload_to='uploads/',
+    #    blank=True, 
+    #    null=True,
+    #    verbose_name=_("File Upload"),
+    #    help_text=_("Upload the Warranty Contract"))
+
+
+    ## Linked Fields ##
+    warranty_contact = models.ForeignKey(
+        Person, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True, 
+        related_name=_('warranty_contact'),
+        verbose_name=_("Warranty Contact"),
+        help_text=_("Select the vendor contact for the Warranty"))
+
+    warranty_responsible = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True, 
+        related_name=_('warranty_resposible'), 
+        verbose_name=_("Warranty Responsible"),
+        help_text=_("Select the staff resposnible for the Warranty"))
+
+    warranty_vendor = models.ForeignKey(
+        Company, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name=_('warranty_vendor'), 
+        verbose_name=_("Warranty Vendor"),
+        help_text=_("Select the vendor for the Warranty"))
+
+    sales_rep = models.ForeignKey(
+        Person, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name=_('sales_rep'),
+        verbose_name=_("Vendor Sales Rep"),
+        help_text=_("Select the Sales Representative"))
+
+    vendor = models.ForeignKey(
+        Company, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True, 
+        related_name=_('device_vendor'),
+        verbose_name=_("Device Vendor"),
+        help_text=_("Select the Device Vendor"))
+
+    service_contract = models.ForeignKey(
+        ServiceContract, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name=_('device_service_contract'),
+        verbose_name=_("Device Service Contract"),
+        help_text=_("Select the Service Contract"))
+
+    classification = models.ForeignKey(
+        DeviceClassification, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name=_('device_classification'),
+        verbose_name=_("Device Classification"),
+        help_text=_("Select the Device Classification"))
+
+    category = models.ForeignKey(
+        DeviceCategory, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name=_('device_category'),
+        verbose_name=_("Device Category"),
+        help_text=_("Select the Device Category"))
+
+    authorisation = models.ForeignKey(
+        Authorisation, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name=_('device_authorisation'),
+        verbose_name=_("Device Authorisation"),
+        help_text=_("Select the Device Autorisation Level"))
+
+    manager = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True, 
+        related_name=_('device_manager'), 
+        verbose_name=_("Device Manager"),
+        help_text=_("Select the Device Manager"))
     
+    #device_dependency = models.ManyToMany(
+    #    Device, 
+    #    related_name=_('device_dependecies'), 
+    #    verbose_name=_("Device Dependency"),
+    #    help_text=_("Select the Device Dependencies"))
+
+    #related_devices = models.ManyToMany(
+    #    Device,
+    #    related_name=_('related_devices'),  
+    #    verbose_name=_("Related Devices"),
+    #    help_text=_("Select Related Devices"))
+        
     # Auto Fields
-    slug = models.SlugField(editable=False, null=True, blank=True, verbose_name="Device Slug")
+    slug = models.SlugField(
+        editable=False, 
+        null=True, 
+        blank=True, 
+        verbose_name=_("Device Slug"),
+        help_text=_("Enter the Device slug"))
     
     history = HistoricalRecords()  
 
-    #class Meta:
-        #abstract = True
+    class Meta:
         #permissions = (
         #    ('can_change_device_status', "Can change device status"),
         #    ('can_update_device_attributes', "Can update device attributes")
         #)
         #get_latest_by = 'created_at'
+        verbose_name = _('Device')
+        verbose_name_plural = _('Devices')
 
     def __str__(self):
-        return '%s' % self.title
+        """ Returns a human friendly string
+        
+        Returns:
+            Title
+
+        """
+        return '%s' % _(self.title)
     
     def get_absolute_url(self):
-        '''Returns the absolute url'''
+        """ Returns a url of object
+        
+        Returns:
+            device_detail
+
+        """
         if not (self.slug):
             self.save(force_update=True)
         return reverse('device_detail',args=[self.pk])
 
-    def get_status_color(self):
-        '''Return a css color that corresponds to the device's status.
-        '''
-        if self.status in [Device.CHECKED_IN_NOT_READY,
-                            Device.BROKEN]:
-            return 'red'
-        elif self.status in [Device.CHECKED_IN_READY, Device.CHECKED_IN]:
-            return 'green'
-        elif self.status in [Device.CHECKED_OUT]:
-            return '#ffcc00'
-
     def check_in(self, condition='excellent'):
-        """Checks in a device.
+        """ Changes status and saves object
 
         Args:
-        condition - String indicating the condition of
-                    the device. Must either 'excellent', 'broken',
-                    'missing', or 'scratched'.
+            condition (str) [2] : The item condition
 
         """
         if condition == 'broken':
@@ -450,12 +578,27 @@ class Device(ObjectDescriptionMixin):
         return self.save()
 
     def check_out(self):
-        '''Checks out a device.
-        '''
+        """ Changes status to 'CHECKED_OUT' and saves object
+
+        """
         self.status = Device.CHECKED_OUT
         return self.save()
 
     def save(self,force_insert=False, force_update=False):
+        """ Saves the Object.
+                if new object;
+                    sets the 'created' to the current time
+                    sets the 'created_by' to the current user
+                if existing object;
+                    sets the 'modified' to the current time
+                    sets the 'modified_by' to the current user
+                if a slug does not exist;
+                    sets 'slug' to slug of 'title'
+        
+        Returns:
+            The new Object
+
+        """
         from django.template.defaultfilters import slugify
         if not self.pk:
            self.created = timezone_now()
@@ -469,95 +612,160 @@ class Device(ObjectDescriptionMixin):
         models.Model.save(self,force_insert,force_update)
 
 
-class Service(ObjectDescriptionMixin):
+class Service(ObjectDescription):
+    """ Model to contain information about a device service.
+
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        issue (str) [None] : Issue
+        resolution (str, optional) [None] : Resolution 
+        status (DEVICE_STATUS_CHOICES, optional) [2] : Service Status 
+        technician (str, optional) [128] : 
+        leave_date (Date, optional) : Date Left Inventory
+        return_date (Date, optional) : Date Returned to Inventory
+        cost (Float, optional) [12.2] : Service Cost
+        invoice (File, optional): Invoice Upload
+        receipt (File, optional): Receipt Upload
+        returned (Boolean, optional): Device Returned
+        under_warranty (Boolean, optional): Under Warranty
+        tested (Boolean, optional): Tested
+        vendor (Company, optional): Vendor Serviced By
+        service_contract (ServiceContract, optional): Service Contract
+        manager (User, optional): Service Manager
+        tested_by (User, optional): Tested By
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
+
     """
-    Model to contain information about a device service.
 
-    :issue (optional): 
-    :resolution (optional): 
-    :work_done (optional): 
-    :left_inventory (optional): 
-    :return_date (optional): 
-    :cost (optional): 
-    :technician (optional): 
-    :returned (optional): 
-    :under_warranty (optional): 
-    :parts_replaced (optional): 
-    :device_replaced (optional): 
-    :serviced_by (optional): 
-    :service_contract (optional): 
-    :service_document (optional): 
-    :responsible (optional): 
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    ## General Fields ##
+    issue = models.TextField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Issue"),
+        help_text=_("Enter the issue"))
 
-    """
+    resolution = models.TextField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Resolution"),
+        help_text=_("Enter the resolution"))
 
-    # General Fields
-    issue = models.CharField(max_length=64, blank=True, null=True, verbose_name="Service Issue")
-    resolution = models.CharField(max_length=64, blank=True, null=True, verbose_name="Service Resolution")
-    work_done = models.CharField(max_length=64, blank=True, null=True, verbose_name="Work Done")
-    left_inventory = models.CharField(max_length=16, blank=True, null=True, verbose_name="Date Left Inventory")
-    return_date = models.CharField(max_length=16, blank=True, null=True, verbose_name="Date Returned to Inventory")
-    cost = models.CharField(max_length=45, blank=True, null=True, verbose_name="Service Cost")
-    technician = models.CharField(max_length=64, blank=True, null=True, verbose_name="Repair Technician")
-    returned = models.BooleanField(default=False, verbose_name="Device Returned to Inventory")
-    under_warranty = models.BooleanField(default=True, verbose_name="Under Warranty")
-    parts_replaced = models.BooleanField(default=False, verbose_name="Parts Replaced")
-    device_replaced = models.BooleanField(default=False, verbose_name="Device Replaced")
+    status = models.CharField(
+        max_length=2, 
+        choices=DEVICE_SERVICE_STATUS_CHOICES, 
+        verbose_name=_("Service Status"),
+        help_text=_("Select the sservice status"))
 
-    # Linked Fields
-    serviced_by = models.ForeignKey(Company, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Serviced By")
-    service_contract = models.ForeignKey(ServiceContract, on_delete=models.CASCADE, blank=True, null=True, verbose_name="Service Contract")
-    #service_document = models.CharField(max_length=64, blank=True, null=True, verbose_name="Service Document")
-    responsible = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='responsible_for_service',
-                                    on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Resposnsible Party")
+    technician = models.CharField(
+        max_length=64, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Repair Technician"),
+        help_text=_("Enter the service techncician's name"))
 
-    # Auto Fields
+    leave_date = models.DateField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Date Left Inventory"),
+        help_text=_("Enter the date left for service"))
+
+    return_date = models.DateField(
+        blank=True, 
+        null=True, 
+        verbose_name=_("Date Returned to Inventory"),
+        help_text=_("Enter the return date to inventory"))
+
+    cost = models.DecimalField(
+        max_digits=12, 
+        decimal_places=2, 
+        blank=True, 
+        null=True, 
+        verbose_name=_("Service Cost"),
+        help_text=_("Enter the service cost"))
+
+    #invoice = models.FileField(
+    #    blank=True, 
+    #    null=True,
+    #    upload_to='uploads/' 
+    #    verbose_name=_("Invoice Upload"),
+    #    help_text=_("Upload the Invoice"))
+
+    #receipt = models.FileField(
+    #    blank=True, 
+    #    null=True,
+    #    upload_to='uploads/' 
+    #    verbose_name=_("Receipt Upload"),
+    #    help_text=_("Upload the Receipt"))
+
+    returned = models.BooleanField(
+        default=False, 
+        verbose_name=_("Returned to Inventory"),
+        help_text=_("Device returned"))
+
+    under_warranty = models.BooleanField(
+        default=True, 
+        verbose_name=_("Under Warranty"),
+        help_text=_("Device under warranty"))
+    
+    tested = models.BooleanField(
+        default=True, 
+        verbose_name=_("Tested By"),
+        help_text=_("Device tested upon return"))
+
+    ## Linked Fields ##
+    vendor = models.ForeignKey(
+        Company, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name=_('serviced_by'),
+        verbose_name=_("Serviced By"),
+        help_text=_("Select the Service Vendor"))
+
+    service_contract = models.ForeignKey(
+        ServiceContract, 
+        on_delete=models.CASCADE, 
+        blank=True, 
+        null=True, 
+        related_name=_('service_service_contract'),
+        verbose_name=_("Service Contract"),
+        help_text=_("Select the Service Contract"))
+
+    manager = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True, 
+        related_name=_('service_manager'),
+        verbose_name=_("Manager"),
+        help_text=_("Select the Service manager"))
+
+    tested_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL, 
+        on_delete=models.SET_NULL, 
+        blank=True, 
+        null=True, 
+        related_name=_('tested_by'),
+        verbose_name=_("Tested By"),
+        help_text=_("Select who tested the device upon return"))
+
+    ## Auto Fields ##
     
     history = HistoricalRecords()
 
-    def __str__(self):
-        return self.issue
-
     class Meta:
-        verbose_name = _('Service')
+        verbose_name = _('Service History')
         verbose_name_plural = _('Service History')
 
+    def __str__(self):
+        """ Returns a human friendly string
+        
+        Returns:
+            Issue
 
-class Comment(ObjectDescriptionMixin):
-    """
-    Model to contain information about a device comment.
-
-    :text (optional): 
-    :device (optional): 
-    :user (optional): 
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-
-    """
-
-    # General Fields
-    text = models.TextField(max_length=1000, null=False, blank=False, verbose_name='Comment')
-
-    # Linked Fields
-    device = models.ForeignKey(Device, related_name='comment_device', on_delete=models.CASCADE, verbose_name='Comment Device')
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='comment_user', on_delete=models.CASCADE, verbose_name='Comment User')
-    
-    # Auto Fields   
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Device Comment')
-        verbose_name_plural = _('Device Comments')
-
-    def save(self,force_insert=False, force_update=False):
-        models.Model.save(self,force_insert,force_update)
+        """
+        return '%s' % _(self.issue)

@@ -17,22 +17,22 @@ import django.contrib.auth.views
 #from note.views import  NoteUpdate, NoteHome, NoteDetail
 #from task.views import TaskList, TaskCreate, TaskTable, TaskDelete
 #from task.views import TaskUpdate, TaskHome, TaskDetail
-from case.views import CaseList, CaseCreate, CaseTable, CaseDelete
-from case.views import CaseUpdate, CaseHome, CaseDetail, case_table
-from case.views import CaseNoteUpdate, CaseNoteDetail, CaseNoteDelete
-from case.views import CaseNoteCreate, CaseNoteList, CaseNoteHome
-from case.views import CaseEventUpdate, CaseEventDetail, CaseEventDelete
-from case.views import CaseEventCreate, CaseEventList, CaseEventHome
-from case.views import CaseEvidenceUpdate, CaseEvidenceDetail, CaseEvidenceDelete
-from case.views import CaseEvidenceCreate, CaseEvidenceList, CaseEvidenceHome
-from case.views import CaseTaskUpdate, CaseTaskDetail, CaseTaskDelete
-from case.views import CaseTaskCreate, CaseTaskList, CaseTaskHome
-from case.views import CaseDeviceUpdate, CaseDeviceDetail, CaseDeviceDelete
-from case.views import CaseDeviceHome
-from case.views import CasePersonCreate, CasePersonUpdate, CaseEntityHome
-from case.views import CasePersonDetail, CasePersonDelete
-from case.views import CaseCompanyCreate, CaseCompanyUpdate
-from case.views import CaseCompanyDetail, CaseCompanyDelete
+from case.views.case import CaseList, CaseCreate, CaseTable, CaseDelete
+from case.views.case import CaseUpdate, CaseHome, CaseDetail, case_table
+#from case.views import CaseNoteUpdate, CaseNoteDetail, CaseNoteDelete
+#from case.views import CaseNoteCreate, CaseNoteList, CaseNoteHome
+from case.views.caseevent import CaseEventUpdate, CaseEventDetail, CaseEventDelete
+from case.views.caseevent import CaseEventCreate, CaseEventList, CaseEventHome
+from case.views.caseevidence import CaseEvidenceUpdate, CaseEvidenceDetail, CaseEvidenceDelete
+from case.views.caseevidence import CaseEvidenceCreate, CaseEvidenceList, CaseEvidenceHome
+from case.views.casetask import CaseTaskUpdate, CaseTaskDetail, CaseTaskDelete
+from case.views.casetask import CaseTaskCreate, CaseTaskList, CaseTaskHome
+from case.views.casedevice import CaseDeviceUpdate, CaseDeviceDetail, CaseDeviceDelete
+from case.views.casedevice import CaseDeviceHome
+from case.views.caseentity import CasePersonCreate, CasePersonUpdate, CaseEntityHome
+from case.views.caseentity import CasePersonDetail, CasePersonDelete
+from case.views.caseentity import CaseCompanyCreate, CaseCompanyUpdate
+from case.views.caseentity import CaseCompanyDetail, CaseCompanyDelete
 from inventory.views import InventoryHome, DeviceCreate, DeviceDetail
 from inventory.views import DeviceUpdate
 from loan.views import LoanHome, LoanCreate, LoanDetail, LoanUpdate, LoanDelete
@@ -45,6 +45,7 @@ from loan.views import LoanUpdateWithBoth
 #from inventory.views import IpadCommentDelete, IpadCommentUpdate, HeadphonesCommentDelete, HeadphonesCommentUpdate, AdapterCommentDelete
 #from entity.views.company import list, detail, create, update, delete
 from entity.views.person import person_delete, person_update, person_detail, person_add
+from entity.views.person import PersonDetail
 from entity.views.company import company_delete, company_edit, company_detail, company_add
 from entity.views.entity import EntityHome
 from user.views import update_profile
@@ -64,13 +65,6 @@ urlpatterns = [
     path('case/list/', CaseList.as_view(), name='case_list'),
     path('case/table/', CaseTable.as_view(), name='casetable'),
     path('case/table1/', case_table, name='case_table'),
-    ## Case Notes
-    path('case/<int:casepk>/note/', CaseNoteHome.as_view(), name='casenote'),
-    path('case/<int:casepk>/note/create/', CaseNoteCreate.as_view(), name='casenote_create'),
-    path('case/<int:casepk>/note/<int:pk>/', CaseNoteDetail.as_view(), name='casenote_detail'),
-    path('case/<int:casepk>/note/<int:pk>/update/', CaseNoteUpdate.as_view(), name='casenote_update'),
-    path('case/<int:casepk>/note/<int:pk>/delete/', CaseNoteDelete.as_view(), name='casenote_delete'),
-    path('case/<int:casepk>/note/list/', CaseNoteList.as_view(), name='casenote_list'),
     ## Case Events
     path('case/<int:casepk>/event/', CaseEventHome.as_view(), name='caseevent'),
     path('case/<int:casepk>/event/create/', CaseEventCreate.as_view(), name='caseevent_create'),
@@ -150,7 +144,8 @@ urlpatterns = [
     ## Entity - Person
     ## TODO change _add to _create   
     path('entity/person/create/', person_add, name='person_add'),
-    path('entity/person/<int:object_id>/', person_detail, name='person_detail'),
+    path('entity/person/<int:pk>/', PersonDetail.as_view(), name='person_detail'),
+    #path('entity/person/<int:object_id>/', person_detail, name='person_detail'),
     path('entity/person/<int:object_id>/update/', person_update, name='person_update'),
     path('entity/person/<int:object_id>/delete/', person_delete, name='person_delete'),
     #path('entity/person/<int:object_id>/export/', person_vcard_export, name="person_vcard_export"),

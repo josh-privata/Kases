@@ -87,6 +87,13 @@
                 {% endfor %}
                 <br />
             </div>
+            <!-- Social -->
+            <div class="form-group">
+                {% for social in socials.forms %}
+                    {% crispy social %}
+                {% endfor %}
+                <br />
+            </div>
             <!-- Web -->
             <div class="form-group">
                 {% for web in websites.forms %}

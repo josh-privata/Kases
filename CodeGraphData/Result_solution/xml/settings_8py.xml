@@ -405,6 +405,6 @@
 <codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;dsn&apos;</highlight><highlight class="normal">:<sp/></highlight><highlight class="stringliteral">&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
     </programlisting>
-    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py"/>
+    <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py"/>
   </compounddef>
 </doxygen>

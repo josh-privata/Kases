@@ -3,18 +3,18 @@
 ## python imports
 from __future__ import unicode_literals
 from django.db import models
+from django.db import models
+from django.conf import settings
+from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.utils.timezone import now as timezone_now
-from django.db import models
-#from django.contrib.sites.models import Site
-from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
-from django.http import HttpResponseRedirect
 from django.utils.encoding import force_text
 from django.views.generic.base import ContextMixin
-from simple_history.models import HistoricalRecords
+#from django.contrib.sites.models import Site
 
 
+## Mixins
 class MultipleFormsMixin(ContextMixin):
     """
     A mixin that provides a way to show and handle multiple forms in a request.
@@ -130,6 +130,7 @@ class MultipleFormsMixin(ContextMixin):
 
 class UrlMixin(models.Model):
     """
+
     A replacement for get_absolute_url()
     Models extending this mixin should have
     either get_url or get_url_path implemented.
@@ -140,6 +141,7 @@ class UrlMixin(models.Model):
     For the links in e-mails, RSS feeds, or APIs use;
         <a href="{{ model.get_url }}">{{ model.title }}</a>
     """
+
     class Meta:
         abstract = True
     
@@ -169,27 +171,184 @@ class UrlMixin(models.Model):
         return self.get_url_path()
 
 
-class ObjectDescriptionMixin(models.Model):
+class ObjectDescription(models.Model):
+    """ Abstract base class for most models.
+
+    Args:
+        private (bool, optional): Is private
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+
     """
-    Abstract base class for most models.
 
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    private = models.BooleanField(
+        default=False, 
+        blank=True, 
+        verbose_name=_("Private"),
+        help_text=_("(Optional) Is Private"))
 
-    """
+    description = models.CharField(
+        max_length=250, 
+        blank=True, 
+        null=True, 
+        default=None, 
+        verbose_name=_("Description"),
+        help_text=_("(Optional) Enter a description"))
 
-    description = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Description")
-    created = models.DateTimeField(_("Creation date and time"),editable=False,)
-    modified = models.DateTimeField(_("Modification date and time"),null=True,editable=False,)
-    private = models.BooleanField(default=False, blank=True, verbose_name="Private")
-    #created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='created by', null=True, blank=True, editable=False, verbose_name="Created By")
-    #modified_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, related_name='modified by', null=True, blank=True, editable=False, verbose_name="Modified By")
+    created = models.DateTimeField(
+        editable=False,
+        verbose_name=_("Creation Date"),
+        help_text=_("The creation date"))
+
+    modified = models.DateTimeField(
+        null=True,
+        editable=False,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    #created_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('created by',)
+        #verbose_name=_("Created By"))
+
+    #modified_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('modified by', )
+        #verbose_name=_("Modified By"))
         
+    class Meta:
+        abstract = True
+
     def save(self, *args, **kwargs):
+        """ Saves the Object.
+                if new object;
+                    sets the 'created' to the current time
+                    sets the 'created_by' to the current user
+                if existing object;
+                    sets the 'modified' to the current time
+                    sets the 'modified_by' to the current user
+        
+        Returns:
+            The new Object
+
+        """
+        if not self.pk:
+           self.created = timezone_now()
+           #self.created_by = request.user
+        else:
+            if not self.created:
+                self.created = timezone_now()
+            self.modified = timezone_now()
+            #if not self.created_by:
+            #    self.created_by = request.user
+            #self.modified_by = request.user
+        super(ObjectDescription, self).save(*args, **kwargs)
+
+
+## Abstract Models
+class BaseObject(models.Model):
+    """ Abstract base class with common to all fields.
+
+    Args:
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+
+    """
+
+    title = models.CharField(
+        max_length=50, 
+        blank=False, 
+        null=False, 
+        default=None, 
+        verbose_name=_("Title"),
+        help_text=_("Enter a title"))
+
+    colour = models.CharField(
+        max_length=7, 
+        blank=True, 
+        null=True, 
+        default=None, 
+        verbose_name=_("Colour"),
+        help_text=_("(Optional) Enter a Hexidecimal colour representation"))
+
+    description = models.CharField(
+        max_length=250, 
+        blank=True, 
+        null=True, 
+        default=None, 
+        verbose_name=_("Description"),
+        help_text=_("(Optional) Enter a description"))
+
+    created = models.DateTimeField(
+        editable=False,
+        verbose_name=_("Creation Date"),
+        help_text=_("The creation date"))
+
+    modified = models.DateTimeField(
+        null=True,
+        editable=False,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    #created_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('created by',)
+        #verbose_name=_("Created By"))
+
+    #modified_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('modified by', )
+        #verbose_name=_("Modified By"))
+
+    class Meta:
+        abstract = True
+
+    def __str__(self):
+        """ Returns a human friendly string
+        
+        Returns:
+            Title
+
+        """
+        return '%s' % _(self.title)
+
+    def save(self, *args, **kwargs):
+        """ Saves the Object.
+                if new object;
+                    sets the 'created' to the current time
+                    sets the 'created_by' to the current user
+                if existing object;
+                    sets the 'modified' to the current time
+                    sets the 'modified_by' to the current user
+        
+        Returns:
+            The new Object
+
+        """
         if not self.pk:
            self.created = timezone_now()
            #self.created_by = request.user
@@ -202,255 +361,249 @@ class ObjectDescriptionMixin(models.Model):
             #self.modified_by = request.user
         super(ObjectDescriptionMixin, self).save(*args, **kwargs)
 
-    class Meta:
-        abstract = True
 
+class Priority(BaseObject):
+    """ Abstract model to contain information about an object priority.
 
-class Authorisation(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an object authorisation.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    Args:
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        delta (int, optional): Time delta
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
     
     """
 
     # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Authorisation")
-
-    class Meta:
-        abstract = True
-
-    def __str__(self):
-        return '%s' % self.title
-    
-
-class Classification(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an object classification.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Classification")
-    
-    class Meta:
-        abstract = True
-        verbose_name = _('Classification')
-        verbose_name_plural = _('Classifications')
-
-    #def get_absolute_url(self):
-    #    return reverse('classification_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
-
-class Type(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an object type.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Type")
-    
-    class Meta:
-        abstract = True
-        verbose_name = _('Type')
-        verbose_name_plural = _('Types')
-
-    #def get_absolute_url(self):
-    #    return reverse('type_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
-
-class Priority(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an object priority.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Priority")
-    colour = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Colour")
-    #action_delta_hours = models.IntegerField(blank=True, null=True, default=None, verbose_name="Action Delta Days")
+    #delta = models.IntegerField(
+        #blank=True, 
+        #null=True, 
+        #default=None, 
+        #verbose_name=_("Action Delta Days")),
+        #help_text=_("(Optional) Enter a time delta"))
    
     class Meta:
         abstract = True
-        verbose_name = _('Priority')
-        verbose_name_plural = _('Priorities')
-
-    #def get_absolute_url(self):
-    #    return reverse('priority_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
 
 
-class Category(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an object category.
+## Utility Models
+class UploadModel(models.Model):
+    """ Abstract model to contain information about a file upload.
 
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-    
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Category")
-    
-    class Meta:
-        abstract = True
-        verbose_name = _('Category')
-        verbose_name_plural = _('Categories')
-
-    #def get_absolute_url(self):
-    #    return reverse('category_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
-
-class Status(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an object status.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Status")
-
-    class Meta:
-        abstract = True
-        verbose_name = _('Status')
-        verbose_name_plural = _('Status')
-
-    #def get_absolute_url(self):
-    #    return reverse('status_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
-
-class StatusGroup(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about an object status group.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
-    
-    """
-
-    # General Fields
-    title = models.CharField(max_length=250, blank=True, null=True, default=None, verbose_name="Status Group")
-
-    class Meta:
-        abstract = True
-        verbose_name = _('Status Group')
-        verbose_name_plural = _('Status Groups')
-
-    #def get_absolute_url(self):
-    #    return reverse('statusgroup_detail', kwargs={'pk': self.pk})
-
-    def __str__(self):
-        return '%s' % self.title
-
-
-class UploadModel(ObjectDescriptionMixin):
-    """
-    Abstract model to contain information about a file upload.
-
-    :date_time (optional):
-    :file_note (optional):
-    :file_hash (optional):
-    :file_name (optional):
-    :upload_location (optional):
-    :file_title (optional):
-    :created_by (optional):
-    :deleted (optional):
-    :date_deleted (optional):
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
+    Args:
+        date_time (optional):
+        file_note (optional):
+        file_hash (optional):
+        file_name (optional):
+        upload_location (optional):
+        file_title (optional):
+        created_by (optional):
+        deleted (optional):
+        date_deleted (optional):
     
     """
 
     # General Fields
     date_time = models.DateTimeField(auto_now=True, null=True)
     file_note = models.CharField(max_length=250, blank=True, null=True, default=None)
-    file_hash = models.CharField(max_length=250, blank=True, null=True, default=None)
     file_name = models.CharField(max_length=250, blank=True, null=True, default=None)
     upload_location = models.CharField(max_length=250, blank=True, null=True, default=None)
     file_title = models.CharField(max_length=250, blank=True, null=True, default=None)
     deleted = models.BooleanField(default=False, blank=True)
     date_deleted = models.DateTimeField(auto_now=True, null=True)
+
+    file_hash = models.CharField(
+        max_length=250, 
+        blank=True, 
+        null=True, 
+        default=None, 
+        verbose_name=_("File Hash"),
+        help_text=_("(Optional) Enter a File Hash"))
+
+    private = models.BooleanField(
+        default=False, 
+        blank=True, 
+        verbose_name=_("Private"),
+        help_text=_("(Optional) Is Private"))
+
+    created = models.DateTimeField(
+        editable=False,
+        verbose_name=_("Creation Date"),
+        help_text=_("The creation date"))
+
+    modified = models.DateTimeField(
+        null=True,
+        editable=False,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    #created_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('created by',)
+        #verbose_name=_("Created By"))
+
+    #modified_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('modified by', )
+        #verbose_name=_("Modified By"))
   
     @property
     def file_path(self):
+        """ Returns a file path for the file
+        
+        Returns:
+            The complete file path
+
+        """
         return path.join(self.upload_location, self.file_name)
 
+
+class Authorisation(BaseObject):
+    """ Model to contain information about an object authorisation. Standard for all objects.
+
+    Args:
+        title (str) [50]: Title
+        level (int, optional): Level
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
     
+    """
+
+    # General Fields
+    level = models.IntegerField(
+        blank=False, 
+        null=False, 
+        default=None, 
+        verbose_name=_("Level"),
+        help_text=_("Enter a level"))
+
+    class Meta:
+        verbose_name = _('Authorisation')
+        verbose_name_plural = _('Authorisation')
+
+    def __str__(self):
+        """ Returns a human friendly string
+        
+        Returns:
+            Level - Title
+
+        """
+        return '%s - %s' % _(self.level), _(self.title)
+
+
+class Note(models.Model):
+    """  Model to contain information about a generic note.
+
+    Args:
+        Note (optional): The note text
+        private (optional): Is it private Boolean
+        created (auto): Date Created
+        modified (auto): Date Modified
+        created_by (auto): Created by linked User model  
+        modified_by (auto): Modified by linked User model 
+
+    """
+
+    # General Fields
+    note = models.CharField(
+        max_length=5000, 
+        blank=False, 
+        null=False, 
+        default=None, 
+        verbose_name=_("Note"),
+        help_text=_("Enter a note"))
+
+    private = models.BooleanField(
+        default=False, 
+        blank=True, 
+        verbose_name=_("Private"),
+        help_text=_("(Optional) Is Private"))
+
+    created = models.DateTimeField(
+        editable=False,
+        verbose_name=_("Creation Date"),
+        help_text=_("The creation date"))
+
+    modified = models.DateTimeField(
+        null=True,
+        editable=False,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    #created_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('created by',)
+        #verbose_name=_("Created By"))
+
+    #modified_by = models.ForeignKey(
+        #User, 
+        #on_delete=models.DO_NOTHING, 
+        #null=True, 
+        #blank=True, 
+        #editable=False, 
+        #related_name=_('modified by', )
+        #verbose_name=_("Modified By"))
+
+    # Linked Fields
+    # Auto Fields
+
+    class Meta:
+        verbose_name = _('Note')
+        verbose_name_plural = _('Notes')
+
+    def save(self, *args, **kwargs):
+        """ Saves the Object.
+                if new object;
+                    sets the 'created' to the current time
+                    sets the 'created_by' to the current user
+                if existing object;
+                    sets the 'modified' to the current time
+                    sets the 'modified_by' to the current user
+        
+        Returns:
+            The new Object
+
+        """
+        if not self.pk:
+           self.created = timezone_now()
+           #self.created_by = request.user
+        else:
+            if not self.created:
+                self.created = timezone_now()
+            self.modified = timezone_now()
+            #if not self.created_by:
+            #    self.created_by = request.user
+            #self.modified_by = request.user
+        super(ObjectDescriptionMixin, self).save(*args, **kwargs)
+
+    def __str__(self):
+        """ Returns a human friendly string
+        
+        Returns:
+            Note
+
+        """
+        return '%s' % _(self.note)
+
 
 #class ForemanOptions(Model):
 #    __tablename__ = 'options'

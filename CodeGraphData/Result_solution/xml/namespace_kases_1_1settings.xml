@@ -27,7 +27,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="18" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="18" bodyend="-1"/>
+        <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="18" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="18" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_kases_1_1settings_1a01d3e4a87991296a42053004136e8592" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -41,7 +41,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="19" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="19" bodyend="-1"/>
+        <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="19" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="19" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="namespace_kases_1_1settings_1a6258e824b207e84fa88fd31c2fa7b4d7" prot="public" static="no" mutable="no">
         <type>string</type>
@@ -55,7 +55,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="20" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="20" bodyend="-1"/>
+        <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="20" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="20" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -63,6 +63,6 @@
     <detaileddescription>
 <para><verbatim>Django settings for Kases.
 </verbatim> </para>    </detaileddescription>
-    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="1" column="1"/>
+    <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="1" column="1"/>
   </compounddef>
 </doxygen>

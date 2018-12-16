@@ -42,7 +42,7 @@ class Common(Configuration):
         'case',
         'entity',
         'task',
-        'note',
+        #'note',
         'inventory',
         'event',
         'user',
@@ -62,6 +62,7 @@ class Common(Configuration):
         'simple_history',
         'crispy_forms',
         'widget_tweaks',
+        'bootstrap_datepicker_plus',
 
     ]
 

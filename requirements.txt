@@ -37,6 +37,7 @@ django-model-utils
 django-taggit
 django-mptt
 django-extensions
+django-bootstrap-datepicker-plus
 #django-vanilla-views
 #django-webtest
 #model-mommy

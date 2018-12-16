@@ -34,6 +34,6 @@
 <codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>response<sp/>=<sp/>self.client.get(</highlight><highlight class="stringliteral">&apos;/&apos;</highlight><highlight class="normal">)</highlight></codeline>
 <codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>self.assertContains(response,<sp/></highlight><highlight class="stringliteral">&apos;Home<sp/>Page&apos;</highlight><highlight class="normal">,<sp/>1,<sp/>200)</highlight></codeline>
     </programlisting>
-    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/case/tests.py"/>
+    <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/case/tests.py"/>
   </compounddef>
 </doxygen>

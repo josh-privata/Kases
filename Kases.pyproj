@@ -38,12 +38,50 @@
     <Compile Include="case\filters.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="case\forms\case.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\forms\device.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\forms\entity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\forms\event.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\forms\evidence.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\forms\task.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\forms\__init__.py" />
     <Compile Include="case\managers.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="case\tables.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="case\views\casedevice.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\views\caseentity.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\views\caseevent.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\views\caseevidence.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\views\casetask.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="case\views\__init__.py" />
+    <Compile Include="entity\forms\company.py" />
+    <Compile Include="entity\forms\entity.py" />
+    <Compile Include="entity\forms\person.py" />
     <Compile Include="entity\migrations\0001_initial.py" />
     <Compile Include="entity\migrations\0002_auto_20180726_1251.py" />
     <Compile Include="entity\migrations\0003_auto_20180726_1251.py" />
@@ -83,6 +121,9 @@
     <Compile Include="event\admin.py" />
     <Compile Include="event\apps.py" />
     <Compile Include="event\forms.py" />
+    <Compile Include="event\managers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="event\migrations\__init__.py" />
     <Compile Include="event\models.py" />
     <Compile Include="event\tables.py" />
@@ -90,6 +131,9 @@
     <Compile Include="event\views.py" />
     <Compile Include="event\__init__.py" />
     <Compile Include="evidence\forms.py" />
+    <Compile Include="evidence\managers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="evidence\migrations\0001_initial.py" />
     <Compile Include="evidence\migrations\0002_historicalchainofcustody_historicalevidenceauthorisation_historicalevidencecategory_historicaleviden.py" />
     <Compile Include="evidence\migrations\__init__.py" />
@@ -97,6 +141,9 @@
     <Compile Include="inventory\admin.py" />
     <Compile Include="inventory\apps.py" />
     <Compile Include="inventory\forms.py" />
+    <Compile Include="inventory\managers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="inventory\migrations\__init__.py" />
     <Compile Include="inventory\models.py" />
     <Compile Include="inventory\tables.py" />
@@ -113,19 +160,12 @@
     <Compile Include="loan\__init__.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="note\tables.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="note\admin.py" />
-    <Compile Include="note\apps.py" />
-    <Compile Include="note\migrations\__init__.py" />
-    <Compile Include="note\models.py" />
-    <Compile Include="note\tests.py" />
-    <Compile Include="note\views.py" />
-    <Compile Include="note\__init__.py" />
     <Compile Include="task\admin.py" />
     <Compile Include="task\apps.py" />
     <Compile Include="task\forms.py" />
+    <Compile Include="task\managers.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="task\migrations\__init__.py" />
     <Compile Include="task\models.py" />
     <Compile Include="task\tables.py">
@@ -140,15 +180,14 @@
     <Compile Include="entity\__init__.py" />
     <Compile Include="case\admin.py" />
     <Compile Include="case\apps.py" />
-    <Compile Include="case\forms.py" />
+    <Compile Include="case\sluts.py" />
     <Compile Include="case\migrations\__init__.py" />
     <Compile Include="case\models.py" />
     <Compile Include="case\tests.py" />
-    <Compile Include="case\views.py" />
+    <Compile Include="case\views\case.py" />
     <Compile Include="case\__init__.py" />
     <Compile Include="evidence\admin.py" />
     <Compile Include="evidence\apps.py" />
-    <Compile Include="note\forms.py" />
     <Compile Include="evidence\models.py" />
     <Compile Include="evidence\tests.py" />
     <Compile Include="evidence\views.py" />
@@ -170,6 +209,9 @@
     <Compile Include="user\__init__.py" />
     <Compile Include="utils\admin.py" />
     <Compile Include="utils\apps.py" />
+    <Compile Include="utils\choices.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="utils\forms.py">
       <SubType>Code</SubType>
     </Compile>
@@ -186,15 +228,17 @@
     <Compile Include="utils\__init__.py" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="case\forms\" />
+    <Folder Include="case\views\" />
     <Folder Include="case\templates\case\case\" />
     <Folder Include="case\templates\case\evidence\" />
     <Folder Include="case\templates\case\entity\" />
-    <Folder Include="case\templates\case\note\" />
     <Folder Include="case\templates\case\task\" />
     <Folder Include="case\templates\case\inventory\" />
     <Folder Include="case\templates\case\event\" />
     <Folder Include="entity\migrations\" />
     <Folder Include="entity\models\" />
+    <Folder Include="entity\forms\" />
     <Folder Include="entity\templates\entity\forms\" />
     <Folder Include="entity\views\" />
     <Folder Include="entity\templates\entity\company\" />
@@ -219,11 +263,6 @@
     <Folder Include="loan\templates\loan\loan\" />
     <Folder Include="loan\templates\loan\loanrequest\" />
     <Folder Include="loan\templates\loan\returnrequest\" />
-    <Folder Include="note\" />
-    <Folder Include="note\migrations\" />
-    <Folder Include="note\templates\" />
-    <Folder Include="note\templates\note\" />
-    <Folder Include="note\templates\note\note\" />
     <Folder Include="static\" />
     <Folder Include="static\base\" />
     <Folder Include="static\base\content\" />
@@ -234,6 +273,7 @@
     <Folder Include="task\templates\task\note\" />
     <Folder Include="templates\" />
     <Folder Include="templates\global\" />
+    <Folder Include="templates\global\forms\" />
     <Folder Include="templates\global\views\" />
     <Folder Include="templates\registration\" />
     <Folder Include="user\" />
@@ -295,12 +335,6 @@
     <Content Include="case\templates\case\entity\casecompany_detail.html" />
     <Content Include="case\templates\case\entity\casecompany_list.html" />
     <Content Include="case\templates\case\entity\casecompany_update.html" />
-    <Content Include="case\templates\case\note\casenote_create.html" />
-    <Content Include="case\templates\case\note\casenote_delete.html" />
-    <Content Include="case\templates\case\note\casenote_detail.html" />
-    <Content Include="case\templates\case\note\casenote_index.html" />
-    <Content Include="case\templates\case\note\casenote_list.html" />
-    <Content Include="case\templates\case\note\casenote_update.html" />
     <Content Include="case\templates\case\task\casetask_create.html" />
     <Content Include="case\templates\case\task\casetask_delete.html" />
     <Content Include="case\templates\case\task\casetask_detail.html" />
@@ -391,15 +425,6 @@
     <Content Include="loan\templates\loan\returnrequest\returnrequest.html" />
     <Content Include="loan\templates\loan\loan_index.html" />
     <Content Include="loan\templates\loan\loan_open_layout.html" />
-    <Content Include="note\templates\note\note\new_note_create.html" />
-    <Content Include="note\templates\note\note\note_create.html" />
-    <Content Include="note\templates\note\note\note_delete.html" />
-    <Content Include="note\templates\note\note\note_detail.html" />
-    <Content Include="note\templates\note\note\note_update.html" />
-    <Content Include="note\templates\note\note_index.html" />
-    <Content Include="note\templates\note\note_list.html" />
-    <Content Include="note\templates\note\note_open_layout.html" />
-    <Content Include="note\templates\note\note_table.html" />
     <Content Include="static\base\content\bootstrap.css" />
     <Content Include="static\base\content\bootstrap.min.css" />
     <Content Include="static\base\content\button.css" />
@@ -482,6 +507,7 @@
     <Content Include="task\templates\task\note\evidencenote_delete.html" />
     <Content Include="task\templates\task\note\evidencenote_detail.html" />
     <Content Include="task\templates\task\note\evidencenote_index.html" />
+    <Content Include="templates\global\forms\custom_checkbox.html" />
     <Content Include="templates\global\views\base_detailtabs.html" />
     <Content Include="templates\global\views\base_detailfold.html">
       <SubType>Code</SubType>

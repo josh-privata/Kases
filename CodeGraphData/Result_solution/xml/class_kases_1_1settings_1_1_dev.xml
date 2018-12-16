@@ -17,7 +17,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="307" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="307" bodyend="-1"/>
+        <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="307" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="307" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_dev_1abe2ecdddde9ace44d92b9830ca2e97c4" prot="public" static="yes" mutable="no">
         <type>string</type>
@@ -31,7 +31,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="308" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="308" bodyend="-1"/>
+        <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="308" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="308" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_dev_1a329c7b3d88aabc52f896bc19de8d5bb7" prot="public" static="yes" mutable="no">
         <type>list</type>
@@ -45,7 +45,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="310" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="310" bodyend="-1"/>
+        <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="310" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="310" bodyend="-1"/>
       </memberdef>
       <memberdef kind="variable" id="class_kases_1_1settings_1_1_dev_1a919178539ebfc624311df358c2bddd6b" prot="public" static="yes" mutable="no">
         <type>dictionary</type>
@@ -64,7 +64,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="329" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="329" bodyend="-1"/>
+        <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="329" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="329" bodyend="-1"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -117,7 +117,7 @@
         </childnode>
       </node>
     </collaborationgraph>
-    <location file="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="306" column="1" bodyfile="//freenas/UserFiles/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="306" bodyend="337"/>
+    <location file="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" line="306" column="1" bodyfile="Y:/Folder Redirection/josh/Documents/My Code/Django/Projects/Kases/Kases/Kases/settings.py" bodystart="306" bodyend="337"/>
     <listofallmembers>
       <member refid="class_kases_1_1settings_1_1_common_1a7fca2f273225f8f10bcb267c873a3497" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>ADMINS</name></member>
       <member refid="class_kases_1_1settings_1_1_common_1a74fe7905d78e0abdb5164460fe16e3e8" prot="public" virt="non-virtual"><scope>Kases::settings::Dev</scope><name>ALLOWED_HOSTS</name></member>
