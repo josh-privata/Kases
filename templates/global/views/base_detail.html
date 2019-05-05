@@ -109,10 +109,11 @@
                                     {% block summary_rightpanel %}{% endblock %}
                                 </p>
                             </div>
-
+                            {% block summary_button %}
+                                <a href="{% block summary_buttonurl %}{% endblock %}" class="btn-sm btn-info">Edit</a>
+                            {% endblock %}
                         </div>
-                        <br />
-                        {% block summary_button %}<a href="{% block summary_buttonurl %}{% endblock %}" class="btn btn-primary">Edit</a>{% endblock %}
+                        
                         {% block extra_summary %}{% endblock %}
                     
                     </div>

@@ -35,6 +35,9 @@ from loan.models import  Loan
 'loaned_by', 'taken_by', 'returned_by', 'private', 'description'
 '''
 
+class CustomCheckbox(Field):
+	template = 'global/forms/custom_checkbox.html'
+
 
 ## Base Forms
 class __BaseForm(forms.ModelForm):
@@ -52,6 +55,15 @@ class BaseForm(__BaseForm):
 
 	def __init__(self, *args, **kwargs):
 		super(BaseForm, self).__init__(*args, **kwargs)
+		user = kwargs.pop('user', None)
+		#if user.groups.filter(name='Investigator').exists():
+		#	self.fields['status'].choices = (
+  #                                              (LOAN_PENDING, 'Awaiting Loan Approval'),
+  #                                              (LOAN_WITHDRAWN, 'Loan Withdrawn'),
+  #                                              (LOAN_CLOSED, 'Loan Closed'),
+  #                                              (RETURN_PENDING, 'Awaiting Return Approval'),
+  #                                              (RETURN_WITHDRAWN, 'Return Withdrawn'),
+  #                                          )
 		self.helper = FormHelper()
 		self.helper.form_action = ""
 		self.helper.form_method = "POST"
@@ -302,7 +314,7 @@ class LoanWithCaseCreateForm(LoanCreateForm):
 				 'booked_until', 'date_taken', 'date_returned', 'description',
 				 'original_condition', 'return_condition','status',
 				 'returned', 'taken', 'loaned_to', 'loaned_by', 'device',
-				 'taken_by', 'returned_by', 'private')
+				 'taken_by', 'returned_by', 'private', 'case')
 
 
 class LoanWithCaseUpdateForm(LoanUpdateForm):

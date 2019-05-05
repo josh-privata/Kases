@@ -11,9 +11,9 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('bio', 'location', 'birth_date', 'prefix', 'suffix', 'nickname', 'aliases',
-                    'notes', 'gender', 'anniversary', 'height', 'weight', 'age', 'taxfile',
-                    'date_started', 'salary', 'job_title', 'role', 'type', 'status',
-                    'classification', 'category', 'authorisation')
+                    'notes', 'gender', 'age', 'taxfile',
+                    'date_started', 'job_title', 'role', 'status',
+                    'classification', 'authorisation')
 
 
 #class CrispyUserForm(forms.ModelForm):

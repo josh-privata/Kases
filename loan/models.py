@@ -187,7 +187,7 @@ class Loan(ObjectDescription):
 		return reverse('loan_detail', kwargs={'pk': self.pk})
 
 	def __str__(self):
-		return '%s - %s' % (_(self.case), _(self.device))
+		return '%s - %s' % (_(self.case.title), _(self.device.title))
 
 	def save(self,force_insert=False, force_update=False):
 		
@@ -212,27 +212,16 @@ class Loan(ObjectDescription):
 		# LOAN_APPROVED = 'LA'
 		if self.status == 'LA':
 			try:
-				caseinventory = CaseInventory.objects.get(case = self.case, device = self.device)
-				caseinventory.reason = self.reason
-				caseinventory.returned = self.returned
-				caseinventory.description = self.description
-				caseinventory.private = self.private
-				caseinventory.status = self.status
-				caseinventory.case_id = self.case_id
-				caseinventory.device_id = self.device_id
-				caseinventory.linked_by_id = self.loaned_by_id
-				caseinventory.modified = timezone_now()
+			    caseinventory = CaseInventory.objects.get(case = self.case, device = self.device)
+			    caseinventory.active = True
+			    caseinventory.case = self.case
+			    caseinventory.device = self.device
 			except CaseInventory.DoesNotExist:
-				caseinventory = CaseInventory(reason = self.reason,
-				description = self.description,
-				returned = self.returned,
-				private = self.private,
-				status = self.status,
-				case = self.case,
-				device = self.device,
-				linked_by = self.loaned_by,
-				created = timezone_now(),
-				modified = timezone_now())
+				caseinventory = CaseInventory(
+				    active = True,
+				    case = self.case,
+				    device = self.device,
+                    created = timezone_now())
 			caseinventory.save()
 			device.status = 'CO'
 			self.returned = True   

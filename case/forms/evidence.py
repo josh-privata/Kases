@@ -58,7 +58,7 @@ from case.models import CaseEvent
 'case', 'title', 'reference', 'bag_number', 'location',
 'image_upload', 'qr_code', 'retention_reminder_sent', 'retention_start_date',
 'retention_end_date', 'chain_of_custody', 'description', 'private',
-'type', 'status', 'priority', 'authorisation',
+'status', 'priority', 'authorisation',
 'custodian', 'assigned_by', 'assigned_to',
 'note', 'file_location'
 """
@@ -76,7 +76,7 @@ class __BaseForm(forms.ModelForm):
 		fields = ['title', 'description', 'reference', 'bag_number', 'location',
 				'image_upload', 'qr_code', 'retention_reminder_sent',
                 'retention_start_date', 'retention_end_date', 'chain_of_custody',
-                'private', 'type', 'status', 'priority', 'authorisation',
+                'private', 'status', 'priority', 'authorisation',
 				'custodian', 'assigned_by', 'assigned_to']
 
 
@@ -210,16 +210,6 @@ class BaseForm(__BaseForm):
 				CustomCheckbox(
 					"private",
 					title=self.fields['private'].help_text),
-
-                # Type
-				Field(
-                    'type', 
-					id="type-field", 
-					css_class="typefield",
-					autocomplete='on',
-					title=self.fields['type'].help_text,
-					placeholder=_("Type"),
-					wrapper_class='col-md-9'),
 
                 # Status
 				Field(

@@ -12,30 +12,58 @@
 <!-- Summary -->
 {% block header %}Evidence Summary{% endblock %}
 {% block summary_header_override %}{% endblock %}
-
-<!-- Left Panel -->
+    <!-- Left Panel - Details -->
     {% block summary_leftpanel %}
-<h5>Evidence Title: {{ object.title }}</h5>
-<h5>Evidence ID: {{ object.id }}</h5>
+        <div>
+            <h1>{{ object.id }} / {{ object.title }}</h1>
+            <h5>{{ object.brief|default:"No Summary" }}</h5>
+            {% if object.private is True %}
+                <span class="badge badge-danger">Private</span>
+            {% else %}
+                <span class="badge badge-success">Public</span>
+            {% endif %}
+            <hr />
+            <h6>Reference: {{ object.reference }}</h6>
+            <h6>Bag Number: {{ object.bag_number }}</h6>
+            <h6>QR Code: {{ object.qr_code }}</h6>
+            <hr />
+            <h6>Deadline: {{ object.deadline }}</h6>
+            <h6>Retention Reminder Sent: {{ object.retention_reminder_sent }}</h6>
+            <h6>Retention Start Date: {{ object.retention_start_date }}</h6>
+            <h6>Retention End Date: {{ object.retention_end_date }}</h6>
+            <hr />
+            <h6>Type: {{ object.type }}</h6>
+            <h6>Location: {{ object.location }}</h6>
+            <h6>Status: {{ object.status }}</h6>
+            <h6>Classification: {{ object.classification}}</h6>
+            <h6>Authorisation: {{ object.authorisation }}</h6>
+            <hr />
+            <h6>Custodian: {{ object.custodian }}</h6>
+            <h6>Assigned To: {{ object.assigned_to }}</h6>
+            <h6>Assigned By: {{ object.assigned_by }}</h6>
+            <h6>Created by {{ created_by|default:"Unknown" }} on {{ object.created }}</h6>
+            <h6>Last Modified by {{ modified_by|default:"Unknown" }} on {{ object.modified }}</h6>
+        </div>
     {% endblock %}
-
-<!-- Right Panel -->
+    <!-- Right Panel - Files -->
     {% block summary_rightpanel %}
-<h5>Evidence Deadline: {{ object.deadline }}</h5>
-<h5>Evidence Creation Date: {{ object.creation_date }}</h5>
+        <div>
+            <h5>Image</h5>
+            <h5>Uploads</h5>
+        </div>
     {% endblock %}
-
     {% block summary_buttonurl %}{% url 'caseevidence_update' object.case.id object.id %}{% endblock %}
 
 <!-- Note Detail Tabs -->
     <!-- Panel 1 - Details -->
     {% block tab1_header %}Details{% endblock %}
     <!-- Panel 2 - Contact -->
-    {% block tab2_header %}Related Entities{% endblock %}
+    {% block tab2_header %}Related{% endblock %}
     <!-- Panel 3 - Events -->
-    {% block tab3_header %}Related Events{% endblock %}
-    <!-- Panel 4 - Evidence -->
-    {% block tab4_header %}Related Evidence{% endblock %}
+    {% block tab3_header %}Chain Of Evidence{% endblock %}
+    <!-- Panel 4 -  -->
+    {% block tab4 %}{% endblock %}
+    {% block tab4_header %}{% endblock %}
 <!-- Panel 5 -  -->
     {% block tab5 %}{% endblock %}
     {% block tab5_header %}{% endblock %}
@@ -67,7 +95,7 @@
     {% block tab14 %}{% endblock %}
     {% block tab14_header %}{% endblock %}
     <!-- Panel 15 - Billing -->
-    {% block tab15_header %}Case Billing{% endblock %}
+    {% block tab15_header %}Billing{% endblock %}
     
 <!-- Tab panels -->
 <!-- Panel 1 - Details -->
@@ -79,12 +107,8 @@
             <div class="card">
                 <div class="card-body">
                     <p class="card-text">
-                        <h3>Details</h3>
-                        <h5>Evidence Brief: {{ object.brief }}</h5>
-                        <h5>Evidence Reference: {{ object.reference }}</h5>
-                        <h5>Evidence Location: {{ object.location }}</h5>
-                        <h5>Comment: {{ object.comment }}</h5>
-                        <h5>Private: {{ object.private }}</h5>
+                        <h5>Description: {{ object.description }}</h5>
+                        <h5>Notes: {{ object.note }}</h5>
                     </p>
                 </div>
             </div>
@@ -94,13 +118,7 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-text">
-                        <h3>Details</h3>
-                        <h5>Evidence Type: {{ object.type }}</h5>
-                        <h5>Evidence Status: {{ object.status }}</h5>
-                        <h5>Evidence Classification:{{ object.classification}}</h5>
-                        <h5>Evidence Authorisation: {{ object.authorisation }}</h5>
-                    </p>
+                    <p class="card-text"></p>
                 </div>
             </div>
         </div>
@@ -108,7 +126,7 @@
     </div>
 {% endblock %}
 
-<!-- Panel 2 - Entities -->
+<!-- Panel 2 - Related -->
 {% block panel2_content %}
 <div class="row">
     
@@ -275,10 +293,10 @@
 </div>
 {% endblock %}
 
-<!-- Panel 3 - Events -->
+<!-- Panel 3 - Chain Of Evidence -->
 {% block panel3_content %}{% endblock %}
 
-<!-- Panel 4 - Evidence -->
+<!-- Panel 4 - -->
 {% block panel4_content %}{% endblock %}
 
 <!-- Panel 5 -  -->

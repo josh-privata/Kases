@@ -1,6 +1,4 @@
-"""
-Case Event Forms.
-"""
+## Case Event Forms ##
 
 import itertools
 from django import forms

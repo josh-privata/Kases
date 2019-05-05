@@ -66,6 +66,6 @@ class FullCaseTable(tables.Table):
 
     class Meta:
         model = Case
-        fields = '__all__'
+        #fields = '__all__'
         #exclude = ('Case Reference', 'Case Background', 'Case Location', 'Case Description', 'Case Brief', 'Comment', 'Case Authorisation' ,
         #                   #'Case Image Upload', 'Case Priority' )

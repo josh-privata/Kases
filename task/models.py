@@ -1,6 +1,7 @@
 ## Task Models ##
 
 ## python imports
+import itertools
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
@@ -35,29 +36,6 @@ class TaskCategory(BaseObject):
     class Meta:
         verbose_name = _('Task Category')
         verbose_name_plural = _('Task Categories')
-
-
-class TaskPriority(Priority):
-    """ Model to contain information about a task priority.
-
-    Args:
-        history (HistoricalRecord, auto): Historical records of object
-        title (str) [50]: Title
-        colour (str, optional) [7]: Hexidecimal colour representation
-        delta (int, optional): Time delta
-        description (str, optional) [1000]: Description
-        created (date, auto): Date Created
-        modified (date,auto): Date Modified
-        created_by (User, auto): Created by
-        modified_by (User, auto): Modified by
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Task Priority')
-        verbose_name_plural = _('Task Priorities')
 
 
 class TaskStatus(BaseObject):
@@ -114,29 +92,7 @@ class TaskStatusGroup(BaseObject):
 
 ## Main Models
 class Task(ObjectDescription):
-    """ Abstract model to contain information about a task.
 
-    Args:
-        title (str) [128]: Title for the Task 
-        location (str, optional) [250]: Location for the task
-        description (str, optional) [1000]: Description
-        deadline (date, optional): Deadline for the Task
-        category (TaskCategory, optional): Category of Task
-        status (TaskStatus, optional): Status of the Task
-        priority (TaskPriority, optional): Priority of the Task
-        authorisation (Authorisation, optional): Authorisation of the Task
-        manager (AUTH_USER_MODEL, optional): Task manager
-        assigned_by (AUTH_USER_MODEL, optional): Assigned To
-        assigned_to (AUTH_USER_MODEL, optional): Assigned By
-        note (Note, optional): Notes relating to the Task
-        private (bool, optional): Is private
-        created (date, auto): Date Created
-        modified (date,auto): Date Modified
-        created_by (User, auto): Created by
-        modified_by (User, auto): Modified by 
-        slug (slug, Auto): Slug of title
-
-    """
 
     ## General Fields ##
     title = models.CharField(
@@ -180,7 +136,7 @@ class Task(ObjectDescription):
         help_text=_("(Optional) Select the status of the Task"))
 
     priority = models.ForeignKey(
-        TaskPriority, 
+        Priority, 
         on_delete=models.SET_NULL, 
         blank=True, 
         null=True,

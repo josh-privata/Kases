@@ -7,7 +7,6 @@ mysqlclient
 coverage
 selenium
 vobject
-pil
 #whitenoise
 #invoke
 #pip-tools

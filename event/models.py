@@ -1,6 +1,7 @@
 ## Event Models ##
 
 ## python imports
+import itertools
 from django.db import models
 from django.conf import settings
 from django.utils import timezone
@@ -15,51 +16,6 @@ from utils.models import Note
 
 
 ## Admin Models
-class EventClassification(BaseObject):
-	""" Model to contain information about an event classification.
-
-	Args:
-		history (HistoricalRecord, auto): Historical records of object
-		title (str) [50]: Title
-		colour (str, optional) [7]: Hexidecimal colour representation
-		description (str, optional) [1000]: Description
-		created (date, auto): Date Created
-		modified (date,auto): Date Modified
-		created_by (User, auto): Created by
-		modified_by (User, auto): Modified byl 
-	
-	"""
-	
-	history = HistoricalRecords()
-
-	class Meta:
-		verbose_name = _('Event Classification')
-		verbose_name_plural = _('Event Classifications')
-
-
-class EventPriority(Priority):
-	"""  Model to contain information about an event priority.
-
-	Args:
-		history (HistoricalRecord, auto): Historical records of object
-		title (str) [50]: Title
-		colour (str, optional) [7]: Hexidecimal colour representation
-		delta (int, optional): Time delta
-		description (str, optional) [1000]: Description
-		created (date, auto): Date Created
-		modified (date,auto): Date Modified
-		created_by (User, auto): Created by
-		modified_by (User, auto): Modified by 
-	
-	"""
-   
-	history = HistoricalRecords()
-
-	class Meta:
-		verbose_name = _('Event Priority')
-		verbose_name_plural = _('Event Priorities')
-
-
 class EventCategory(BaseObject):
 	""" Model to contain information about an event category.
 
@@ -144,7 +100,7 @@ class Event(ObjectDescription):
 		description (str, optional) [1000]: Description
 		date (date, optional): Date for the Task
 		status (TaskStatus, optional): Status of the Task
-		priority (TaskPriority, optional): Priority of the Task
+		priority (Priority, optional): Priority of the Task
 		authorisation (Authorisation, optional): Authorisation of the Task
 		manager (AUTH_USER_MODEL, optional): Task manager
 		assigned_by (AUTH_USER_MODEL, optional): Assigned To
@@ -183,14 +139,6 @@ class Event(ObjectDescription):
 	   help_text=_("Select a date for the Task"))
 
 	## Linked Fields ##
-	classification = models.ForeignKey(
-		EventClassification, 
-		on_delete=models.SET_NULL, 
-		blank=True, 
-		null=True, 
-		verbose_name=_("Event Classification"),
-		help_text=_("(Optional) Select the classification of Event"))
-
 	category = models.ForeignKey(
 		EventCategory, 
 		on_delete=models.SET_NULL, 
@@ -208,7 +156,7 @@ class Event(ObjectDescription):
 		help_text=_("(Optional) Select the status of the Event"))
 
 	priority = models.ForeignKey(
-		EventPriority, 
+		Priority, 
 		on_delete=models.SET_NULL, 
 		blank=True, 
 		null=True,
@@ -275,3 +223,6 @@ class Event(ObjectDescription):
 		"""
 		return '%s' % _(self.title)
 
+#    lvcreate -n data -l 100%FREE /dev/pve
+#    mkfs.ext4 /dev/pve/data
+#   /dev/pve/data   /data   ext4    defaults    0 1

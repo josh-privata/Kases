@@ -11,7 +11,8 @@ from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from simple_history.models import HistoricalRecords
-from utils.models import Authorisation, Priority, BaseObject
+from utils.models import Authorisation
+from utils.models import BaseObject
 from entity.models.entity import Address, Telephone, Email, Website, Social, ContactMethod
 from utils.choices import PREFIX
 
@@ -39,72 +40,6 @@ class UserClassification(BaseObject):
         verbose_name_plural = _('User Classifications')
 
 
-class UserType(BaseObject):
-    """
-    Inherited model to contain information about a User type.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-    
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('User Type')
-        verbose_name_plural = _('User Types')
-
-
-class UserPriority(Priority):
-    """
-    Inherited model to contain information about a User priority.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('User Priority')
-        verbose_name_plural = _('User Priorities')
-
-
-class UserCategory(BaseObject):
-    """
-    Inherited model to contain information about a User category.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('User Category')
-        verbose_name_plural = _('User Categories')
-
-
 class UserStatus(BaseObject):
     """
     Inherited model to contain information about a User status.
@@ -125,33 +60,6 @@ class UserStatus(BaseObject):
     class Meta:
         verbose_name = _('User Status')
         verbose_name_plural = _('User Status')
-
-
-class UserStatusGroup(BaseObject):
-    """
-    Inherited model to contain information about a User status group.
-
-    :title (optional): Title
-    :description (optional): Description
-    :private (optional): Is it private Boolean
-    :colour (optional): Colour representation
-    :created (auto): Date Created
-    :modified (auto): Date Modified
-    :created_by (auto): Created by linked User model  
-    :modified_by (auto): Modified by linked User model
-    :status (optional): Status in group linked by Status model
-    
-    """
-
-    # Linked Fields
-    status = models.ManyToManyField(UserStatus, blank=True, verbose_name="User Status")
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('User Status Group')
-        verbose_name_plural = _('User Status Groups')
-
 
 ## Main Models
 class Profile(models.Model):
@@ -221,32 +129,26 @@ class Profile(models.Model):
     
     # Personal Fields
     gender = models.CharField(max_length=55, null=True, blank=True, verbose_name="Gender")
-    anniversary = models.DateTimeField(auto_now=False, blank=True, null=True, verbose_name="Anniversary")
-    height = models.CharField(max_length=55, null=True, blank=True, verbose_name="Height")
-    weight = models.CharField(max_length=55, null=True, blank=True, verbose_name="Weight")
     age = models.CharField(max_length=55, null=True, blank=True, verbose_name="Age")
     #spouse = models.ForeignKey(Person, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="Spouse")
 
     # Work Fields
     taxfile = models.CharField(max_length=55, null=True, blank=True, verbose_name="Tax File Number")
     date_started = models.DateTimeField(auto_now=False, blank=True, null=True, verbose_name="Date Started")
-    salary = models.CharField(max_length=55, null=True, blank=True, verbose_name="Salary")
     job_title = models.CharField(max_length=55, null=True, blank=True, verbose_name="Job Title")
     role = models.CharField(max_length=55, null=True, blank=True, verbose_name="Role")
     #company = models.ForeignKey(Company, on_delete=models.DO_NOTHING, null=True, blank=True, verbose_name="Company")
 
     # Contact Fields Social
-    address = models.ManyToManyField(Address, verbose_name="Address")
-    telephone = models.ManyToManyField(Telephone, verbose_name="Telephone")
-    email = models.ManyToManyField(Email, verbose_name="Email")
-    website = models.ManyToManyField(Website, verbose_name="Website")
+    #address = models.ManyToManyField(Address, verbose_name="Address")
+    #telephone = models.ManyToManyField(Telephone, verbose_name="Telephone")
+    #email = models.ManyToManyField(Email, verbose_name="Email")
+    #website = models.ManyToManyField(Website, verbose_name="Website")
     #social = models.ManyToManyField(Social, verbose_name="Social")
 
     # Other Fields
-    type = models.ForeignKey(UserType, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Type")
     status = models.ForeignKey(UserStatus, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Status")
     classification = models.ForeignKey(UserClassification, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Classification")
-    category = models.ForeignKey(UserCategory, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Category")
     authorisation = models.ForeignKey(Authorisation, on_delete=models.SET_NULL, blank=True, null=True, verbose_name="Person Authorisation")
     
     # Auto Fields
@@ -260,25 +162,25 @@ class Profile(models.Model):
     def __str__(self):
         return "%s, %s" % (self.user.last_name,self.user.first_name)
     
-    def primary_address(self):
-        try:
-            return self.addresses.filter(primary=True)[0]
-        except IndexError:
-            return None
+    #def primary_address(self):
+    #    try:
+    #        return self.addresses.filter(primary=True)[0]
+    #    except IndexError:
+    #        return None
 
-    def primary_telephone(self):
-        try:
-            return self.telephones.filter(primary=True)[0]
-        except IndexError:
-            if self.telephones.exists():
-                return self.telephones.all()[0]
-            return None
+    #def primary_telephone(self):
+    #    try:
+    #        return self.telephones.filter(primary=True)[0]
+    #    except IndexError:
+    #        if self.telephones.exists():
+    #            return self.telephones.all()[0]
+    #        return None
         
-    def primary_email(self):
-        try:
-            return self.emails.filter(primary=True)[0]
-        except IndexError:
-            return None
+    #def primary_email(self):
+    #    try:
+    #        return self.emails.filter(primary=True)[0]
+    #    except IndexError:
+    #        return None
         
     def get_absolute_url(self):
         if not (self.slug_first or self.slug_last):

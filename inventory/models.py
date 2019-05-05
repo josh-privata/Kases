@@ -1,6 +1,7 @@
 ## Inventory Models ##
 
 # python imports
+import itertools
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
@@ -53,33 +54,12 @@ Cable
 
 
 ## Admin Models
-class DeviceClassification(BaseObject):
-    """  Model to contain information about a device classification.
-
-    Args:
-        history (HistoricalRecord, auto): Historical records of object
-        title (str) [50]: Title
-        colour (str, optional) [7]: Hexidecimal colour representation
-        description (str, optional) [1000]: Description
-        created (date, auto): Date Created
-        modified (date,auto): Date Modified
-        created_by (User, auto): Created by
-        modified_by (User, auto): Modified by 
-    
-    """
-
-    history = HistoricalRecords()
-
-    class Meta:
-        verbose_name = _('Device Classification')
-        verbose_name_plural = _('Device Classifications')
-
-
 class DeviceCategory(BaseObject):
     """  Model to contain information about a device category.
 
     Args:
         history (HistoricalRecord, auto): Historical records of object
+        category (DeviceCategory): Categories
         title (str) [50]: Title
         colour (str, optional) [7]: Hexidecimal colour representation
         description (str, optional) [1000]: Description
@@ -95,6 +75,39 @@ class DeviceCategory(BaseObject):
     class Meta:
         verbose_name = _('Device Category')
         verbose_name_plural = _('Device Categories')
+
+
+class DeviceSubcategory(BaseObject):
+    """  Model to contain information about a device classification.
+
+    Args:
+        history (HistoricalRecord, auto): Historical records of object
+        category (DeviceCategory): Categories
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by 
+    
+    """
+    
+    # Linked Fields
+    category = models.ForeignKey(
+		DeviceCategory, 
+		on_delete=models.CASCADE, 
+        blank=True, 
+        null=True,
+        related_name='category', 
+		verbose_name=_("Device Category"),
+		help_text=_("Device Category"))
+
+    history = HistoricalRecords()
+
+    class Meta:
+        verbose_name = _('Device Subcategory')
+        verbose_name_plural = _('Device Subcategories')
 
 
 class ServiceContract(ObjectDescription):
@@ -259,7 +272,7 @@ class Device(ObjectDescription):
         sales_rep (Person, optional) : Sales Rep
         vendor (Company, optional) : Vendor
         service_contract (Service Contract, optional) : Service Contract
-        classification (DeviceClassification, optional): Device Classification
+        subcategory (DeviceSubcategory, optional): Device Subcategory
         category (DeviceCategory, optional) : Device Category
         authorisation (Authorisation, optional) : Device Authorisation
         manager (User, optional) : Device Manager
@@ -468,14 +481,14 @@ class Device(ObjectDescription):
         verbose_name=_("Device Service Contract"),
         help_text=_("Select the Service Contract"))
 
-    classification = models.ForeignKey(
-        DeviceClassification, 
+    subcategory = models.ForeignKey(
+        DeviceSubcategory, 
         on_delete=models.CASCADE, 
         blank=True, 
         null=True,
-        related_name=_('device_classification'),
-        verbose_name=_("Device Classification"),
-        help_text=_("Select the Device Classification"))
+        related_name=_('device_subcategory'),
+        verbose_name=_("Device Subcategory"),
+        help_text=_("Select the Device Subcategory"))
 
     category = models.ForeignKey(
         DeviceCategory, 

@@ -7,13 +7,19 @@ from django.contrib import messages
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render
 from django.views.generic import TemplateView
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import DeleteView
+from django.views.generic.edit import UpdateView
 from django.views.generic.detail import DetailView
 #from inventory.forms import LoanCreateForm, LoanUpdateForm
-from loan.forms import LoanCreateForm, LoanUpdateForm
-from loan.forms import LoanWithBothCreateForm, LoanWithCaseCreateForm
+from loan.forms import LoanCreateForm
+from loan.forms import LoanUpdateForm
+from loan.forms import LoanWithBothCreateForm
+from loan.forms import LoanWithCaseCreateForm
 from loan.forms import LoanWithDeviceCreateForm
-from loan.forms import LoanWithBothUpdateForm, LoanWithCaseUpdateForm, LoanWithDeviceUpdateForm
+from loan.forms import LoanWithBothUpdateForm
+from loan.forms import LoanWithCaseUpdateForm
+from loan.forms import LoanWithDeviceUpdateForm
 from loan.models import Loan
 from case.models import Case
 from inventory.models import Device
@@ -140,6 +146,11 @@ class LoanCreate(CreateView):
         else:
             return super(LoanCreate, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super(LoanCreate, self).get_context_data(**kwargs)
+        context['user'] = request.user
+        return context
+
     def get_success_url(self, **kwargs):
         return reverse('loan_detail', kwargs={'pk': self.object.pk})
 
@@ -151,33 +162,10 @@ class LoanUpdate(UpdateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated:
-            form = BootstrapAuthenticationForm()
+            form = BootstrapAuthenticationForm(user=request.user)
             return render(request, 'registration/login.html', {'form': form})
         else:
             return super(LoanUpdate, self).dispatch(request, *args, **kwargs)
-
-
-class LoanDelete(DeleteView):
-    model = Loan
-    success_url = reverse_lazy('loans')
-    template_name = 'loan/loan/loan_update.html'
-    
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            form = BootstrapAuthenticationForm()
-            return render(request, 'registration/login.html', {'form': form})
-        else:
-            return super(LoanDelete, self).dispatch(request, *args, **kwargs)
-
-    def post(self, request, pk):
-        """Deletes the loan with the given pk.
-        """
-        data = {}
-        Loan.objects.filter(pk=pk).delete()
-        messages.success(request, 'Successfully deleted loan.')
-        data['success'] = True
-        json_data = json.dumps(data)
-        return HttpResponse(json_data, mimetype="application/json")
 
 
 class LoanList(TemplateView):

@@ -37,7 +37,7 @@ from inventory.models import Service
 'warranty_title', 'warranty_id', 'warranty_terms', 'warranty_duration',
 'warranty_start', 'warranty_end', 'warranty_extended', 'warranty_document',
 'warranty_contact', 'warranty_vendor', 'warranty_responsible',
-'sales_rep', 'vendor', 'service_contract', 'classification', 'category',
+'sales_rep', 'vendor', 'service_contract', 'subcategory', 'category',
 'authorisation', 'manager', 'device_dependecy', 'related_devices'
 '''
 
@@ -70,7 +70,7 @@ class BaseDevice(forms.ModelForm):
 			'warranty_title', 'warranty_id', 'warranty_terms', 'warranty_duration',
 			'warranty_start', 'warranty_end', 'warranty_extended',
 			'warranty_contact', 'warranty_vendor', 'warranty_responsible',
-			'sales_rep', 'vendor', 'service_contract', 'classification', 'category',
+			'sales_rep', 'vendor', 'service_contract', 'subcategory', 'category',
 			'authorisation', 'manager')
 
 
@@ -364,19 +364,7 @@ class DeviceForm(BaseDevice):
 						css_class="input-blocklevel statusfield", 
 						autocomplete='on',
 						title=self.fields['status'].help_text,
-						placeholder=_("Case Status"),
-						wrapper_class='col-md-9')),
-
-				# Classification
-				Div(
-					PrependedText(
-						"classification", 
-						_(""),
-						id="classification-field",
-						css_class="input-blocklevel classificationfield", 
-						autocomplete='on',
-						title=self.fields['classification'].help_text,
-						placeholder=_("Case Classification"),
+						placeholder=_("Status"),
 						wrapper_class='col-md-9')),
 
 				# Manager
@@ -400,7 +388,19 @@ class DeviceForm(BaseDevice):
 						css_class="input-blocklevel categoryfield", 
 						autocomplete='on',
 						title=self.fields['category'].help_text,
-						placeholder=_("Case Category"),
+						placeholder=_("Category"),
+						wrapper_class='col-md-9')),
+                
+                # Subcategory
+				Div(
+					PrependedText(
+						"subcategory", 
+						_(""),
+						id="subcategory-field",
+						css_class="subcategoryfield", 
+						autocomplete='on',
+						title=self.fields['subcategory'].help_text,
+						placeholder=_("Subcategory"),
 						wrapper_class='col-md-9')),
 
 				# Authorisation
@@ -412,7 +412,7 @@ class DeviceForm(BaseDevice):
 						css_class="input-blocklevel authorisationfield", 
 						autocomplete='on',
 						title=self.fields['authorisation'].help_text,
-						placeholder=_("Case Authorisation"),
+						placeholder=_("Authorisation"),
 						wrapper_class='col-md-9'))
 			),
 

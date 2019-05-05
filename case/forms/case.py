@@ -55,7 +55,7 @@ from case.models import CaseEvent
 """ Case
 'title', 'reference', 'description', 'background', 'purpose',
 'image_upload', 'private',
-'type', 'status', 'classification', 'priority', 'category',
+'status', 'classification', 'priority', 'category',
 'authorisation', 'assigned_to', 'manager', 'assigned_by',
 'deadline', 'note', 'judge',
 """
@@ -71,7 +71,7 @@ class __BaseForm(forms.ModelForm):
 		model = Case
 		fields = ['title', 'reference', 'description', 'background', 'purpose',
 					'image_upload', 'private',
-					'type', 'status', 'classification', 'priority', 'category',
+					'status', 'classification', 'priority', 'category',
 					'authorisation', 'assigned_to', 'manager', 'assigned_by']
 
 
@@ -201,16 +201,6 @@ class BaseForm(__BaseForm):
 						    <p class="help-block">
 						    {% trans "Available formats are JPG, GIF, and PNG. Minimal size is 800 × 800 px." %}
 						    </p>"""),
- 
-			    # Type
-			    Field(
-				    "type",
-				    id="type-field", 
-				    css_class="input-blocklevel typefield", 
-				    autocomplete='on',
-				    title=self.fields['type'].help_text,
-				    placeholder=_("Case Type"),
-				    wrapper_class='col-md-9'),
 
 			    # Status
 			    Div(

@@ -313,26 +313,26 @@ class Dev(Common, Log):
     # Database
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-    #DATABASES = {
-    #    'default': {
-    #        'ENGINE': 'django.db.backends.mysql',
-    #        'NAME': 'kases',
-    #        'USER': 'root',
-    #        'PASSWORD': '21@coffee',
-    #        'HOST': '192.168.2.32',
-    #        'PORT': '3306',
-    #    }
-    #}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'kases',
+            'USER': 'root',
+            'PASSWORD': '21@coffee',
+            'HOST': '192.168.2.32',
+            'PORT': '3306',
+        }
+    }
 
         # Database
     # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
+    #DATABASES = {
+    #    'default': {
+    #        'ENGINE': 'django.db.backends.sqlite3',
+    #        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #    }
+    #}
 
 
 class Deployed(Common):

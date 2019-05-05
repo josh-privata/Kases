@@ -1,6 +1,7 @@
 ## Evidence Models ##
 
 ## python imports
+import itertools
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
@@ -16,50 +17,6 @@ from utils.models import Note
 
 
 ## Admin Models
-class EvidenceClassification(BaseObject):
-	""" Model to contain information about evidence classification.
-
-	Args:
-		history (HistoricalRecord, auto): Historical records of object
-		title (str) [50]: Title
-		colour (str, optional) [7]: Hexidecimal colour representation
-		description (str, optional) [1000]: Description
-		created (date, auto): Date Created
-		modified (date,auto): Date Modified
-		created_by (User, auto): Created by
-		modified_by (User, auto): Modified byl 
-	
-	"""
-
-	history = HistoricalRecords()
-
-	class Meta:
-		verbose_name = _('Evidence Classification')
-		verbose_name_plural = _('Evidence Classifications')
-
-
-class EvidenceType(BaseObject):
-	""" Model to contain information about evidence type.
-
-	Args:
-		history (HistoricalRecord, auto): Historical records of object
-		title (str) [50]: Title
-		colour (str, optional) [7]: Hexidecimal colour representation
-		description (str, optional) [1000]: Description
-		created (date, auto): Date Created
-		modified (date,auto): Date Modified
-		created_by (User, auto): Created by
-		modified_by (User, auto): Modified by 
-	
-	"""
-	
-	history = HistoricalRecords()
-
-	class Meta:
-		verbose_name = _('Evidence Type')
-		verbose_name_plural = _('Evidence Types')
-
-
 class EvidenceCategory(BaseObject):
 	""" Model to contain information about evidence category.
 
@@ -80,29 +37,6 @@ class EvidenceCategory(BaseObject):
 	class Meta:
 		verbose_name = _('Evidence Category')
 		verbose_name_plural = _('Evidence Categories')
-
-
-class EvidencePriority(Priority):
-	"""  Model to contain information about evidence priority.
-
-	Args:
-		history (HistoricalRecord, auto): Historical records of object
-		title (str) [50]: Title
-		colour (str, optional) [7]: Hexidecimal colour representation
-		delta (int, optional): Time delta
-		description (str, optional) [1000]: Description
-		created (date, auto): Date Created
-		modified (date,auto): Date Modified
-		created_by (User, auto): Created by
-		modified_by (User, auto): Modified by 
-	
-	"""
-   
-	history = HistoricalRecords()
-
-	class Meta:
-		verbose_name = _('Evidence Priority')
-		verbose_name_plural = _('Evidence Priorities')
 
 
 class EvidenceStatus(BaseObject):
@@ -257,9 +191,8 @@ class Evidence(ObjectDescription):
 		retention_start_date (date, optional): Retention start date
 		retention_end_date (date, optional): Retention end date
 		chain_of_custody (ChainOfCustody, optional): Chain of custody
-		type (EvidenceType, optional): Type of Evidence
 		status (EvidenceStatus, optional): Status of the Evidence
-		priority (EvidencePriority, optional): Priority of the Evidence
+		priority (Priority, optional): Priority of the Evidence
 		authorisation (Authorisation, optional): Authorisation of the Evidence
 		custodian (AUTH_USER_MODEL, optional): Evidence custodian
 		assigned_by (AUTH_USER_MODEL, optional): Assigned To
@@ -353,14 +286,6 @@ class Evidence(ObjectDescription):
 
 
 	## Linked Fields ##  
-	classification = models.ForeignKey(
-		EvidenceClassification, 
-		on_delete=models.SET_NULL, 
-		blank=True, 
-		null=True, 
-		verbose_name=_("Evidence Classification"),
-		help_text=_("(Optional) Select the classification of Evidence"))
-
 	category = models.ForeignKey(
 		EvidenceCategory, 
 		on_delete=models.SET_NULL, 
@@ -368,14 +293,6 @@ class Evidence(ObjectDescription):
 		null=True, 
 		verbose_name=_("Evidence Category"),
 		help_text=_("(Optional) Select the category of Evidence"))
-	
-	type = models.ForeignKey(
-		EvidenceType, 
-		on_delete=models.SET_NULL, 
-		blank=True, 
-		null=True,
-		verbose_name=_("Type"),
-		help_text=_("(Optional) Select the type of Evidence"))
 
 	status = models.ForeignKey(
 		EvidenceStatus, 
@@ -386,7 +303,7 @@ class Evidence(ObjectDescription):
 		help_text=_("(Optional) Select the status of the Evidence"))
 
 	priority = models.ForeignKey(
-		EvidencePriority, 
+		Priority, 
 		on_delete=models.SET_NULL, 
 		blank=True, 
 		null=True,

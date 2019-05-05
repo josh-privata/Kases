@@ -47,31 +47,29 @@ admin.site.register(CompanyCategory, SimpleHistoryAdmin)
 admin.site.register(CompanyStatus, SimpleHistoryAdmin)
 admin.site.register(CompanyStatusGroup, SimpleHistoryAdmin)
 admin.site.register(Company, SimpleHistoryAdmin)
+admin.site.register(Email, SimpleHistoryAdmin)
+admin.site.register(Website, SimpleHistoryAdmin)
+admin.site.register(Telephone, SimpleHistoryAdmin)
+admin.site.register(Address, SimpleHistoryAdmin)
 
 # Event
-admin.site.register(EventClassification, SimpleHistoryAdmin)
-admin.site.register(EventPriority, SimpleHistoryAdmin)
 admin.site.register(EventCategory, SimpleHistoryAdmin)
 admin.site.register(EventStatus, SimpleHistoryAdmin)
 admin.site.register(EventStatusGroup, SimpleHistoryAdmin)
 
 # Evidence
-admin.site.register(EvidenceClassification, SimpleHistoryAdmin)
-admin.site.register(EvidenceType, SimpleHistoryAdmin)
 admin.site.register(ChainOfCustody, SimpleHistoryAdmin)
-admin.site.register(EvidencePriority, SimpleHistoryAdmin)
 admin.site.register(EvidenceCategory, SimpleHistoryAdmin)
 admin.site.register(EvidenceStatus, SimpleHistoryAdmin)
 admin.site.register(EvidenceStatusGroup, SimpleHistoryAdmin)
 
 # Task
-admin.site.register(TaskPriority, SimpleHistoryAdmin)
 admin.site.register(TaskCategory, SimpleHistoryAdmin)
 admin.site.register(TaskStatus, SimpleHistoryAdmin)
 admin.site.register(TaskStatusGroup, SimpleHistoryAdmin)
 
 # Inventory
-admin.site.register(DeviceClassification, SimpleHistoryAdmin)
+admin.site.register(DeviceSubcategory, SimpleHistoryAdmin)
 admin.site.register(DeviceCategory, SimpleHistoryAdmin)
 admin.site.register(Device, SimpleHistoryAdmin)
 admin.site.register(Service, SimpleHistoryAdmin)
@@ -82,8 +80,6 @@ admin.site.register(Loan, SimpleHistoryAdmin)
 
 # Case
 admin.site.register(CaseClassification, SimpleHistoryAdmin)
-admin.site.register(CaseType, SimpleHistoryAdmin)
-admin.site.register(CasePriority, SimpleHistoryAdmin)
 admin.site.register(CaseCategory, SimpleHistoryAdmin)
 admin.site.register(CaseStatus, SimpleHistoryAdmin)
 admin.site.register(CaseStatusGroup, SimpleHistoryAdmin)
@@ -96,6 +92,7 @@ admin.site.register(CaseEvent, SimpleHistoryAdmin)
 
 # Utility
 admin.site.register(notemodels.Authorisation, SimpleHistoryAdmin)
+admin.site.register(notemodels.Priority, SimpleHistoryAdmin)
 admin.site.register(notemodels.Note, SimpleHistoryAdmin)
 
 #admin.site.register(ContactLocation)

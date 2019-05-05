@@ -15,27 +15,49 @@
 
 <!-- Left Panel -->
     {% block summary_leftpanel %}
-    <h5>Task Title: {{ object.title }}</h5>
-    <h5>Task ID: {{ object.id }}</h5>
+        <div>
+            <h1>{{ object.id }} / {{ object.title }}</h1>
+            <h5>{{ object.brief|default:"No Summary" }}</h5>
+            {% if object.private is True %}
+                <span class="badge badge-danger">Private</span>
+            {% else %}
+                <span class="badge badge-success">Public</span>
+            {% endif %}
+            <hr />
+            <h6>Priority: {{ object.priority }}</h6>
+            <h6>Location: {{ object.location }}</h6>
+            <h6>Status: {{ object.status }}</h6>
+            <h6>Category: {{ object.category }}</h6>
+            <h6>Classification: {{ object.classification}}</h6>
+            <h6>Authorisation: {{ object.authorisation }}</h6>
+            <hr />
+        </div>
     {% endblock %}
 
 <!-- Right Panel -->
     {% block summary_rightpanel %}
-    <h5>Task Deadline: {{ object.deadline }}</h5>
-    <h5>Task Creation Date: {{ object.creation_date }}</h5>
+        <div>
+            <h6>Deadline: {{ object.deadline }}</h6>
+            <h6>Manager: {{ object.manager }}</h6>
+            <h6>Assigned To: {{ object.assigned_to }}</h6>
+            <h6>Assigned By: {{ object.assigned_by }}</h6>
+            <h6>Created by {{ created_by|default:"Unknown" }} on {{ object.created }}</h6>
+            <h6>Last Modified by {{ modified_by|default:"Unknown" }} on {{ object.modified }}</h6> 
+        </div>
     {% endblock %}
-
     {% block summary_buttonurl %}{% url 'casetask_update' object.case.id object.id %}{% endblock %}
 
 <!-- Note Detail Tabs -->
     <!-- Panel 1 - Details -->
     {% block tab1_header %}Details{% endblock %}
-    <!-- Panel 2 - Contact -->
-    {% block tab2_header %}Contact Details{% endblock %}
-    <!-- Panel 3 - Events -->
-    {% block tab3_header %}Related Events{% endblock %}
-    <!-- Panel 4 - Evidence -->
-    {% block tab4_header %}Related Evidence{% endblock %}
+    <!-- Panel 2 - Related -->
+    {% block tab2_header %}Related{% endblock %}
+    <!-- Panel 3 -  -->
+    {% block tab3 %}{% endblock %}
+    {% block tab3_header %}{% endblock %}
+    <!-- Panel 4 -  -->
+    {% block tab4 %}{% endblock %}
+    {% block tab4_header %}{% endblock %}
     <!-- Panel 5 -  -->
     {% block tab5 %}{% endblock %}
     {% block tab5_header %}{% endblock %}
@@ -67,7 +89,7 @@
     {% block tab14 %}{% endblock %}
     {% block tab14_header %}{% endblock %}
     <!-- Panel 15 - Billing -->
-    {% block tab15_header %}Case Billing{% endblock %}
+    {% block tab15_header %}Billing{% endblock %}
 
 <!-- Tab panels -->      
     <!-- Panel 1 - Details -->
@@ -79,12 +101,7 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text">
-                            <h3>Details</h3>
-                            <h5>Task Brief: {{ object.brief }}</h5>
-                            <h5>Task Reference: {{ object.reference }}</h5>
-                            <h5>Task Location: {{ object.location }}</h5>
-                            <h5>Comment: {{ object.comment }}</h5>
-                            <h5>Private: {{ object.private }}</h5>
+                            <h5>Description: {{ object.description }}</h5>
                         </p>
                     </div>
                 </div>
@@ -95,11 +112,7 @@
                 <div class="card">
                     <div class="card-body">
                         <p class="card-text">
-                            <h3>Details</h3>
-                            <h5>Task Type: {{ object.type }}</h5>
-                            <h5>Task Status: {{ object.status }}</h5>
-                            <h5>Task Classification:{{ object.classification}}</h5>
-                            <h5>Task Authorisation: {{ object.authorisation }}</h5>
+                            <h5>Note: {{ object.note }}</h5>
                         </p>
                     </div>
                 </div>
@@ -108,13 +121,26 @@
     </div>
     {% endblock %}
 
-    <!-- Panel 2 - Contact -->
-    {% block panel2_content %}{% endblock %}
+    <!-- Panel 2 - Related -->
+    {% block panel2_content %}
+        <div>
+            <h5>Event</h5>
+            <h6>{{ object.event }}</h6>
+            <h5>Device</h5>
+            <h6>{{ object.device }}</h6>
+            <h5>Evidence</h5>
+            <h6>{{ object.evidence }}</h6>
+            <h5>Persons Involved</h5>
+            <h6>{{ object.person }}</h6>
+            <h5>Companies Involved</h5>
+            <h6>{{ object.company }}</h6>
+        </div>
+    {% endblock %}
 
-    <!-- Panel 3 - Events -->
+    <!-- Panel 3 -  -->
     {% block panel3_content %}{% endblock %}
 
-    <!-- Panel 4 - Evidence -->
+    <!-- Panel 4 -  -->
     {% block panel4_content %}{% endblock %}
 
     <!-- Panel 5 -  -->

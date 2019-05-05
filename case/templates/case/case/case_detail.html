@@ -9,32 +9,46 @@
 <!-- Title -->
 {% block title %}Kases - {{object.title}}{% endblock %}
 
-
 <!-- Summary -->
 {% block header %}Case Summary{% endblock %}
 {% block summary_header_override %}{% endblock %}
-    <!-- Left Panel -->
+    <!-- Left Panel - Details -->
     {% block summary_leftpanel %}
-        <h5>Case Title: {{ object.title }}</h5>
-        <h5>Case ID: {{ object.id }}</h5>
-        <h5>Case Brief: {{ object.brief }}</h5>
-        <h5>Case Reference: {{ object.reference }}</h5>
-        <h5>Case Location: {{ object.location }}</h5>
-        <h5>Comment: {{ object.comment }}</h5>
-        <h5>Private: {{ object.private }}</h5>
+        <div>
+            <h1>{{ object.id }} / {{ object.title }}</h1>
+            <h5>{{ object.brief|default:"No Summary" }}</h5>
+            {% if object.private is True %}
+                <span class="badge badge-danger">Private</span>
+            {% else %}
+                <span class="badge badge-success">Public</span>
+            {% endif %}
+            <hr>
+            <h6>Deadline: {{ object.deadline }}</h6>
+            <h6>Reference: {{ object.reference }}</h6>
+            <h6>Type: {{ object.type }}</h6>
+            <h6>Location: {{ object.location }}</h6>
+            <h6>Status: {{ object.status }}</h6>
+            <h6>Classification: {{ object.classification}}</h6>
+            <h6>Authorisation: {{ object.authorisation }}</h6>
+            <hr />
+            <h6>Case Manager: {{ object.manager }}</h6>
+            <h6>Assigned To: {{ object.assigned_to }}</h6>
+            <h6>Assigned By: {{ object.assigned_by }}</h6>
+            <h6>Judge: {{ object.judge|default:"None Assigned" }}</h6>
+            <h6>Created by {{ created_by|default:"Unknown" }} on {{ object.created }}</h6>
+            <h6>Last Modified by {{ modified_by|default:"Unknown" }} on {{ object.modified }}</h6>
+        </div>
     {% endblock %}          
-
-    <!-- Right Panel -->
+    <!-- Right Panel - Notices -->
     {% block summary_rightpanel %}
-        <h5>Case Type: {{ object.type }}</h5>
-        <h5>Case Status: {{ object.status }}</h5>
-        <h5>Case Classification:{{ object.classification}}</h5>
-        <h5>Case Authorisation: {{ object.authorisation }}</h5>
-        <h5>Case Deadline: {{ object.deadline }}</h5>
-        <h5>Case Creation Date: {{ object.creation_date }}</h5>
+        <div>
+            <p>Overdue Tasks</p>
+            <p>Overdue Events</p>        
+            <p>Upcoming Events</p>
+            <p>Upcoming Tasks</p>
+        </div>
     {% endblock %} 
-
-    {% block summary_buttonurl %}{% url 'case_edit' object.id %}{% endblock %}
+{% block summary_buttonurl %}{% url 'case_edit' object.id %}{% endblock %}
   
 <!-- Case Detail Tabs -->
     <!-- Panel 1 - Details -->
@@ -81,13 +95,26 @@
     {% block panel1_content %}
         <div class="row">
             <div class="col-sm-12">
-                <div class="card">
-                    <div class="card-body">
-                    <p class="card-text">
-                        <h5>Case Background: {{ object.background }}</h5>
-                        <h5>Case Description: {{ object.description }}</h5>        
-                    </p>
+                <div class="row">
+
+                    <!-- Left Panel -->
+                    <div class="col-sm-6">
+                        <p>
+                            <h6>Description</h6>        
+                            <p>{{ object.description }}</p>
+                            <h6>Purpose</h6>
+                            <p>{{ object.purpose }}</p>
+                        </p>
                     </div>
+
+                    <!-- Right Panel -->
+                    <div class="col-sm-6">
+                        <p>
+                            <h6>Background</h6>
+                            <p>{{ object.background }}</p>
+                        </p>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -171,11 +198,11 @@
                         <!-- Table Head -->
                         <thead>
                         <tr>
-                            <th>Evidence Title</th>
-                            <th>Evidence Detail</th>
-                            <th>Evidence Locatoin</th>
-                            <th>Evidence Status</th>
-                            <th>Evidence Type</th>
+                            <th>Evidence</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                            <th>Type</th>
+                            <th>Description</th>
                         </tr>
                         </thead>
         
@@ -183,26 +210,15 @@
                         <tbody>
                             {% for table_object in evidence %}
                                 <tr>
-                                    <!-- ID -->
                                     <td>
                                         <a href="{% url 'caseevidence_detail' table_object.case.id table_object.id %}" role="button">
                                             {{ table_object.title }}
                                         </a>
                                     </td>
-                                
-                                    <!-- Columns -->
-
-                                    <!-- Case Description -->
-                                    <td>{{ table_object.description }}</td>
-
-                                    <!-- Case Background -->
-                                    <td>{{ table_object.location }}</td>
-
-                                    <!-- Case Status -->
                                     <td>{{ table_object.status }}</td>
-
-                                    <!-- Case Type -->
+                                    <td>{{ table_object.priority }}</td>
                                     <td>{{ table_object.type }}</td>
+                                    <td>{{ table_object.desription }}</td>
                                 </tr>
                             {% endfor %}
                         </tbody>

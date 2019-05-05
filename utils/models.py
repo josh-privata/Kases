@@ -2,6 +2,7 @@
 
 ## python imports
 from __future__ import unicode_literals
+import itertools
 from django.db import models
 from django.db import models
 from django.conf import settings
@@ -13,6 +14,21 @@ from django.utils.encoding import force_text
 from django.views.generic.base import ContextMixin
 #from django.contrib.sites.models import Site
 
+""" Docstring
+
+    Note:
+    
+    Example:
+
+	Args:
+
+	Attributes:
+
+    Returns:
+
+    Raises:
+
+"""
 
 ## Mixins
 class MultipleFormsMixin(ContextMixin):
@@ -359,37 +375,15 @@ class BaseObject(models.Model):
             #if not self.created_by:
             #    self.created_by = request.user
             #self.modified_by = request.user
-        super(ObjectDescriptionMixin, self).save(*args, **kwargs)
-
-
-class Priority(BaseObject):
-    """ Abstract model to contain information about an object priority.
-
-    Args:
-        title (str) [50]: Title
-        colour (str, optional) [7]: Hexidecimal colour representation
-        delta (int, optional): Time delta
-        description (str, optional) [1000]: Description
-        created (date, auto): Date Created
-        modified (date,auto): Date Modified
-        created_by (User, auto): Created by
-        modified_by (User, auto): Modified by
-    
-    """
-
-    # General Fields
-    #delta = models.IntegerField(
-        #blank=True, 
-        #null=True, 
-        #default=None, 
-        #verbose_name=_("Action Delta Days")),
-        #help_text=_("(Optional) Enter a time delta"))
-   
-    class Meta:
-        abstract = True
+        super(BaseObject, self).save(*args, **kwargs)
 
 
 ## Utility Models
+def user_directory_path(instance, filename):
+    # file will be uploaded to MEDIA_ROOT/<user_id>/<year>/<month>/<day>/<filename>
+    return '{0}/{1}/{3}'.format(instance.user.id, (datetime.datetime.now().strftime("%Y/%m/%d")),  filename)
+
+
 class UploadModel(models.Model):
     """ Abstract model to contain information about a file upload.
 
@@ -407,13 +401,60 @@ class UploadModel(models.Model):
     """
 
     # General Fields
-    date_time = models.DateTimeField(auto_now=True, null=True)
-    file_note = models.CharField(max_length=250, blank=True, null=True, default=None)
-    file_name = models.CharField(max_length=250, blank=True, null=True, default=None)
-    upload_location = models.CharField(max_length=250, blank=True, null=True, default=None)
-    file_title = models.CharField(max_length=250, blank=True, null=True, default=None)
-    deleted = models.BooleanField(default=False, blank=True)
-    date_deleted = models.DateTimeField(auto_now=True, null=True)
+    upload = models.FileField(
+        upload_to=user_directory_path,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    date_time = models.DateTimeField(
+        auto_now=True, 
+        null=True,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    file_note = models.CharField(
+        max_length=250, 
+        blank=True, 
+        null=True, 
+        default=None,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    file_name = models.CharField(
+        max_length=250, 
+        blank=True, 
+        null=True, 
+        default=None,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    upload_location = models.CharField(
+        max_length=250, 
+        blank=True, 
+        null=True, 
+        default=None,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    file_title = models.CharField(
+        max_length=250, 
+        blank=True, 
+        null=True, 
+        default=None,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    deleted = models.BooleanField(
+        default=False, 
+        blank=True,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
+
+    date_deleted = models.DateTimeField(
+        auto_now=True, 
+        null=True,
+        verbose_name=_("Modification date"),
+        help_text=_("The mdification date"))
 
     file_hash = models.CharField(
         max_length=250, 
@@ -467,6 +508,43 @@ class UploadModel(models.Model):
 
         """
         return path.join(self.upload_location, self.file_name)
+
+
+class Priority(BaseObject):
+    """ Model to contain information about an object priority.
+
+    Args:
+        title (str) [50]: Title
+        colour (str, optional) [7]: Hexidecimal colour representation
+        delta (int, optional): Time delta
+        description (str, optional) [1000]: Description
+        created (date, auto): Date Created
+        modified (date,auto): Date Modified
+        created_by (User, auto): Created by
+        modified_by (User, auto): Modified by
+    
+    """
+
+    # General Fields
+    delta = models.IntegerField(
+        blank=True, 
+        null=True, 
+        default=None, 
+        verbose_name=_("Action Delta Hours"),
+        help_text=_("(Optional) Enter a time delta in hours"))
+   
+    class Meta:
+        verbose_name = _('Priority')
+        verbose_name_plural = _('Priorities')
+
+    def __str__(self):
+        """ Returns a human friendly string
+        
+        Returns:
+            Level - Title
+
+        """
+        return '%s' % _(self.title)
 
 
 class Authorisation(BaseObject):
@@ -593,7 +671,7 @@ class Note(models.Model):
             #if not self.created_by:
             #    self.created_by = request.user
             #self.modified_by = request.user
-        super(ObjectDescriptionMixin, self).save(*args, **kwargs)
+        super(Note, self).save(*args, **kwargs)
 
     def __str__(self):
         """ Returns a human friendly string

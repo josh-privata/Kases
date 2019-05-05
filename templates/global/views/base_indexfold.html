@@ -1,0 +1,97 @@
+﻿{% extends "global/auth_base.html" %}
+{% load render_table from django_tables2 %}
+
+    {#{% block title %}{% endblock %}#}
+    {#{% block content %}{% endblock %}#}
+    {#{% block tables %}{% endblock %}#}
+    {#{% block updates %}{% endblock %}#}
+    {#{% block extracontent %}{% endblock %}#}
+
+<!-- Content -->
+{% block content %}
+
+    <!-- Introduction Section -->
+    {% block intro %}{% endblock %}
+
+    <!-- Tables Section -->
+    {% block tables %}
+        <section class="mt-30px mb-30px">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- Updates -->
+                    {% for key,value in tables.items %}
+                        <div class="col-lg-12 col-md-12">           
+                            <div id="{{ value.order }}-updates" class="card updates recent-updated">
+
+                                <!-- Header -->
+                                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                                    <h2 class="h5 display">
+                                    <a data-toggle="collapse" data-parent="#{{ value.order }}-updates" href="#{{ value.order }}-box" aria-expanded="true" aria-controls="{{ value.order }}-box">
+                                        {{ value.name }}
+                                    </a>
+                                    </h2>
+                                    <div class="right-column">
+                                        <div class="badge badge-primary">{{ value.count }} {{ value.object_type_plural }}</div>
+                                        <a data-toggle="collapse" data-parent="#{{ value.order }}-updates" href="#{{ value.order }}-box" aria-expanded="true" aria-controls="{{ value.order }}-box">
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Update Box -->
+                                <div id="{{ value.order }}-box" role="tabpanel" class="collapse">
+
+                                    <ul class="news list-unstyled">
+                                        
+                                        {% if value.content %}
+                                            <!-- Item -->
+                                                <table class="table">
+                                                    <!-- Table Head -->
+                                                    <thead>
+                                                    <tr>
+                                                        {% block table_head %}{% endblock %}
+                                                    </tr>
+                                                    </thead>
+                                                    <!-- Table Body -->
+                                                    <tbody>
+                                                        {% for table_object in value.content %}
+                                                            <tr>
+                                                                {% block table_body %}
+                                                                    <!-- ID -->
+                                                                    <td>
+                                                                        <a href="{% block table_body_id_url %}{% endblock %}" role="button">
+                                                                            {% block table_body_id_column %}{% endblock %}
+                                                                        </a>
+                                                                    </td>
+                                                                    <!-- Columns -->
+                                                                    {% block table_body_columns %}{% endblock %}
+                                                                {% endblock %}
+                                                            </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            <!-- Table Else -->
+                                            {% else %}
+                                                {% block table_else %}<p>There are no objects to show</p>{% endblock %}
+                                            {% endif %}
+                                    </ul>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    <!-- Extra Content -->
+    {% block extracontent %}{% endblock %}
+
+{% endblock %}
+
+<!-- Extra Body -->
+{% block extrabody %}{% endblock %}

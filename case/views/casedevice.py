@@ -17,32 +17,6 @@ from case.forms.device import CaseDeviceCreateForm
 from case.forms.device import CaseDeviceUpdateForm
 
 
-class AjaxableResponseMixin:
-    """
-    Mixin to add AJAX support to a form.
-    Must be used with an object-based FormView (e.g. CreateView)
-    """
-    def form_invalid(self, form):
-        response = super().form_invalid(form)
-        if self.request.is_ajax():
-            return JsonResponse(form.errors, status=400)
-        else:
-            return response
-
-    def form_valid(self, form):
-        # We make sure to call the parent's form_valid() method because
-        # it might do some processing (in the case of CreateView, it will
-        # call form.save() for example).
-        response = super().form_valid(form)
-        if self.request.is_ajax():
-            data = {
-                'pk': self.object.pk,
-            }
-            return JsonResponse(data)
-        else:
-            return response
-
-
 ## Case Device 
 class CaseDeviceHome(TemplateView):
     template_name = 'case/inventory/caseinventory_index.html'
@@ -101,6 +75,22 @@ class CaseDeviceHome(TemplateView):
         return context
 
 
+class CaseDeviceDetail(DetailView):
+    model = CaseInventory
+    template_name = 'case/inventory/caseinventory_detail.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            form = BootstrapAuthenticationForm()
+            return render(request, 'registration/login.html', {'form': form})
+        else:
+            return super(CaseDeviceDetail, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(CaseDeviceDetail, self).get_context_data(**kwargs)
+        return context
+
+
 class CaseDeviceCreate(CreateView):
     model = CaseInventory
     template_name = 'case/inventory/caseinventory_create.html'
@@ -124,22 +114,6 @@ class CaseDeviceCreate(CreateView):
     def get_context_data(self, **kwargs):
         context = super(CaseDeviceCreate, self).get_context_data(**kwargs)
         context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
-        return context
-
-
-class CaseDeviceDetail(DetailView):
-    model = CaseInventory
-    template_name = 'case/inventory/caseinventory_detail.html'
-
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            form = BootstrapAuthenticationForm()
-            return render(request, 'registration/login.html', {'form': form})
-        else:
-            return super(CaseDeviceDetail, self).dispatch(request, *args, **kwargs)
-
-    def get_context_data(self, **kwargs):
-        context = super(CaseDeviceDetail, self).get_context_data(**kwargs)
         return context
 
 
@@ -173,25 +147,3 @@ class CaseDeviceUpdate(UpdateView):
         context = super(CaseDeviceUpdate, self).get_context_data(**kwargs)
         context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
         return context
-
-
-class CaseDeviceDelete(DeleteView):
-    model = CaseInventory
-    template_name = 'case/inventory/caseinventory_delete.html'
-    
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:
-            form = BootstrapAuthenticationForm()
-            return render(request, 'registration/login.html', {'form': form})
-        else:
-            return super(CaseDeviceDelete, self).dispatch(request, *args, **kwargs)
-
-    def get_success_url(self):
-        pk = self.kwargs['casepk']
-        return reverse('case_detail', kwargs={'pk': pk})
-
-    def get_context_data(self, **kwargs):
-        context = super(CaseDeviceDelete, self).get_context_data(**kwargs)
-        context['object'] = Case.objects.get(pk=self.kwargs['casepk'])
-        return context
-

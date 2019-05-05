@@ -1,4 +1,4 @@
-{% extends "global/views/base_index.html" %}
+{% extends "global/views/base_indexfold.html" %}
 {% load render_table from django_tables2 %}
 
 {% block sidebar_internal %}
@@ -8,7 +8,9 @@
 <!-- Title -->
 {% block title %}Kases - Case Evidence Dashboard{% endblock %}
 
-<!-- Statistics Section -->
+<!-- Introduction Section -->
+{% block intro %}<h1>CUNT</h1>{% endblock %}
+
 <!-- Updates Section -->
 <!-- Case Section -->
 <!-- Table Head -->
@@ -45,5 +47,5 @@
     <td>{{ table_object.type }}</td>
 {% endblock %}
 
-<!-- Table Else -->
-{% block table_else %}<p>There is no evidence to show</p>{% endblock %}
+<!-- Extra Content Section -->
+{% block extracontent %}{% endblock %}

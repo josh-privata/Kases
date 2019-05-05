@@ -1,6 +1,7 @@
 ## Case Models ##
 
 ## python imports
+import itertools
 from django.db import models
 from django.urls import reverse
 from django.conf import settings
@@ -19,7 +20,7 @@ from task.models import Task
 from evidence.models import Evidence
 from entity.models.person import Person
 from entity.models.company import Company
-#import case.managers as managers
+import case.managers.case as managers
 
 ## Admin Models
 class CaseClassification(BaseObject):
@@ -42,50 +43,6 @@ class CaseClassification(BaseObject):
 	class Meta:
 		verbose_name = _('Case Classification')
 		verbose_name_plural = _('Case Classifications')
-
-
-class CaseType(BaseObject):
-	""" Model to contain information about a case type.
-
-	Args:
-		history (HistoricalRecord, auto): Historical records of object
-		title (str) [50]: Title
-		colour (str, optional) [7]: Hexidecimal colour representation
-		description (str, optional) [1000]: Description
-		created (date, auto): Date Created
-		modified (date,auto): Date Modified
-		created_by (User, auto): Created by
-		modified_by (User, auto): Modified by  
-	
-	"""
-	
-	history = HistoricalRecords()
-
-	class Meta:
-		verbose_name = _('Case Type')
-		verbose_name_plural = _('Case Types')
-
-
-class CasePriority(Priority):
-	"""  Model to contain information about a case priority.
-
-	Args:
-		history (HistoricalRecord, auto): Historical records of object
-		title (str) [50]: Title
-		colour (str, optional) [7]: Hexidecimal colour representation
-		description (str, optional) [1000]: Description
-		created (date, auto): Date Created
-		modified (date,auto): Date Modified
-		created_by (User, auto): Created by
-		modified_by (User, auto): Modified by  
-	
-	"""
-
-	history = HistoricalRecords()
-
-	class Meta:
-		verbose_name = _('Case Priority')
-		verbose_name_plural = _('Case Priorities')
 
 
 class CaseCategory(BaseObject):
@@ -137,7 +94,7 @@ class CaseStatusGroup(BaseObject):
 	""" Model to contain information about a case status group.
 
 	Args:
-		status (EventStatus): Status in group
+		status (CaseStatus): Status in group
 		history (HistoricalRecord, auto): Historical records of object
 		title (str) [50]: Title
 		colour (str, optional) [7]: Hexidecimal colour representation
@@ -177,7 +134,6 @@ class Case(ObjectDescription):
 		deadline (Date, optional) : Deadline
 		image_upload (FileField, optional) : Image Upload 
 		note (Note, optional) : Note
-		type (Type, optional) : Type
 		status (Status, optional) : Status
 		classification (Classification, optional) : Classification
 		priority (Priority, optional) : Priority
@@ -259,15 +215,6 @@ class Case(ObjectDescription):
 	#    verbose_name=_("Case Note")
 	#    help_text=_("Select a judge"))
 
-	type = models.ForeignKey(
-		CaseType, 
-		on_delete=models.SET_NULL, 
-		blank=True, 
-		null=True,
-		related_name=_('case_type'),
-		verbose_name=_("Case Type"),
-		help_text=_("Select a case type"))
-
 	status = models.ForeignKey(
 		CaseStatus, 
 		on_delete=models.SET_NULL, 
@@ -287,7 +234,7 @@ class Case(ObjectDescription):
 		help_text=_("Select a case classification"))
 
 	priority = models.ForeignKey(
-		CasePriority, 
+		Priority, 
 		on_delete=models.SET_NULL, 
 		blank=True, 
 		null=True, 
@@ -356,7 +303,7 @@ class Case(ObjectDescription):
 
 	history = HistoricalRecords()
 
-	#manager = CaseManager()
+	objects = managers.CaseManager()
 
 	class Meta:
 		verbose_name = _('Case')
@@ -378,19 +325,19 @@ class Case(ObjectDescription):
 		return u"%s-%s" % (self.queue.slug, self.id)
 	case_for_url = property(_get_case_for_url)  
 	
-	def _get_assigned_to(self):
-		"""
-		Custom property to allow us to easily print 'Unassigned' if a Case has no owner, or the users name if it's assigned.
-		If the user has a full name configured, we use that, otherwise their username.
-		"""
-		if not self.assigned_to:
-			return _('Unassigned')
-		else:
-			if self.assigned_to.get_full_name():
-				return self.assigned_to.get_full_name()
-			else:
-				return self.assigned_to.get_username()
-	get_assigned_to = property(_get_assigned_to)
+	#def _get_assigned_to(self):
+	#	"""
+	#	Custom property to allow us to easily print 'Unassigned' if a Case has no owner, or the users name if it's assigned.
+	#	If the user has a full name configured, we use that, otherwise their username.
+	#	"""
+	#	if not self.assigned_to:
+	#		return _('Unassigned')
+	#	else:
+	#		if self.assigned_to.get_full_name():
+	#			return self.assigned_to.get_full_name()
+	#		else:
+	#			return self.assigned_to.get_username()
+	#get_assigned_to = property(_get_assigned_to)
 
 	def save(self,force_insert=False, force_update=False):
 		from django.template.defaultfilters import slugify
@@ -779,6 +726,9 @@ class CaseEvidence(Evidence):
 	class Meta:
 		verbose_name = _('Case Evidence')
 		verbose_name_plural = _('Case Evidence')
+		permissions = (
+			('set_caseevidence_private', 'Set Evidence Private'),
+			)
 
 	def edit_url(self):
 		""" Returns a url to edit the evidence
@@ -871,18 +821,21 @@ class CaseEvent(Event):
 	
 	person = models.ManyToManyField(
 		Person, 
+        blank= True,
 		related_name=_('case_event_person'),
 		verbose_name=_("Persons"),
 		help_text=_("Select Persons"))
 
 	company = models.ManyToManyField(
-		Company, 
+		Company,  
+        blank= True,
 		related_name=_('case_event_company'),
 		verbose_name=_("Companies Involved"),
 		help_text=_("Select Companies"))
 
 	evidence = models.ManyToManyField(
-		CaseEvidence, 
+		CaseEvidence,  
+        blank= True,
 		related_name=_('case_event_evidence'),
 		verbose_name=_("Evidence Involved"),
 		help_text=_("Select Evidence"))
@@ -894,6 +847,10 @@ class CaseEvent(Event):
 	class Meta:
 		verbose_name = _('Case Event')
 		verbose_name_plural = _('Case Event')
+		permissions = (
+            ('set_caseevent_manager', 'Set Event Manager'),
+            ('set_caseevent_private', 'Set Event Private'),
+            )
 
 	def edit_url(self):
 		""" Returns a url to edit the evidence
@@ -1009,31 +966,36 @@ class CaseTask(Task):
 		help_text=_("Select a Case"))
 	  
 	event = models.ManyToManyField(
-		CaseEvent, 
+		CaseEvent,  
+        blank= True,
 		related_name=_('case_task_event'),
 		verbose_name=_("Events Involved"),
 		help_text=_("Select Events"))
 	
 	device = models.ManyToManyField(
-		CaseInventory, 
+		CaseInventory,  
+        blank= True,
 		related_name=_('case_task_device'), 
 		verbose_name=_("Devices Involved"),
 		help_text=_("Select Evidence"))
 	
 	evidence = models.ManyToManyField(
-		CaseEvidence, 
+		CaseEvidence,  
+        blank= True,
 		related_name=_('case_task_evidence'),
 		verbose_name=_("Evidence Involved"),
 		help_text=_("Select Evidence"))
 
 	person = models.ManyToManyField(
-		Person, 
+		Person,  
+        blank= True,
 		related_name=_('case_task_person'),
 		verbose_name=_("Persons Involved"),
 		help_text=_("Select Persons"))
 
 	company = models.ManyToManyField(
-		Company, 
+		Company,  
+        blank= True,
 		related_name=_('case_task_company'),
 		verbose_name=_("Companies Involved"),
 		help_text=_("Select Companies"))
