@@ -1,0 +1,29 @@
+﻿{% extends "global/views/base_list.html" %}
+
+{% block sidebar_internal %}
+    {% include "loan/loan_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}{% endblock %}
+
+<!-- Results Table -->
+<!-- Table Head -->
+    {% block table_head %}
+<th>Device ID</th>
+<th>Device Title</th>
+    {% endblock %}
+
+<!-- Table -->
+<!-- Asset ID -->
+        {% block table_body_id_url %}{% url 'returnrequest_detail' object.id %}{% endblock %}
+        {% block table_body_id_column %}{{ object.id }}{% endblock %}
+<!-- Columns -->
+        {% block table_body_columns %}
+<!-- Asset Title -->
+<td>{{ object.title }}</td>
+        {% endblock %}
+<!-- Table Else -->
+        {% block table_else %}
+<p>There are no requests to show</p>
+        {% endblock %}

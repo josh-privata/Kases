@@ -1,0 +1,62 @@
+﻿{% extends "global/auth_base.html" %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Panel -->
+        <div class="panel panel-default">
+            <!-- Panel Body -->
+            <div class="panel-body">
+                <!-- Results Table -->
+                <table class="table">
+                    <!-- Table Head -->
+                    <thead>
+                        <tr>
+                            <th>Device ID</th>
+                            <th>Device Title</th>
+                            <th>Device Detail</th>
+                            <th>Device Background</th>
+                            <th>Device Status</th>
+                            <th>Device Type</th>
+                        </tr>
+                    </thead>
+                    <!-- Table -->
+                    {% if devices_list %}
+                    <!-- Table Body -->
+                    <tbody>
+                        {% for device in devices_list %}
+                        <tr>
+                            <!-- Device ID -->
+                            <td>
+                                <a href="{% url 'casedevice_detail' device.id %}" role="button">
+                                    {{ device.id }}
+                                </a>
+                            </td>
+
+                            <!-- Device Title -->
+                            <td>{{ device.title }}</td>
+                            <!-- Device Description -->
+                            <td>{{ device.description }}</td>
+                            <!-- Device Background -->
+                            <td>{{ device.background }}</td>
+                            <!-- Device Status -->
+                            <td>{{ device.status }}</td>
+                            <!-- Device Type -->
+                            <td>{{ device.type }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                <p>There are no devices to show</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "global/auth_base.html" %}
+{#{% load crispy_forms_tags %}#}
+
+
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+    <!-- Heading -->    
+    {% block heading %}{% endblock %}
+    
+    <!-- Summary -->
+    {% block summary %}
+    {% block form_override_top %}{% endblock %}
+
+         <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    {% block summary_header_override %}<h2 class="card-header">{% block summary_header %} {% endblock %}</h2>{% endblock %}
+                    <div class="card-body">
+                        <div class="row">
+
+                            <!-- Left Panel -->
+                            <div class="col-sm-6">
+                                <p class="card-text">
+                                    {% block summary_leftpanel %}{% endblock %}
+                                </p>
+                            </div>
+
+                            <!-- Right Panel -->
+                            <div class="col-sm-6">
+                                <p class="card-text">
+                                    {% block summary_rightpanel %}{% endblock %}
+                                </p>
+                            </div>
+
+                        </div>
+                        <br />
+                        {% block summary_button %}<a href="{% block summary_buttonurl %}{% endblock %}" class="btn btn-primary">Edit</a>{% endblock %}
+                    
+                    </div>
+                </div>
+            </div>
+        </div> 
+    
+    {% block form_override_bottom %}{% endblock %}     
+    {% endblock %}
+
+
+    <!-- Updates Section -->
+    {% block panels %}
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- Panel Headers -->
+                    {% block panel_tabs %}
+                        <ul class="nav nav-tabs">
+                            {% for key,value in updates.items %}
+                                {% block tab %}
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">{% block tab1_header %}{% endblock %}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% endblock %}
+
+                    <!-- Panels -->
+                    {% block panel %}
+                        <div class="tab-content">
+                            {% for key,value in updates.items %}
+                                 <!-- Panel 1 -->
+                                {% block panel1 %}
+                                    <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                                        {% block panel1_content %}
+                                        {% endblock %}
+                                    </div>
+                                {% endblock %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                
+                </div>
+            </div>
+    {% endblock %}
+
+    <!-- Post Form -->
+    {% block post_form %}{% endblock %}
+
+{% endblock %}

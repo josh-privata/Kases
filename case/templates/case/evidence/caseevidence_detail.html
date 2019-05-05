@@ -1,0 +1,345 @@
+﻿{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}Evidence Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+    <!-- Left Panel - Details -->
+    {% block summary_leftpanel %}
+        <div>
+            <h1>{{ object.id }} / {{ object.title }}</h1>
+            <h5>{{ object.brief|default:"No Summary" }}</h5>
+            {% if object.private is True %}
+                <span class="badge badge-danger">Private</span>
+            {% else %}
+                <span class="badge badge-success">Public</span>
+            {% endif %}
+            <hr />
+            <h6>Reference: {{ object.reference }}</h6>
+            <h6>Bag Number: {{ object.bag_number }}</h6>
+            <h6>QR Code: {{ object.qr_code }}</h6>
+            <hr />
+            <h6>Deadline: {{ object.deadline }}</h6>
+            <h6>Retention Reminder Sent: {{ object.retention_reminder_sent }}</h6>
+            <h6>Retention Start Date: {{ object.retention_start_date }}</h6>
+            <h6>Retention End Date: {{ object.retention_end_date }}</h6>
+            <hr />
+            <h6>Type: {{ object.type }}</h6>
+            <h6>Location: {{ object.location }}</h6>
+            <h6>Status: {{ object.status }}</h6>
+            <h6>Classification: {{ object.classification}}</h6>
+            <h6>Authorisation: {{ object.authorisation }}</h6>
+            <hr />
+            <h6>Custodian: {{ object.custodian }}</h6>
+            <h6>Assigned To: {{ object.assigned_to }}</h6>
+            <h6>Assigned By: {{ object.assigned_by }}</h6>
+            <h6>Created by {{ created_by|default:"Unknown" }} on {{ object.created }}</h6>
+            <h6>Last Modified by {{ modified_by|default:"Unknown" }} on {{ object.modified }}</h6>
+        </div>
+    {% endblock %}
+    <!-- Right Panel - Files -->
+    {% block summary_rightpanel %}
+        <div>
+            <h5>Image</h5>
+            <h5>Uploads</h5>
+        </div>
+    {% endblock %}
+    {% block summary_buttonurl %}{% url 'caseevidence_update' object.case.id object.id %}{% endblock %}
+
+<!-- Note Detail Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Contact -->
+    {% block tab2_header %}Related{% endblock %}
+    <!-- Panel 3 - Events -->
+    {% block tab3_header %}Chain Of Evidence{% endblock %}
+    <!-- Panel 4 -  -->
+    {% block tab4 %}{% endblock %}
+    {% block tab4_header %}{% endblock %}
+<!-- Panel 5 -  -->
+    {% block tab5 %}{% endblock %}
+    {% block tab5_header %}{% endblock %}
+<!-- Panel 6 - -->
+    {% block tab6 %}{% endblock %}
+    {% block tab6_header %}{% endblock %}
+<!-- Panel 7 - -->
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
+<!-- Panel 8 -  -->    
+    {% block tab8 %}{% endblock %}
+    {% block tab8_header %}{% endblock %}
+    <!-- Panel 9 -  -->    
+    {% block tab9 %}{% endblock %}
+    {% block tab9_header %}{% endblock %}
+    <!-- Panel 10 -  -->    
+    {% block tab10 %}{% endblock %}
+    {% block tab10_header %}{% endblock %}
+    <!-- Panel 11 -  -->    
+    {% block tab11 %}{% endblock %}
+    {% block tab11_header %}{% endblock %}
+    <!-- Panel 12 -  -->    
+    {% block tab12 %}{% endblock %}
+    {% block tab12_header %}{% endblock %}
+    <!-- Panel 13 -  -->    
+    {% block tab13 %}{% endblock %}
+    {% block tab13_header %}{% endblock %}
+    <!-- Panel 14 -  -->    
+    {% block tab14 %}{% endblock %}
+    {% block tab14_header %}{% endblock %}
+    <!-- Panel 15 - Billing -->
+    {% block tab15_header %}Billing{% endblock %}
+    
+<!-- Tab panels -->
+<!-- Panel 1 - Details -->
+{% block panel1_content %}
+<div class="row">
+
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text">
+                        <h5>Description: {{ object.description }}</h5>
+                        <h5>Notes: {{ object.note }}</h5>
+                    </p>
+                </div>
+            </div>
+        </div>
+            
+        <!-- Details -->
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+{% endblock %}
+
+<!-- Panel 2 - Related -->
+{% block panel2_content %}
+<div class="row">
+    
+    <!-- Image -->
+    {% if object.image %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <img src={{object.image}} alt="{{object.first_name}}" title="{{object.first_name}}" style="float:right;" />
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Address -->
+    {% if object.person.address %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Addresses' %}</h3>
+                    <table>
+                        {% for addr in object.person.address.all %}
+                        <tr>
+                            <td class="name">
+                                <h6>
+                                    {% if addr.primary %}<strong>
+                                        {% endif %}
+                                        {{addr.location}}
+                                        {% if addr.primary %}
+                                    </strong>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h6>Line 1 : {{addr.line1}}<br /></h6>
+                                <h6>Line 2 : {% if addr.line2 %}{{addr.line2}}<br />{% endif %}</h6>
+                                <h6>Line 3 : {% if addr.line3 %}{{addr.line3}}<br />{% endif %}</h6>
+                                <h6>{{addr.city}}, {{addr.state.long_name}}, {% if addr.postcode %}, {{addr.postcode}}{% endif %}</h6>
+                                <h6>{{addr.state.country.name}}</h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Phone -->
+    {% if object.person.telephone %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Telephone Numbers' %}</h3>
+                    <table>
+                        {% for tel in object.person.telephone.all %}
+                        <tr>
+                            <th><h6>{{tel.location|title}} {{tel.get_type_display|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    {% if tel.primary %}<b>
+                                        {% endif %}
+                                        {{tel.number}}
+                                        {% if tel.primary %}
+                                    </b>{% endif %}
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Email -->
+    {% if object.person.email %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Email Addresses' %}</h3>
+                    <table>
+                        {% for email in object.person.email.all %}
+                        <tr>
+                            <th><h6>{{email.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="mailto:{{email.email}}">
+                                        {% if email.primary %}<b>
+                                            {% endif %}
+                                            {{email.email}}
+                                            {% if email.primary %}
+                                        </b>{% endif %}
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Web -->
+    {% if object.person.website %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Websites' %}</h3>
+                    <table>
+                        {% for web in object.person.website.all %}
+                        <tr>
+                            <th><h6>{{web.location|title}}</h6></th>
+                            <td>
+                                <h6>
+                                    <a href="{{web.url}}">
+                                        {% if web.primary %}<b>
+                                            {% endif %}
+                                            {{web.url}}
+                                            {% if web.primary %}
+                                        </b>{% endif %}
+
+                                    </a>
+                                </h6>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <!-- Notes -->
+    {% if object.person.notes %}
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <p class="card-text">
+                    <h3>{% trans 'Notes' %}</h3>
+                    <table>
+                        <tr>
+                            <td><h6>{{object.person.notes}}</h6></td>
+                        </tr>
+                    </table>
+                </p>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
+
+<!-- Panel 3 - Chain Of Evidence -->
+{% block panel3_content %}{% endblock %}
+
+<!-- Panel 4 - -->
+{% block panel4_content %}{% endblock %}
+
+<!-- Panel 5 -  -->
+{% block panel5 %}{% endblock %}
+{% block panel5_content %}{% endblock %}
+
+<!-- Panel 6 -   -->
+{% block panel6 %}{% endblock %}
+{% block panel6_content %}{% endblock %}
+
+<!-- Panel 7 -  -->
+{% block panel7 %}{% endblock %}
+{% block panel7_content %}{% endblock %}
+
+<!-- Panel 8 -  -->
+{% block panel8 %}{% endblock %}
+{% block panel8_content %}{% endblock %}
+
+<!-- Panel 9 -  -->
+{% block panel9 %}{% endblock %}
+{% block panel9_content %}{% endblock %}
+
+<!-- Panel 10 -  -->
+{% block panel10 %}{% endblock %}
+{% block panel10_content %}{% endblock %}
+
+<!-- Panel 11 -  -->
+{% block panel11 %}{% endblock %}
+{% block panel11_content %}{% endblock %}
+
+<!-- Panel 12 -  -->
+{% block panel12 %}{% endblock %}
+{% block panel12_content %}{% endblock %}
+
+<!-- Panel 13 -  -->
+{% block panel13 %}{% endblock %}
+{% block panel13_content %}{% endblock %}
+
+<!-- Panel 14 -  -->
+{% block panel14 %}{% endblock %}
+{% block panel14_content %}{% endblock %}
+
+<!-- Panel 15 - Billing -->
+{% block panel15_content %}
+Billing
+{% endblock %}

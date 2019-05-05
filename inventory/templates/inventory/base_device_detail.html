@@ -1,0 +1,118 @@
+﻿{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}{% endblock %}
+{% block summary_header_override %}{% endblock %}
+
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}{% endblock %}          
+
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}{% endblock %} 
+
+    {% block summary_buttonurl %}{% endblock %}
+
+<!-- Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Contact -->
+    {% block tab2_header %}Contact Details{% endblock %}
+    <!-- Panel 3 - Events -->
+    {% block tab3_header %}Related Events{% endblock %}
+    <!-- Panel 4 - Evidence -->
+    {% block tab4_header %}Related Evidence{% endblock %}
+    <!-- Panel 5 -  -->
+    {% block tab5 %}{% endblock %}
+    {% block tab5_header %}{% endblock %}
+    <!-- Panel 6 -  -->
+    {% block tab6 %}{% endblock %}
+    {% block tab6_header %}{% endblock %}
+    <!-- Panel 7 -  -->
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
+    <!-- Panel 8 -  -->    
+    {% block tab8 %}{% endblock %}
+    {% block tab8_header %}{% endblock %}
+    <!-- Panel 9 -  -->    
+    {% block tab9 %}{% endblock %}
+    {% block tab9_header %}{% endblock %}
+    <!-- Panel 10 -  -->    
+    {% block tab10 %}{% endblock %}
+    {% block tab10_header %}{% endblock %}
+    <!-- Panel 11 -  -->    
+    {% block tab11 %}{% endblock %}
+    {% block tab11_header %}{% endblock %}
+    <!-- Panel 12 -  -->    
+    {% block tab12 %}{% endblock %}
+    {% block tab12_header %}{% endblock %}
+    <!-- Panel 13 -  -->    
+    {% block tab13 %}{% endblock %}
+    {% block tab13_header %}{% endblock %}
+    <!-- Panel 14 - Loan History -->    
+    {% block tab14_header %}Loan History{% endblock %}
+    <!-- Panel 15 - Billing -->
+    {% block tab15_header %}Service History{% endblock %}
+
+<!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}Details{% endblock %}
+
+    <!-- Panel 2 - Contact -->
+    {% block panel2_content %}Contact{% endblock %}
+
+    <!-- Panel 3 - Events -->
+    {% block panel3_content %}Events{% endblock %}
+
+    <!-- Panel 4 - Evidence -->
+    {% block panel4_content %}Evidence{% endblock %}
+
+    <!-- Panel 5 -  -->
+    {% block panel5 %}{% endblock %}    
+    {% block panel5_content %}{% endblock %}
+
+    <!-- Panel 6 -   -->
+    {% block panel6 %}{% endblock %}
+    {% block panel6_content %}{% endblock %}
+
+    <!-- Panel 7 -  -->
+    {% block panel7 %}{% endblock %}
+    {% block panel7_content %}{% endblock %}
+
+    <!-- Panel 8 -  -->
+    {% block panel8 %}{% endblock %}
+    {% block panel8_content %}{% endblock %}
+
+    <!-- Panel 9 -  -->
+    {% block panel9 %}{% endblock %}
+    {% block panel9_content %}{% endblock %}
+
+    <!-- Panel 10 -  -->
+    {% block panel10 %}{% endblock %}
+    {% block panel10_content %}{% endblock %}
+
+    <!-- Panel 11 -  -->
+    {% block panel11 %}{% endblock %}
+    {% block panel11_content %}{% endblock %}
+
+    <!-- Panel 12 -  -->
+    {% block panel12 %}{% endblock %}
+    {% block panel12_content %}{% endblock %}
+
+    <!-- Panel 13 -  -->
+    {% block panel13 %}{% endblock %}
+    {% block panel13_content %}{% endblock %}
+
+    <!-- Panel 14 - Loan History -->
+    {% block panel14_content %}Loan History{% endblock %}
+
+    <!-- Panel 15 - Billing -->
+    {% block panel15_content %}Billing{% endblock %}

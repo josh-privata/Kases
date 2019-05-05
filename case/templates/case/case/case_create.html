@@ -1,0 +1,22 @@
+﻿{% extends "global/views/base_create.html" %}
+{% load crispy_forms_tags %}
+
+{% block sidebar_internal %}
+    {% include "global/views/sidebar_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Create Case{% endblock %}
+<!-- Heading -->
+{#{% block heading %}{{ pagetitle }} Create Case{% endblock %}#}
+
+{% block content %}
+<h1>Create Case</h1>
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {#{{ form.as_p }}#}
+    {% crispy form %}
+    {#<button type="submit" class="save btn btn-default">Create</button>#}
+
+</form>
+{% endblock %}

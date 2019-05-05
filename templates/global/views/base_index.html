@@ -1,0 +1,162 @@
+﻿{% extends "global/auth_base.html" %}
+{% load render_table from django_tables2 %}
+
+    {#{% block title %}{% endblock %}#}
+    {#{% block content %}{% endblock %}#}
+    {#{% block stats %}{% endblock %}#}
+    {#{% block updates %}{% endblock %}#}
+
+    {#{% block table %}{% endblock %}#}
+    {#{% block table_if %}{% endblock %}#}
+    {#{% block table_head %}{% endblock %}#}
+    {#{% block table_body_for %}{% endblock %}#}
+    {#{% block table_body %}{% endblock %}#}
+    {#{% block table_body_id_url %}{% endblock %}#}
+    {#{% block table_body_id_column %}{% endblock %}#}
+    {#{% block table_body_columns %}{% endblock %}#}
+    {#{% block table_else %}{% endblock %}#}
+
+<!-- Content -->
+{% block content %}
+
+    <!-- Statistics Section -->
+    {% block stats %}
+        <section class="dashboard-counts">
+            <div class="jumbotron">
+                <div class="container align-items-center">
+                    <div class="row text-center">
+
+                    {% for key,value in counts.items %}
+                        <div class="col-xl-2 col-md-4 col-6  align-items-center">
+                            <div class="wrapper count-title d-flex text-center">
+                            <div class="name"><strong class="text-uppercase">{{ value.name }}</strong><span></span>
+                                <div class="count-number">{{ value.value }}</div>
+                            </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    <!-- Updates Section -->
+    {% block updates %}
+        <section class="mt-30px mb-30px">
+            <div class="container-fluid">
+                <div class="row">
+
+                    <!-- Updates -->
+                    {% for key,value in updates.items %}
+                        <div class="col-lg-4 col-md-12">           
+                            <div id="{{ value.side }}-updates" class="card updates recent-updated">
+
+                                <!-- Header -->
+                                <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                                    <h2 class="h5 display">
+                                    <a data-toggle="collapse" data-parent="#{{ value.side }}-updates" href="#{{ value.side }}-box" aria-expanded="true" aria-controls="{{ value.side }}-box">
+                                        {{ value.name }}
+                                    </a>
+                                    </h2>
+                                    <div class="right-column">
+                                        <div class="badge badge-primary">{{ value.count }} {{ value.object_type_plural }}</div>
+                                        <a data-toggle="collapse" data-parent="#{{ value.side }}-updates" href="#{{ value.side }}-box" aria-expanded="true" aria-controls="{{ value.side }}-box">
+                                            <i class="fa fa-angle-down"></i>
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <!-- Update Box -->
+                                <div id="{{ value.side }}-box" role="tabpanel" class="collapse">
+                                    <ul class="news list-unstyled">
+
+                                            {% if value.content %}
+                                                {% for object in value.content %}
+
+                                                    <!-- Item -->
+                                                    <li class="d-flex justify-content-between"> 
+                                                        <div class="left-col d-flex">
+                                                            <div class="icon"><i class="icon-rss-feed"></i></div>
+                                                            <div class="title">
+                                                                <strong><a href="{% url 'case_detail' object.id %}" role="button">
+                                                                    {{ object }}
+                                                                    </a></strong>
+                                                                <p>{{ object.description }}</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="right-col text-right">
+                                                            <div class="update-date"><span class="month">{{ object.created }}</span></div>
+                                                        </div>
+                                                    </li>
+
+                                                {% endfor %}
+                                                {% else %}
+
+                                                    <!-- No Item -->
+                                                    <li class="d-flex justify-content-between"> 
+                                                        <div class="left-col d-flex">
+                                                            <div class="icon"><i class="icon-rss-feed"></i></div>
+                                                            <p>There are no items to show here</p>
+                                                        </div>
+                                                    </li>
+
+                                            {% endif %}
+
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </section>
+    {% endblock %}
+
+    <!-- Table Section -->
+    {% block table %}
+        {% if table_objects %}
+            <table class="table">
+                <!-- Table Head -->
+                <thead>
+                <tr>
+                    {% block table_head %}{% endblock %}
+                </tr>
+                </thead>
+        
+                <!-- Table Body -->
+                <tbody>
+                    {% for table_object in table_objects %}
+                        <tr>
+                        
+                            {% block table_body %}
+
+                                <!-- ID -->
+                                <td>
+                                    <a href="{% block table_body_id_url %}{% endblock %}" role="button">
+                                        {% block table_body_id_column %}{% endblock %}
+                                    </a>
+                                </td>
+                                
+                                <!-- Columns -->
+                                {% block table_body_columns %}{% endblock %}
+
+                            {% endblock %}
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <!-- Table Else -->
+        {% else %}
+            {% block table_else %}<p>There are no objects to show</p>{% endblock %}
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}
+
+<!-- Extra Body -->
+{% block extrabody %}{% endblock %}

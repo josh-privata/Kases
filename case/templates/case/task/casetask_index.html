@@ -1,0 +1,50 @@
+{% extends "global/views/base_index.html" %}
+{% load render_table from django_tables2 %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - Case Task Dashboard{% endblock %}
+
+<!-- Statistics Section -->
+{% block stats %}{% endblock %}
+<!-- Updates Section -->
+<!-- Task Section -->
+<!-- Table Head -->
+{% block table_head %}
+    <th>Task ID</th>
+    <th>Task Title</th>
+    <th>Task Detail</th>
+    <th>Task Background</th>
+    <th>Task Status</th>
+    <th>Task Type</th>
+{% endblock %}
+
+<!-- Table Body -->
+<!-- Task ID -->
+{% block table_body_id_url %}
+    {% url 'casetask_detail' object.id table_object.id %}
+{% endblock %}
+
+{% block table_body_id_column %}
+    {{ table_object.id }}
+{% endblock %}
+
+<!-- Columns -->
+{% block table_body_columns %}
+    <!-- Task Title -->
+    <td>{{ table_object.title }}</td>
+    <!-- Task Description -->
+    <td>{{ table_object.description }}</td>
+    <!-- Task Background -->
+    <td>{{ table_object.background }}</td>
+    <!-- Task Status -->
+    <td>{{ table_object.status }}</td>
+    <!-- Task Type -->
+    <td>{{ table_object.type }}</td>
+{% endblock %}
+
+<!-- Table Else -->
+{% block table_else %}<p>There are no tasks to show</p>{% endblock %}

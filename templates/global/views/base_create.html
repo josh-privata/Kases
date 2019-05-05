@@ -1,0 +1,42 @@
+﻿{% extends "global/auth_base.html" %}
+{#{% load crispy_forms_tags %}#}
+
+{% block title %}Kases - Create{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+    <!-- Heading -->    
+    {% block heading %}{% endblock %}
+
+    <!-- Pre Form -->
+    {% block pre_form %}{% endblock %}
+
+    <!-- Form -->
+    {% block form %}
+        <form method="POST" class="post-form">
+            {% csrf_token %}
+
+            <!-- Default to form.as_p -->
+            {% block form_as_p %}
+                {{ form.as_p }}
+                {#{% crispy form %}#}
+            {% endblock %}
+
+            {% block form_button %}        
+            {% endblock %}
+            
+
+        </form>
+    {% endblock %}
+
+    <!-- Post Form -->
+    {% block post_form %}{% endblock %}
+
+{% endblock %}
+
+{% block scripts %}
+        $(document).ready(function() {
+            $('.has-popover').popover({'trigger':'hover'});
+        });
+{% endblock %}

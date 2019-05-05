@@ -1,0 +1,51 @@
+{% extends "global/views/base_indexfold.html" %}
+{% load render_table from django_tables2 %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - Case Evidence Dashboard{% endblock %}
+
+<!-- Introduction Section -->
+{% block intro %}<h1>CUNT</h1>{% endblock %}
+
+<!-- Updates Section -->
+<!-- Case Section -->
+<!-- Table Head -->
+{% block table_head %}
+    <th>Evidence ID</th>
+    <th>Evidence Title</th>
+    <th>Evidence Detail</th>
+    <th>Evidence Background</th>
+    <th>Evidence Status</th>
+    <th>Evidence Type</th>
+{% endblock %}
+
+<!-- Table Body -->
+<!-- Evidence ID -->
+{% block table_body_id_url %}
+    {% url 'caseevidence_detail' object.id table_object.id %}
+{% endblock %}
+
+{% block table_body_id_column %}
+    {{ table_object.id }}
+{% endblock %}
+
+<!-- Columns -->
+{% block table_body_columns %}
+    <!-- Evidence Title -->
+    <td>{{ table_object.title }}</td>
+    <!-- Evidence Description -->
+    <td>{{ table_object.description }}</td>
+    <!-- Evidence Background -->
+    <td>{{ table_object.background }}</td>
+    <!-- Evidence Status -->
+    <td>{{ table_object.status }}</td>
+    <!-- Evidence Type -->
+    <td>{{ table_object.type }}</td>
+{% endblock %}
+
+<!-- Extra Content Section -->
+{% block extracontent %}{% endblock %}

@@ -1,0 +1,78 @@
+﻿{% extends "global/layout.html" %}
+{% load i18n %}
+{% load static %}
+
+<!-- Navigation -->
+{% block navigation %}
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="sidebar-toggle text-light mr-3"><i class="fa fa-fw fa-bars"></i></a>
+            <!-- Brand -->
+            <a class="navbar-brand mr-3" href="{% url 'home' %}"><i class="fa fa-book-open"></i> Kases</a>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+
+                <!-- Nav -->
+                <ul class="navbar-nav mr-auto">
+
+                </ul>
+
+                <!-- Login -->
+                <ul class="navbar-nav navbar-right">
+                    {% include 'registration/loginpartial.html' %}
+                </ul>
+            </div>
+        </nav>
+    </div>
+{% endblock %}
+
+<!-- Sidebar -->
+{% block sidebar %}
+    <div class="sidebar bg-dark">
+        <ul class="list-unstyled">
+
+            {% block sidebar_internal %}
+                <!-- Sidebar 1 - Dashboard -->
+                    {% block sidebar_1 %}{% endblock %}
+                <!-- Sidebar 2  -- -->
+                    {% block sidebar_2 %}{% endblock %}
+                <!-- Sidebar 3  -- -->
+                    {% block sidebar_3 %}{% endblock %}
+                <!-- Sidebar 4 -->
+                    {% block sidebar_4 %}{% endblock %}
+                <!-- Sidebar 5 -->
+                    {% block sidebar_5 %}{% endblock %}
+                <!-- Sidebar 6 -->
+                    {% block sidebar_6 %}{% endblock %}
+                <!-- Sidebar 7 -->
+                    {% block sidebar_7 %}{% endblock %}
+                <!-- Sidebar 8 -->
+                    {% block sidebar_8 %}{% endblock %}
+                <!-- Sidebar 9 -->
+                    {% block sidebar_9 %}{% endblock %}
+                <!-- Sidebar 10 -->
+                    {% block sidebar_10 %}{% endblock %}
+                <!-- Sidebar 11 -->
+                    {% block sidebar_11 %}{% endblock %}
+                <!-- Sidebar 12 -->
+                    {% block sidebar_12 %}{% endblock %}
+                <!-- Sidebar 13 -->
+                    {% block sidebar_13 %}{% endblock %}
+                <!-- Sidebar 14 -->
+                    {% block sidebar_14 %}{% endblock %}
+                <!-- Sidebar 15 -->
+                    {% block sidebar_15 %}{% endblock %}
+                <!-- Sidebar 16 -->
+                    {% block sidebar_16 %}{% endblock %}
+                <!-- Sidebar 17 -->
+                    {% block sidebar_17 %}{% endblock %}
+                <!-- Sidebar 18 -->
+                    {% block sidebar_18 %}{% endblock %}
+                <!-- Sidebar 19 -->
+                    {% block sidebar_19 %}{% endblock %}
+                <!-- Sidebar 20 - Search -->
+                    {% block sidebar_20 %}{% endblock %}
+            
+            {% endblock %}
+        </ul>
+    </div>
+{% endblock %}

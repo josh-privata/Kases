@@ -1,0 +1,19 @@
+{% extends "global/views/base_create.html" %}
+{% load crispy_forms_tags %}
+
+{% block sidebar_internal %}
+    {% include "loan/loan_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Create Loan Request{% endblock %}
+<!-- Heading -->
+{#{% block heading %}{{ pagetitle }} Create Loan Request{% endblock %}#}
+{% block content %}
+<h1>Create Loan Request</h1>
+<form method="POST" class="post-form">
+    {% csrf_token %}
+    {#{{ form.as_p }}#}
+    {% crispy form %}
+</form>
+{% endblock %}

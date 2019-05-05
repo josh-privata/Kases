@@ -1,0 +1,37 @@
+﻿{% extends "global/views/base_list.html" %}
+
+<!-- Title -->
+{% block title %}{% endblock %}
+
+<!-- Results Table -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Evidence ID</th>
+        <th>Evidence Title</th>
+        <th>Evidence Detail</th>
+        <th>Evidence Background</th>
+        <th>Evidence Status</th>
+        <th>Evidence Type</th>
+    {% endblock %}
+
+    <!-- Table -->
+        <!-- Evidence ID -->
+        {% block table_body_id_url %}{% url 'evidence_detail' object.id %}{% endblock %}
+        {% block table_body_id_column %}{{ object.id }}{% endblock %}
+        <!-- Columns -->
+        {% block table_body_columns %} 
+            <!-- Evidence Title -->
+            <td>{{ object.title }}</td>
+            <!-- Evidence Description -->
+            <td>{{ object.description }}</td>
+            <!-- Evidence Background -->
+            <td>{{ object.background }}</td>
+            <!-- Evidence Status -->
+            <td>{{ object.status }}</td>
+            <!-- Evidence Type -->
+            <td>{{ object.type }}</td>
+        {% endblock %}           
+        <!-- Table Else -->
+        {% block table_else %}
+            <p>There is no evidence to show</p>
+        {% endblock %}

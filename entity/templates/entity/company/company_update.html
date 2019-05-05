@@ -1,0 +1,150 @@
+{% extends "global/views/base_detail.html" %}
+
+{% load i18n %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block sidebar_internal %}
+    {% include "entity/entity_open_layout.html" %}
+    
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{ object.prefix }} {{ object.first_name }} {{ object.last_name }}{% endblock %}
+
+
+<!-- Summary -->
+{% block header %}Entity Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+
+{% block form_override_top %}
+
+    <form enctype="multipart/form-data" method="POST" novalidate>
+        {% csrf_token %}        
+        {% endblock %}
+
+        <!-- Left Panel -->
+        {% block summary_leftpanel %}
+            <!-- Form -->
+            <div class="form-group">
+                {{ addresses.management_form }}
+                {{ telephones.management_form }}
+                {{ emails.management_form }}
+                {{ websites.management_form }}
+                {% crispy company %}
+                <br />
+            </div>
+        {% endblock %}
+
+        <!-- Right Panel -->
+        {% block summary_rightpanel %}
+            <!-- Address -->
+            <div class="form-group">
+                <div class="col-lg-12 col-md-12">           
+                    <div id="address-updates" class="card updates recent-updated">
+
+                        <!-- Header -->
+                        <div id="updates-header" class="card-header d-flex justify-content-between align-items-center">
+                            <!-- Heading -->
+                            <h1 class="display">
+                            <a data-toggle="collapse" data-parent="#address-updates" href="#address-box"
+                                aria-expanded="true" aria-controls="address-box">
+                                Address
+                            </a>
+                            </h1>
+                            <!-- Number -->
+                            <div class="right-column">
+                                <div class="badge badge-primary">6 address</div>
+                                <a data-toggle="collapse" data-parent="#address-updates" href="#address-box"
+                                    aria-expanded="true" aria-controls="address-box">
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Update Box -->
+                        <div id="address-box" role="tabpanel" class="collapse">
+                            <!-- Item -->
+                            {% for addr in addresses.forms %}
+                                {% crispy addr %}
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                </div>
+                <br />
+            </div>
+            <!-- Telephone -->
+            <div class="form-group">
+                {% for tel in telephones.forms %}
+                    {% crispy tel %}
+                {% endfor %}
+                <br />
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+                {% for email in emails.forms %}
+                    {% crispy email %}
+                {% endfor %}
+                <br />
+            </div>
+            <!-- Social -->
+            <div class="form-group">
+                {% for social in socials.forms %}
+                    {% crispy social %}
+                {% endfor %}
+                <br />
+            </div>
+            <!-- Web -->
+            <div class="form-group">
+                {% for web in websites.forms %}
+                    {% crispy web %}
+                {% endfor %}
+                <br />
+            </div>
+            <!-- Created -->
+            <div>
+                <table>
+                    <!--  -->
+                    <thead>
+                        <tr>
+                            <th>Created</th>
+                            <td>{{object.created}}</td>
+                        </tr>
+                        <tr>
+                            <th>Modified</th>
+                            <td>{{object.modified}}</td>
+                        </tr>
+                    </thead>
+                </table>
+                <br />
+            </div>
+            <!-- Buttons -->
+            <div>
+                {#{% if user.is_authenticated %}#}
+                <input type="submit" method="post" name="submit" value="Save" />
+                {#{% endif %}#}
+
+                {% if is_popup %}
+                <input type="submit" name="cancel" value="Close" onclick="window.close();" />
+                {% else %}
+                <input type="submit" name="cancel" value="Back" />
+                {% endif %}
+
+                {% if user.is_authenticated and can_delete %}
+                <input type="submit" name="delete" value="Delete" />
+                {% endif %}
+            <br />
+            </div>
+        {% endblock %}
+
+        {% block summary_button %}{% endblock %}
+        {% block form_override_bottom %}
+    </form>
+
+{% endblock %}
+
+{% block tabs %}{% endblock %}
+{% block panels %}{% endblock %}
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}

@@ -1,0 +1,41 @@
+﻿{% extends "global/views/base_list.html" %}
+
+{% block sidebar_internal %}
+    {% include "global/views/sidebar_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}{% endblock %}
+
+<!-- Results Table -->
+<!-- Table Head -->
+    {% block table_head %}
+<th>Case ID</th>
+<th>Case Title</th>
+<th>Case Detail</th>
+<th>Case Background</th>
+<th>Case Status</th>
+<th>Case Type</th>
+    {% endblock %}
+
+<!-- Table -->
+<!-- Case ID -->
+        {% block table_body_id_url %}{% url 'case_detail' object.id %}{% endblock %}
+        {% block table_body_id_column %}{{ object.id }}{% endblock %}
+<!-- Columns -->
+        {% block table_body_columns %}
+<!-- Case Title -->
+<td>{{ object.title }}</td>
+<!-- Case Description -->
+<td>{{ object.description }}</td>
+<!-- Case Background -->
+<td>{{ object.background }}</td>
+<!-- Case Status -->
+<td>{{ object.status }}</td>
+<!-- Case Type -->
+<td>{{ object.type }}</td>
+        {% endblock %}
+<!-- Table Else -->
+        {% block table_else %}
+<p>There are no cases to show</p>
+        {% endblock %}

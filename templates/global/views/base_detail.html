@@ -1,0 +1,341 @@
+﻿{% extends "global/auth_base.html" %}
+
+    
+    {#{% block title %}{% endblock %}#}
+    {#{% block content %}{% endblock %}#}
+    {#{% block summary %}{% endblock %}#}
+    {#{% block summary_header_override %}{% endblock %}#}
+    {#{% block summary_header %}{% endblock %}#}
+    {#{% block summary_leftpanel %}{% endblock %}#}
+    {#{% block summary_rightpanel %}{% endblock %}#}
+    {#{% block summary_button %}{% endblock %}#}
+    {#{% block summary_buttonurl %}{% endblock %}#}
+    {#{% block extra_summary %}{% endblock %}#}
+
+    {#{% block tabs %}{% endblock %}#}
+    {#{% block tab1 %}{% endblock %}#}
+    {#{% block tab1_header %}{% endblock %}#}
+    {#{% block tab2 %}{% endblock %}#}
+    {#{% block tab2_header %}{% endblock %}#}
+    {#{% block tab3 %}{% endblock %}#}
+    {#{% block tab3_header %}{% endblock %}#}
+    {#{% block tab4 %}{% endblock %}#}
+    {#{% block tab4_header %}{% endblock %}#}
+    {#{% block tab5 %}{% endblock %}#}
+    {#{% block tab5_header %}{% endblock %}#}
+    {#{% block tab6 %}{% endblock %}#}
+    {#{% block tab6_header %}{% endblock %}#}
+    {#{% block tab7 %}{% endblock %}#}
+    {#{% block tab7_header %}{% endblock %}#}
+    {#{% block tab8 %}{% endblock %}#}
+    {#{% block tab8_header %}{% endblock %}#}
+    {#{% block tab9 %}{% endblock %}#}
+    {#{% block tab9_header %}{% endblock %}#}
+    {#{% block tab10 %}{% endblock %}#}
+    {#{% block tab10_header %}{% endblock %}#}
+    {#{% block tab11 %}{% endblock %}#}
+    {#{% block tab11_header %}{% endblock %}#}
+    {#{% block tab12 %}{% endblock %}#}
+    {#{% block tab12_header %}{% endblock %}#}
+    {#{% block tab13 %}{% endblock %}#}
+    {#{% block tab13_header %}{% endblock %}#}
+    {#{% block tab14 %}{% endblock %}#}
+    {#{% block tab14_header %}{% endblock %}#}
+    {#{% block tab15 %}{% endblock %}#}
+    {#{% block tab15_header %}{% endblock %}#}
+
+    {#{% block panels %}{% endblock %}#}
+    {#{% block panel1 %}{% endblock %}#}
+    {#{% block panel1_content %}{% endblock %}#}
+    {#{% block panel2 %}{% endblock %}#}
+    {#{% block panel2_content %}{% endblock %}#}
+    {#{% block panel3 %}{% endblock %}#}
+    {#{% block panel3_content %}{% endblock %}#}
+    {#{% block panel4 %}{% endblock %}#}
+    {#{% block panel4_content %}{% endblock %}#}
+    {#{% block panel5 %}{% endblock %}#}
+    {#{% block panel5_content %}{% endblock %}#}
+    {#{% block panel6 %}{% endblock %}#}
+    {#{% block panel6_content %}{% endblock %}#}
+    {#{% block panel7 %}{% endblock %}#}
+    {#{% block panel7_content %}{% endblock %}#}
+    {#{% block panel8 %}{% endblock %}#}
+    {#{% block panel8_content %}{% endblock %}#}    
+    {#{% block panel9 %}{% endblock %}#}
+    {#{% block panel9_content %}{% endblock %}#}
+    {#{% block panel10 %}{% endblock %}#}
+    {#{% block panel10_content %}{% endblock %}#}
+    {#{% block panel11 %}{% endblock %}#}
+    {#{% block panel11_content %}{% endblock %}#}
+    {#{% block panel12 %}{% endblock %}#}
+    {#{% block panel12_content %}{% endblock %}#}
+    {#{% block panel13 %}{% endblock %}#}
+    {#{% block panel13_content %}{% endblock %}#}
+    {#{% block panel14 %}{% endblock %}#}
+    {#{% block panel14_content %}{% endblock %}#}
+    {#{% block panel15 %}{% endblock %}#}
+    {#{% block panel15_content %}{% endblock %}#}
+    
+
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Content -->
+{% block content %}
+
+    <!-- Heading -->    
+    {% block heading %}{% endblock %}
+    
+    <!-- Summary -->
+    {% block summary %}
+    {% block form_override_top %}{% endblock %}
+
+         <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    {% block summary_header_override %}<h2 class="card-header">{% block summary_header %} {% endblock %}</h2>{% endblock %}
+                    <div class="card-body">
+                        <div class="row">
+
+                            <!-- Left Panel -->
+                            <div class="col-sm-6">
+                                <p class="card-text">
+                                    {% block summary_leftpanel %}{% endblock %}
+                                </p>
+                            </div>
+
+                            <!-- Right Panel -->
+                            <div class="col-sm-6">
+                                <p class="card-text">
+                                    {% block summary_rightpanel %}{% endblock %}
+                                </p>
+                            </div>
+                            {% block summary_button %}
+                                <a href="{% block summary_buttonurl %}{% endblock %}" class="btn-sm btn-info">Edit</a>
+                            {% endblock %}
+                        </div>
+                        
+                        {% block extra_summary %}{% endblock %}
+                    
+                    </div>
+                </div>
+            </div>
+        </div> 
+    
+    {% block form_override_bottom %}{% endblock %}     
+    {% endblock %}
+
+    <!-- Detail Tabs -->
+    {% block tabs %}
+
+        <ul class="nav nav-tabs">
+
+            <!-- Panel 1 -->
+            {% block tab1 %}
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#panel1" role="tab">{% block tab1_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 2 -->
+            {% block tab2 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel2" role="tab">{% block tab2_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 3 -->
+            {% block tab3 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel3" role="tab">{% block tab3_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 4 -->
+            {% block tab4 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel4" role="tab">{% block tab4_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 5 -->
+            {% block tab5 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel5" role="tab">{% block tab5_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 6 -->
+            {% block tab6 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel6" role="tab">{% block tab6_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 7 -->
+            {% block tab7 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel7" role="tab">{% block tab7_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 8 -->
+            {% block tab8 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel8" role="tab">{% block tab8_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 9 -->
+            {% block tab9 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel9" role="tab">{% block tab9_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 10 -->
+            {% block tab10 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel10" role="tab">{% block tab10_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 11 -->
+            {% block tab11 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel11" role="tab">{% block tab11_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 12 -->
+            {% block tab12 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel12" role="tab">{% block tab12_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 13 -->
+            {% block tab13 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel13" role="tab">{% block tab13_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 14 -->
+            {% block tab14 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel14" role="tab">{% block tab14_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+            <!-- Panel 15 -->
+            {% block tab15 %}
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#panel15" role="tab">{% block tab15_header %}{% endblock %}</a>
+            </li>
+            {% endblock %}
+
+        </ul>
+
+    {% endblock %}
+
+    <!-- Tab panels -->
+    {% block panels %}
+        <div class="tab-content">
+        
+            <!-- Panel 1 -->
+            {% block panel1 %}
+                <div class="tab-pane fade in show active" id="panel1" role="tabpanel">
+                    {% block panel1_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 2 -->
+            {% block panel2 %}
+                <div class="tab-pane fade in show" id="panel2" role="tabpanel">
+                    {% block panel2_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 3 -->
+            {% block panel3 %}
+                <div class="tab-pane fade in show" id="panel3" role="tabpanel">
+                    {% block panel3_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 4 -->
+            {% block panel4 %}
+                <div class="tab-pane fade in show" id="panel4" role="tabpanel">
+                    {% block panel4_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 5 -->
+            {% block panel5 %}
+                <div class="tab-pane fade in show" id="panel5" role="tabpanel">
+                    {% block panel5_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 6 -->
+            {% block panel6 %}
+                <div class="tab-pane fade in show" id="panel6" role="tabpanel">
+                    {% block panel6_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 7 -->
+            {% block panel7 %}
+                <div class="tab-pane fade in show" id="panel7" role="tabpanel">
+                    {% block panel7_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 8 -->
+            {% block panel8 %}
+                <div class="tab-pane fade in show" id="panel8" role="tabpanel">
+                    {% block panel8_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 9 -->
+            {% block panel9 %}
+                <div class="tab-pane fade in show" id="panel9" role="tabpanel">
+                    {% block panel9_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 10 -->
+            {% block panel10 %}
+                <div class="tab-pane fade in show" id="panel10" role="tabpanel">
+                    {% block panel10_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 11 -->
+            {% block panel11 %}
+                <div class="tab-pane fade in show" id="panel11" role="tabpanel">
+                    {% block panel11_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 12 -->
+            {% block panel12 %}
+                <div class="tab-pane fade in show" id="panel12" role="tabpanel">
+                    {% block panel12_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 13 -->
+            {% block panel13 %}
+                <div class="tab-pane fade in show" id="panel13" role="tabpanel">
+                    {% block panel13_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 14 -->
+            {% block panel14 %}
+                <div class="tab-pane fade in show" id="panel14" role="tabpanel">
+                    {% block panel14_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+            <!-- Panel 15 -->
+            {% block panel15 %}
+                <div class="tab-pane fade in show" id="panel15" role="tabpanel">
+                    {% block panel15_content %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+    
+        </div>
+    {% endblock %}
+ 
+{% endblock %}

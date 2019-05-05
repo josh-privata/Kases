@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+
+    <!-- Head -->
+    <head>
+        <!-- Tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        {% block meta_tags %}{% endblock %}
+
+        <!-- Title -->
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- Stylesheets -->
+        {% load staticfiles %}
+        {% block base_stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/bootstrap.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/fontawesome.min.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/site.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/navs.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/button.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/card.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/dashboard.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/statistics.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/updates.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/forms.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/footer.css' %}" />
+        <link rel="stylesheet" type="text/css" href="{% static 'base/content/charts.css' %}" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+        {% endblock %}
+        {% block stylesheets %}{% endblock %}
+
+        <!-- Extra Head -->
+        {% block extrahead %}{% endblock %}
+    </head>
+
+    <!-- Body -->
+    <body class="{% block bodyclass %}{% endblock %}">
+
+            <!-- Scripts -->
+        {% block base_scripts %}
+            <script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+            <script src="{% static 'base/scripts/popper.min.js' %}"></script>
+            <script src="{% static 'base/scripts/bootstrap.min.js' %}"></script>
+            <script src="{% static 'base/scripts/bsadmin.js' %}"></script>
+            <script src="{% static 'base/scripts/respond.min.js' %}"></script>
+            <script src="{% static 'base/scripts/modernizr-2.6.2.js' %}"></script>
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}
+        <!-- Default Page -->
+        {% block page %}
+
+            <!-- Navigation -->
+            {% block navigation %}{% endblock %}
+
+            <!-- Content -->
+            <div class="d-flex align-items-stretch">
+
+                <!-- Sidebar -->
+                {% block sidebar %}{% endblock %}
+
+                <!-- Main Content -->
+                <div class="content p-4">
+
+                    <!-- Breadcrumb -->
+                    {% block breadcrumb %}{% endblock %}
+
+                    <!-- Content -->
+                    {% block content_title %}{% endblock %}
+                    {% block content %}{% endblock %}
+                    
+                    <!-- Extra Body -->
+                    {% block extrabody %}{% endblock %}
+                        
+                    <!-- Footer -->
+                    {% block footer %}{% endblock %}
+                </div>
+
+             </div>
+
+        {% endblock %}
+   
+    </body>
+</html>

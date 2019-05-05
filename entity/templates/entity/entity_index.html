@@ -1,0 +1,76 @@
+{% extends "global/views/base_index.html" %}
+{% load render_table from django_tables2 %}
+
+{% block sidebar_internal %}
+    {% include "entity/entity_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - Entity Dashboard{% endblock %}
+
+<!-- Statistics Section -->
+{% block stats %}{% endblock %}
+<!-- Updates Section -->
+
+<!-- Entity Section -->
+    <!-- Table Head -->
+    {% block table_head %}
+        <th>Person ID</th>
+        <th>Person Name</th>
+
+    {% endblock %}
+        
+    <!-- Table Body -->
+    <!-- Entity ID -->
+    {% block table_body_id_url %}{% url 'person_detail' table_object.pk  %}{% endblock %}
+    {% block table_body_id_column %} {{ table_object.id }} {% endblock %}                        
+    
+    <!-- Columns -->
+    {% block table_body_columns %}
+        <!-- Entity Title -->
+        <td>{{ table_object.first_name }} {{ table_object.last_name }}</td>
+
+    {% endblock %}
+    
+    <!-- Table Else -->
+    {% block table_else %}<p>There are no entities to show</p>{% endblock %}
+
+<!-- Extra Body -->
+{% block extrabody %}
+<br/><br/>
+    <!-- Table Section -->
+    {% if company_table %}
+        <table class="table">
+            <!-- Table Head -->
+            <thead>
+            <tr>
+                <th>Company ID</th>
+                <th>Company Title</th>
+            </tr>
+            </thead>
+        
+            <!-- Table Body -->
+            <tbody>
+                {% for table_object in company_table %}
+                    <tr>
+
+                        <!-- ID -->
+                        <td>
+                            <a href="{% url 'company_detail' table_object.pk  %}" role="button">
+                                {{ table_object.id }}
+                            </a>
+                        </td>
+                                
+                        <!-- Columns -->
+                        <!-- Entity Title -->
+                        <td>{{ table_object.title }}</td
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <!-- Table Else -->
+    {% else %}
+        <p>There are no objects to show</p>
+    {% endif %}
+{% endblock %}

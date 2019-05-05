@@ -1,0 +1,79 @@
+﻿{% extends "global/auth_base.html" %}
+{#{% load render_table from django_tables2 %}#}
+
+    {#{% block pre_table %}{% endblock %}#}
+    {#{% block table %}{% endblock %}#}
+    {#{% block table_head %}{% endblock %}#}
+    {#{% block table_body %}{% endblock %}#}
+    {#{% block table_body_id_url %}{% endblock %}#}
+    {#{% block table_body_id_column %}{% endblock %}#}
+    {#{% block table_body_columns %}{% endblock %}#}
+    {#{% block table_else %}{% endblock %}#}
+    {#{% block post_table %}{% endblock %}#}
+
+<!-- Content -->
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Panel -->
+            <div class="panel panel-default">
+
+                <!-- Panel Body -->
+                <div class="panel-body">
+
+                    <!-- Pre Table -->
+                    {% block pre_table %}{% endblock %}
+
+                    <!-- Table Section -->
+                    {% block table %}
+                        {% if objects %}
+                            <table class="table">
+
+                                <!-- Table Head -->
+                                <thead>
+                                <tr>
+                                    {% block table_head %}{% endblock %}
+                                </tr>
+                                </thead>
+        
+                                <!-- Table Body -->
+                                <tbody>
+                                    {% for object in objects %}
+                                        <tr>
+
+                                            {% block table_body %}
+                                                
+                                                <!-- ID -->
+                                                <td>
+                                                    <a href="{% block table_body_id_url %}{% endblock %}" role="button">
+                                                        {% block table_body_id_column %} object.id {% endblock %}
+                                                    </a>
+                                                </td>
+                                
+                                                <!-- Columns -->
+                                                {% block table_body_columns %}{% endblock %}
+
+                                            {% endblock %}
+
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                        {% else %}
+                            <!-- Table Else -->
+                            {% block table_else %}{% endblock %}
+                        {% endif %}
+                    {% endblock %}
+
+                    <!-- Post Table -->
+                    {% block post_table %}{% endblock %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

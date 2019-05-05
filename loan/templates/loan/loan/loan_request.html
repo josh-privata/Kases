@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block sidebar_internal %}
+    {% include "inventory/inventory_open_layout.html" %}
+{% endblock %}
+
+{% block content %}
+
+{% crispy form %}
+
+{% endblock content %}

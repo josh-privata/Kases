@@ -1,0 +1,101 @@
+﻿{% extends "global/views/sidebar_open_layout.html" %}
+
+<!-- Sidebar 01 - Case Home -->
+<!-- Sidebar 02 - New Case -->
+<!-- Sidebar 03 - Case Details -->
+    {% block sidebar_3 %}
+        <li>
+            <a href="{% url 'case_detail' object.id %}">
+                <i class="fa fa-fw fa-home"></i>
+                Case Detail
+            </a>
+        </li>
+    {% endblock %}
+<!-- Sidebar 04 - Assets -->
+    {% block sidebar_4 %}
+        <li>
+            <a href="#submenu4" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Assets</a>
+            <ul id="submenu4" class="list-unstyled collapse">
+                <li><a href="{% url 'casedevice' object.id %}">Case Assets</a></li>
+                <li><a href="{% url 'loanswithcase' object.id %}">Asset Requests</a></li>
+                <li><a href="{% url 'loanwithcase_create' object.id %}">New Request</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 05 - Evidence -->
+    {% block sidebar_5 %}
+        <li>
+            <a href="#submenu5" data-toggle="collapse"><i class="fa fa-fw fa-inbox"></i> Evidence</a>
+            <ul id="submenu5" class="list-unstyled collapse">
+                <li><a href="{% url 'caseevidence' object.id %}">Evidence</a></li>
+                <li><a href="{% url 'caseevidence_create' object.id %}">New Evidence</a></li>
+                {#<li><a href="{% url 'caseevidence_list' object.id %}">Evidence List</a></li>#}
+                <li><a href="#">Find Evidence</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 06 - Notes -->
+    {#{% block sidebar_6 %}
+        <li>
+            <a href="#submenu6" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Notes</a>
+            <ul id="submenu6" class="list-unstyled collapse">
+                {#<li><a href="{% url 'casenote' object.id %}">Notes</a></li>#}
+                {#<li><a href="{% url 'casenote_create' object.id %}">New Note</a></li>#}
+                {#<li><a href="{% url 'casenote_list' object.id %}">Note List</a></li>#}
+                <li><a href="#">Find Notes</a></li>
+            </ul>
+        </li>
+    {% endblock %}#}
+<!-- Sidebar 07 - Tasks -->
+    {% block sidebar_7 %}
+        <li>
+            <a href="#submenu7" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Tasks</a>
+            <ul id="submenu7" class="list-unstyled collapse">
+                <li><a href="{% url 'casetask' object.id %}">Tasks</a></li>
+                <li><a href="{% url 'casetask_create' object.id %}">New Task</a></li>
+                {#<li><a href="{% url 'casetask_list' object.id %}">Task List</a></li>#}
+                <li><a href="#">Find Tasks</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 08 - Entities -->
+    {% block sidebar_8 %}
+        <li>
+            <a href="#submenu8" data-toggle="collapse"><i class="fa fa-fw fa-inbox"></i> Entities</a>
+            <ul id="submenu8" class="list-unstyled collapse">
+                <li><a href="{% url 'caseentity' object.id %}">Entities</a></li>
+                <li><a href="{% url 'caseperson_create' object.id %}">New Person</a></li>
+                <li><a href="{% url 'casecompany_create' object.id %}">New Company</a></li>
+                    {#<li><a href="{% url 'caseentity_list' object.id %}">Entity List List</a></li>#}
+                <li><a href="#">Find Entities</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 09 - Events -->
+    {% block sidebar_9 %}
+        <li>
+            <a href="#submenu9" data-toggle="collapse"><i class="fa fa-fw fa-suitcase"></i> Events</a>
+            <ul id="submenu9" class="list-unstyled collapse">
+                <li><a href="{% url 'caseevent' object.id %}">Events</a></li>
+                <li><a href="{% url 'caseevent_create' object.id %}">New Event</a></li>
+                {#<li><a href="{% url 'caseevent_list' object.id %}">Event List</a></li>#}
+                <li><a href="#">Find Tasks</a></li>
+            </ul>
+        </li>
+    {% endblock %}
+<!-- Sidebar 10 -->
+    {% block sidebar_10 %}{% endblock %}
+<!-- Sidebar 11 -->
+    {% block sidebar_11 %}{% endblock %}
+<!-- Sidebar 12 -->
+    {% block sidebar_12 %}{% endblock %}
+<!-- Sidebar 13 -->
+    {% block sidebar_13 %}{% endblock %}
+<!-- Sidebar 14 -->
+    {% block sidebar_14 %}{% endblock %}
+<!-- Sidebar 15 -->
+    {% block sidebar_15 %}{% endblock %}
+<!-- Sidebar 16 -->
+<!-- Sidebar 17 -->
+<!-- Sidebar 18 -->
+<!-- Sidebar 19 -->

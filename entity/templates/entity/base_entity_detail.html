@@ -1,0 +1,154 @@
+﻿{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "entity/entity_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block summary_header_override %}{% endblock %}
+
+    <!-- Left Panel -->
+    {% block summary_leftpanel %}
+        
+        <!-- Details -->
+        <div>
+            {% if object.first_name %}
+                <h3>{{ object.first_name }} {{ object.last_name }}</h3>
+            {% else %}
+                <h3>{{ object.title }}</h3>
+            {% endif %}
+        </div>
+        <br />
+        <!-- Dates -->
+        <table>
+            <thead>
+                <tr>
+                    <th>Created</th>
+                    <td>{{object.created}}</td>
+                </tr>
+                <tr>
+                    <th>Modified</th>
+                    <td>{{object.modified}}</td>
+                </tr>
+            </thead>
+        </table>
+        <br />
+
+    {% endblock %}          
+
+    <!-- Right Panel -->
+    {% block summary_rightpanel %}
+        
+        <!-- Image -->
+        <div>
+            {% if object.image %}
+                <img src={{object.image}} alt="{{object.first_name}}" title="{{object.first_name}}" style="float:right;" />
+            {% else %}
+                <img src="" alt="Placeholder" title="Placeholder" style="float:right;" />
+            {% endif %}
+        </div>
+        <br />
+
+    {% endblock %} 
+
+
+<!-- Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Contact -->
+    {% block tab2_header %}Contact Details{% endblock %}
+    <!-- Panel 3 - -->
+    {% block tab3_header %}{% endblock %}
+    <!-- Panel 4 - Cases -->
+    {% block tab4_header %}Related Cases{% endblock %}
+    <!-- Panel 5 -  -->
+    {% block tab5 %}{% endblock %}
+    {% block tab5_header %}{% endblock %}
+    <!-- Panel 6 -  -->
+    {% block tab6 %}{% endblock %}
+    {% block tab6_header %}{% endblock %}
+    <!-- Panel 7 -  -->
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
+    <!-- Panel 8 -  -->    
+    {% block tab8 %}{% endblock %}
+    {% block tab8_header %}{% endblock %}
+    <!-- Panel 9 -  -->    
+    {% block tab9 %}{% endblock %}
+    {% block tab9_header %}{% endblock %}
+    <!-- Panel 10 -  -->    
+    {% block tab10 %}{% endblock %}
+    {% block tab10_header %}{% endblock %}
+    <!-- Panel 11 -  -->    
+    {% block tab11 %}{% endblock %}
+    {% block tab11_header %}{% endblock %}
+    <!-- Panel 12 -  -->    
+    {% block tab12 %}{% endblock %}
+    {% block tab12_header %}{% endblock %}
+    <!-- Panel 13 -  -->    
+    {% block tab13 %}{% endblock %}
+    {% block tab13_header %}{% endblock %}
+    <!-- Panel 14 -  -->    
+    {% block tab14_header %}History{% endblock %}
+    <!-- Panel 15 - Billing -->
+    {% block tab15_header %}Case Billing{% endblock %}
+
+<!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}Details{% endblock %}
+
+    <!-- Panel 2 - Contact -->
+    {% block panel2_content %}Contact Details{% endblock %}
+
+    <!-- Panel 3 -  -->
+    {% block panel3_content %}{% endblock %}
+
+    <!-- Panel 4 - Cases -->
+    {% block panel4_content %}Related Cases{% endblock %}
+
+    <!-- Panel 5 -  -->
+    {% block panel5 %}{% endblock %}    
+    {% block panel5_content %}{% endblock %}
+
+    <!-- Panel 6 -   -->
+    {% block panel6 %}{% endblock %}
+    {% block panel6_content %}{% endblock %}
+
+    <!-- Panel 7 -  -->
+    {% block panel7 %}{% endblock %}
+    {% block panel7_content %}{% endblock %}
+
+    <!-- Panel 8 -  -->
+    {% block panel8 %}{% endblock %}
+    {% block panel8_content %}{% endblock %}
+
+    <!-- Panel 9 -  -->
+    {% block panel9 %}{% endblock %}
+    {% block panel9_content %}{% endblock %}
+
+    <!-- Panel 10 -  -->
+    {% block panel10 %}{% endblock %}
+    {% block panel10_content %}{% endblock %}
+
+    <!-- Panel 11 -  -->
+    {% block panel11 %}{% endblock %}
+    {% block panel11_content %}{% endblock %}
+
+    <!-- Panel 12 -  -->
+    {% block panel12 %}{% endblock %}
+    {% block panel12_content %}{% endblock %}
+
+    <!-- Panel 13 -  -->
+    {% block panel13 %}{% endblock %}
+    {% block panel13_content %}{% endblock %}
+
+    <!-- Panel 14 - History -->
+    {% block panel14_content %}History{% endblock %}
+
+    <!-- Panel 15 - Billing -->
+    {% block panel15_content %}Billing{% endblock %}

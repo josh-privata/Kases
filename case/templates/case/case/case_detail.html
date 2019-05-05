@@ -1,0 +1,529 @@
+﻿{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}Case Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+    <!-- Left Panel - Details -->
+    {% block summary_leftpanel %}
+        <div>
+            <h1>{{ object.id }} / {{ object.title }}</h1>
+            <h5>{{ object.brief|default:"No Summary" }}</h5>
+            {% if object.private is True %}
+                <span class="badge badge-danger">Private</span>
+            {% else %}
+                <span class="badge badge-success">Public</span>
+            {% endif %}
+            <hr>
+            <h6>Deadline: {{ object.deadline }}</h6>
+            <h6>Reference: {{ object.reference }}</h6>
+            <h6>Type: {{ object.type }}</h6>
+            <h6>Location: {{ object.location }}</h6>
+            <h6>Status: {{ object.status }}</h6>
+            <h6>Classification: {{ object.classification}}</h6>
+            <h6>Authorisation: {{ object.authorisation }}</h6>
+            <hr />
+            <h6>Case Manager: {{ object.manager }}</h6>
+            <h6>Assigned To: {{ object.assigned_to }}</h6>
+            <h6>Assigned By: {{ object.assigned_by }}</h6>
+            <h6>Judge: {{ object.judge|default:"None Assigned" }}</h6>
+            <h6>Created by {{ created_by|default:"Unknown" }} on {{ object.created }}</h6>
+            <h6>Last Modified by {{ modified_by|default:"Unknown" }} on {{ object.modified }}</h6>
+        </div>
+    {% endblock %}          
+    <!-- Right Panel - Notices -->
+    {% block summary_rightpanel %}
+        <div>
+            <p>Overdue Tasks</p>
+            <p>Overdue Events</p>        
+            <p>Upcoming Events</p>
+            <p>Upcoming Tasks</p>
+        </div>
+    {% endblock %} 
+{% block summary_buttonurl %}{% url 'case_edit' object.id %}{% endblock %}
+  
+<!-- Case Detail Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Notes -->
+    {% block tab2_header %}Notes{% endblock %}
+    <!-- Panel 3 - Evidence -->
+    {% block tab3_header %}Evidence{% endblock %}
+    <!-- Panel 4 - Tasks -->
+    {% block tab4_header %}Tasks{% endblock %}
+    <!-- Panel 5 - -->
+    {% block tab5_header %}Entities{% endblock %}
+    <!-- Panel 6 - --> 
+    {% block tab6_header %}Inventory{% endblock %}
+    <!-- Panel 7 -  -->    
+    {% block tab7_header %}Events{% endblock %}
+    <!-- Panel 8 -  -->    
+    {% block tab8 %}{% endblock %}
+    {% block tab8_header %}Events{% endblock %}
+    <!-- Panel 9 -  -->    
+    {% block tab9 %}{% endblock %}
+    {% block tab9_header %}Events{% endblock %}
+    <!-- Panel 10 -  -->    
+    {% block tab10 %}{% endblock %}
+    {% block tab10_header %}Events{% endblock %}
+    <!-- Panel 11 -  -->    
+    {% block tab11 %}{% endblock %}
+    {% block tab11_header %}Events{% endblock %}
+    <!-- Panel 12 -  -->    
+    {% block tab12 %}{% endblock %}
+    {% block tab12_header %}Events{% endblock %}
+    <!-- Panel 13 -  -->    
+    {% block tab13 %}{% endblock %}
+    {% block tab13_header %}Events{% endblock %}
+    <!-- Panel 14 -  -->    
+    {% block tab14 %}{% endblock %}
+    {% block tab14_header %}Events{% endblock %}
+    <!-- Panel 15 -  -->    
+    {% block tab15 %}{% endblock %}
+    {% block tab15_header %}Events{% endblock %}
+
+    <!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="row">
+
+                    <!-- Left Panel -->
+                    <div class="col-sm-6">
+                        <p>
+                            <h6>Description</h6>        
+                            <p>{{ object.description }}</p>
+                            <h6>Purpose</h6>
+                            <p>{{ object.purpose }}</p>
+                        </p>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="col-sm-6">
+                        <p>
+                            <h6>Background</h6>
+                            <p>{{ object.background }}</p>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 2 - Notes -->
+    {% block panel2_content %}
+        <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if notes %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Note Title</th>
+                            <th>Note Detail</th>
+                            <th>Note Location</th>
+                            <th>Note Status</th>
+                            <th>Note Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in notes %}
+                                <tr>
+
+                                    <!-- Edit -->
+                                    <td>
+                                        <a href="{% url 'casenote_update' table_object.case.id table_object.id %}" role="button">
+                                            <i class="fa fa-fw fa-edit"></i> Edit
+                                        </a>
+                                    </td>
+                                    
+                                    <!-- Delete -->
+                                    <td>
+                                        <a href="{% url 'casenote_delete' table_object.case.id table_object.id %}" role="button">
+                                            <i class="fa fa-fw fa-trash"></i> Delete
+                                        </a>
+                                    </td>
+                                    
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'casenote_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Notes for this Case yet</p>
+                {% endif %}
+        </div>
+    {% endblock %}
+
+    <!-- Panel 3 - Evidence -->
+    {% block panel3_content %}
+        <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if evidence %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Evidence</th>
+                            <th>Status</th>
+                            <th>Priority</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in evidence %}
+                                <tr>
+                                    <td>
+                                        <a href="{% url 'caseevidence_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.title }}
+                                        </a>
+                                    </td>
+                                    <td>{{ table_object.status }}</td>
+                                    <td>{{ table_object.priority }}</td>
+                                    <td>{{ table_object.type }}</td>
+                                    <td>{{ table_object.desription }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There is no Evidence for this Case yet</p>
+                {% endif %}
+        </div>
+    {% endblock %}
+
+    <!-- Panel 4 - Tasks -->
+    {% block panel4_content %}
+    <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if tasks %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Tasks Title</th>
+                            <th>Tasks Detail</th>
+                            <th>Tasks Locatoin</th>
+                            <th>Tasks Status</th>
+                            <th>Tasks Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in tasks %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'casetask_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
+
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Tasks for this Case yet</p>
+                {% endif %}
+        </div>
+    {% endblock %}
+
+    <!-- Panel 5 - Entities -->
+    {% block panel5_content %}
+
+        <!-- Person -->
+        <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if persons %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Person Title</th>
+                            <th>Person Detail</th>
+                            <th>Person Location</th>
+                            <th>Person Status</th>
+                            <th>Person Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in persons %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'caseperson_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.person.last_name }}, {{ table_object.person.first_name }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
+
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Persons for this Case yet</p>
+                {% endif %}
+        </div>
+
+        <!-- Company -->
+        <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if companies %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Company Title</th>
+                            <th>Company Detail</th>
+                            <th>Company Location</th>
+                            <th>Company Status</th>
+                            <th>Company Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in companies %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'casecompany_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.company.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
+
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Companies for this Case yet</p>
+                {% endif %}
+        </div>
+
+    {% endblock %}
+
+    <!-- Panel 6 - Inventory -->
+    {% block panel6_content %}
+        <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if devices %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Device Title</th>
+                            <th>Device Detail</th>
+                            <th>Device Locatoin</th>
+                            <th>Device Status</th>
+                            <th>Device Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in devices %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'casedevice_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.device.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
+
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.reason }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.device.description }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Devices for this Case yet</p>
+                {% endif %}
+        </div>
+    {% endblock %}
+
+    <!-- Panel 7 - Events -->
+    {% block panel7_content %}
+        <div class="row">
+            <!-- Case Section -->
+            <!-- Table Section -->
+                {% if events %}
+                    <table class="table">
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Events Title</th>
+                            <th>Events Detail</th>
+                            <th>Events Locatoin</th>
+                            <th>Events Status</th>
+                            <th>Events Type</th>
+                        </tr>
+                        </thead>
+        
+                        <!-- Table Body -->
+                        <tbody>
+                            {% for table_object in events %}
+                                <tr>
+                                    <!-- ID -->
+                                    <td>
+                                        <a href="{% url 'caseevent_detail' table_object.case.id table_object.id %}" role="button">
+                                            {{ table_object.title }}
+                                        </a>
+                                    </td>
+                                
+                                    <!-- Columns -->
+
+                                    <!-- Case Description -->
+                                    <td>{{ table_object.description }}</td>
+
+                                    <!-- Case Background -->
+                                    <td>{{ table_object.location }}</td>
+
+                                    <!-- Case Status -->
+                                    <td>{{ table_object.status }}</td>
+
+                                    <!-- Case Type -->
+                                    <td>{{ table_object.type }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                <!-- Table Else -->
+                {% else %}
+                    <p>There are no Events for this Case yet</p>
+                {% endif %}
+</div>
+    {% endblock %}
+
+    <!-- Panel 8 -  -->
+    {% block panel8 %}{% endblock %}
+    {% block panel8_content %}{% endblock %}
+
+    <!-- Panel 9 -  -->
+    {% block panel9 %}{% endblock %}
+    {% block panel9_content %}{% endblock %}
+
+    <!-- Panel 10 -  -->
+    {% block panel10 %}{% endblock %}
+    {% block panel10_content %}{% endblock %}
+
+    <!-- Panel 11 -  -->
+    {% block panel11 %}{% endblock %}
+    {% block panel11_content %}{% endblock %}
+
+    <!-- Panel 12 -  -->
+    {% block panel12 %}{% endblock %}
+    {% block panel12_content %}{% endblock %}
+
+    <!-- Panel 13 -  -->
+    {% block panel13 %}{% endblock %}
+    {% block panel13_content %}{% endblock %}
+
+    <!-- Panel 14 -  -->
+    {% block panel14 %}{% endblock %}
+    {% block panel14_content %}{% endblock %}
+
+    <!-- Panel 15 -  -->
+    {% block panel15 %}{% endblock %}
+    {% block panel15_content %}{% endblock %}

@@ -1,0 +1,23 @@
+﻿{% extends "global/layout.html" %}
+{% load i18n %}
+{% load static %}
+
+<!-- Navigation -->
+{% block navigation %}
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+            <!-- Brand -->
+            <a class="navbar-brand mr-3" href="#"><i class="fa fa-code-branch"></i> Kases</a>
+            <div class="navbar-collapse collapse" id="navbarSupportedContent">
+
+                <!-- Login -->
+                <ul class="nav navbar-nav navbar-right">
+                    {% include 'registration/loginpartial.html' %}
+                </ul>
+
+            </div>
+            
+        </nav>
+    </div>
+{% endblock %}

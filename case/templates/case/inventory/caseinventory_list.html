@@ -1,0 +1,62 @@
+﻿{% extends "global/auth_base.html" %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-sm-12">
+        <!-- Panel -->
+        <div class="panel panel-default">
+            <!-- Panel Body -->
+            <div class="panel-body">
+                <!-- Results Table -->
+                <table class="table">
+                    <!-- Table Head -->
+                    <thead>
+                        <tr>
+                            <th>Task ID</th>
+                            <th>Task Title</th>
+                            <th>Task Detail</th>
+                            <th>Task Background</th>
+                            <th>Task Status</th>
+                            <th>Task Type</th>
+                        </tr>
+                    </thead>
+                    <!-- Table -->
+                    {% if tasks_list %}
+                    <!-- Table Body -->
+                    <tbody>
+                        {% for task in tasks_list %}
+                        <tr>
+                            <!-- Task ID -->
+                            <td>
+                                <a href="{% url 'casetask_detail' task.id %}" role="button">
+                                    {{ task.id }}
+                                </a>
+                            </td>
+
+                            <!-- Task Title -->
+                            <td>{{ task.title }}</td>
+                            <!-- Task Description -->
+                            <td>{{ task.description }}</td>
+                            <!-- Task Background -->
+                            <td>{{ task.background }}</td>
+                            <!-- Task Status -->
+                            <td>{{ task.status }}</td>
+                            <!-- Task Type -->
+                            <td>{{ task.type }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% else %}
+                <p>There are no tasks to show</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,187 @@
+﻿{% extends "global/views/base_detail.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+<!-- Title -->
+{% block title %}Kases - {{object.title}}{% endblock %}
+
+<!-- Summary -->
+{% block header %}Task Summary{% endblock %}
+{% block summary_header_override %}{% endblock %}
+
+<!-- Left Panel -->
+    {% block summary_leftpanel %}
+        <div>
+            <h1>{{ object.id }} / {{ object.title }}</h1>
+            <h5>{{ object.brief|default:"No Summary" }}</h5>
+            {% if object.private is True %}
+                <span class="badge badge-danger">Private</span>
+            {% else %}
+                <span class="badge badge-success">Public</span>
+            {% endif %}
+            <hr />
+            <h6>Priority: {{ object.priority }}</h6>
+            <h6>Location: {{ object.location }}</h6>
+            <h6>Status: {{ object.status }}</h6>
+            <h6>Category: {{ object.category }}</h6>
+            <h6>Classification: {{ object.classification}}</h6>
+            <h6>Authorisation: {{ object.authorisation }}</h6>
+            <hr />
+        </div>
+    {% endblock %}
+
+<!-- Right Panel -->
+    {% block summary_rightpanel %}
+        <div>
+            <h6>Deadline: {{ object.deadline }}</h6>
+            <h6>Manager: {{ object.manager }}</h6>
+            <h6>Assigned To: {{ object.assigned_to }}</h6>
+            <h6>Assigned By: {{ object.assigned_by }}</h6>
+            <h6>Created by {{ created_by|default:"Unknown" }} on {{ object.created }}</h6>
+            <h6>Last Modified by {{ modified_by|default:"Unknown" }} on {{ object.modified }}</h6> 
+        </div>
+    {% endblock %}
+    {% block summary_buttonurl %}{% url 'casetask_update' object.case.id object.id %}{% endblock %}
+
+<!-- Note Detail Tabs -->
+    <!-- Panel 1 - Details -->
+    {% block tab1_header %}Details{% endblock %}
+    <!-- Panel 2 - Related -->
+    {% block tab2_header %}Related{% endblock %}
+    <!-- Panel 3 -  -->
+    {% block tab3 %}{% endblock %}
+    {% block tab3_header %}{% endblock %}
+    <!-- Panel 4 -  -->
+    {% block tab4 %}{% endblock %}
+    {% block tab4_header %}{% endblock %}
+    <!-- Panel 5 -  -->
+    {% block tab5 %}{% endblock %}
+    {% block tab5_header %}{% endblock %}
+    <!-- Panel 6 -  -->
+    {% block tab6 %}{% endblock %}
+    {% block tab6_header %}{% endblock %}
+    <!-- Panel 7 -  -->
+    {% block tab7 %}{% endblock %}
+    {% block tab7_header %}{% endblock %}
+    <!-- Panel 8 -  -->    
+    {% block tab8 %}{% endblock %}
+    {% block tab8_header %}{% endblock %}
+    <!-- Panel 9 -  -->    
+    {% block tab9 %}{% endblock %}
+    {% block tab9_header %}{% endblock %}
+    <!-- Panel 10 -  -->    
+    {% block tab10 %}{% endblock %}
+    {% block tab10_header %}{% endblock %}
+    <!-- Panel 11 -  -->    
+    {% block tab11 %}{% endblock %}
+    {% block tab11_header %}{% endblock %}
+    <!-- Panel 12 -  -->    
+    {% block tab12 %}{% endblock %}
+    {% block tab12_header %}{% endblock %}
+    <!-- Panel 13 -  -->    
+    {% block tab13 %}{% endblock %}
+    {% block tab13_header %}{% endblock %}
+    <!-- Panel 14 -  -->    
+    {% block tab14 %}{% endblock %}
+    {% block tab14_header %}{% endblock %}
+    <!-- Panel 15 - Billing -->
+    {% block tab15_header %}Billing{% endblock %}
+
+<!-- Tab panels -->      
+    <!-- Panel 1 - Details -->
+    {% block panel1_content %}
+    <div class="row">
+
+            <!-- Details -->
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <h5>Description: {{ object.description }}</h5>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Details -->
+            <div class="col-sm-6">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <h5>Note: {{ object.note }}</h5>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+    {% endblock %}
+
+    <!-- Panel 2 - Related -->
+    {% block panel2_content %}
+        <div>
+            <h5>Event</h5>
+            <h6>{{ object.event }}</h6>
+            <h5>Device</h5>
+            <h6>{{ object.device }}</h6>
+            <h5>Evidence</h5>
+            <h6>{{ object.evidence }}</h6>
+            <h5>Persons Involved</h5>
+            <h6>{{ object.person }}</h6>
+            <h5>Companies Involved</h5>
+            <h6>{{ object.company }}</h6>
+        </div>
+    {% endblock %}
+
+    <!-- Panel 3 -  -->
+    {% block panel3_content %}{% endblock %}
+
+    <!-- Panel 4 -  -->
+    {% block panel4_content %}{% endblock %}
+
+    <!-- Panel 5 -  -->
+    {% block panel5 %}{% endblock %}    
+    {% block panel5_content %}{% endblock %}
+
+    <!-- Panel 6 -   -->
+    {% block panel6 %}{% endblock %}
+    {% block panel6_content %}{% endblock %}
+
+    <!-- Panel 7 -  -->
+    {% block panel7 %}{% endblock %}
+    {% block panel7_content %}{% endblock %}
+
+    <!-- Panel 8 -  -->
+    {% block panel8 %}{% endblock %}
+    {% block panel8_content %}{% endblock %}
+
+    <!-- Panel 9 -  -->
+    {% block panel9 %}{% endblock %}
+    {% block panel9_content %}{% endblock %}
+
+    <!-- Panel 10 -  -->
+    {% block panel10 %}{% endblock %}
+    {% block panel10_content %}{% endblock %}
+
+    <!-- Panel 11 -  -->
+    {% block panel11 %}{% endblock %}
+    {% block panel11_content %}{% endblock %}
+
+    <!-- Panel 12 -  -->
+    {% block panel12 %}{% endblock %}
+    {% block panel12_content %}{% endblock %}
+
+    <!-- Panel 13 -  -->
+    {% block panel13 %}{% endblock %}
+    {% block panel13_content %}{% endblock %}
+
+    <!-- Panel 14 -  -->
+    {% block panel14 %}{% endblock %}
+    {% block panel14_content %}{% endblock %}
+
+    <!-- Panel 15 - Billing -->
+    {% block panel15_content %}{% endblock %}

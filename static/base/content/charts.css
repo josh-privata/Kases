@@ -1,0 +1,45 @@
+/* PROGRESS CIRCLE */
+.gmpc {
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    color: #33b35a !important;
+    border-right: 1px solid #eee;
+}
+
+@media (max-width: 575px) {
+    .gmpc {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+    }
+}
+
+/* POLAR CHART */
+.polar-chart-example .chart-container {
+    width: 500px;
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+/* PIE CHART */
+.pie-chart-example .chart-container {
+    width: 500px;
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+/* RADAR CHART */
+.radar-chart-example .chart-container {
+    width: 500px;
+    max-width: 100%;
+    margin: 20px auto;
+}
+
+/* CHARTS MEDIAQUERIES */
+@media (min-width: 768px) {
+    section.charts h2 {
+        font-size: 1rem;
+    }
+}

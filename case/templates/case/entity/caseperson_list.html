@@ -1,0 +1,77 @@
+﻿{% extends "global/auth_base.html" %}
+
+{% block sidebar_internal %}
+    {% include "case/case_open_layout.html" %}
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-12">
+
+            <!-- Panel -->
+            <div class="panel panel-default">
+
+                <!-- Panel Body -->
+                <div class="panel-body">
+
+                    <!-- Results Table -->
+                    <table class="table">
+
+                        <!-- Table Head -->
+                        <thead>
+                        <tr>
+                            <th>Person ID</th>
+                            <th>Person Title</th>
+                            <th>Person Detail</th>
+                            <th>Person Background</th>
+                            <th>Person Status</th>
+                            <th>Person Type</th>
+                        </tr>
+                        </thead>
+                        <!-- Table -->
+                        {% if persons_list %}
+                            <!-- Table Body -->
+                            <tbody>
+                            {% for person in persons_list %}
+                                <tr>
+
+                                    <!-- Person ID -->
+                                    <td>
+                                        <a href="{% url 'person_detail' person.id %}" role="button">
+                                            {{ person.id }}
+                                        </a>
+                                    </td>
+                                    
+                                    <!-- Person Title -->
+                                    <td>{{ person.title }}</td>
+
+                                    <!-- Person Description -->
+                                    <td>{{ person.description }}</td>
+
+                                    <!-- Person Background -->
+                                    <td>{{ person.background }}</td>
+
+                                    <!-- Person Status -->
+                                    <td>{{ person.status }}</td>
+
+                                    <!-- Person Type -->
+                                    <td>{{ person.type }}</td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+
+                            </table>
+
+                          
+                        {% else %}
+                            <p>There are no persons to show</p>
+
+                        {% endif %}
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
